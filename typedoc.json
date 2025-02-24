@@ -1,0 +1,20 @@
+{
+    "entryPoints": ["src/index.ts", "src/apiRequests/**/*"],
+    "out": "docs",
+    "includeVersion": true,
+    "categorizeByGroup": false,
+    "categoryOrder": [
+      "Classes",
+      "Interfaces",
+      "Enumerations",
+      "Functions",
+      "Type Aliases",
+      "Variables"
+    ],
+    "navigation": {
+        "compactFolders": true
+    },
+    "excludePrivate": false,
+    "excludeProtected": false,
+    "hideGenerator": true
+  }

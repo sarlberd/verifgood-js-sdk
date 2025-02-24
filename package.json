@@ -1,0 +1,35 @@
+{
+  "name": "verifgood-js-sdk",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "exemple": "node dist/exemple.js",
+    "build:doc": "npx typedoc --entryPointStrategy Expand src",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sarlberd/verifgood-js-sdk.git"
+  },
+  "author": "TxTony <t.tipveau@berd.re>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarlberd/verifgood-js-sdk/issues"
+  },
+  "homepage": "https://github.com/sarlberd/verifgood-js-sdk#readme",
+  "description": "",
+  "dependencies": {
+    "dexie": "^4.0.11",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "typedoc": "^0.27.7",
+    "typescript": "^5.7.3"
+  },
+  "private": true,
+  "module": "dist/index.js"
+}
