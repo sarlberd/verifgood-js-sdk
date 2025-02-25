@@ -43,6 +43,19 @@ class Equipements extends ApiRequest_1.ApiRequest {
             return response[0];
         });
     }
+    /**
+     *
+     * @example
+       vgsdk.equipements.getByCode("VLGE1234").then().catch();
+     */
+    getByCode(code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let query = null;
+            const response = yield this.apiRequest(`${this.endpointSingleton}/code/${code}`, 'GET', query);
+            response[0] = this.calculDepreciation(response[0]);
+            return response[0];
+        });
+    }
     getRapportAssets(metadatas) {
         return __awaiter(this, void 0, void 0, function* () {
             const query = {
