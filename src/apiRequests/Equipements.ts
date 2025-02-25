@@ -25,6 +25,17 @@ export class Equipements extends ApiRequest {
     response[0] = this.calculDepreciation(response[0]);
     return response[0];
   }
+  /**
+   * 
+   * @example 
+     vgsdk.equipements.getByCode("VLGE1234").then().catch();
+   */
+  async getByCode(code: string): Promise<any> {
+    let query = null;
+    const response = await this.apiRequest(`${this.endpointSingleton}/code/${code}`, 'GET', query);
+    response[0] = this.calculDepreciation(response[0]);
+    return response[0];
+  }
 
   async getRapportAssets(metadatas: Metadatas): Promise<any> {
     const query = {

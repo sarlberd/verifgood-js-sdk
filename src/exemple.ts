@@ -24,6 +24,7 @@ let vgsdk : VGSDK = new VGSDK(sdkConfig);
 /**
  * Get the 25 first taches with type_tache = "Verification_equipement" and their checkpoints
  */
+/*
 let metadatas = new Metadatas();
 metadatas.setLimit(0,25);
 metadatas.setFilter("type_tache", "Verification_equipement", "equals");
@@ -45,6 +46,11 @@ vgsdk.taches.getAll(metadatas).then((taches) => {
 }).catch((error) => {
     console.error(error);
 });
+*/
 
-
-
+vgsdk.equipements.getByCode("fbhrj437737737345555").then((equipement) => {
+    console.log(equipement);
+    
+}).catch((error) => {
+    console.error(error);
+});
