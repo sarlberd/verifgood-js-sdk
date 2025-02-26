@@ -12,6 +12,12 @@ export declare class Equipements extends ApiRequest {
        vgsdk.equipements.getById(1).then().catch();
      */
     getById(idEquipement: number): Promise<any>;
+    /**
+     *
+     * @example
+       vgsdk.equipements.getByCode("VLGE1234").then().catch();
+     */
+    getByCode(code: string): Promise<any>;
     getRapportAssets(metadatas: Metadatas): Promise<any>;
     getRapportAssetsExcelFile(metadatas: Metadatas, fileExtension?: string): Promise<void>;
     getAll(metadatas: Metadatas): Promise<any>;

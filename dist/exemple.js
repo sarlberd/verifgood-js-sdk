@@ -24,23 +24,31 @@ let vgsdk = new index_1.VGSDK(sdkConfig);
 /**
  * Get the 25 first taches with type_tache = "Verification_equipement" and their checkpoints
  */
-let metadatas = new index_1.Metadatas();
-metadatas.setLimit(0, 25);
+/*
+let metadatas = new Metadatas();
+metadatas.setLimit(0,25);
 metadatas.setFilter("type_tache", "Verification_equipement", "equals");
 vgsdk.taches.getAll(metadatas).then((taches) => {
     //console.log(taches);
-    let checkpointsMetadatas = new index_1.Metadatas();
-    let tachesIds = taches.datas.map((tache) => tache.id);
+
+    let checkpointsMetadatas = new Metadatas();
+    let tachesIds = taches.datas.map((tache: { id: any; }) => tache.id);
     checkpointsMetadatas.setFilter("idTache_id", tachesIds, "equals");
     vgsdk.checkpoints.getAll(checkpointsMetadatas).then((checkpoints) => {
         // mix tache and checkpoint the commun field is tache.id = checkpoint.idTache_id
-        taches.datas.forEach((tache) => {
-            tache.checkpoints = checkpoints.datas.filter((checkpoint) => checkpoint.idTache_id === tache.id);
+        taches.datas.forEach((tache: any) => {
+            tache.checkpoints = checkpoints.datas.filter((checkpoint: { idTache_id: any; }) => checkpoint.idTache_id === tache.id);
         });
         console.log(taches);
     }).catch((error) => {
         console.error(error);
     });
+}).catch((error) => {
+    console.error(error);
+});
+*/
+vgsdk.equipements.getByCode("fbhrj437737737345555").then((equipement) => {
+    console.log(equipement);
 }).catch((error) => {
     console.error(error);
 });
