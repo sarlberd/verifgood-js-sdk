@@ -28,8 +28,8 @@ export abstract class ApiRequest extends HttpClient implements IApiRequest {
         return this.post(this.endpoint, {datas});
     }
 
-    async update(id: number, data: any): Promise<any> {
-        return this.put(`${this.endpointSingleton}/${id}`, data);
+    async update(id: number, datas: any): Promise<any> {
+        return this.put(`${this.endpointSingleton}/${id}`, {datas});
     }
 
     async remove(id: number): Promise<any> {
