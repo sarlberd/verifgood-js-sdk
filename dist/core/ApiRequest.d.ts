@@ -14,7 +14,7 @@ export declare abstract class ApiRequest extends HttpClient implements IApiReque
     constructor(auth: Auth, apiBaseUrl: string);
     getAll(metadatas: Metadatas): Promise<any>;
     getById(id: number): Promise<any>;
-    create(data: any): Promise<any>;
+    create(datas: any): Promise<any>;
     update(id: number, data: any): Promise<any>;
     remove(id: number): Promise<any>;
 }

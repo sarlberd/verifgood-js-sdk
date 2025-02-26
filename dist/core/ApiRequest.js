@@ -25,9 +25,9 @@ class ApiRequest extends HttpClient_1.HttpClient {
             return this.apiRequest(`${this.endpointSingleton}/${id}`, 'GET', null);
         });
     }
-    create(data) {
+    create(datas) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.post(this.endpoint, { data });
+            return this.post(this.endpoint, { datas });
         });
     }
     update(id, data) {
