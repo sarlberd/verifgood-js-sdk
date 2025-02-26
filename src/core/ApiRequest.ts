@@ -24,8 +24,8 @@ export abstract class ApiRequest extends HttpClient implements IApiRequest {
         return this.apiRequest(`${this.endpointSingleton}/${id}`, 'GET', null);
     }
 
-    async create(data: any): Promise<any> {
-        return this.post(this.endpoint, {data});
+    async create(datas: any): Promise<any> {
+        return this.post(this.endpoint, {datas});
     }
 
     async update(id: number, data: any): Promise<any> {
