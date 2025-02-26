@@ -82,7 +82,8 @@ export class HttpClient {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const responseData = await response.json();
+      const responseText = await response.text();
+      const responseData = responseText ? JSON.parse(responseText) : {};
       Logger.logResponse(responseData);
       return responseData;
     } catch (error) {
