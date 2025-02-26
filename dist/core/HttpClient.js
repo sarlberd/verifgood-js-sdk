@@ -90,7 +90,8 @@ class HttpClient {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const responseData = yield response.json();
+                const responseText = yield response.text();
+                const responseData = responseText ? JSON.parse(responseText) : {};
                 Logger_1.default.logResponse(responseData);
                 return responseData;
             }
