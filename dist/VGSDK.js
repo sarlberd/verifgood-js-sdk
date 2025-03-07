@@ -8,6 +8,7 @@ const Equipements_1 = require("./apiRequests/Equipements");
 const Categories_1 = require("./apiRequests/Categories");
 const Taches_1 = require("./apiRequests/Taches");
 const Checkpoints_1 = require("./apiRequests/Checkpoints");
+const Invitations_1 = require("./apiRequests/Invitations");
 /**
  * @document ./howTo.md
  */
@@ -45,6 +46,9 @@ class VGSDK {
     }
     get checkpoints() {
         return this.getService('checkpoints', Checkpoints_1.Checkpoints);
+    }
+    get invitations() {
+        return this.getService('invitations', Invitations_1.Invitations);
     }
 }
 exports.VGSDK = VGSDK;
