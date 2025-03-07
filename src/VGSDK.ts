@@ -6,6 +6,7 @@ import {Equipements} from "./apiRequests/Equipements";
 import {Categories} from './apiRequests/Categories';
 import {Taches} from './apiRequests/Taches';
 import {Checkpoints} from './apiRequests/Checkpoints';
+import { Invitations } from './apiRequests/Invitations';
 /**
  * @document ./howTo.md
  */
@@ -53,6 +54,9 @@ export class VGSDK {
 
   get checkpoints(): Checkpoints {
     return this.getService('checkpoints', Checkpoints);
+  }
+  get invitations(): Invitations {
+    return this.getService('invitations', Invitations);
   }
 }
 
