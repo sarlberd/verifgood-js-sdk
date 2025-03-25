@@ -48,9 +48,13 @@ vgsdk.taches.getAll(metadatas).then((taches) => {
 });
 */
 
-vgsdk.equipements.getByCode("fbhrj437737737345555").then((equipement) => {
+/*vgsdk.equipements.getByCode("fbhrj437737737345555").then((equipement) => {
     console.log(equipement);
     
 }).catch((error) => {
     console.error(error);
+});*/
+
+vgsdk.invitations.regenerateInvitationLink(20).then((invitation) => {
+    console.log(invitation);
 });

@@ -99,6 +99,26 @@ export class Invitations extends ApiRequest {
             };
         }
     }
+    
+    /**
+     * Regenerate an invitation link for an existing invitation
+     * @param id The ID of the invitation to regenerate
+     * @returns Promise with the regenerated invitation link and receiver email
+     * @example
+     *   vgsdk.invitations.regenerateInvitationLink('123')
+     *     .then(result => console.log(result))
+     *     .catch(error => console.error(error));
+     */
+    async regenerateInvitationLink(id: number): Promise<{invitation_link: string, receiver_email: string}> {
+        let origin = location.origin;
+
+        const url = `${this.endpoint}/regenerate-invitation-link/${id}?origin=${origin}`;
+        const response = await this.apiRequest(url, 'GET', null);
+        return {
+            invitation_link: response.invitation_link,
+            receiver_email: response.receiver_email
+        };
+    }
 
     /**
      * Complete the registration process for a user with an invitation token
