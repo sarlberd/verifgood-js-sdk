@@ -21,18 +21,6 @@ let vgsdk = new index_1.VGSDK(sdkConfig);
 }).catch((error) => {
     console.error(error);
 });*/
-vgsdk.sharedLinks.create({
-    "origin": "demande-intervention/lieu",
-    "internalId": 238381,
-    "scopes": "read,write",
-    "expires_at": "2025-10-10",
-    "name": "TT/La-Maison-Jaune/bâtiment principal/rez-de-jardin/Atelier",
-    "description": "teste"
-}).then((sharedLink) => {
-    console.log(sharedLink);
-}).catch((error) => {
-    console.error(error);
-});
 /**
  * Get the 25 first taches with type_tache = "Verification_equipement" and their checkpoints
  */
@@ -65,3 +53,6 @@ vgsdk.taches.getAll(metadatas).then((taches) => {
 }).catch((error) => {
     console.error(error);
 });*/
+vgsdk.invitations.regenerateInvitationLink(20).then((invitation) => {
+    console.log(invitation);
+});

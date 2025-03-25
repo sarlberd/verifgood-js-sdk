@@ -50,6 +50,19 @@ export declare class Invitations extends ApiRequest {
      */
     checkInvitation(invitationCard: InvitationCard): Promise<InvitationCard>;
     /**
+     * Regenerate an invitation link for an existing invitation
+     * @param id The ID of the invitation to regenerate
+     * @returns Promise with the regenerated invitation link and receiver email
+     * @example
+     *   vgsdk.invitations.regenerateInvitationLink('123')
+     *     .then(result => console.log(result))
+     *     .catch(error => console.error(error));
+     */
+    regenerateInvitationLink(id: number): Promise<{
+        invitation_link: string;
+        receiver_email: string;
+    }>;
+    /**
      * Complete the registration process for a user with an invitation token
      * @param registration Object containing invitation token and password details
      * @returns Promise with the registration result

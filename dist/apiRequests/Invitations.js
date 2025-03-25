@@ -86,6 +86,25 @@ class Invitations extends ApiRequest_1.ApiRequest {
         });
     }
     /**
+     * Regenerate an invitation link for an existing invitation
+     * @param id The ID of the invitation to regenerate
+     * @returns Promise with the regenerated invitation link and receiver email
+     * @example
+     *   vgsdk.invitations.regenerateInvitationLink('123')
+     *     .then(result => console.log(result))
+     *     .catch(error => console.error(error));
+     */
+    regenerateInvitationLink(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = `${this.endpoint}/regenerate-invitation-link/${id}`;
+            const response = yield this.apiRequest(url, 'GET', null);
+            return {
+                invitation_link: response.invitation_link,
+                receiver_email: response.receiver_email
+            };
+        });
+    }
+    /**
      * Complete the registration process for a user with an invitation token
      * @param registration Object containing invitation token and password details
      * @returns Promise with the registration result

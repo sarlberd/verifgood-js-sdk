@@ -9,6 +9,7 @@ const Categories_1 = require("./apiRequests/Categories");
 const Taches_1 = require("./apiRequests/Taches");
 const Checkpoints_1 = require("./apiRequests/Checkpoints");
 const Invitations_1 = require("./apiRequests/Invitations");
+const Verifications_1 = require("./apiRequests/Verifications");
 /**
  * @document ./howTo.md
  */
@@ -49,6 +50,13 @@ class VGSDK {
     }
     get invitations() {
         return this.getService('invitations', Invitations_1.Invitations);
+    }
+    /**
+     * @property {Verifications} verifications - the verifications request
+     * @returns {Verifications} - the verifications request
+     */
+    get verifications() {
+        return this.getService('verifications', Verifications_1.Verifications);
     }
 }
 exports.VGSDK = VGSDK;
