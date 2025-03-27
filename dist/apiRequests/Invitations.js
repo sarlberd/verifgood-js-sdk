@@ -32,11 +32,12 @@ class Invitations extends ApiRequest_1.ApiRequest {
     generateInvitationLink(invitationRequest) {
         return __awaiter(this, void 0, void 0, function* () {
             // Change to properly use GET with query parameters
-            const url = `${this.endpoint}/generate-invitation-link?email=${encodeURIComponent(invitationRequest.email)}&role=${encodeURIComponent(invitationRequest.role)}`;
+            const url = `${this.endpoint}/generate-invitation-link?email=${encodeURIComponent(invitationRequest.email)}&role=${encodeURIComponent(invitationRequest.role)}&origin=${encodeURIComponent(invitationRequest.origin)}`;
             const response = yield this.apiRequest(url, 'GET', null);
             let token = response.invitation_link.split("/").pop();
             return {
                 email: response.email,
+                origin: response.origin,
                 token: token
             };
         });
@@ -96,7 +97,8 @@ class Invitations extends ApiRequest_1.ApiRequest {
      */
     regenerateInvitationLink(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const url = `${this.endpoint}/regenerate-invitation-link/${id}`;
+            let origin = location.origin;
+            const url = `${this.endpoint}/regenerate-invitation-link/${id}?origin=${origin}`;
             const response = yield this.apiRequest(url, 'GET', null);
             return {
                 invitation_link: response.invitation_link,

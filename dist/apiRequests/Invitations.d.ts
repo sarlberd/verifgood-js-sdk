@@ -2,6 +2,7 @@ import { ApiRequest } from "../core/ApiRequest";
 export interface InvitationRequest {
     email: string;
     role: string;
+    origin: string;
 }
 export interface InvitationCard {
     id?: number;
