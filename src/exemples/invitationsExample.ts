@@ -19,6 +19,7 @@ const vgsdk: VGSDK = new VGSDK(sdkConfig);
 console.log("Example 1: Generating invitation link");
 const invitationRequest: InvitationRequest = {
     email: 'verifgood@gmail.com',
+    origin: 'http://localhost:8080',
     role: 'ROLE_ADMIN'
 };
 
@@ -78,9 +79,9 @@ vgsdk.invitations.generateInvitationLink(invitationRequest)
 // This is useful if the steps happen at different times/contexts
 
 // Generate invitation link
-async function generateInvitationDemo(email: string, role: string) {
+async function generateInvitationDemo(email: string, role: string, origin: string = 'http://localhost:8080') {
     try {
-        const invitationRequest: InvitationRequest = { email, role };
+        const invitationRequest: InvitationRequest = { email, origin, role };
         const invitation = await vgsdk.invitations.generateInvitationLink(invitationRequest);
         console.log("Generated invitation:", invitation);
         return invitation;
