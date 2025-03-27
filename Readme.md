@@ -8,7 +8,7 @@ npm install https://github.com/sarlberd/verifgood-js-sdk.git
 ```ts
 import { VGSDK, SdkConfiguration, Metadatas } from "verifgood-js-sdk";
 
-let apiBaseUrl: string = "https://symlab-v2.herokuapp.com/public/index.php";
+let apiBaseUrl: string = "https://azeqsdfghrg.herokuapp.com/public/index.php";
 let apiKey: string = "your-api-key";
 
 let sdkConfig: SdkConfiguration = {
