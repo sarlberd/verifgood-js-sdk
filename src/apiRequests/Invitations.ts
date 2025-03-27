@@ -4,6 +4,7 @@ import {ApiRequest} from "../core/ApiRequest";
 export interface InvitationRequest {
     email: string;
     role: string;
+    origin:string;
 }
 
 export interface InvitationCard{
@@ -43,11 +44,12 @@ export class Invitations extends ApiRequest {
     async generateInvitationLink(invitationRequest: InvitationRequest): Promise<InvitationCard> {
   
         // Change to properly use GET with query parameters
-        const url = `${this.endpoint}/generate-invitation-link?email=${encodeURIComponent(invitationRequest.email)}&role=${encodeURIComponent(invitationRequest.role)}`;
+        const url = `${this.endpoint}/generate-invitation-link?email=${encodeURIComponent(invitationRequest.email)}&role=${encodeURIComponent(invitationRequest.role)}&origin=${encodeURIComponent(invitationRequest.origin)}`;
         const response = await this.apiRequest(url, 'GET', null);
         let token = response.invitation_link.split("/").pop();
         return {
             email: response.email,
+            origin: response.origin,
             token: token
         };
     }
