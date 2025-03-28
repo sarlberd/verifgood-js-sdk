@@ -23,6 +23,8 @@ export interface InvitationCompleteRegistration {
     invitation_token: string;
     password: string;
     password_confirm: string;
+    name: string;
+    surname: string;
 }
 
 export class Invitations extends ApiRequest {
