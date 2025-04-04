@@ -1,3 +1,32 @@
+# Obtaining an accessToken from Auth0
+```js
+import createAuth0Client from '@auth0/auth0-spa-js';
+
+// Auth0 configuration
+const auth0Config = {
+  domain: 'YOUR_AUTH0_DOMAIN',
+  client_id: 'YOUR_AUTH0_CLIENT_ID',
+  redirect_uri: window.location.origin,
+};
+
+// Initialize Auth0 client
+const auth0 = await createAuth0Client(auth0Config);
+
+// Function to get access token silently
+async function getAccessTokenSilently() {
+  try {
+    const token = await auth0.getTokenSilently();
+    return token;
+  } catch (error) {
+    console.error('Error getting access token', error);
+    return null;
+  }
+}
+
+// Retrieve the access token
+const accessToken = await getAccessTokenSilently();
+```
+
 # Basic request
 
 ```
