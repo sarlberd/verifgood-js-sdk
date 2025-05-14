@@ -8,7 +8,7 @@ import { Taches } from '../src/apiRequests/Taches';
 import { Checkpoints } from '../src/apiRequests/Checkpoints';
 import { Invitations } from '../src/apiRequests/Invitations';
 import { Verifications } from '../src/apiRequests/Verifications';
-
+import { Messaging } from '../src/apiRequests/Messaging';
 describe('VGSDK Class', () => {
   const mockConfig = { apiBaseUrl: 'https://api.example.com', apiKey: 'test-api-key' };
 
@@ -72,6 +72,11 @@ describe('VGSDK Class', () => {
       const sdk = new VGSDK(mockConfig);
       const verifications = sdk.verifications;
       expect(verifications).toBeInstanceOf(Verifications);
+    });
+    it('should return a Messaging instance from messaging getter', () => {
+      const sdk = new VGSDK(mockConfig);
+      const messaging = sdk.messaging;
+      expect(messaging).toBeInstanceOf(Messaging);
     });
   });
 

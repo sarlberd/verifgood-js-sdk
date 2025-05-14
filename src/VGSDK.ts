@@ -8,6 +8,7 @@ import {Taches} from './apiRequests/Taches';
 import {Checkpoints} from './apiRequests/Checkpoints';
 import {Invitations} from './apiRequests/Invitations';
 import {Verifications} from './apiRequests/Verifications';
+import {Messaging} from './apiRequests/Messaging';
 /**
  * @document ./howTo.md
  */
@@ -59,6 +60,10 @@ export class VGSDK {
   
   get invitations(): Invitations {
     return this.getService('invitations', Invitations);
+  }
+
+  get messaging(): Messaging {
+    return this.getService('messaging', Messaging);
   }
 
   /**
