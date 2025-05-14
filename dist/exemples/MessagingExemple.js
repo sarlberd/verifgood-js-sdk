@@ -32,5 +32,5 @@ vgsdk.messaging.sendMessageToDevice(deviceToken, { message: "Hello World" }).the
 vgsdk.messaging.unsubscribeFromTopic("debug", deviceToken).then((response) => {
     console.log(response);
 }).catch((error) => {
-    console.error(error);
+    console.error(JSON.parse(error).status);
 });

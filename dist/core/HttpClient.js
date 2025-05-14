@@ -87,10 +87,16 @@ class HttpClient {
                     options.body = JSON.stringify(data);
                 }
                 const response = yield fetch(`${this.apiBaseUrl}${endpoint}`, options);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
                 const responseText = yield response.text();
+                if (!response.ok) {
+                    const error = {
+                        status: response.status,
+                        statusText: response.statusText,
+                        message: responseText
+                    };
+                    Logger_1.default.logError(error);
+                    throw error; // Throw the error object directly
+                }
                 const responseData = responseText ? JSON.parse(responseText) : {};
                 Logger_1.default.logResponse(responseData);
                 return responseData;
