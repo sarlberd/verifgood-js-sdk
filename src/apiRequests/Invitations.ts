@@ -114,7 +114,7 @@ export class Invitations extends ApiRequest {
      *     .catch(error => console.error(error));
      */
     async regenerateInvitationLink(id: number): Promise<{invitation_link: string, receiver_email: string}> {
-        let origin = location.origin;
+        let origin = location && location.origin ? location.origin : 'http://localhost:8080';
 
         const url = `${this.endpoint}/regenerate-invitation-link/${id}?origin=${origin}`;
         const response = await this.apiRequest(url, 'GET', null);
