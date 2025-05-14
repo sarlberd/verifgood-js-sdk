@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("./index");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-let apiBaseUrl = process.env.API_BASE_URL || "";
+let apiBaseUrl = process.env.API_BASE_URL_TEST || "";
 let apiKey = process.env.API_KEY || "";
 let sdkConfig = {
     apiBaseUrl: apiBaseUrl,
@@ -53,6 +53,27 @@ vgsdk.taches.getAll(metadatas).then((taches) => {
 }).catch((error) => {
     console.error(error);
 });*/
-vgsdk.invitations.regenerateInvitationLink(20).then((invitation) => {
+/*vgsdk.invitations.regenerateInvitationLink(20).then((invitation) => {
     console.log(invitation);
+});*/
+const deviceToken = "coqnU0ZBZR1W4fTi1oD15A:APA91bH-MVu169pX20eQmM5iPChfOCGe79dCjqFAtTIl0FdTSeI1UxiBR05elo7d7Vj-aOlSJVKoqujaVzcYipL9_e73frqWnl6ip61230yND58BVGe6P40";
+vgsdk.messaging.subscribeToTopic("debug", deviceToken).then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.error(error);
+});
+vgsdk.messaging.sendMessageToTopic("debug", { message: "Hello World" }).then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.error(error);
+});
+/*vgsdk.messaging.unsubscribeFromTopic("debug", deviceToken).then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.error(error);
+});*/
+vgsdk.messaging.sendMessageToDevice(deviceToken, { message: "Hello World" }).then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.error(error);
 });

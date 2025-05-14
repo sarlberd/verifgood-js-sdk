@@ -10,6 +10,7 @@ const Taches_1 = require("./apiRequests/Taches");
 const Checkpoints_1 = require("./apiRequests/Checkpoints");
 const Invitations_1 = require("./apiRequests/Invitations");
 const Verifications_1 = require("./apiRequests/Verifications");
+const Messaging_1 = require("./apiRequests/Messaging");
 /**
  * @document ./howTo.md
  */
@@ -50,6 +51,9 @@ class VGSDK {
     }
     get invitations() {
         return this.getService('invitations', Invitations_1.Invitations);
+    }
+    get messaging() {
+        return this.getService('messaging', Messaging_1.Messaging);
     }
     /**
      * @property {Verifications} verifications - the verifications request

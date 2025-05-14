@@ -64,7 +64,9 @@ vgsdk.invitations.generateInvitationLink(invitationRequest)
     const registrationData = {
         invitation_token: validatedInvitation.token || "",
         password: "securePassword123",
-        password_confirm: "securePassword123"
+        password_confirm: "securePassword123",
+        name: "John",
+        surname: "Doe"
     };
     return vgsdk.invitations.completeRegistration(registrationData);
 })
@@ -117,7 +119,9 @@ function completeRegistrationDemo(token, password) {
             const registrationData = {
                 invitation_token: token,
                 password: password,
-                password_confirm: password
+                password_confirm: password,
+                name: "John",
+                surname: "Doe"
             };
             const result = yield vgsdk.invitations.completeRegistration(registrationData);
             console.log("Registration completed:", result);

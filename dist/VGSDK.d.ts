@@ -8,6 +8,7 @@ import { Taches } from './apiRequests/Taches';
 import { Checkpoints } from './apiRequests/Checkpoints';
 import { Invitations } from './apiRequests/Invitations';
 import { Verifications } from './apiRequests/Verifications';
+import { Messaging } from './apiRequests/Messaging';
 /**
  * @document ./howTo.md
  */
@@ -28,6 +29,7 @@ export declare class VGSDK {
     get taches(): Taches;
     get checkpoints(): Checkpoints;
     get invitations(): Invitations;
+    get messaging(): Messaging;
     /**
      * @property {Verifications} verifications - the verifications request
      * @returns {Verifications} - the verifications request

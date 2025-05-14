@@ -19,6 +19,8 @@ export interface InvitationCompleteRegistration {
     invitation_token: string;
     password: string;
     password_confirm: string;
+    name: string;
+    surname: string;
 }
 export declare class Invitations extends ApiRequest {
     endpoint: string;

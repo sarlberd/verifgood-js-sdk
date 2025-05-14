@@ -97,7 +97,7 @@ class Invitations extends ApiRequest_1.ApiRequest {
      */
     regenerateInvitationLink(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            let origin = location.origin;
+            let origin = location && location.origin ? location.origin : 'http://localhost:8080';
             const url = `${this.endpoint}/regenerate-invitation-link/${id}?origin=${origin}`;
             const response = yield this.apiRequest(url, 'GET', null);
             return {
