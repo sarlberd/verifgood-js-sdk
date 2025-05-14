@@ -11,21 +11,25 @@ export class Messaging extends ApiRequest {
   /**
    * Subscribe to a topic
    * @param topic The topic to subscribe to
+   * @param deviceToken The device token to include in the payload
    * @returns Promise with the subscription result
    */
-  async subscribeToTopic(topic: string): Promise<any> {
+  async subscribeToTopic(topic: string, deviceToken: string): Promise<any> {
     const url = `${this.endpoint}/subscribe/${topic}`;
-    return await this.apiRequest(url, 'POST', null);
+    const payload = { token: deviceToken };
+    return await this.apiRequest(url, 'POST', payload);
   }
 
   /**
    * Unsubscribe from a topic
    * @param topic The topic to unsubscribe from
+   * @param deviceToken The device token to include in the payload
    * @returns Promise with the unsubscription result
    */
-  async unsubscribeFromTopic(topic: string): Promise<any> {
+  async unsubscribeFromTopic(topic: string, deviceToken: string): Promise<any> {
     const url = `${this.endpoint}/unsubscribe/${topic}`;
-    return await this.apiRequest(url, 'POST', null);
+    const payload = { token: deviceToken };
+    return await this.apiRequest(url, 'POST', payload);
   }
 
   /**
