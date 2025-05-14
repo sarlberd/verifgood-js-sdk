@@ -78,11 +78,17 @@ export class HttpClient {
 
       const response = await fetch(`${this.apiBaseUrl}${endpoint}`, options);
 
+      const responseText = await response.text();
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const error = {
+          status: response.status,
+          statusText: response.statusText,
+          message: responseText
+        };
+        Logger.logError(error);
+        throw error; // Throw the error object directly
       }
 
-      const responseText = await response.text();
       const responseData = responseText ? JSON.parse(responseText) : {};
       Logger.logResponse(responseData);
       return responseData;
