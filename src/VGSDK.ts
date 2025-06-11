@@ -1,3 +1,6 @@
+import { BonsDeCommande } from "./apiRequests/BonsDeCommande";
+
+import { Account } from "./apiRequests/Account";
 import {SharedLinks} from './apiRequests/SharedLinks';
 import {Auth} from './core/Auth';
 import {SdkConfiguration} from './core/sdkConfiguration';
@@ -61,16 +64,30 @@ export class VGSDK {
   get invitations(): Invitations {
     return this.getService('invitations', Invitations);
   }
-
   get messaging(): Messaging {
     return this.getService('messaging', Messaging);
   }
-
   /**
    * @property {Verifications} verifications - the verifications request
    * @returns {Verifications} - the verifications request
    */
   get verifications(): Verifications {
     return this.getService('verifications', Verifications);
+  }
+
+  /**
+   * @property {BonsDeCommande} bonsdecommande - the bonsdecommande request service
+   * @returns {BonsDeCommande} - the bonsdecommande request service
+   */
+  get bonsdecommande(): BonsDeCommande {
+    return this.getService('bonsdecommande', BonsDeCommande);
+  }
+
+  /**
+   * @property {Account} account - the account request service
+   * @returns {Account} - the account request service
+   */
+  get account(): Account {
+    return this.getService('account', Account);
   }
 }
