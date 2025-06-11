@@ -21,12 +21,13 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * Subscribe to a topic
      * @param topic The topic to subscribe to
      * @param deviceToken The device token to include in the payload
+     * @param options Additional options to include in the payload
      * @returns Promise with the subscription result
      */
-    subscribeToTopic(topic, deviceToken) {
-        return __awaiter(this, void 0, void 0, function* () {
+    subscribeToTopic(topic_1, deviceToken_1) {
+        return __awaiter(this, arguments, void 0, function* (topic, deviceToken, options = {}) {
             const url = `${this.endpoint}/subscribe/${topic}`;
-            const payload = { token: deviceToken };
+            let payload = Object.assign(Object.assign({}, options), { token: deviceToken });
             return yield this.apiRequest(url, 'POST', payload);
         });
     }
@@ -34,12 +35,13 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * Unsubscribe from a topic
      * @param topic The topic to unsubscribe from
      * @param deviceToken The device token to include in the payload
+     * @param options Additional options to include in the payload
      * @returns Promise with the unsubscription result
      */
-    unsubscribeFromTopic(topic, deviceToken) {
-        return __awaiter(this, void 0, void 0, function* () {
+    unsubscribeFromTopic(topic_1, deviceToken_1) {
+        return __awaiter(this, arguments, void 0, function* (topic, deviceToken, options = {}) {
             const url = `${this.endpoint}/unsubscribe/${topic}`;
-            const payload = { token: deviceToken };
+            const payload = Object.assign(Object.assign({}, options), { token: deviceToken });
             return yield this.apiRequest(url, 'POST', payload);
         });
     }

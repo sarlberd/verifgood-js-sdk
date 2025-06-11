@@ -9,16 +9,18 @@ export declare class Messaging extends ApiRequest {
      * Subscribe to a topic
      * @param topic The topic to subscribe to
      * @param deviceToken The device token to include in the payload
+     * @param options Additional options to include in the payload
      * @returns Promise with the subscription result
      */
-    subscribeToTopic(topic: string, deviceToken: string): Promise<any>;
+    subscribeToTopic(topic: string, deviceToken: string, options?: object): Promise<any>;
     /**
      * Unsubscribe from a topic
      * @param topic The topic to unsubscribe from
      * @param deviceToken The device token to include in the payload
+     * @param options Additional options to include in the payload
      * @returns Promise with the unsubscription result
      */
-    unsubscribeFromTopic(topic: string, deviceToken: string): Promise<any>;
+    unsubscribeFromTopic(topic: string, deviceToken: string, options?: object): Promise<any>;
     /**
      * Send a message to a topic
      * @param topic The topic to send the message to
