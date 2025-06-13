@@ -46,6 +46,18 @@ class Messaging extends ApiRequest_1.ApiRequest {
         });
     }
     /**
+     * Unsubscribe from all topics for a device
+     * @param deviceToken The device token to unsubscribe from all topics
+     * @returns Promise with the unsubscription result
+     */
+    unsubscribeFromAllTopics(deviceToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = `${this.endpoint}/unsubscribe/all`;
+            const payload = { token: deviceToken };
+            return yield this.apiRequest(url, 'POST', payload);
+        });
+    }
+    /**
      * Send a message to a topic
      * @param topic The topic to send the message to
      * @param payload The message payload
