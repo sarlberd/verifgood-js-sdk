@@ -10,6 +10,7 @@ RULES :
 - Mixins are highly sensible do not modify properties in methods definitions. 
 - use the method name if not a CRUD operation. 
 - do not take intoAccount the <entity>Mixins_ in the method naming inside the sdk. 
+- do not override methods to add semantic typing in the apiRequest if same behavior and 
 - No linting permitted
 CRITICAL: HttpClient method signatures must be respected:
 - get(endpoint, metadatas, query) - requires 3 parameters (metadatas as 2nd param, query as 3rd param)
