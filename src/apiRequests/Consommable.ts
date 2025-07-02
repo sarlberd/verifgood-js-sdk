@@ -119,12 +119,26 @@ export class Consommable extends ApiRequest {
    * @param metadatas Metadatas for filtering
    * @param filename Custom filename
    * @param fileExtension File extension
-   * @returns Promise
+   * @returns Promise<Blob> Returns a Blob object for file download
    */
-  async getFile(metadatas: Metadatas, filename?: string, fileExtension: string = "xlsx"): Promise<any> {
-    //@TODO: This method contains custom file download logic that should be handled manually by devs
+  async getFile(metadatas: Metadatas, filename?: string, fileExtension: string = "xlsx"): Promise<Blob> {
     const fileType = fileExtension !== "csv" ? "excel" : "csv";
-    return this.get(`/api/consommables/export/${fileType}`, metadatas, {});
+    const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
+    
+    // Get raw response data
+    const response = await this.get(`/api/consommables/export/${fileType}`, metadatas, {});
+    
+    // Create blob with proper encoding
+    let blob: Blob;
+    if (fileExtension === "csv") {
+      // Add BOM for UTF-8 encoding
+      const BOM = "\uFEFF";
+      blob = new Blob([BOM + response], { type: contentType });
+    } else {
+      blob = new Blob([response], { type: contentType });
+    }
+    
+    return blob;
   }
 
   /**
@@ -277,11 +291,18 @@ export class Consommable extends ApiRequest {
   /**
    * Get Excel file model for integration
    * @param filename Custom filename
-   * @returns Promise
+   * @returns Promise<Blob> Returns a Blob object for Excel file download
    */
-  async getExcelFileModeleIntegration(filename: string = "VG_modèle_importation_consommables"): Promise<any> {
-    // Note: This method requires custom file download handling on client side
-    return this.get('/api/consommables/integration/model', new Metadatas(), {});
+  async getExcelFileModeleIntegration(filename: string = "VG_modèle_importation_consommables"): Promise<Blob> {
+    const contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    
+    // Get raw response data
+    const response = await this.get('/api/consommables/integration/model', new Metadatas(), {});
+    
+    // Create blob for Excel file
+    const blob = new Blob([response], { type: contentType });
+    
+    return blob;
   }
 
   /**
@@ -298,11 +319,25 @@ export class Consommable extends ApiRequest {
    * @param metadatas Metadatas for filtering
    * @param filename Custom filename
    * @param fileExtension File extension (xlsx or csv)
-   * @returns Promise
+   * @returns Promise<Blob> Returns a Blob object for file download
    */
-  async exportConsommables(metadatas: Metadatas, filename?: string, fileExtension: string = "xlsx"): Promise<any> {
+  async exportConsommables(metadatas: Metadatas, filename?: string, fileExtension: string = "xlsx"): Promise<Blob> {
     const fileType = fileExtension !== "csv" ? "excel" : "csv";
-    // Note: This method requires custom file download handling on client side
-    return this.get(`/api/consommable/mouvements/export/${fileType}`, metadatas, {});
+    const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
+    
+    // Get raw response data
+    const response = await this.get(`/api/consommable/mouvements/export/${fileType}`, metadatas, {});
+    
+    // Create blob with proper encoding
+    let blob: Blob;
+    if (fileExtension === "csv") {
+      // Add BOM for UTF-8 encoding
+      const BOM = "\uFEFF";
+      blob = new Blob([BOM + response], { type: contentType });
+    } else {
+      blob = new Blob([response], { type: contentType });
+    }
+    
+    return blob;
   }
 }

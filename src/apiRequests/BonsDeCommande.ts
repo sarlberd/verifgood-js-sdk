@@ -172,23 +172,32 @@ export class BonsDeCommande extends ApiRequest {
    * @param metadatas - Metadata for export
    * @param filename - Output filename (optional)
    * @param fileExtension - File extension (xlsx or csv)
-   * @returns Promise<void>
+   * @returns Promise<Blob> Returns a Blob object for file download
    */
-  async export(metadatas: Metadatas, filename: string | null = null, fileExtension: string = "xlsx"): Promise<void> {
-    //@TODO: Handle file download and blob response - this will be handled manually by devs
+  async export(metadatas: Metadatas, filename: string | null = null, fileExtension: string = "xlsx"): Promise<Blob> {
     metadatas.setDirectives([]);
     const query = {
       sites: null //@TODO: Extract site restrictions from context - this will be handled manually by devs
     };
     
     const fileType = fileExtension !== "csv" ? "excel" : "csv";
+    const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
     
     const response = await this.get(`${this.endpoint}/export/${fileType}`, metadatas, query);
     
     metadatas.setLimit(0, 25);
     
-    //@TODO: Handle blob creation and file download - this will be handled manually by devs
-    console.log("Export response:", response);
+    // Create blob with proper encoding
+    let blob: Blob;
+    if (fileExtension === "csv") {
+      // Add BOM for UTF-8 encoding
+      const BOM = "\uFEFF";
+      blob = new Blob([BOM + response], { type: contentType });
+    } else {
+      blob = new Blob([response], { type: contentType });
+    }
+    
+    return blob;
   }
   /**
    * Get creators of bons de commande

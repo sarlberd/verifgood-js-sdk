@@ -56,14 +56,26 @@ export class Categories extends ApiRequest {
    * @param typeCategorie Type of category (default: "lieux")
    * @param filename Custom filename
    * @param fileExtension File extension ("xlsx" or "csv")
-   * @returns Promise
+   * @returns Promise<Blob> Returns a Blob object for file download
    */
-  async exportFile(metadatas: Metadatas, typeCategorie: string = "lieux", filename?: string, fileExtension: string = "xlsx"): Promise<any> {
-    //@TODO: This method contains custom file download logic that should be handled manually by devs
+  async exportFile(metadatas: Metadatas, typeCategorie: string = "lieux", filename?: string, fileExtension: string = "xlsx"): Promise<Blob> {
     const fileType = fileExtension !== "csv" ? "excel" : "csv";
-    metadatas.setDirectives([]);
+    const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
     
-    return this.get(`/api/categories/export/${typeCategorie}/${fileType}`, metadatas, {});
+    // Get raw response data
+    const response = await this.get(`/api/categories/export/${typeCategorie}/${fileType}`, metadatas, {});
+    
+    // Create blob with proper encoding
+    let blob: Blob;
+    if (fileExtension === "csv") {
+      // Add BOM for UTF-8 encoding
+      const BOM = "\uFEFF";
+      blob = new Blob([BOM + response], { type: contentType });
+    } else {
+      blob = new Blob([response], { type: contentType });
+    }
+    
+    return blob;
   }
 
   /**

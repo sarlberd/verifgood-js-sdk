@@ -324,7 +324,7 @@ describe('Consommable API Service', () => {
 
   describe('Export and Reporting Methods', () => {
     describe('getFile', () => {
-      it('should export consommables file', async () => {
+      it('should export consommables file and return a Blob', async () => {
         const mockResponse = 'file data';
         const metadatas = new Metadatas();
         
@@ -333,7 +333,21 @@ describe('Consommable API Service', () => {
         const result = await consommable.getFile(metadatas, 'test-file', 'xlsx');
 
         expect(consommable.get).toHaveBeenCalledWith('/api/consommables/export/excel', metadatas, {});
-        expect(result).toEqual(mockResponse);
+        expect(result).toBeInstanceOf(Blob);
+        expect(result.type).toBe('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      });
+
+      it('should export CSV file with BOM and return a Blob', async () => {
+        const mockResponse = 'csv,data';
+        const metadatas = new Metadatas();
+        
+        jest.spyOn(consommable, 'get').mockResolvedValue(mockResponse);
+
+        const result = await consommable.getFile(metadatas, 'test-file', 'csv');
+
+        expect(consommable.get).toHaveBeenCalledWith('/api/consommables/export/csv', metadatas, {});
+        expect(result).toBeInstanceOf(Blob);
+        expect(result.type).toBe('text/csv');
       });
     });
 
@@ -366,7 +380,7 @@ describe('Consommable API Service', () => {
     });
 
     describe('exportConsommables', () => {
-      it('should export consommables to file', async () => {
+      it('should export consommables to file and return a Blob', async () => {
         const mockResponse = 'export data';
         const metadatas = new Metadatas();
         
@@ -375,7 +389,21 @@ describe('Consommable API Service', () => {
         const result = await consommable.exportConsommables(metadatas, 'test-export', 'xlsx');
 
         expect(consommable.get).toHaveBeenCalledWith('/api/consommable/mouvements/export/excel', metadatas, {});
-        expect(result).toEqual(mockResponse);
+        expect(result).toBeInstanceOf(Blob);
+        expect(result.type).toBe('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      });
+
+      it('should export CSV consommables with BOM and return a Blob', async () => {
+        const mockResponse = 'csv,export,data';
+        const metadatas = new Metadatas();
+        
+        jest.spyOn(consommable, 'get').mockResolvedValue(mockResponse);
+
+        const result = await consommable.exportConsommables(metadatas, 'test-export', 'csv');
+
+        expect(consommable.get).toHaveBeenCalledWith('/api/consommable/mouvements/export/csv', metadatas, {});
+        expect(result).toBeInstanceOf(Blob);
+        expect(result.type).toBe('text/csv');
       });
     });
   });
@@ -426,7 +454,7 @@ describe('Consommable API Service', () => {
     });
 
     describe('getExcelFileModeleIntegration', () => {
-      it('should get Excel file model for integration', async () => {
+      it('should get Excel file model for integration and return a Blob', async () => {
         const mockResponse = 'excel file data';
         
         jest.spyOn(consommable, 'get').mockResolvedValue(mockResponse);
@@ -434,7 +462,8 @@ describe('Consommable API Service', () => {
         const result = await consommable.getExcelFileModeleIntegration('custom-filename');
 
         expect(consommable.get).toHaveBeenCalledWith('/api/consommables/integration/model', expect.any(Object), {});
-        expect(result).toEqual(mockResponse);
+        expect(result).toBeInstanceOf(Blob);
+        expect(result.type).toBe('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
       });
     });
   });
