@@ -5,7 +5,8 @@ ___
 Context = we are migrating Vue2 to Vue3. Mixins contains the API calls. we are making the api call agnostic of framework. Mixins contains others methods not calling the API, we must keep them too.
 ___
 
-RULES : 
+RULES :
+- be simple 
 - Mixins are highly sensible do not modify properties in methods definitions. 
 - use the method name if not a CRUD operation. 
 - do not take intoAccount the <entity>Mixins_ in the method naming inside the sdk. 
@@ -24,6 +25,7 @@ execution plan =
 - the mixins are provided in the mixins_to_migrate folder
 - use the first mixins file
 - analyse the mixins and ask for clarifications ( only if needed )
+- call the script extract_methods_name_from_mixin(mixinName) with the selected mixin name ( eg: python extract_methods_name_from_mixins.py AffectationsMixins ) and memorize it as mixins_methods
 - generate the template with hygen, the avalaible commands are provided below.use the cli args and options to create the templates automatically exemple : "--name=Account --endpoint=/api/account --endpointSingleton=/api/account --description="Service for managing user accounts" --properties="address:string:optional,immatriculation:string:optional,id:string:optional" --addToVGSDK=true"
 - Add into tests : from your analyse add the tests corresponding to the mixins consider non CRUD methods only. 
 - Add into the created apiRequests other methods than CRUD from the mixins because the CRUD methods are already defined in the parent class. if a method contains custom logic add a flag //@TODO : message. this will be handled manually by devs
@@ -31,7 +33,7 @@ execution plan =
 - if the types are not provided we will handle it later do not try to implement or imagine and add flag //@TODO : need review 
 - Add the new entity in the VGSDK
 - run command "npm run test" : while it fails -> fix
-- compare the the mixins and the generated apiRequest and check if all methods are implemented, if not ouput a missing methods list in a markdown <mixinsName>_missing_methods.md
+- compare  the mixins_methods and the generated apiRequest and check if all mixins_methods are implemented into the generated apiRequest, if not ouput a missing methods list in a markdown <mixinsName>_missing_methods.md
 - once terminated move the mixins in the subfolder mixins_to_migrate/done
 - ask the user if he wants to continue on the next one
 - if (y) then loop on step 1 else stop 
