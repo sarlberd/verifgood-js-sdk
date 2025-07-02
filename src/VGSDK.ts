@@ -1,3 +1,5 @@
+import { BonsDeCommandeEntites } from "./apiRequests/BonsDeCommandeEntites";
+
 import { BonDeCommandeItems } from "./apiRequests/BonDeCommandeItems";
 
 import { Affectations } from "./apiRequests/Affectations";
@@ -77,6 +79,14 @@ export class VGSDK {
    */
   get verifications(): Verifications {
     return this.getService('verifications', Verifications);
+  }
+
+  /**
+   * @property {BonsDeCommandeEntites} bonsdecommandeentites - the bonsdecommandeentites request service
+   * @returns {BonsDeCommandeEntites} - the bonsdecommandeentites request service
+   */
+  get bonsdecommandeentites(): BonsDeCommandeEntites {
+    return this.getService('bonsdecommandeentites', BonsDeCommandeEntites);
   }
 
   /**
