@@ -1,3 +1,5 @@
+import { BonsDeSortie } from "./apiRequests/BonsDeSortie";
+
 import { BonsDentree } from "./apiRequests/BonsDentree";
 
 import { BonsDeCommandeEntites } from "./apiRequests/BonsDeCommandeEntites";
@@ -81,6 +83,14 @@ export class VGSDK {
    */
   get verifications(): Verifications {
     return this.getService('verifications', Verifications);
+  }
+
+  /**
+   * @property {BonsDeSortie} bonsdesortie - the bonsdesortie request service
+   * @returns {BonsDeSortie} - the bonsdesortie request service
+   */
+  get bonsdesortie(): BonsDeSortie {
+    return this.getService('bonsdesortie', BonsDeSortie);
   }
 
   /**
