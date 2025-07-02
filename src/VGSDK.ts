@@ -1,3 +1,4 @@
+import { Calendar } from "./apiRequests/Calendar";
 import { BonsDeSortie } from "./apiRequests/BonsDeSortie";
 
 import { BonsDentree } from "./apiRequests/BonsDentree";
@@ -78,11 +79,19 @@ export class VGSDK {
     return this.getService('messaging', Messaging);
   }
   /**
-   * @property {Verifications} verifications - the verifications request
-   * @returns {Verifications} - the verifications request
+   * @property {Verifications} verifications - the verifications request service
+   * @returns {Verifications} - the verifications request service
    */
   get verifications(): Verifications {
     return this.getService('verifications', Verifications);
+  }
+
+  /**
+   * @property {Calendar} calendar - the calendar request service
+   * @returns {Calendar} - the calendar request service
+   */
+  get calendar(): Calendar {
+    return this.getService('calendar', Calendar);
   }
 
   /**
