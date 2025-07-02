@@ -1,3 +1,5 @@
+import { Affectations } from "./apiRequests/Affectations";
+
 import { BonsDeCommande } from "./apiRequests/BonsDeCommande";
 
 import { Account } from "./apiRequests/Account";
@@ -73,6 +75,14 @@ export class VGSDK {
    */
   get verifications(): Verifications {
     return this.getService('verifications', Verifications);
+  }
+
+  /**
+   * @property {Affectations} affectations - the affectations request service
+   * @returns {Affectations} - the affectations request service
+   */
+  get affectations(): Affectations {
+    return this.getService('affectations', Affectations);
   }
 
   /**
