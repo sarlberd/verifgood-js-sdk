@@ -1,7 +1,7 @@
 ---
 to: src/VGSDK.ts
 inject: true
-after: "get verifications\\(\\): Verifications \\{"
+after: "// INJECTED automatically by template generation"
 ---
 <% if (addToVGSDK) { -%>
 

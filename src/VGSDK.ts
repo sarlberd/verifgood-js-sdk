@@ -149,4 +149,7 @@ export class VGSDK {
   get account(): Account {
     return this.getService('account', Account);
   }
+
+  // INJECTED automatically by template generation
+  
 }
