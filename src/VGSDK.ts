@@ -1,3 +1,5 @@
+import { Consommable } from "./apiRequests/Consommable";
+
 import { Composant } from "./apiRequests/Composant";
 
 import { Calendar } from "./apiRequests/Calendar";
@@ -153,6 +155,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Consommable} consommable - the consommable request service
+   * @returns {Consommable} - the consommable request service
+   */
+  get consommable(): Consommable {
+    return this.getService('consommable', Consommable);
+  }
+
 
   /**
    * @property {Composant} composant - the composant request service
