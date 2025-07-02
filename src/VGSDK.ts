@@ -1,3 +1,5 @@
+import { Composant } from "./apiRequests/Composant";
+
 import { Calendar } from "./apiRequests/Calendar";
 import { BonsDeSortie } from "./apiRequests/BonsDeSortie";
 
@@ -151,5 +153,14 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Composant} composant - the composant request service
+   * @returns {Composant} - the composant request service
+   */
+  get composant(): Composant {
+    return this.getService('composant', Composant);
+  }
+
   
 }
