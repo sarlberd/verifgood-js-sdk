@@ -87,3 +87,4 @@ vgsdk.messaging.sendMessageToTopic("debug", { message: "Hello World" }).then((re
 }).catch((error) => {
     console.error(error);
 });*/
+//# sourceMappingURL=exemple.js.map

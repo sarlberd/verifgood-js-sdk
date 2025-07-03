@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -72,19 +63,17 @@ vgsdk.verifications.getVerifications(metadatas)
     console.error(error);
 });
 // Alternative example: Start a verification process for an equipment
-function startVerificationDemo(equipementId, tacheId) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            console.log(`Starting verification for equipment ID ${equipementId}`);
-            const verification = yield vgsdk.verifications.startVerification(equipementId, tacheId);
-            console.log("Verification started successfully:");
-            console.log(JSON.stringify(verification, null, 2));
-            return verification;
-        }
-        catch (error) {
-            console.error("Failed to start verification:", error);
-        }
-    });
+async function startVerificationDemo(equipementId, tacheId) {
+    try {
+        console.log(`Starting verification for equipment ID ${equipementId}`);
+        const verification = await vgsdk.verifications.startVerification(equipementId, tacheId);
+        console.log("Verification started successfully:");
+        console.log(JSON.stringify(verification, null, 2));
+        return verification;
+    }
+    catch (error) {
+        console.error("Failed to start verification:", error);
+    }
 }
 // Uncomment to run the separate example
 /*
@@ -92,3 +81,4 @@ function startVerificationDemo(equipementId, tacheId) {
 const equipementId = 123; // Replace with an actual equipment ID
 startVerificationDemo(equipementId);
 */
+//# sourceMappingURL=verificationsExample.js.map

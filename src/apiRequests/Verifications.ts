@@ -193,10 +193,11 @@ export class Verifications extends ApiRequest {
      * @param metadatas Metadata for filtering
      * @param fileExtension File extension (xlsx or csv)
      * @param site Optional site filter
-     * @returns Promise with export data
+     * @returns Promise<Blob> Returns a Blob object for file download
      */
-    async exportHistoriqueTacheRecurrentes(metadatas: Metadatas, fileExtension: string = "xlsx", site: string | null = null): Promise<any> {
+    async exportHistoriqueTacheRecurrentes(metadatas: Metadatas, fileExtension: string = "xlsx", site: string | null = null): Promise<Blob> {
         const fileType = fileExtension !== "csv" ? "excel" : "csv";
+        const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
         
         // Create query parameters
         const query = {
@@ -204,8 +205,19 @@ export class Verifications extends ApiRequest {
             fileType: fileType
         };
         
-        // Since we can't directly set response type options in the current implementation,
-        // we'll just make the request and let the client handle the blob conversion
-        return this.get(`${this.endpoint}/export/historique-taches-recurrente/${fileType}`, metadatas, query);
+        // Get raw response data
+        const response = await this.get(`${this.endpoint}/export/historique-taches-recurrente/${fileType}`, metadatas, query);
+        
+        // Create blob with proper encoding
+        let blob: Blob;
+        if (fileExtension === "csv") {
+            // Add BOM for UTF-8 encoding
+            const BOM = "\uFEFF";
+            blob = new Blob([BOM + response], { type: contentType });
+        } else {
+            blob = new Blob([response], { type: contentType });
+        }
+        
+        return blob;
     }
 }

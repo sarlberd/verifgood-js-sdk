@@ -34,3 +34,4 @@ vgsdk.messaging.unsubscribeFromTopic("debug", deviceToken).then((response) => {
 }).catch((error) => {
     console.error(error);
 });
+//# sourceMappingURL=MessagingExemple.js.map
