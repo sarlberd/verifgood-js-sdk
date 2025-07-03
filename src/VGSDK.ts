@@ -1,3 +1,5 @@
+import { Contact } from "./apiRequests/Contact";
+
 import { Consommable } from "./apiRequests/Consommable";
 
 import { Composant } from "./apiRequests/Composant";
@@ -155,6 +157,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Contact} contact - the contact request service
+   * @returns {Contact} - the contact request service
+   */
+  get contact(): Contact {
+    return this.getService('contact', Contact);
+  }
+
 
   /**
    * @property {Consommable} consommable - the consommable request service
