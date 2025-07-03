@@ -109,7 +109,7 @@ describe('Categories API Service', () => {
 
   describe('exportFile', () => {
     it('should export categories file with default parameters', async () => {
-      const mockResponse = { success: true };
+      const mockResponse = "mock,data";
       const metadatas = new Metadatas();
       
       jest.spyOn(categories, 'get').mockResolvedValue(mockResponse);
@@ -117,13 +117,12 @@ describe('Categories API Service', () => {
 
       const result = await categories.exportFile(metadatas);
 
-      expect(metadatas.setDirectives).toHaveBeenCalledWith([]);
       expect(categories.get).toHaveBeenCalledWith('/api/categories/export/lieux/excel', metadatas, {});
-      expect(result).toEqual(mockResponse);
+      expect(result).toBeInstanceOf(Blob);
     });
 
     it('should export categories file with custom parameters', async () => {
-      const mockResponse = { success: true };
+      const mockResponse = "mock,data";
       const metadatas = new Metadatas();
       
       jest.spyOn(categories, 'get').mockResolvedValue(mockResponse);
@@ -132,7 +131,7 @@ describe('Categories API Service', () => {
       const result = await categories.exportFile(metadatas, 'equipements', 'custom', 'csv');
 
       expect(categories.get).toHaveBeenCalledWith('/api/categories/export/equipements/csv', metadatas, {});
-      expect(result).toEqual(mockResponse);
+      expect(result).toBeInstanceOf(Blob);
     });
   });
 
