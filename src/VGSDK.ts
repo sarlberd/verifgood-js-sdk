@@ -1,3 +1,5 @@
+import { Dashboard } from "./apiRequests/Dashboard";
+
 import { CorpsDetat } from "./apiRequests/CorpsDetat";
 
 import { Contrat } from "./apiRequests/Contrat";
@@ -163,6 +165,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Dashboard} dashboard - the dashboard request service
+   * @returns {Dashboard} - the dashboard request service
+   */
+  get dashboard(): Dashboard {
+    return this.getService('dashboard', Dashboard);
+  }
+
 
   /**
    * @property {CorpsDetat} corpsdetat - the corpsdetat request service
