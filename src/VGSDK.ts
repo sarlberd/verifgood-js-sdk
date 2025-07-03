@@ -1,3 +1,5 @@
+import { DeplacementsEquipements } from "./apiRequests/DeplacementsEquipements";
+
 import { Dashboard } from "./apiRequests/Dashboard";
 
 import { CorpsDetat } from "./apiRequests/CorpsDetat";
@@ -165,6 +167,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {DeplacementsEquipements} deplacementsequipements - the deplacementsequipements request service
+   * @returns {DeplacementsEquipements} - the deplacementsequipements request service
+   */
+  get deplacementsequipements(): DeplacementsEquipements {
+    return this.getService('deplacementsequipements', DeplacementsEquipements);
+  }
+
 
   /**
    * @property {Dashboard} dashboard - the dashboard request service
