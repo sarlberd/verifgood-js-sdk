@@ -1,3 +1,5 @@
+import { CorpsDetat } from "./apiRequests/CorpsDetat";
+
 import { Contrat } from "./apiRequests/Contrat";
 
 import { ContratEcheancier } from "./apiRequests/ContratEcheancier";
@@ -161,6 +163,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {CorpsDetat} corpsdetat - the corpsdetat request service
+   * @returns {CorpsDetat} - the corpsdetat request service
+   */
+  get corpsdetat(): CorpsDetat {
+    return this.getService('corpsdetat', CorpsDetat);
+  }
+
 
   /**
    * @property {Contrat} contrat - the contrat request service
