@@ -1,3 +1,5 @@
+import { Contrat } from "./apiRequests/Contrat";
+
 import { ContratEcheancier } from "./apiRequests/ContratEcheancier";
 
 import { Contact } from "./apiRequests/Contact";
@@ -159,6 +161,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Contrat} contrat - the contrat request service
+   * @returns {Contrat} - the contrat request service
+   */
+  get contrat(): Contrat {
+    return this.getService('contrat', Contrat);
+  }
+
 
   /**
    * @property {ContratEcheancier} contratecheancier - the contratecheancier request service
