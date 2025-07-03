@@ -15,9 +15,9 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param options Additional options to include in the payload
      * @returns Promise with the subscription result
      */
-    async subscribeToTopic(topic, deviceToken) {
+    async subscribeToTopic(topic, deviceToken, options = {}) {
         const url = `${this.endpoint}/subscribe/${topic}`;
-        const payload = { token: deviceToken };
+        let payload = { ...options, token: deviceToken };
         return await this.apiRequest(url, 'POST', payload);
     }
     /**
@@ -27,8 +27,18 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param options Additional options to include in the payload
      * @returns Promise with the unsubscription result
      */
-    async unsubscribeFromTopic(topic, deviceToken) {
+    async unsubscribeFromTopic(topic, deviceToken, options = {}) {
         const url = `${this.endpoint}/unsubscribe/${topic}`;
+        const payload = { ...options, token: deviceToken };
+        return await this.apiRequest(url, 'POST', payload);
+    }
+    /**
+     * Unsubscribe from all topics for a device
+     * @param deviceToken The device token to unsubscribe from all topics
+     * @returns Promise with the unsubscription result
+     */
+    async unsubscribeFromAllTopics(deviceToken) {
+        const url = `${this.endpoint}/unsubscribe/all`;
         const payload = { token: deviceToken };
         return await this.apiRequest(url, 'POST', payload);
     }
