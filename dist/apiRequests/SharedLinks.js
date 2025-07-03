@@ -11,3 +11,4 @@ class SharedLinks extends ApiRequest_1.ApiRequest {
     }
 }
 exports.SharedLinks = SharedLinks;
+//# sourceMappingURL=SharedLinks.js.map

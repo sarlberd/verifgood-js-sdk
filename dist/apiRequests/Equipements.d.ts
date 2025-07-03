@@ -19,11 +19,29 @@ export declare class Equipements extends ApiRequest {
      */
     getByCode(code: string): Promise<any>;
     getRapportAssets(metadatas: Metadatas): Promise<any>;
-    getRapportAssetsExcelFile(metadatas: Metadatas, fileExtension?: string): Promise<void>;
+    /**
+     * Export rapport assets file (CSV or Excel)
+     * @param metadatas Metadatas for filtering
+     * @param fileExtension File extension (xlsx or csv)
+     * @returns Promise<Blob> Returns a Blob object for file download
+     */
+    getRapportAssetsExcelFile(metadatas: Metadatas, fileExtension?: string): Promise<Blob>;
     getAll(metadatas: Metadatas): Promise<any>;
     getEquipementsTachesActivesSites(site: string, metadatas: Metadatas): Promise<any>;
-    getExcelFileModeleIntegration(filename?: string): Promise<void>;
-    getExcelFile(metadatas: Metadatas, filename?: string | null, fileExtension?: string): Promise<void>;
+    /**
+     * Get Excel file model for integration
+     * @param filename Custom filename
+     * @returns Promise<Blob> Returns a Blob object for Excel file download
+     */
+    getExcelFileModeleIntegration(filename?: string): Promise<Blob>;
+    /**
+     * Export equipements file (CSV or Excel)
+     * @param metadatas Metadatas for filtering
+     * @param filename Custom filename
+     * @param fileExtension File extension
+     * @returns Promise<Blob> Returns a Blob object for file download
+     */
+    getExcelFile(metadatas: Metadatas, filename?: string | null, fileExtension?: string): Promise<Blob>;
     create(equipements: any[]): Promise<any>;
     importModelEquipementsExcel(equipements: any[]): Promise<any>;
     sortirEquipement(equipement: any, callback: Function): Promise<void>;

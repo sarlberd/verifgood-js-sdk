@@ -12,3 +12,4 @@ class Taches extends ApiRequest_1.ApiRequest {
     }
 }
 exports.Taches = Taches;
+//# sourceMappingURL=Taches.js.map

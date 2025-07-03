@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -81,56 +72,50 @@ vgsdk.invitations.generateInvitationLink(invitationRequest)
 // Alternative example: Each step separately
 // This is useful if the steps happen at different times/contexts
 // Generate invitation link
-function generateInvitationDemo(email_1, role_1) {
-    return __awaiter(this, arguments, void 0, function* (email, role, origin = 'http://localhost:8080') {
-        try {
-            const invitationRequest = { email, origin, role };
-            const invitation = yield vgsdk.invitations.generateInvitationLink(invitationRequest);
-            console.log("Generated invitation:", invitation);
-            return invitation;
-        }
-        catch (error) {
-            console.error("Failed to generate invitation:", error);
-        }
-    });
+async function generateInvitationDemo(email, role, origin = 'http://localhost:8080') {
+    try {
+        const invitationRequest = { email, origin, role };
+        const invitation = await vgsdk.invitations.generateInvitationLink(invitationRequest);
+        console.log("Generated invitation:", invitation);
+        return invitation;
+    }
+    catch (error) {
+        console.error("Failed to generate invitation:", error);
+    }
 }
 // Verify invitation token (typically done when user clicks link in email)
-function verifyInvitationDemo(token_1) {
-    return __awaiter(this, arguments, void 0, function* (token, email = "") {
-        try {
-            const invitationToCheck = {
-                email: email,
-                token: token,
-                origin: 'http://localhost:8080'
-            };
-            const invitation = yield vgsdk.invitations.checkInvitation(invitationToCheck);
-            console.log("Verified invitation:", invitation);
-            return invitation;
-        }
-        catch (error) {
-            console.error("Invalid invitation token:", error);
-        }
-    });
+async function verifyInvitationDemo(token, email = "") {
+    try {
+        const invitationToCheck = {
+            email: email,
+            token: token,
+            origin: 'http://localhost:8080'
+        };
+        const invitation = await vgsdk.invitations.checkInvitation(invitationToCheck);
+        console.log("Verified invitation:", invitation);
+        return invitation;
+    }
+    catch (error) {
+        console.error("Invalid invitation token:", error);
+    }
 }
 // Complete registration (after user has entered their desired password)
-function completeRegistrationDemo(token, password) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const registrationData = {
-                invitation_token: token,
-                password: password,
-                password_confirm: password,
-                name: "John",
-                surname: "Doe"
-            };
-            const result = yield vgsdk.invitations.completeRegistration(registrationData);
-            console.log("Registration completed:", result);
-            return result;
-        }
-        catch (error) {
-            console.error("Failed to complete registration:", error);
-        }
-    });
+async function completeRegistrationDemo(token, password) {
+    try {
+        const registrationData = {
+            invitation_token: token,
+            password: password,
+            password_confirm: password,
+            name: "John",
+            surname: "Doe"
+        };
+        const result = await vgsdk.invitations.completeRegistration(registrationData);
+        console.log("Registration completed:", result);
+        return result;
+    }
+    catch (error) {
+        console.error("Failed to complete registration:", error);
+    }
 }
 // Uncomment to run the separate examples
 /*
@@ -153,3 +138,4 @@ generateInvitationDemo('another.user@example.com', 'ROLE_USER')
         }
     });
 */
+//# sourceMappingURL=invitationsExample.js.map

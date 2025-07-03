@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Messaging = void 0;
 const ApiRequest_1 = require("../core/ApiRequest");
@@ -23,12 +14,10 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param deviceToken The device token to include in the payload
      * @returns Promise with the subscription result
      */
-    subscribeToTopic(topic, deviceToken) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const url = `${this.endpoint}/subscribe/${topic}`;
-            const payload = { token: deviceToken };
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async subscribeToTopic(topic, deviceToken) {
+        const url = `${this.endpoint}/subscribe/${topic}`;
+        const payload = { token: deviceToken };
+        return await this.apiRequest(url, 'POST', payload);
     }
     /**
      * Unsubscribe from a topic
@@ -36,12 +25,10 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param deviceToken The device token to include in the payload
      * @returns Promise with the unsubscription result
      */
-    unsubscribeFromTopic(topic, deviceToken) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const url = `${this.endpoint}/unsubscribe/${topic}`;
-            const payload = { token: deviceToken };
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async unsubscribeFromTopic(topic, deviceToken) {
+        const url = `${this.endpoint}/unsubscribe/${topic}`;
+        const payload = { token: deviceToken };
+        return await this.apiRequest(url, 'POST', payload);
     }
     /**
      * Send a message to a topic
@@ -49,11 +36,9 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param payload The message payload
      * @returns Promise with the send result
      */
-    sendMessageToTopic(topic, payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const url = `${this.endpoint}/send/topic/${topic}`;
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async sendMessageToTopic(topic, payload) {
+        const url = `${this.endpoint}/send/topic/${topic}`;
+        return await this.apiRequest(url, 'POST', payload);
     }
     /**
      * Send a message to a specific device
@@ -61,11 +46,10 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param payload The message payload
      * @returns Promise with the send result
      */
-    sendMessageToDevice(deviceToken, payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const url = `${this.endpoint}/send/to/${deviceToken}`;
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async sendMessageToDevice(deviceToken, payload) {
+        const url = `${this.endpoint}/send/to/${deviceToken}`;
+        return await this.apiRequest(url, 'POST', payload);
     }
 }
 exports.Messaging = Messaging;
+//# sourceMappingURL=Messaging.js.map
