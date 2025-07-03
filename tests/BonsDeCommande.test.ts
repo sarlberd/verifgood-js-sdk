@@ -204,7 +204,7 @@ describe('BonsDeCommande API Service', () => {
             method: 'GET'
           })
         );
-        expect(result).toBeUndefined(); // Method returns void
+        expect(result).toBeInstanceOf(Blob); // Method returns Blob
       });
     });
 
