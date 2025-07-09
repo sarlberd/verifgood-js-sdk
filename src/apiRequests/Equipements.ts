@@ -8,7 +8,6 @@ export class Equipements extends ApiRequest {
   restrictionsite: string = '';
   async getEquipementVerifications(equipement_id: number, metadatas: Metadatas = new Metadatas('{"directives":[],"filters":[]}')): Promise<any> {
     const query = {
-      userId: this.appID,
       metadatas: metadatas.get()
     };
     const response = await this.apiRequest(`${this.endpointSingleton}/${equipement_id}/verifications`, 'GET', query);
@@ -39,7 +38,6 @@ export class Equipements extends ApiRequest {
 
   async getRapportAssets(metadatas: Metadatas): Promise<any> {
     const query = {
-      userId: this.appID,
       metadatas: metadatas.get(),
       sites: this.restrictionsite
     };
@@ -76,6 +74,8 @@ export class Equipements extends ApiRequest {
     return blob;
   }
   
+  /**
+   */
   async getAll(metadatas: Metadatas): Promise<any> {
     const query = {
       sites: this.restrictionsite
@@ -89,7 +89,6 @@ export class Equipements extends ApiRequest {
 
   async getEquipementsTachesActivesSites(site: string, metadatas: Metadatas): Promise<any> {
     const query = {
-      userId: this.appID,
       site: site,
       metadatas: metadatas.get()
     };
@@ -141,6 +140,9 @@ export class Equipements extends ApiRequest {
     return blob;
   }
 
+  /**
+   * @deprecated Use create() from parent ApiRequest class instead
+   */
   async create(equipements: any[]): Promise<any> {
     equipements.forEach((equipement: any) => {
       if (!equipement.marker && equipement.marker == null) delete equipement.marker;
@@ -174,8 +176,10 @@ export class Equipements extends ApiRequest {
     return response;
   }
 
+  /**
+   */
   async update(equipement: any, _options: { skipVueXStorage?: boolean } = { skipVueXStorage: false }): Promise<any> {
-    const response = await this.apiRequest(`${this.endpointSingleton}/${equipement.id}?userId=${this.appID}`, 'PUT', equipement);
+    const response = await this.apiRequest(`${this.endpointSingleton}/${equipement.id}`, 'PUT', equipement);
     return response;
   }
 
@@ -186,13 +190,15 @@ export class Equipements extends ApiRequest {
     return response;
   }
 
+  /**
+   */
   async remove(equipementId: number): Promise<any> {
     const response = await this.delete(`${this.endpointSingleton}/${equipementId}`);
     return response;
   }
 
   async createEquipementsGlobauxFamilleSite(famille: string, equipements: any[]): Promise<any> {
-    const response = await this.apiRequest(`/sites/${famille}/equipements/globaux?userId=${this.appID}`, 'POST', equipements);
+    const response = await this.apiRequest(`/sites/${famille}/equipements/globaux`, 'POST', equipements);
     return response;
   }
 
