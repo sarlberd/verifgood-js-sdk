@@ -1,3 +1,5 @@
+import { IntegrationsDonnees } from "./apiRequests/IntegrationsDonnees";
+
 import { GroupeValidateursUsers } from "./apiRequests/GroupeValidateursUsers";
 
 import { GroupeValidateurs } from "./apiRequests/GroupeValidateurs";
@@ -177,6 +179,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {IntegrationsDonnees} integrationsdonnees - the integrationsdonnees request service
+   * @returns {IntegrationsDonnees} - the integrationsdonnees request service
+   */
+  get integrationsdonnees(): IntegrationsDonnees {
+    return this.getService('integrationsdonnees', IntegrationsDonnees);
+  }
+
 
   /**
    * @property {GroupeValidateursUsers} groupevalidateursusers - the groupevalidateursusers request service
