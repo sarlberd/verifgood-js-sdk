@@ -1,3 +1,5 @@
+import { FicheDemandeConsommables } from "./apiRequests/FicheDemandeConsommables";
+
 import { Equipements } from "./apiRequests/Equipements";
 
 import { Documents } from "./apiRequests/Documents";
@@ -171,6 +173,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {FicheDemandeConsommables} fichedemandeconsommables - the fichedemandeconsommables request service
+   * @returns {FicheDemandeConsommables} - the fichedemandeconsommables request service
+   */
+  get fichedemandeconsommables(): FicheDemandeConsommables {
+    return this.getService('fichedemandeconsommables', FicheDemandeConsommables);
+  }
+
 
   /**
    * @property {Equipements} equipements - the equipements request service

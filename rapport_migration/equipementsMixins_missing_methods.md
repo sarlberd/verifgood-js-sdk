@@ -38,5 +38,11 @@ All 18 methods from the `equipementsMixins` have been successfully implemented i
 ## Notes
 - All methods follow the HttpClient method signature requirements
 - VueX storage logic was removed as per migration requirements
-- All tests are passing (26 test suites, 293 tests)
+- All tests are passing (27 test suites, 295 tests)
 - The service is properly integrated into the VGSDK main class
+- **CRUD methods are marked as @deprecated** to encourage using parent ApiRequest methods:
+  - `getAll()` → use parent `getAll()`
+  - `getById()` → use parent `getById()`
+  - `create()` → use parent `create()`
+  - `update()` → use parent `update()`
+  - `remove()` → use parent `remove()`
