@@ -1,3 +1,5 @@
+import { Interventions } from "./apiRequests/Interventions";
+
 import { IntegrationsDonnees } from "./apiRequests/IntegrationsDonnees";
 
 import { GroupeValidateursUsers } from "./apiRequests/GroupeValidateursUsers";
@@ -179,6 +181,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Interventions} interventions - the interventions request service
+   * @returns {Interventions} - the interventions request service
+   */
+  get interventions(): Interventions {
+    return this.getService('interventions', Interventions);
+  }
+
 
   /**
    * @property {IntegrationsDonnees} integrationsdonnees - the integrationsdonnees request service
