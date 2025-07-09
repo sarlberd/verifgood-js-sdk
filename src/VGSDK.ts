@@ -1,3 +1,5 @@
+import { Lieux } from "./apiRequests/Lieux";
+
 import { LibelServices } from "./apiRequests/LibelServices";
 
 import { LibelProblem } from "./apiRequests/LibelProblem";
@@ -189,6 +191,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Lieux} lieux - the lieux request service
+   * @returns {Lieux} - the lieux request service
+   */
+  get lieux(): Lieux {
+    return this.getService('lieux', Lieux);
+  }
+
 
   /**
    * @property {LibelServices} libelservices - the libelservices request service
