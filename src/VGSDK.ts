@@ -1,3 +1,5 @@
+import { Equipements } from "./apiRequests/Equipements";
+
 import { Documents } from "./apiRequests/Documents";
 
 import { DeplacementsEquipements } from "./apiRequests/DeplacementsEquipements";
@@ -169,6 +171,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Equipements} equipements - the equipements request service
+   * @returns {Equipements} - the equipements request service
+   */
+  get equipements(): Equipements {
+    return this.getService('equipements', Equipements);
+  }
+
 
   /**
    * @property {Documents} documents - the documents request service
