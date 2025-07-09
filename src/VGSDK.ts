@@ -1,3 +1,5 @@
+import { LibellesCategorie } from "./apiRequests/LibellesCategorie";
+
 import { Inventaire } from "./apiRequests/Inventaire";
 
 import { Interventions } from "./apiRequests/Interventions";
@@ -183,6 +185,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {LibellesCategorie} libellescategorie - the libellescategorie request service
+   * @returns {LibellesCategorie} - the libellescategorie request service
+   */
+  get libellescategorie(): LibellesCategorie {
+    return this.getService('libellescategorie', LibellesCategorie);
+  }
+
 
   /**
    * @property {Inventaire} inventaire - the inventaire request service
