@@ -1,3 +1,5 @@
+import { Inventaire } from "./apiRequests/Inventaire";
+
 import { Interventions } from "./apiRequests/Interventions";
 
 import { IntegrationsDonnees } from "./apiRequests/IntegrationsDonnees";
@@ -181,6 +183,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Inventaire} inventaire - the inventaire request service
+   * @returns {Inventaire} - the inventaire request service
+   */
+  get inventaire(): Inventaire {
+    return this.getService('inventaire', Inventaire);
+  }
+
 
   /**
    * @property {Interventions} interventions - the interventions request service
