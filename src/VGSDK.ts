@@ -1,3 +1,5 @@
+import { GroupeValidateursUsers } from "./apiRequests/GroupeValidateursUsers";
+
 import { GroupeValidateurs } from "./apiRequests/GroupeValidateurs";
 
 import { FicheDemandeConsommables } from "./apiRequests/FicheDemandeConsommables";
@@ -175,6 +177,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {GroupeValidateursUsers} groupevalidateursusers - the groupevalidateursusers request service
+   * @returns {GroupeValidateursUsers} - the groupevalidateursusers request service
+   */
+  get groupevalidateursusers(): GroupeValidateursUsers {
+    return this.getService('groupevalidateursusers', GroupeValidateursUsers);
+  }
+
 
   /**
    * @property {GroupeValidateurs} groupevalidateurs - the groupevalidateurs request service

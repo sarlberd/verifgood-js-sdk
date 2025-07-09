@@ -1,7 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="297" failures="0" errors="0" time="1.448">
-  <testsuite name="DateRangeShortcuts" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:39" time="0.485" tests="26">
-    <testcase classname="DateRangeShortcuts setDateShortcutSelected and getDateShortcutSelected should set and get date shortcut selected" name="DateRangeShortcuts setDateShortcutSelected and getDateShortcutSelected should set and get date shortcut selected" time="0.009">
+<testsuites name="jest tests" tests="299" failures="0" errors="0" time="1.496">
+  <testsuite name="FicheDemandeConsommables API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:32" time="0.471" tests="2">
+    <testcase classname="FicheDemandeConsommables API Service Constructor should initialize endpoints correctly" name="FicheDemandeConsommables API Service Constructor should initialize endpoints correctly" time="0.008">
+    </testcase>
+    <testcase classname="FicheDemandeConsommables API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="FicheDemandeConsommables API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Consommable API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:32" time="0.526" tests="32">
+    <testcase classname="Consommable API Service CRUD Operations getAll should get all consommables" name="Consommable API Service CRUD Operations getAll should get all consommables" time="0.011">
+    </testcase>
+    <testcase classname="Consommable API Service CRUD Operations getById should get a consommable by id" name="Consommable API Service CRUD Operations getById should get a consommable by id" time="0.002">
+    </testcase>
+    <testcase classname="Consommable API Service CRUD Operations create should create a new consommable" name="Consommable API Service CRUD Operations create should create a new consommable" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service CRUD Operations update should update a consommable" name="Consommable API Service CRUD Operations update should update a consommable" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service CRUD Operations delete should delete a consommable" name="Consommable API Service CRUD Operations delete should delete a consommable" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Enhanced Methods getConsommables should get consommables with storage options" name="Consommable API Service Enhanced Methods getConsommables should get consommables with storage options" time="0">
+    </testcase>
+    <testcase classname="Consommable API Service Enhanced Methods getConsommablesEtiquettes should get consommables etiquettes" name="Consommable API Service Enhanced Methods getConsommablesEtiquettes should get consommables etiquettes" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Enhanced Methods getConsommablesEnStock should get consommables en stock" name="Consommable API Service Enhanced Methods getConsommablesEnStock should get consommables en stock" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Enhanced Methods getEquipements should get equipements for a consommable" name="Consommable API Service Enhanced Methods getEquipements should get equipements for a consommable" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Equipment and Association Methods getConsommablesForEquipement should get consommables for an equipement" name="Consommable API Service Equipment and Association Methods getConsommablesForEquipement should get consommables for an equipement" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Equipment and Association Methods getEquipementConsommables should get equipement consommables" name="Consommable API Service Equipment and Association Methods getEquipementConsommables should get equipement consommables" time="0">
+    </testcase>
+    <testcase classname="Consommable API Service Equipment and Association Methods createConsommablesEquipements should create consommables equipements association" name="Consommable API Service Equipment and Association Methods createConsommablesEquipements should create consommables equipements association" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Stock Management Methods updateStock should update stock for a consommable" name="Consommable API Service Stock Management Methods updateStock should update stock for a consommable" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Stock Management Methods updateConsommables should update multiple consommables" name="Consommable API Service Stock Management Methods updateConsommables should update multiple consommables" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Stock Management Methods deleteMultiple should delete multiple consommables" name="Consommable API Service Stock Management Methods deleteMultiple should delete multiple consommables" time="0">
+    </testcase>
+    <testcase classname="Consommable API Service Stock Management Methods removeConsommable should remove/delete a consommable" name="Consommable API Service Stock Management Methods removeConsommable should remove/delete a consommable" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Consumption and Movement Methods getConsommations should get consommations" name="Consommable API Service Consumption and Movement Methods getConsommations should get consommations" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Consumption and Movement Methods createConsommableMouvement should create a consommable mouvement" name="Consommable API Service Consumption and Movement Methods createConsommableMouvement should create a consommable mouvement" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Consumption and Movement Methods deleteConsommableMouvement should delete a consommable mouvement" name="Consommable API Service Consumption and Movement Methods deleteConsommableMouvement should delete a consommable mouvement" time="0">
+    </testcase>
+    <testcase classname="Consommable API Service Consumption and Movement Methods createConsommations should create consommations" name="Consommable API Service Consumption and Movement Methods createConsommations should create consommations" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Consumption and Movement Methods createConsommations should create consommations with maintenance ID" name="Consommable API Service Consumption and Movement Methods createConsommations should create consommations with maintenance ID" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Export and Reporting Methods getFile should export consommables file and return a Blob" name="Consommable API Service Export and Reporting Methods getFile should export consommables file and return a Blob" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Export and Reporting Methods getFile should export CSV file with BOM and return a Blob" name="Consommable API Service Export and Reporting Methods getFile should export CSV file with BOM and return a Blob" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Export and Reporting Methods getRepartitionQuantites should get repartition quantites" name="Consommable API Service Export and Reporting Methods getRepartitionQuantites should get repartition quantites" time="0">
+    </testcase>
+    <testcase classname="Consommable API Service Export and Reporting Methods getConsommableMouvementsDemandeurs should get consommable mouvements demandeurs" name="Consommable API Service Export and Reporting Methods getConsommableMouvementsDemandeurs should get consommable mouvements demandeurs" time="0">
+    </testcase>
+    <testcase classname="Consommable API Service Export and Reporting Methods exportConsommables should export consommables to file and return a Blob" name="Consommable API Service Export and Reporting Methods exportConsommables should export consommables to file and return a Blob" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Export and Reporting Methods exportConsommables should export CSV consommables with BOM and return a Blob" name="Consommable API Service Export and Reporting Methods exportConsommables should export CSV consommables with BOM and return a Blob" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Supplier and Integration Methods createConsommableFournisseurs should create consommable fournisseurs association" name="Consommable API Service Supplier and Integration Methods createConsommableFournisseurs should create consommable fournisseurs association" time="0">
+    </testcase>
+    <testcase classname="Consommable API Service Supplier and Integration Methods removeConsommableFournisseurs should remove consommable fournisseurs association" name="Consommable API Service Supplier and Integration Methods removeConsommableFournisseurs should remove consommable fournisseurs association" time="0">
+    </testcase>
+    <testcase classname="Consommable API Service Supplier and Integration Methods importModelConsommablesExcel should import consommables from Excel model" name="Consommable API Service Supplier and Integration Methods importModelConsommablesExcel should import consommables from Excel model" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Supplier and Integration Methods getExcelFileModeleIntegration should get Excel file model for integration and return a Blob" name="Consommable API Service Supplier and Integration Methods getExcelFileModeleIntegration should get Excel file model for integration and return a Blob" time="0.001">
+    </testcase>
+    <testcase classname="Consommable API Service Additional Methods createOperationsConsommations should create operations consommations for maintenance" name="Consommable API Service Additional Methods createOperationsConsommations should create operations consommations for maintenance" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="BonsDeCommande API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:32" time="0.515" tests="15">
+    <testcase classname="BonsDeCommande API Service Constructor should initialize endpoints correctly" name="BonsDeCommande API Service Constructor should initialize endpoints correctly" time="0.008">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonsDeCommande API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods cancel should cancel a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods cancel should cancel a bon de commande" time="0.014">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods skipSending should skip sending a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods skipSending should skip sending a bon de commande" time="0.002">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods demandeValidation should request validation for a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods demandeValidation should request validation for a bon de commande" time="0.002">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods livraison should handle delivery for a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods livraison should handle delivery for a bon de commande" time="0.003">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods livraisonTotale should handle complete delivery for a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods livraisonTotale should handle complete delivery for a bon de commande" time="0.002">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods nonLivre should mark bon de commande as not delivered" name="BonsDeCommande API Service Non-CRUD Methods nonLivre should mark bon de commande as not delivered" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods clone should clone a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods clone should clone a bon de commande" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getHistorique should get historical data for a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods getHistorique should get historical data for a bon de commande" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getPDF should get PDF export of bon de commande" name="BonsDeCommande API Service Non-CRUD Methods getPDF should get PDF export of bon de commande" time="0.003">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getRepartitionMontantHt should get amount distribution for dashboard" name="BonsDeCommande API Service Non-CRUD Methods getRepartitionMontantHt should get amount distribution for dashboard" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods export should export bons de commande" name="BonsDeCommande API Service Non-CRUD Methods export should export bons de commande" time="0.002">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getCreateurs should get creators of bons de commande" name="BonsDeCommande API Service Non-CRUD Methods getCreateurs should get creators of bons de commande" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getValidateurs should get validators of bons de commande" name="BonsDeCommande API Service Non-CRUD Methods getValidateurs should get validators of bons de commande" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="DateRangeShortcuts" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:32" time="0.491" tests="26">
+    <testcase classname="DateRangeShortcuts setDateShortcutSelected and getDateShortcutSelected should set and get date shortcut selected" name="DateRangeShortcuts setDateShortcutSelected and getDateShortcutSelected should set and get date shortcut selected" time="0.008">
     </testcase>
     <testcase classname="DateRangeShortcuts useRangeDate should set range for &quot;Aujourd&apos;hui&quot; shortcut" name="DateRangeShortcuts useRangeDate should set range for &quot;Aujourd&apos;hui&quot; shortcut" time="0.003">
     </testcase>
@@ -17,13 +121,13 @@
     </testcase>
     <testcase classname="DateRangeShortcuts useRangeDate should set range for &quot;les 30 derniers jours&quot; shortcut" name="DateRangeShortcuts useRangeDate should set range for &quot;les 30 derniers jours&quot; shortcut" time="0.001">
     </testcase>
-    <testcase classname="DateRangeShortcuts useRangeDate should set value to null for &quot;Choisir une plage de date&quot; shortcut" name="DateRangeShortcuts useRangeDate should set value to null for &quot;Choisir une plage de date&quot; shortcut" time="0">
+    <testcase classname="DateRangeShortcuts useRangeDate should set value to null for &quot;Choisir une plage de date&quot; shortcut" name="DateRangeShortcuts useRangeDate should set value to null for &quot;Choisir une plage de date&quot; shortcut" time="0.001">
     </testcase>
-    <testcase classname="DateRangeShortcuts useRangeDate should set value to null for unknown shortcut" name="DateRangeShortcuts useRangeDate should set value to null for unknown shortcut" time="0.001">
+    <testcase classname="DateRangeShortcuts useRangeDate should set value to null for unknown shortcut" name="DateRangeShortcuts useRangeDate should set value to null for unknown shortcut" time="0">
     </testcase>
-    <testcase classname="DateRangeShortcuts useRangeDate should set value to null for empty shortcut" name="DateRangeShortcuts useRangeDate should set value to null for empty shortcut" time="0">
+    <testcase classname="DateRangeShortcuts useRangeDate should set value to null for empty shortcut" name="DateRangeShortcuts useRangeDate should set value to null for empty shortcut" time="0.001">
     </testcase>
-    <testcase classname="DateRangeShortcuts getLogicComparatorDateRange should return a date comparator configuration" name="DateRangeShortcuts getLogicComparatorDateRange should return a date comparator configuration" time="0.001">
+    <testcase classname="DateRangeShortcuts getLogicComparatorDateRange should return a date comparator configuration" name="DateRangeShortcuts getLogicComparatorDateRange should return a date comparator configuration" time="0.002">
     </testcase>
     <testcase classname="DateRangeShortcuts getLogicComparatorDateRange should return 0 for comparator function (incomplete logic)" name="DateRangeShortcuts getLogicComparatorDateRange should return 0 for comparator function (incomplete logic)" time="0">
     </testcase>
@@ -39,23 +143,23 @@
     </testcase>
     <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should add date comparison logic to column definition" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should add date comparison logic to column definition" time="0.001">
     </testcase>
-    <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 0 for empty cell value" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 0 for empty cell value" time="0.001">
+    <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 0 for empty cell value" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 0 for empty cell value" time="0">
     </testcase>
-    <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return -1 when cell value is less than filter" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return -1 when cell value is less than filter" time="0">
+    <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return -1 when cell value is less than filter" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return -1 when cell value is less than filter" time="0.001">
     </testcase>
-    <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 1 when cell value is greater than filter" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 1 when cell value is greater than filter" time="0.001">
+    <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 1 when cell value is greater than filter" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 1 when cell value is greater than filter" time="0">
     </testcase>
-    <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 0 when cell value equals filter" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 0 when cell value equals filter" time="0">
+    <testcase classname="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 0 when cell value equals filter" name="DateRangeShortcuts addLogicComparatorOnGridDefinitionColumn should return 0 when cell value equals filter" time="0.001">
     </testcase>
-    <testcase classname="DateRangeShortcuts static methods should return available shortcuts" name="DateRangeShortcuts static methods should return available shortcuts" time="0.001">
+    <testcase classname="DateRangeShortcuts static methods should return available shortcuts" name="DateRangeShortcuts static methods should return available shortcuts" time="0">
     </testcase>
     <testcase classname="DateRangeShortcuts singleton instance should provide a singleton instance" name="DateRangeShortcuts singleton instance should provide a singleton instance" time="0.001">
     </testcase>
     <testcase classname="DateRangeShortcuts singleton instance should use the same instance" name="DateRangeShortcuts singleton instance should use the same instance" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="Dashboard API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:39" time="0.484" tests="22">
-    <testcase classname="Dashboard API Service Constructor should initialize endpoints correctly" name="Dashboard API Service Constructor should initialize endpoints correctly" time="0.009">
+  <testsuite name="Dashboard API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:32" time="0.502" tests="22">
+    <testcase classname="Dashboard API Service Constructor should initialize endpoints correctly" name="Dashboard API Service Constructor should initialize endpoints correctly" time="0.007">
     </testcase>
     <testcase classname="Dashboard API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Dashboard API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
     </testcase>
@@ -65,27 +169,27 @@
     </testcase>
     <testcase classname="Dashboard API Service Curatif Dashboard Methods getCuratifRepartitionAge should get curatif repartition age dashboard data" name="Dashboard API Service Curatif Dashboard Methods getCuratifRepartitionAge should get curatif repartition age dashboard data" time="0.001">
     </testcase>
-    <testcase classname="Dashboard API Service Preventif Dashboard Methods getPreventifRepartitionNonConformites should get preventif non conformites dashboard data" name="Dashboard API Service Preventif Dashboard Methods getPreventifRepartitionNonConformites should get preventif non conformites dashboard data" time="0">
+    <testcase classname="Dashboard API Service Preventif Dashboard Methods getPreventifRepartitionNonConformites should get preventif non conformites dashboard data" name="Dashboard API Service Preventif Dashboard Methods getPreventifRepartitionNonConformites should get preventif non conformites dashboard data" time="0.001">
     </testcase>
-    <testcase classname="Dashboard API Service Preventif Dashboard Methods getPreventifReleverCompteur should get preventif relever compteur dashboard data" name="Dashboard API Service Preventif Dashboard Methods getPreventifReleverCompteur should get preventif relever compteur dashboard data" time="0">
+    <testcase classname="Dashboard API Service Preventif Dashboard Methods getPreventifReleverCompteur should get preventif relever compteur dashboard data" name="Dashboard API Service Preventif Dashboard Methods getPreventifReleverCompteur should get preventif relever compteur dashboard data" time="0.001">
     </testcase>
-    <testcase classname="Dashboard API Service Consommables Dashboard Methods getConsommablesRepartitionEnStock should get consommables en stock dashboard data" name="Dashboard API Service Consommables Dashboard Methods getConsommablesRepartitionEnStock should get consommables en stock dashboard data" time="0">
+    <testcase classname="Dashboard API Service Consommables Dashboard Methods getConsommablesRepartitionEnStock should get consommables en stock dashboard data" name="Dashboard API Service Consommables Dashboard Methods getConsommablesRepartitionEnStock should get consommables en stock dashboard data" time="0.001">
     </testcase>
-    <testcase classname="Dashboard API Service Consommables Dashboard Methods getConsommablesRepartitionConsommationsMaintenances should get consommables maintenances dashboard data" name="Dashboard API Service Consommables Dashboard Methods getConsommablesRepartitionConsommationsMaintenances should get consommables maintenances dashboard data" time="0.001">
+    <testcase classname="Dashboard API Service Consommables Dashboard Methods getConsommablesRepartitionConsommationsMaintenances should get consommables maintenances dashboard data" name="Dashboard API Service Consommables Dashboard Methods getConsommablesRepartitionConsommationsMaintenances should get consommables maintenances dashboard data" time="0">
     </testcase>
     <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionComposants" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionComposants" time="0">
     </testcase>
     <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionDemandeur" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionDemandeur" time="0.001">
     </testcase>
-    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionUserAffecte" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionUserAffecte" time="0.001">
+    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionUserAffecte" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionUserAffecte" time="0">
     </testcase>
-    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionTiersAffecte" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionTiersAffecte" time="0">
+    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionTiersAffecte" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionTiersAffecte" time="0.001">
     </testcase>
-    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionCategoriesEquipements" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionCategoriesEquipements" time="0.001">
+    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionCategoriesEquipements" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionCategoriesEquipements" time="0">
     </testcase>
     <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionCorpsDetat" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionCorpsDetat" time="0">
     </testcase>
-    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionEquipements" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionEquipements" time="0">
+    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionEquipements" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionEquipements" time="0.001">
     </testcase>
     <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionEquipementsCouts" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionEquipementsCouts" time="0">
     </testcase>
@@ -93,365 +197,21 @@
     </testcase>
     <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionDureeTraitement" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getCuratifRepartitionDureeTraitement" time="0">
     </testcase>
-    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getPreventifProchainesInterventionsExternes" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getPreventifProchainesInterventionsExternes" time="0.001">
+    <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getPreventifProchainesInterventionsExternes" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getPreventifProchainesInterventionsExternes" time="0">
     </testcase>
     <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getPreventifProgressionInterne" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getPreventifProgressionInterne" time="0">
     </testcase>
     <testcase classname="Dashboard API Service Additional Methods Coverage should call correct endpoint for getConsommablesRepartitionConsommationsBonsDeSortie" name="Dashboard API Service Additional Methods Coverage should call correct endpoint for getConsommablesRepartitionConsommationsBonsDeSortie" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="Consommable API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:39" time="0.497" tests="32">
-    <testcase classname="Consommable API Service CRUD Operations getAll should get all consommables" name="Consommable API Service CRUD Operations getAll should get all consommables" time="0.01">
-    </testcase>
-    <testcase classname="Consommable API Service CRUD Operations getById should get a consommable by id" name="Consommable API Service CRUD Operations getById should get a consommable by id" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service CRUD Operations create should create a new consommable" name="Consommable API Service CRUD Operations create should create a new consommable" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service CRUD Operations update should update a consommable" name="Consommable API Service CRUD Operations update should update a consommable" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service CRUD Operations delete should delete a consommable" name="Consommable API Service CRUD Operations delete should delete a consommable" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Enhanced Methods getConsommables should get consommables with storage options" name="Consommable API Service Enhanced Methods getConsommables should get consommables with storage options" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Enhanced Methods getConsommablesEtiquettes should get consommables etiquettes" name="Consommable API Service Enhanced Methods getConsommablesEtiquettes should get consommables etiquettes" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Enhanced Methods getConsommablesEnStock should get consommables en stock" name="Consommable API Service Enhanced Methods getConsommablesEnStock should get consommables en stock" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Enhanced Methods getEquipements should get equipements for a consommable" name="Consommable API Service Enhanced Methods getEquipements should get equipements for a consommable" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Equipment and Association Methods getConsommablesForEquipement should get consommables for an equipement" name="Consommable API Service Equipment and Association Methods getConsommablesForEquipement should get consommables for an equipement" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Equipment and Association Methods getEquipementConsommables should get equipement consommables" name="Consommable API Service Equipment and Association Methods getEquipementConsommables should get equipement consommables" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Equipment and Association Methods createConsommablesEquipements should create consommables equipements association" name="Consommable API Service Equipment and Association Methods createConsommablesEquipements should create consommables equipements association" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Stock Management Methods updateStock should update stock for a consommable" name="Consommable API Service Stock Management Methods updateStock should update stock for a consommable" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Stock Management Methods updateConsommables should update multiple consommables" name="Consommable API Service Stock Management Methods updateConsommables should update multiple consommables" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Stock Management Methods deleteMultiple should delete multiple consommables" name="Consommable API Service Stock Management Methods deleteMultiple should delete multiple consommables" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Stock Management Methods removeConsommable should remove/delete a consommable" name="Consommable API Service Stock Management Methods removeConsommable should remove/delete a consommable" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Consumption and Movement Methods getConsommations should get consommations" name="Consommable API Service Consumption and Movement Methods getConsommations should get consommations" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Consumption and Movement Methods createConsommableMouvement should create a consommable mouvement" name="Consommable API Service Consumption and Movement Methods createConsommableMouvement should create a consommable mouvement" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Consumption and Movement Methods deleteConsommableMouvement should delete a consommable mouvement" name="Consommable API Service Consumption and Movement Methods deleteConsommableMouvement should delete a consommable mouvement" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Consumption and Movement Methods createConsommations should create consommations" name="Consommable API Service Consumption and Movement Methods createConsommations should create consommations" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Consumption and Movement Methods createConsommations should create consommations with maintenance ID" name="Consommable API Service Consumption and Movement Methods createConsommations should create consommations with maintenance ID" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Export and Reporting Methods getFile should export consommables file and return a Blob" name="Consommable API Service Export and Reporting Methods getFile should export consommables file and return a Blob" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Export and Reporting Methods getFile should export CSV file with BOM and return a Blob" name="Consommable API Service Export and Reporting Methods getFile should export CSV file with BOM and return a Blob" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Export and Reporting Methods getRepartitionQuantites should get repartition quantites" name="Consommable API Service Export and Reporting Methods getRepartitionQuantites should get repartition quantites" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Export and Reporting Methods getConsommableMouvementsDemandeurs should get consommable mouvements demandeurs" name="Consommable API Service Export and Reporting Methods getConsommableMouvementsDemandeurs should get consommable mouvements demandeurs" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Export and Reporting Methods exportConsommables should export consommables to file and return a Blob" name="Consommable API Service Export and Reporting Methods exportConsommables should export consommables to file and return a Blob" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Export and Reporting Methods exportConsommables should export CSV consommables with BOM and return a Blob" name="Consommable API Service Export and Reporting Methods exportConsommables should export CSV consommables with BOM and return a Blob" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Supplier and Integration Methods createConsommableFournisseurs should create consommable fournisseurs association" name="Consommable API Service Supplier and Integration Methods createConsommableFournisseurs should create consommable fournisseurs association" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Supplier and Integration Methods removeConsommableFournisseurs should remove consommable fournisseurs association" name="Consommable API Service Supplier and Integration Methods removeConsommableFournisseurs should remove consommable fournisseurs association" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Supplier and Integration Methods importModelConsommablesExcel should import consommables from Excel model" name="Consommable API Service Supplier and Integration Methods importModelConsommablesExcel should import consommables from Excel model" time="0.001">
-    </testcase>
-    <testcase classname="Consommable API Service Supplier and Integration Methods getExcelFileModeleIntegration should get Excel file model for integration and return a Blob" name="Consommable API Service Supplier and Integration Methods getExcelFileModeleIntegration should get Excel file model for integration and return a Blob" time="0">
-    </testcase>
-    <testcase classname="Consommable API Service Additional Methods createOperationsConsommations should create operations consommations for maintenance" name="Consommable API Service Additional Methods createOperationsConsommations should create operations consommations for maintenance" time="0.003">
-    </testcase>
-  </testsuite>
-  <testsuite name="BonsDeCommande API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:39" time="0.512" tests="15">
-    <testcase classname="BonsDeCommande API Service Constructor should initialize endpoints correctly" name="BonsDeCommande API Service Constructor should initialize endpoints correctly" time="0.01">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonsDeCommande API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods cancel should cancel a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods cancel should cancel a bon de commande" time="0.013">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods skipSending should skip sending a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods skipSending should skip sending a bon de commande" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods demandeValidation should request validation for a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods demandeValidation should request validation for a bon de commande" time="0.002">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods livraison should handle delivery for a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods livraison should handle delivery for a bon de commande" time="0.002">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods livraisonTotale should handle complete delivery for a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods livraisonTotale should handle complete delivery for a bon de commande" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods nonLivre should mark bon de commande as not delivered" name="BonsDeCommande API Service Non-CRUD Methods nonLivre should mark bon de commande as not delivered" time="0">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods clone should clone a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods clone should clone a bon de commande" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getHistorique should get historical data for a bon de commande" name="BonsDeCommande API Service Non-CRUD Methods getHistorique should get historical data for a bon de commande" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getPDF should get PDF export of bon de commande" name="BonsDeCommande API Service Non-CRUD Methods getPDF should get PDF export of bon de commande" time="0.002">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getRepartitionMontantHt should get amount distribution for dashboard" name="BonsDeCommande API Service Non-CRUD Methods getRepartitionMontantHt should get amount distribution for dashboard" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods export should export bons de commande" name="BonsDeCommande API Service Non-CRUD Methods export should export bons de commande" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getCreateurs should get creators of bons de commande" name="BonsDeCommande API Service Non-CRUD Methods getCreateurs should get creators of bons de commande" time="0.002">
-    </testcase>
-    <testcase classname="BonsDeCommande API Service Non-CRUD Methods getValidateurs should get validators of bons de commande" name="BonsDeCommande API Service Non-CRUD Methods getValidateurs should get validators of bons de commande" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="FicheDemandeConsommables API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:39" time="0.581" tests="2">
-    <testcase classname="FicheDemandeConsommables API Service Constructor should initialize endpoints correctly" name="FicheDemandeConsommables API Service Constructor should initialize endpoints correctly" time="0.008">
-    </testcase>
-    <testcase classname="FicheDemandeConsommables API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="FicheDemandeConsommables API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Composant API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.069" tests="18">
-    <testcase classname="Composant API Service Constructor should initialize endpoints correctly" name="Composant API Service Constructor should initialize endpoints correctly" time="0.002">
-    </testcase>
-    <testcase classname="Composant API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Composant API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
-    </testcase>
-    <testcase classname="Composant API Service CRUD Operations getAll (ComposantMixins_get equivalent) should get all composants with metadatas" name="Composant API Service CRUD Operations getAll (ComposantMixins_get equivalent) should get all composants with metadatas" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service CRUD Operations create (ComposantMixins_create equivalent) should create composants" name="Composant API Service CRUD Operations create (ComposantMixins_create equivalent) should create composants" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service CRUD Operations update (ComposantMixins_update equivalent) should update a composant" name="Composant API Service CRUD Operations update (ComposantMixins_update equivalent) should update a composant" time="0">
-    </testcase>
-    <testcase classname="Composant API Service CRUD Operations remove (ComposantMixins_delete equivalent) should delete a composant" name="Composant API Service CRUD Operations remove (ComposantMixins_delete equivalent) should delete a composant" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods postComposants (duplicate of create) should post composants" name="Composant API Service Non-CRUD Methods postComposants (duplicate of create) should post composants" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods putComposant (enhanced update) should update a composant and clean unwanted properties" name="Composant API Service Non-CRUD Methods putComposant (enhanced update) should update a composant and clean unwanted properties" time="0">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods deleteComposant (legacy delete) should delete a composant using legacy endpoint" name="Composant API Service Non-CRUD Methods deleteComposant (legacy delete) should delete a composant using legacy endpoint" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods postLibelProblem should add a libel problem to a composant" name="Composant API Service Non-CRUD Methods postLibelProblem should add a libel problem to a composant" time="0">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods deleteLibelProblem should delete a libel problem" name="Composant API Service Non-CRUD Methods deleteLibelProblem should delete a libel problem" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods getIcons should get available icons for composants" name="Composant API Service Non-CRUD Methods getIcons should get available icons for composants" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods associateComposants (deprecated) should associate composants with equipment" name="Composant API Service Non-CRUD Methods associateComposants (deprecated) should associate composants with equipment" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods associateLibelleProblemes (deprecated) should associate libelle problemes with a composant" name="Composant API Service Non-CRUD Methods associateLibelleProblemes (deprecated) should associate libelle problemes with a composant" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods getLibelleProblemOf (utility) should filter libelle problems by composant name" name="Composant API Service Non-CRUD Methods getLibelleProblemOf (utility) should filter libelle problems by composant name" time="0">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods getLibelleProblemOf (utility) should return empty array when no matches found" name="Composant API Service Non-CRUD Methods getLibelleProblemOf (utility) should return empty array when no matches found" time="0.001">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods getComposants (alternative getAll) should get composants with provided metadatas" name="Composant API Service Non-CRUD Methods getComposants (alternative getAll) should get composants with provided metadatas" time="0">
-    </testcase>
-    <testcase classname="Composant API Service Non-CRUD Methods getComposants (alternative getAll) should get composants with default metadatas when none provided" name="Composant API Service Non-CRUD Methods getComposants (alternative getAll) should get composants with default metadatas when none provided" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Metadatas Class" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.084" tests="26">
-    <testcase classname="Metadatas Class Constructor should initialize with default values when no arguments are provided" name="Metadatas Class Constructor should initialize with default values when no arguments are provided" time="0.002">
-    </testcase>
-    <testcase classname="Metadatas Class Constructor should initialize with a name when provided" name="Metadatas Class Constructor should initialize with a name when provided" time="0.001">
-    </testcase>
-    <testcase classname="Metadatas Class Filters should add a filter using setFilter" name="Metadatas Class Filters should add a filter using setFilter" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class Filters should check if a filter exists using filterExist" name="Metadatas Class Filters should check if a filter exists using filterExist" time="0.001">
-    </testcase>
-    <testcase classname="Metadatas Class Filters should delete a filter using deleteFilter" name="Metadatas Class Filters should delete a filter using deleteFilter" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class Filters should clear all filters using clearAllFilters" name="Metadatas Class Filters should clear all filters using clearAllFilters" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class setFilter should overwrite an existing filter with the same name" name="Metadatas Class setFilter should overwrite an existing filter with the same name" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class getFilterValue and getFilterAction should return the correct value and action for a filter" name="Metadatas Class getFilterValue and getFilterAction should return the correct value and action for a filter" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class getFilterValue and getFilterAction should throw an error if the filter does not exist" name="Metadatas Class getFilterValue and getFilterAction should throw an error if the filter does not exist" time="0.017">
-    </testcase>
-    <testcase classname="Metadatas Class Directives should set a limit directive using setLimit" name="Metadatas Class Directives should set a limit directive using setLimit" time="0.001">
-    </testcase>
-    <testcase classname="Metadatas Class Directives should check if a limit directive is set using isLimitSet" name="Metadatas Class Directives should check if a limit directive is set using isLimitSet" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class setDirectives should overwrite existing directives with the same name" name="Metadatas Class setDirectives should overwrite existing directives with the same name" time="0.001">
-    </testcase>
-    <testcase classname="Metadatas Class setDirectives should handle an empty array of directives" name="Metadatas Class setDirectives should handle an empty array of directives" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class Counters should get a counter value using getCounter" name="Metadatas Class Counters should get a counter value using getCounter" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class Counters should set counters using setCounters" name="Metadatas Class Counters should set counters using setCounters" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class Name should set and get the name using setName and getName" name="Metadatas Class Name should set and get the name using setName and getName" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class Name should check if the metadata is storable using isStorable" name="Metadatas Class Name should check if the metadata is storable using isStorable" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class setFiltersFromArray should clear all filters when an empty array is provided" name="Metadatas Class setFiltersFromArray should clear all filters when an empty array is provided" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class setFiltersFromArray should set filters correctly from an array" name="Metadatas Class setFiltersFromArray should set filters correctly from an array" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class get should remove filters with empty values and return the formatted object" name="Metadatas Class get should remove filters with empty values and return the formatted object" time="0.001">
-    </testcase>
-    <testcase classname="Metadatas Class hasStoredFilterEqualsTo should return true if the stored filters match the given filters" name="Metadatas Class hasStoredFilterEqualsTo should return true if the stored filters match the given filters" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class hasStoredFilterEqualsTo should return false if the stored filters do not match the given filters" name="Metadatas Class hasStoredFilterEqualsTo should return false if the stored filters do not match the given filters" time="0.001">
-    </testcase>
-    <testcase classname="Metadatas Class hasStoredFilterEqualsTo should handle cases where filters are deeply nested or have different orders" name="Metadatas Class hasStoredFilterEqualsTo should handle cases where filters are deeply nested or have different orders" time="0">
-    </testcase>
-    <testcase classname="Metadatas Class setFilters should format filters with &quot;between&quot; actions correctly" name="Metadatas Class setFilters should format filters with &quot;between&quot; actions correctly" time="0.001">
-    </testcase>
-    <testcase classname="Metadatas Class setFilters should merge filters correctly" name="Metadatas Class setFilters should merge filters correctly" time="0.001">
-    </testcase>
-    <testcase classname="Metadatas Class setFilters should handle empty filters gracefully" name="Metadatas Class setFilters should handle empty filters gracefully" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="GroupeValidateurs API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.124" tests="2">
-    <testcase classname="GroupeValidateurs API Service Constructor should initialize endpoints correctly" name="GroupeValidateurs API Service Constructor should initialize endpoints correctly" time="0.001">
-    </testcase>
-    <testcase classname="GroupeValidateurs API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="GroupeValidateurs API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Messaging" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.058" tests="5">
-    <testcase classname="Messaging should subscribe to a topic" name="Messaging should subscribe to a topic" time="0.001">
-    </testcase>
-    <testcase classname="Messaging should unsubscribe from a topic" name="Messaging should unsubscribe from a topic" time="0.001">
-    </testcase>
-    <testcase classname="Messaging should unsubscribe from all topics" name="Messaging should unsubscribe from all topics" time="0">
-    </testcase>
-    <testcase classname="Messaging should send a message to a topic" name="Messaging should send a message to a topic" time="0.001">
-    </testcase>
-    <testcase classname="Messaging should send a message to a device" name="Messaging should send a message to a device" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="ApiRequest Class" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.073" tests="8">
-    <testcase classname="ApiRequest Class Constructor should initialize auth and apiBaseUrl properties correctly" name="ApiRequest Class Constructor should initialize auth and apiBaseUrl properties correctly" time="0.001">
-    </testcase>
-    <testcase classname="ApiRequest Class Methods should call getAll with the correct endpoint and metadata" name="ApiRequest Class Methods should call getAll with the correct endpoint and metadata" time="0.002">
-    </testcase>
-    <testcase classname="ApiRequest Class Methods should call getById with the correct endpoint and HTTP method" name="ApiRequest Class Methods should call getById with the correct endpoint and HTTP method" time="0.001">
-    </testcase>
-    <testcase classname="ApiRequest Class Methods should call create with the correct endpoint and data" name="ApiRequest Class Methods should call create with the correct endpoint and data" time="0.001">
-    </testcase>
-    <testcase classname="ApiRequest Class Methods should call update with the correct endpoint and data" name="ApiRequest Class Methods should call update with the correct endpoint and data" time="0.001">
-    </testcase>
-    <testcase classname="ApiRequest Class Methods should call remove with the correct endpoint" name="ApiRequest Class Methods should call remove with the correct endpoint" time="0">
-    </testcase>
-    <testcase classname="ApiRequest Class Edge Cases should handle invalid data gracefully" name="ApiRequest Class Edge Cases should handle invalid data gracefully" time="0.008">
-    </testcase>
-    <testcase classname="ApiRequest Class Edge Cases should handle API errors gracefully" name="ApiRequest Class Edge Cases should handle API errors gracefully" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="BonsDeSortie API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.066" tests="13">
-    <testcase classname="BonsDeSortie API Service Constructor should initialize endpoints correctly" name="BonsDeSortie API Service Constructor should initialize endpoints correctly" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonsDeSortie API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service CRUD Operations should get all bons de sortie with getBonsDeSortie method" name="BonsDeSortie API Service CRUD Operations should get all bons de sortie with getBonsDeSortie method" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service CRUD Operations should get all bons de sortie through getAll method" name="BonsDeSortie API Service CRUD Operations should get all bons de sortie through getAll method" time="0">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service CRUD Operations should get bon de sortie by ID with getBonDeSortie method" name="BonsDeSortie API Service CRUD Operations should get bon de sortie by ID with getBonDeSortie method" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service CRUD Operations should get bon de sortie by ID through getById method" name="BonsDeSortie API Service CRUD Operations should get bon de sortie by ID through getById method" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service CRUD Operations should create bons de sortie without fiche demande consommable" name="BonsDeSortie API Service CRUD Operations should create bons de sortie without fiche demande consommable" time="0">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service CRUD Operations should create bons de sortie with fiche demande consommable" name="BonsDeSortie API Service CRUD Operations should create bons de sortie with fiche demande consommable" time="0">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service CRUD Operations should update a bon de sortie" name="BonsDeSortie API Service CRUD Operations should update a bon de sortie" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service CRUD Operations should remove a bon de sortie" name="BonsDeSortie API Service CRUD Operations should remove a bon de sortie" time="0">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service Signataires Methods should get receveurs signataires by default" name="BonsDeSortie API Service Signataires Methods should get receveurs signataires by default" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service Signataires Methods should get receveurs signataires explicitly" name="BonsDeSortie API Service Signataires Methods should get receveurs signataires explicitly" time="0.001">
-    </testcase>
-    <testcase classname="BonsDeSortie API Service Signataires Methods should get donneurs signataires" name="BonsDeSortie API Service Signataires Methods should get donneurs signataires" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Contrat API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.071" tests="11">
-    <testcase classname="Contrat API Service Constructor should initialize endpoints correctly" name="Contrat API Service Constructor should initialize endpoints correctly" time="0.001">
-    </testcase>
-    <testcase classname="Contrat API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Contrat API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.003">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods getContrats should get contracts with site restrictions" name="Contrat API Service Non-CRUD Methods getContrats should get contracts with site restrictions" time="0.001">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods fetchContrats (deprecated) should fetch contracts with metadatas" name="Contrat API Service Non-CRUD Methods fetchContrats (deprecated) should fetch contracts with metadatas" time="0.001">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods fetchContrat (deprecated) should fetch single contract by ID" name="Contrat API Service Non-CRUD Methods fetchContrat (deprecated) should fetch single contract by ID" time="0">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods create should create contract with datas array wrapper" name="Contrat API Service Non-CRUD Methods create should create contract with datas array wrapper" time="0.001">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods updateContrat should update contract removing tiers fields" name="Contrat API Service Non-CRUD Methods updateContrat should update contract removing tiers fields" time="0.001">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods archive should archive contract" name="Contrat API Service Non-CRUD Methods archive should archive contract" time="0">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods deleteContrat (deprecated) should delete contract" name="Contrat API Service Non-CRUD Methods deleteContrat (deprecated) should delete contract" time="0.001">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods attachCategoriesToContrat (deprecated) should attach categories to contract" name="Contrat API Service Non-CRUD Methods attachCategoriesToContrat (deprecated) should attach categories to contract" time="0.001">
-    </testcase>
-    <testcase classname="Contrat API Service Non-CRUD Methods formatStatus (deprecated) should return placeholder message for status formatting" name="Contrat API Service Non-CRUD Methods formatStatus (deprecated) should return placeholder message for status formatting" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="Equipements API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.205" tests="2">
-    <testcase classname="Equipements API Service Constructor should initialize endpoints correctly" name="Equipements API Service Constructor should initialize endpoints correctly" time="0.001">
-    </testcase>
-    <testcase classname="Equipements API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Equipements API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="BonsDentree API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.064" tests="10">
-    <testcase classname="BonsDentree API Service Constructor should initialize endpoints correctly" name="BonsDentree API Service Constructor should initialize endpoints correctly" time="0.001">
-    </testcase>
-    <testcase classname="BonsDentree API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonsDentree API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
-    </testcase>
-    <testcase classname="BonsDentree API Service CRUD Operations should get all bons d&apos;entrée with getBonsDentree method" name="BonsDentree API Service CRUD Operations should get all bons d&apos;entrée with getBonsDentree method" time="0.001">
-    </testcase>
-    <testcase classname="BonsDentree API Service CRUD Operations should get all bons d&apos;entrée through getAll method" name="BonsDentree API Service CRUD Operations should get all bons d&apos;entrée through getAll method" time="0.001">
-    </testcase>
-    <testcase classname="BonsDentree API Service CRUD Operations should get bon d&apos;entrée by ID with getBonDentree method" name="BonsDentree API Service CRUD Operations should get bon d&apos;entrée by ID with getBonDentree method" time="0">
-    </testcase>
-    <testcase classname="BonsDentree API Service CRUD Operations should get bon d&apos;entrée by ID through getById method" name="BonsDentree API Service CRUD Operations should get bon d&apos;entrée by ID through getById method" time="0.001">
-    </testcase>
-    <testcase classname="BonsDentree API Service CRUD Operations should create bons d&apos;entrée" name="BonsDentree API Service CRUD Operations should create bons d&apos;entrée" time="0">
-    </testcase>
-    <testcase classname="BonsDentree API Service CRUD Operations should create array of bons d&apos;entrée" name="BonsDentree API Service CRUD Operations should create array of bons d&apos;entrée" time="0">
-    </testcase>
-    <testcase classname="BonsDentree API Service CRUD Operations should update a bon d&apos;entrée" name="BonsDentree API Service CRUD Operations should update a bon d&apos;entrée" time="0.001">
-    </testcase>
-    <testcase classname="BonsDentree API Service CRUD Operations should remove a bon d&apos;entrée" name="BonsDentree API Service CRUD Operations should remove a bon d&apos;entrée" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="Categories API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.071" tests="15">
-    <testcase classname="Categories API Service Constructor should initialize endpoints correctly" name="Categories API Service Constructor should initialize endpoints correctly" time="0">
-    </testcase>
-    <testcase classname="Categories API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Categories API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.002">
-    </testcase>
-    <testcase classname="Categories API Service associateComposant should associate a composant with a category" name="Categories API Service associateComposant should associate a composant with a category" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service desassociateComposant should disassociate a composant from a category" name="Categories API Service desassociateComposant should disassociate a composant from a category" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service updateCollection should update multiple categories" name="Categories API Service updateCollection should update multiple categories" time="0">
-    </testcase>
-    <testcase classname="Categories API Service associate (deprecated) should handle association and disassociation of composants" name="Categories API Service associate (deprecated) should handle association and disassociation of composants" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service associate (deprecated) should skip empty arrays" name="Categories API Service associate (deprecated) should skip empty arrays" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service postAssociatedComposants (deprecated) should post associated composants" name="Categories API Service postAssociatedComposants (deprecated) should post associated composants" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service exportFile should export categories file with default parameters" name="Categories API Service exportFile should export categories file with default parameters" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service exportFile should export categories file with custom parameters" name="Categories API Service exportFile should export categories file with custom parameters" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service deleteAssociatedComposants (deprecated) should delete associated composants" name="Categories API Service deleteAssociatedComposants (deprecated) should delete associated composants" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service fetchCategoriesLieux (deprecated) should fetch categories lieux" name="Categories API Service fetchCategoriesLieux (deprecated) should fetch categories lieux" time="0">
-    </testcase>
-    <testcase classname="Categories API Service getCategoriesWithDetails (deprecated) should get categories with details using provided metadatas" name="Categories API Service getCategoriesWithDetails (deprecated) should get categories with details using provided metadatas" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service getCategoriesWithDetails (deprecated) should get categories with details using default metadatas" name="Categories API Service getCategoriesWithDetails (deprecated) should get categories with details using default metadatas" time="0.001">
-    </testcase>
-    <testcase classname="Categories API Service addCorpsDetat should add corps detat to category association" name="Categories API Service addCorpsDetat should add corps detat to category association" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="VGSDK Class" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:39" time="0.727" tests="13">
-    <testcase classname="VGSDK Class Constructor should initialize config and auth properties correctly" name="VGSDK Class Constructor should initialize config and auth properties correctly" time="0.019">
+  <testsuite name="VGSDK Class" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:32" time="0.553" tests="13">
+    <testcase classname="VGSDK Class Constructor should initialize config and auth properties correctly" name="VGSDK Class Constructor should initialize config and auth properties correctly" time="0.02">
     </testcase>
     <testcase classname="VGSDK Class Constructor should initialize services as an empty object" name="VGSDK Class Constructor should initialize services as an empty object" time="0.001">
     </testcase>
     <testcase classname="VGSDK Class Service Getters should return a SharedLinks instance from sharedLinks getter" name="VGSDK Class Service Getters should return a SharedLinks instance from sharedLinks getter" time="0.001">
     </testcase>
-    <testcase classname="VGSDK Class Service Getters should return a Lieux instance from lieux getter" name="VGSDK Class Service Getters should return a Lieux instance from lieux getter" time="0">
+    <testcase classname="VGSDK Class Service Getters should return a Lieux instance from lieux getter" name="VGSDK Class Service Getters should return a Lieux instance from lieux getter" time="0.001">
     </testcase>
     <testcase classname="VGSDK Class Service Getters should return an Equipements instance from equipements getter" name="VGSDK Class Service Getters should return an Equipements instance from equipements getter" time="0.001">
     </testcase>
@@ -467,156 +227,250 @@
     </testcase>
     <testcase classname="VGSDK Class Service Getters should return a Messaging instance from messaging getter" name="VGSDK Class Service Getters should return a Messaging instance from messaging getter" time="0.001">
     </testcase>
-    <testcase classname="VGSDK Class Edge Cases should return the same service instance when a getter is called multiple times" name="VGSDK Class Edge Cases should return the same service instance when a getter is called multiple times" time="0">
+    <testcase classname="VGSDK Class Edge Cases should return the same service instance when a getter is called multiple times" name="VGSDK Class Edge Cases should return the same service instance when a getter is called multiple times" time="0.001">
     </testcase>
-    <testcase classname="VGSDK Class Edge Cases should handle missing or incomplete configOptions gracefully" name="VGSDK Class Edge Cases should handle missing or incomplete configOptions gracefully" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="BonDeCommandeItems API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.059" tests="8">
-    <testcase classname="BonDeCommandeItems API Service Constructor should initialize endpoints correctly" name="BonDeCommandeItems API Service Constructor should initialize endpoints correctly" time="0.001">
-    </testcase>
-    <testcase classname="BonDeCommandeItems API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonDeCommandeItems API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
-    </testcase>
-    <testcase classname="BonDeCommandeItems API Service CRUD Operations should get all bon de commande items with metadatas" name="BonDeCommandeItems API Service CRUD Operations should get all bon de commande items with metadatas" time="0.001">
-    </testcase>
-    <testcase classname="BonDeCommandeItems API Service CRUD Operations should create bon de commande items array" name="BonDeCommandeItems API Service CRUD Operations should create bon de commande items array" time="0">
-    </testcase>
-    <testcase classname="BonDeCommandeItems API Service CRUD Operations should update a bon de commande item" name="BonDeCommandeItems API Service CRUD Operations should update a bon de commande item" time="0.001">
-    </testcase>
-    <testcase classname="BonDeCommandeItems API Service CRUD Operations should remove a bon de commande item" name="BonDeCommandeItems API Service CRUD Operations should remove a bon de commande item" time="0.001">
-    </testcase>
-    <testcase classname="BonDeCommandeItems API Service Utility Methods should get clones of bon de commande items" name="BonDeCommandeItems API Service Utility Methods should get clones of bon de commande items" time="0.001">
-    </testcase>
-    <testcase classname="BonDeCommandeItems API Service Utility Methods should handle getClones when response is direct array" name="BonDeCommandeItems API Service Utility Methods should handle getClones when response is direct array" time="0">
+    <testcase classname="VGSDK Class Edge Cases should handle missing or incomplete configOptions gracefully" name="VGSDK Class Edge Cases should handle missing or incomplete configOptions gracefully" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="BonsDeCommandeEntites API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.054" tests="7">
-    <testcase classname="BonsDeCommandeEntites API Service Constructor should initialize endpoints correctly" name="BonsDeCommandeEntites API Service Constructor should initialize endpoints correctly" time="0.001">
+  <testsuite name="Categories API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.079" tests="15">
+    <testcase classname="Categories API Service Constructor should initialize endpoints correctly" name="Categories API Service Constructor should initialize endpoints correctly" time="0.001">
     </testcase>
-    <testcase classname="BonsDeCommandeEntites API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonsDeCommandeEntites API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    <testcase classname="Categories API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Categories API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
     </testcase>
-    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should get all bons de commande entites with getEntites method" name="BonsDeCommandeEntites API Service CRUD Operations should get all bons de commande entites with getEntites method" time="0.001">
+    <testcase classname="Categories API Service associateComposant should associate a composant with a category" name="Categories API Service associateComposant should associate a composant with a category" time="0.001">
     </testcase>
-    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should get all bons de commande entites through getAll method" name="BonsDeCommandeEntites API Service CRUD Operations should get all bons de commande entites through getAll method" time="0.001">
+    <testcase classname="Categories API Service desassociateComposant should disassociate a composant from a category" name="Categories API Service desassociateComposant should disassociate a composant from a category" time="0.001">
     </testcase>
-    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should create bons de commande entites array" name="BonsDeCommandeEntites API Service CRUD Operations should create bons de commande entites array" time="0.001">
+    <testcase classname="Categories API Service updateCollection should update multiple categories" name="Categories API Service updateCollection should update multiple categories" time="0">
     </testcase>
-    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should update a bon de commande entite" name="BonsDeCommandeEntites API Service CRUD Operations should update a bon de commande entite" time="0.001">
+    <testcase classname="Categories API Service associate (deprecated) should handle association and disassociation of composants" name="Categories API Service associate (deprecated) should handle association and disassociation of composants" time="0.001">
     </testcase>
-    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should remove a bon de commande entite" name="BonsDeCommandeEntites API Service CRUD Operations should remove a bon de commande entite" time="0">
+    <testcase classname="Categories API Service associate (deprecated) should skip empty arrays" name="Categories API Service associate (deprecated) should skip empty arrays" time="0.001">
+    </testcase>
+    <testcase classname="Categories API Service postAssociatedComposants (deprecated) should post associated composants" name="Categories API Service postAssociatedComposants (deprecated) should post associated composants" time="0.001">
+    </testcase>
+    <testcase classname="Categories API Service exportFile should export categories file with default parameters" name="Categories API Service exportFile should export categories file with default parameters" time="0">
+    </testcase>
+    <testcase classname="Categories API Service exportFile should export categories file with custom parameters" name="Categories API Service exportFile should export categories file with custom parameters" time="0.001">
+    </testcase>
+    <testcase classname="Categories API Service deleteAssociatedComposants (deprecated) should delete associated composants" name="Categories API Service deleteAssociatedComposants (deprecated) should delete associated composants" time="0.001">
+    </testcase>
+    <testcase classname="Categories API Service fetchCategoriesLieux (deprecated) should fetch categories lieux" name="Categories API Service fetchCategoriesLieux (deprecated) should fetch categories lieux" time="0.001">
+    </testcase>
+    <testcase classname="Categories API Service getCategoriesWithDetails (deprecated) should get categories with details using provided metadatas" name="Categories API Service getCategoriesWithDetails (deprecated) should get categories with details using provided metadatas" time="0">
+    </testcase>
+    <testcase classname="Categories API Service getCategoriesWithDetails (deprecated) should get categories with details using default metadatas" name="Categories API Service getCategoriesWithDetails (deprecated) should get categories with details using default metadatas" time="0">
+    </testcase>
+    <testcase classname="Categories API Service addCorpsDetat should add corps detat to category association" name="Categories API Service addCorpsDetat should add corps detat to category association" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Affectations API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.059" tests="15">
+  <testsuite name="Metadatas Class" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.098" tests="26">
+    <testcase classname="Metadatas Class Constructor should initialize with default values when no arguments are provided" name="Metadatas Class Constructor should initialize with default values when no arguments are provided" time="0.005">
+    </testcase>
+    <testcase classname="Metadatas Class Constructor should initialize with a name when provided" name="Metadatas Class Constructor should initialize with a name when provided" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class Filters should add a filter using setFilter" name="Metadatas Class Filters should add a filter using setFilter" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class Filters should check if a filter exists using filterExist" name="Metadatas Class Filters should check if a filter exists using filterExist" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class Filters should delete a filter using deleteFilter" name="Metadatas Class Filters should delete a filter using deleteFilter" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class Filters should clear all filters using clearAllFilters" name="Metadatas Class Filters should clear all filters using clearAllFilters" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class setFilter should overwrite an existing filter with the same name" name="Metadatas Class setFilter should overwrite an existing filter with the same name" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class getFilterValue and getFilterAction should return the correct value and action for a filter" name="Metadatas Class getFilterValue and getFilterAction should return the correct value and action for a filter" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class getFilterValue and getFilterAction should throw an error if the filter does not exist" name="Metadatas Class getFilterValue and getFilterAction should throw an error if the filter does not exist" time="0.017">
+    </testcase>
+    <testcase classname="Metadatas Class Directives should set a limit directive using setLimit" name="Metadatas Class Directives should set a limit directive using setLimit" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class Directives should check if a limit directive is set using isLimitSet" name="Metadatas Class Directives should check if a limit directive is set using isLimitSet" time="0.002">
+    </testcase>
+    <testcase classname="Metadatas Class setDirectives should overwrite existing directives with the same name" name="Metadatas Class setDirectives should overwrite existing directives with the same name" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class setDirectives should handle an empty array of directives" name="Metadatas Class setDirectives should handle an empty array of directives" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class Counters should get a counter value using getCounter" name="Metadatas Class Counters should get a counter value using getCounter" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class Counters should set counters using setCounters" name="Metadatas Class Counters should set counters using setCounters" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class Name should set and get the name using setName and getName" name="Metadatas Class Name should set and get the name using setName and getName" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class Name should check if the metadata is storable using isStorable" name="Metadatas Class Name should check if the metadata is storable using isStorable" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class setFiltersFromArray should clear all filters when an empty array is provided" name="Metadatas Class setFiltersFromArray should clear all filters when an empty array is provided" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class setFiltersFromArray should set filters correctly from an array" name="Metadatas Class setFiltersFromArray should set filters correctly from an array" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class get should remove filters with empty values and return the formatted object" name="Metadatas Class get should remove filters with empty values and return the formatted object" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class hasStoredFilterEqualsTo should return true if the stored filters match the given filters" name="Metadatas Class hasStoredFilterEqualsTo should return true if the stored filters match the given filters" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class hasStoredFilterEqualsTo should return false if the stored filters do not match the given filters" name="Metadatas Class hasStoredFilterEqualsTo should return false if the stored filters do not match the given filters" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class hasStoredFilterEqualsTo should handle cases where filters are deeply nested or have different orders" name="Metadatas Class hasStoredFilterEqualsTo should handle cases where filters are deeply nested or have different orders" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class setFilters should format filters with &quot;between&quot; actions correctly" name="Metadatas Class setFilters should format filters with &quot;between&quot; actions correctly" time="0.001">
+    </testcase>
+    <testcase classname="Metadatas Class setFilters should merge filters correctly" name="Metadatas Class setFilters should merge filters correctly" time="0">
+    </testcase>
+    <testcase classname="Metadatas Class setFilters should handle empty filters gracefully" name="Metadatas Class setFilters should handle empty filters gracefully" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Contrat API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.075" tests="11">
+    <testcase classname="Contrat API Service Constructor should initialize endpoints correctly" name="Contrat API Service Constructor should initialize endpoints correctly" time="0.001">
+    </testcase>
+    <testcase classname="Contrat API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Contrat API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods getContrats should get contracts with site restrictions" name="Contrat API Service Non-CRUD Methods getContrats should get contracts with site restrictions" time="0.001">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods fetchContrats (deprecated) should fetch contracts with metadatas" name="Contrat API Service Non-CRUD Methods fetchContrats (deprecated) should fetch contracts with metadatas" time="0">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods fetchContrat (deprecated) should fetch single contract by ID" name="Contrat API Service Non-CRUD Methods fetchContrat (deprecated) should fetch single contract by ID" time="0">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods create should create contract with datas array wrapper" name="Contrat API Service Non-CRUD Methods create should create contract with datas array wrapper" time="0.001">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods updateContrat should update contract removing tiers fields" name="Contrat API Service Non-CRUD Methods updateContrat should update contract removing tiers fields" time="0.001">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods archive should archive contract" name="Contrat API Service Non-CRUD Methods archive should archive contract" time="0.001">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods deleteContrat (deprecated) should delete contract" name="Contrat API Service Non-CRUD Methods deleteContrat (deprecated) should delete contract" time="0.001">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods attachCategoriesToContrat (deprecated) should attach categories to contract" name="Contrat API Service Non-CRUD Methods attachCategoriesToContrat (deprecated) should attach categories to contract" time="0">
+    </testcase>
+    <testcase classname="Contrat API Service Non-CRUD Methods formatStatus (deprecated) should return placeholder message for status formatting" name="Contrat API Service Non-CRUD Methods formatStatus (deprecated) should return placeholder message for status formatting" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="BonsDeSortie API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.081" tests="13">
+    <testcase classname="BonsDeSortie API Service Constructor should initialize endpoints correctly" name="BonsDeSortie API Service Constructor should initialize endpoints correctly" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonsDeSortie API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service CRUD Operations should get all bons de sortie with getBonsDeSortie method" name="BonsDeSortie API Service CRUD Operations should get all bons de sortie with getBonsDeSortie method" time="0.002">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service CRUD Operations should get all bons de sortie through getAll method" name="BonsDeSortie API Service CRUD Operations should get all bons de sortie through getAll method" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service CRUD Operations should get bon de sortie by ID with getBonDeSortie method" name="BonsDeSortie API Service CRUD Operations should get bon de sortie by ID with getBonDeSortie method" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service CRUD Operations should get bon de sortie by ID through getById method" name="BonsDeSortie API Service CRUD Operations should get bon de sortie by ID through getById method" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service CRUD Operations should create bons de sortie without fiche demande consommable" name="BonsDeSortie API Service CRUD Operations should create bons de sortie without fiche demande consommable" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service CRUD Operations should create bons de sortie with fiche demande consommable" name="BonsDeSortie API Service CRUD Operations should create bons de sortie with fiche demande consommable" time="0">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service CRUD Operations should update a bon de sortie" name="BonsDeSortie API Service CRUD Operations should update a bon de sortie" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service CRUD Operations should remove a bon de sortie" name="BonsDeSortie API Service CRUD Operations should remove a bon de sortie" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service Signataires Methods should get receveurs signataires by default" name="BonsDeSortie API Service Signataires Methods should get receveurs signataires by default" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service Signataires Methods should get receveurs signataires explicitly" name="BonsDeSortie API Service Signataires Methods should get receveurs signataires explicitly" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeSortie API Service Signataires Methods should get donneurs signataires" name="BonsDeSortie API Service Signataires Methods should get donneurs signataires" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Composant API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.085" tests="18">
+    <testcase classname="Composant API Service Constructor should initialize endpoints correctly" name="Composant API Service Constructor should initialize endpoints correctly" time="0.003">
+    </testcase>
+    <testcase classname="Composant API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Composant API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    </testcase>
+    <testcase classname="Composant API Service CRUD Operations getAll (ComposantMixins_get equivalent) should get all composants with metadatas" name="Composant API Service CRUD Operations getAll (ComposantMixins_get equivalent) should get all composants with metadatas" time="0.002">
+    </testcase>
+    <testcase classname="Composant API Service CRUD Operations create (ComposantMixins_create equivalent) should create composants" name="Composant API Service CRUD Operations create (ComposantMixins_create equivalent) should create composants" time="0">
+    </testcase>
+    <testcase classname="Composant API Service CRUD Operations update (ComposantMixins_update equivalent) should update a composant" name="Composant API Service CRUD Operations update (ComposantMixins_update equivalent) should update a composant" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service CRUD Operations remove (ComposantMixins_delete equivalent) should delete a composant" name="Composant API Service CRUD Operations remove (ComposantMixins_delete equivalent) should delete a composant" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods postComposants (duplicate of create) should post composants" name="Composant API Service Non-CRUD Methods postComposants (duplicate of create) should post composants" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods putComposant (enhanced update) should update a composant and clean unwanted properties" name="Composant API Service Non-CRUD Methods putComposant (enhanced update) should update a composant and clean unwanted properties" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods deleteComposant (legacy delete) should delete a composant using legacy endpoint" name="Composant API Service Non-CRUD Methods deleteComposant (legacy delete) should delete a composant using legacy endpoint" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods postLibelProblem should add a libel problem to a composant" name="Composant API Service Non-CRUD Methods postLibelProblem should add a libel problem to a composant" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods deleteLibelProblem should delete a libel problem" name="Composant API Service Non-CRUD Methods deleteLibelProblem should delete a libel problem" time="0">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods getIcons should get available icons for composants" name="Composant API Service Non-CRUD Methods getIcons should get available icons for composants" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods associateComposants (deprecated) should associate composants with equipment" name="Composant API Service Non-CRUD Methods associateComposants (deprecated) should associate composants with equipment" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods associateLibelleProblemes (deprecated) should associate libelle problemes with a composant" name="Composant API Service Non-CRUD Methods associateLibelleProblemes (deprecated) should associate libelle problemes with a composant" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods getLibelleProblemOf (utility) should filter libelle problems by composant name" name="Composant API Service Non-CRUD Methods getLibelleProblemOf (utility) should filter libelle problems by composant name" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods getLibelleProblemOf (utility) should return empty array when no matches found" name="Composant API Service Non-CRUD Methods getLibelleProblemOf (utility) should return empty array when no matches found" time="0">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods getComposants (alternative getAll) should get composants with provided metadatas" name="Composant API Service Non-CRUD Methods getComposants (alternative getAll) should get composants with provided metadatas" time="0.001">
+    </testcase>
+    <testcase classname="Composant API Service Non-CRUD Methods getComposants (alternative getAll) should get composants with default metadatas when none provided" name="Composant API Service Non-CRUD Methods getComposants (alternative getAll) should get composants with default metadatas when none provided" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Affectations API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.084" tests="15">
     <testcase classname="Affectations API Service Constructor should initialize endpoints correctly" name="Affectations API Service Constructor should initialize endpoints correctly" time="0.001">
     </testcase>
-    <testcase classname="Affectations API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Affectations API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    <testcase classname="Affectations API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Affectations API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
     </testcase>
-    <testcase classname="Affectations API Service Affectation Task Methods should copy affectation tache" name="Affectations API Service Affectation Task Methods should copy affectation tache" time="0.002">
+    <testcase classname="Affectations API Service Affectation Task Methods should copy affectation tache" name="Affectations API Service Affectation Task Methods should copy affectation tache" time="0.005">
     </testcase>
-    <testcase classname="Affectations API Service Affectation Task Methods should create affectations users taches" name="Affectations API Service Affectation Task Methods should create affectations users taches" time="0">
+    <testcase classname="Affectations API Service Affectation Task Methods should create affectations users taches" name="Affectations API Service Affectation Task Methods should create affectations users taches" time="0.001">
     </testcase>
-    <testcase classname="Affectations API Service Affectation Task Methods should delete affectations users taches" name="Affectations API Service Affectation Task Methods should delete affectations users taches" time="0.001">
+    <testcase classname="Affectations API Service Affectation Task Methods should delete affectations users taches" name="Affectations API Service Affectation Task Methods should delete affectations users taches" time="0.002">
     </testcase>
-    <testcase classname="Affectations API Service Affectation Task Methods should delete affectation" name="Affectations API Service Affectation Task Methods should delete affectation" time="0">
+    <testcase classname="Affectations API Service Affectation Task Methods should delete affectation" name="Affectations API Service Affectation Task Methods should delete affectation" time="0.001">
     </testcase>
     <testcase classname="Affectations API Service Schedule Methods should save schedule" name="Affectations API Service Schedule Methods should save schedule" time="0.001">
     </testcase>
-    <testcase classname="Affectations API Service Schedule Methods should save schedules for multiple maintenances" name="Affectations API Service Schedule Methods should save schedules for multiple maintenances" time="0">
+    <testcase classname="Affectations API Service Schedule Methods should save schedules for multiple maintenances" name="Affectations API Service Schedule Methods should save schedules for multiple maintenances" time="0.002">
     </testcase>
     <testcase classname="Affectations API Service Schedule Methods should update schedule" name="Affectations API Service Schedule Methods should update schedule" time="0">
     </testcase>
     <testcase classname="Affectations API Service Programmation Contrat Intervention Methods should fetch programmation contrat intervention" name="Affectations API Service Programmation Contrat Intervention Methods should fetch programmation contrat intervention" time="0.001">
     </testcase>
-    <testcase classname="Affectations API Service Programmation Contrat Intervention Methods should create programmation contrat intervention" name="Affectations API Service Programmation Contrat Intervention Methods should create programmation contrat intervention" time="0">
+    <testcase classname="Affectations API Service Programmation Contrat Intervention Methods should create programmation contrat intervention" name="Affectations API Service Programmation Contrat Intervention Methods should create programmation contrat intervention" time="0.001">
     </testcase>
     <testcase classname="Affectations API Service Programmation Contrat Intervention Methods should update programmation contrat intervention" name="Affectations API Service Programmation Contrat Intervention Methods should update programmation contrat intervention" time="0.001">
     </testcase>
-    <testcase classname="Affectations API Service Utility Methods should convert item to calendar format" name="Affectations API Service Utility Methods should convert item to calendar format" time="0">
+    <testcase classname="Affectations API Service Utility Methods should convert item to calendar format" name="Affectations API Service Utility Methods should convert item to calendar format" time="0.001">
     </testcase>
-    <testcase classname="Affectations API Service Utility Methods should convert tiers to calendar format" name="Affectations API Service Utility Methods should convert tiers to calendar format" time="0">
+    <testcase classname="Affectations API Service Utility Methods should convert tiers to calendar format" name="Affectations API Service Utility Methods should convert tiers to calendar format" time="0.001">
     </testcase>
-    <testcase classname="Affectations API Service Utility Methods should format calendars from affectables" name="Affectations API Service Utility Methods should format calendars from affectables" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Account API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.058" tests="8">
-    <testcase classname="Account API Service Constructor should initialize endpoints correctly" name="Account API Service Constructor should initialize endpoints correctly" time="0.001">
-    </testcase>
-    <testcase classname="Account API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Account API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
-    </testcase>
-    <testcase classname="Account API Service updateAccount should update account information" name="Account API Service updateAccount should update account information" time="0.001">
-    </testcase>
-    <testcase classname="Account API Service fetchAccount should fetch account information" name="Account API Service fetchAccount should fetch account information" time="0">
-    </testcase>
-    <testcase classname="Account API Service createAccount should create a new account" name="Account API Service createAccount should create a new account" time="0.001">
-    </testcase>
-    <testcase classname="Account API Service CRUD Operations should get all accounts" name="Account API Service CRUD Operations should get all accounts" time="0.001">
-    </testcase>
-    <testcase classname="Account API Service CRUD Operations should get account by id" name="Account API Service CRUD Operations should get account by id" time="0">
-    </testcase>
-    <testcase classname="Account API Service CRUD Operations should remove an account" name="Account API Service CRUD Operations should remove an account" time="0.001">
+    <testcase classname="Affectations API Service Utility Methods should format calendars from affectables" name="Affectations API Service Utility Methods should format calendars from affectables" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="CorpsDetat API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.054" tests="6">
-    <testcase classname="CorpsDetat API Service Constructor should initialize endpoints correctly" name="CorpsDetat API Service Constructor should initialize endpoints correctly" time="0.001">
+  <testsuite name="Equipements API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.061" tests="2">
+    <testcase classname="Equipements API Service Constructor should initialize endpoints correctly" name="Equipements API Service Constructor should initialize endpoints correctly" time="0.004">
     </testcase>
-    <testcase classname="CorpsDetat API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="CorpsDetat API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
-    </testcase>
-    <testcase classname="CorpsDetat API Service Non-CRUD Methods getCorpsDetats should get corps d&apos;etat list" name="CorpsDetat API Service Non-CRUD Methods getCorpsDetats should get corps d&apos;etat list" time="0.001">
-    </testcase>
-    <testcase classname="CorpsDetat API Service Non-CRUD Methods create should create corps d&apos;etat with datas wrapper" name="CorpsDetat API Service Non-CRUD Methods create should create corps d&apos;etat with datas wrapper" time="0.001">
-    </testcase>
-    <testcase classname="CorpsDetat API Service Non-CRUD Methods updateCorpsDetat should update corps d&apos;etat with datas wrapper" name="CorpsDetat API Service Non-CRUD Methods updateCorpsDetat should update corps d&apos;etat with datas wrapper" time="0.001">
-    </testcase>
-    <testcase classname="CorpsDetat API Service Non-CRUD Methods deleteCorpsDetat should delete corps d&apos;etat" name="CorpsDetat API Service Non-CRUD Methods deleteCorpsDetat should delete corps d&apos;etat" time="0">
+    <testcase classname="Equipements API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Equipements API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="ContratEcheancier API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.058" tests="6">
-    <testcase classname="ContratEcheancier API Service Constructor should initialize endpoints correctly" name="ContratEcheancier API Service Constructor should initialize endpoints correctly" time="0">
+  <testsuite name="ApiRequest Class" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.078" tests="8">
+    <testcase classname="ApiRequest Class Constructor should initialize auth and apiBaseUrl properties correctly" name="ApiRequest Class Constructor should initialize auth and apiBaseUrl properties correctly" time="0.001">
     </testcase>
-    <testcase classname="ContratEcheancier API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="ContratEcheancier API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    <testcase classname="ApiRequest Class Methods should call getAll with the correct endpoint and metadata" name="ApiRequest Class Methods should call getAll with the correct endpoint and metadata" time="0.001">
     </testcase>
-    <testcase classname="ContratEcheancier API Service Non-CRUD Methods getContratEcheances should get echeances for a specific contract" name="ContratEcheancier API Service Non-CRUD Methods getContratEcheances should get echeances for a specific contract" time="0">
+    <testcase classname="ApiRequest Class Methods should call getById with the correct endpoint and HTTP method" name="ApiRequest Class Methods should call getById with the correct endpoint and HTTP method" time="0.001">
     </testcase>
-    <testcase classname="ContratEcheancier API Service Non-CRUD Methods create should create contract echeances with userId parameter" name="ContratEcheancier API Service Non-CRUD Methods create should create contract echeances with userId parameter" time="0.002">
+    <testcase classname="ApiRequest Class Methods should call create with the correct endpoint and data" name="ApiRequest Class Methods should call create with the correct endpoint and data" time="0">
     </testcase>
-    <testcase classname="ContratEcheancier API Service Non-CRUD Methods updateContratEcheance should update contract echeance with userId parameter" name="ContratEcheancier API Service Non-CRUD Methods updateContratEcheance should update contract echeance with userId parameter" time="0.001">
+    <testcase classname="ApiRequest Class Methods should call update with the correct endpoint and data" name="ApiRequest Class Methods should call update with the correct endpoint and data" time="0.001">
     </testcase>
-    <testcase classname="ContratEcheancier API Service Non-CRUD Methods deleteContratEcheance should delete contract echeance with userId parameter" name="ContratEcheancier API Service Non-CRUD Methods deleteContratEcheance should delete contract echeance with userId parameter" time="0.001">
+    <testcase classname="ApiRequest Class Methods should call remove with the correct endpoint" name="ApiRequest Class Methods should call remove with the correct endpoint" time="0">
     </testcase>
-  </testsuite>
-  <testsuite name="Checkpoints API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.065" tests="9">
-    <testcase classname="Checkpoints API Service Constructor should initialize endpoints correctly" name="Checkpoints API Service Constructor should initialize endpoints correctly" time="0.001">
+    <testcase classname="ApiRequest Class Edge Cases should handle invalid data gracefully" name="ApiRequest Class Edge Cases should handle invalid data gracefully" time="0.01">
     </testcase>
-    <testcase classname="Checkpoints API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Checkpoints API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
-    </testcase>
-    <testcase classname="Checkpoints API Service CRUD Operations getAll (checkpointsMixins_getCheckpoint equivalent) should get all checkpoints with metadatas" name="Checkpoints API Service CRUD Operations getAll (checkpointsMixins_getCheckpoint equivalent) should get all checkpoints with metadatas" time="0.002">
-    </testcase>
-    <testcase classname="Checkpoints API Service CRUD Operations create (checkpointsMixins_createCheckpoints equivalent) should create multiple checkpoints" name="Checkpoints API Service CRUD Operations create (checkpointsMixins_createCheckpoints equivalent) should create multiple checkpoints" time="0">
-    </testcase>
-    <testcase classname="Checkpoints API Service CRUD Operations update (checkpointsMixins_updateCheckpoint equivalent) should update a checkpoint" name="Checkpoints API Service CRUD Operations update (checkpointsMixins_updateCheckpoint equivalent) should update a checkpoint" time="0.001">
-    </testcase>
-    <testcase classname="Checkpoints API Service CRUD Operations remove (checkpointsMixins_deleteCheckpoint equivalent) should delete a checkpoint" name="Checkpoints API Service CRUD Operations remove (checkpointsMixins_deleteCheckpoint equivalent) should delete a checkpoint" time="0.001">
-    </testcase>
-    <testcase classname="Checkpoints API Service CRUD Operations getById should get a checkpoint by id" name="Checkpoints API Service CRUD Operations getById should get a checkpoint by id" time="0">
-    </testcase>
-    <testcase classname="Checkpoints API Service Integration with CheckpointMixins patterns should handle the same data flow as checkpointsMixins_getCheckpoint" name="Checkpoints API Service Integration with CheckpointMixins patterns should handle the same data flow as checkpointsMixins_getCheckpoint" time="0.001">
-    </testcase>
-    <testcase classname="Checkpoints API Service Integration with CheckpointMixins patterns should handle the same data flow as checkpointsMixins_createCheckpoints" name="Checkpoints API Service Integration with CheckpointMixins patterns should handle the same data flow as checkpointsMixins_createCheckpoints" time="0">
+    <testcase classname="ApiRequest Class Edge Cases should handle API errors gracefully" name="ApiRequest Class Edge Cases should handle API errors gracefully" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Calendar API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.058" tests="5">
-    <testcase classname="Calendar API Service Constructor should initialize endpoints correctly" name="Calendar API Service Constructor should initialize endpoints correctly" time="0.001">
+  <testsuite name="GroupeValidateurs API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.062" tests="2">
+    <testcase classname="GroupeValidateurs API Service Constructor should initialize endpoints correctly" name="GroupeValidateurs API Service Constructor should initialize endpoints correctly" time="0.001">
     </testcase>
-    <testcase classname="Calendar API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Calendar API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
-    </testcase>
-    <testcase classname="Calendar API Service getEvents should get calendar events with filters" name="Calendar API Service getEvents should get calendar events with filters" time="0.001">
-    </testcase>
-    <testcase classname="Calendar API Service formatEvents should format events correctly" name="Calendar API Service formatEvents should format events correctly" time="0.001">
-    </testcase>
-    <testcase classname="Calendar API Service formatEvents should handle empty events object" name="Calendar API Service formatEvents should handle empty events object" time="0">
+    <testcase classname="GroupeValidateurs API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="GroupeValidateurs API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="Documents API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.058" tests="7">
+  <testsuite name="Documents API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.065" tests="7">
     <testcase classname="Documents API Service Constructor should initialize endpoints correctly" name="Documents API Service Constructor should initialize endpoints correctly" time="0.001">
     </testcase>
     <testcase classname="Documents API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Documents API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
@@ -632,22 +486,174 @@
     <testcase classname="Documents API Service Custom Methods should remove document" name="Documents API Service Custom Methods should remove document" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="DeplacementsEquipements API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.054" tests="3">
-    <testcase classname="DeplacementsEquipements API Service Constructor should initialize endpoints correctly" name="DeplacementsEquipements API Service Constructor should initialize endpoints correctly" time="0.001">
+  <testsuite name="BonDeCommandeItems API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.066" tests="8">
+    <testcase classname="BonDeCommandeItems API Service Constructor should initialize endpoints correctly" name="BonDeCommandeItems API Service Constructor should initialize endpoints correctly" time="0.001">
     </testcase>
-    <testcase classname="DeplacementsEquipements API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="DeplacementsEquipements API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    <testcase classname="BonDeCommandeItems API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonDeCommandeItems API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
     </testcase>
-    <testcase classname="DeplacementsEquipements API Service Non-CRUD Methods should create multiple deplacements equipements" name="DeplacementsEquipements API Service Non-CRUD Methods should create multiple deplacements equipements" time="0">
+    <testcase classname="BonDeCommandeItems API Service CRUD Operations should get all bon de commande items with metadatas" name="BonDeCommandeItems API Service CRUD Operations should get all bon de commande items with metadatas" time="0.001">
+    </testcase>
+    <testcase classname="BonDeCommandeItems API Service CRUD Operations should create bon de commande items array" name="BonDeCommandeItems API Service CRUD Operations should create bon de commande items array" time="0.001">
+    </testcase>
+    <testcase classname="BonDeCommandeItems API Service CRUD Operations should update a bon de commande item" name="BonDeCommandeItems API Service CRUD Operations should update a bon de commande item" time="0">
+    </testcase>
+    <testcase classname="BonDeCommandeItems API Service CRUD Operations should remove a bon de commande item" name="BonDeCommandeItems API Service CRUD Operations should remove a bon de commande item" time="0.001">
+    </testcase>
+    <testcase classname="BonDeCommandeItems API Service Utility Methods should get clones of bon de commande items" name="BonDeCommandeItems API Service Utility Methods should get clones of bon de commande items" time="0.002">
+    </testcase>
+    <testcase classname="BonDeCommandeItems API Service Utility Methods should handle getClones when response is direct array" name="BonDeCommandeItems API Service Utility Methods should handle getClones when response is direct array" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="Contact API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.046" tests="2">
+  <testsuite name="BonsDentree API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.063" tests="10">
+    <testcase classname="BonsDentree API Service Constructor should initialize endpoints correctly" name="BonsDentree API Service Constructor should initialize endpoints correctly" time="0.001">
+    </testcase>
+    <testcase classname="BonsDentree API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonsDentree API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    </testcase>
+    <testcase classname="BonsDentree API Service CRUD Operations should get all bons d&apos;entrée with getBonsDentree method" name="BonsDentree API Service CRUD Operations should get all bons d&apos;entrée with getBonsDentree method" time="0.001">
+    </testcase>
+    <testcase classname="BonsDentree API Service CRUD Operations should get all bons d&apos;entrée through getAll method" name="BonsDentree API Service CRUD Operations should get all bons d&apos;entrée through getAll method" time="0">
+    </testcase>
+    <testcase classname="BonsDentree API Service CRUD Operations should get bon d&apos;entrée by ID with getBonDentree method" name="BonsDentree API Service CRUD Operations should get bon d&apos;entrée by ID with getBonDentree method" time="0.001">
+    </testcase>
+    <testcase classname="BonsDentree API Service CRUD Operations should get bon d&apos;entrée by ID through getById method" name="BonsDentree API Service CRUD Operations should get bon d&apos;entrée by ID through getById method" time="0.001">
+    </testcase>
+    <testcase classname="BonsDentree API Service CRUD Operations should create bons d&apos;entrée" name="BonsDentree API Service CRUD Operations should create bons d&apos;entrée" time="0">
+    </testcase>
+    <testcase classname="BonsDentree API Service CRUD Operations should create array of bons d&apos;entrée" name="BonsDentree API Service CRUD Operations should create array of bons d&apos;entrée" time="0.001">
+    </testcase>
+    <testcase classname="BonsDentree API Service CRUD Operations should update a bon d&apos;entrée" name="BonsDentree API Service CRUD Operations should update a bon d&apos;entrée" time="0">
+    </testcase>
+    <testcase classname="BonsDentree API Service CRUD Operations should remove a bon d&apos;entrée" name="BonsDentree API Service CRUD Operations should remove a bon d&apos;entrée" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="DeplacementsEquipements API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.057" tests="3">
+    <testcase classname="DeplacementsEquipements API Service Constructor should initialize endpoints correctly" name="DeplacementsEquipements API Service Constructor should initialize endpoints correctly" time="0.001">
+    </testcase>
+    <testcase classname="DeplacementsEquipements API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="DeplacementsEquipements API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    </testcase>
+    <testcase classname="DeplacementsEquipements API Service Non-CRUD Methods should create multiple deplacements equipements" name="DeplacementsEquipements API Service Non-CRUD Methods should create multiple deplacements equipements" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="CorpsDetat API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.058" tests="6">
+    <testcase classname="CorpsDetat API Service Constructor should initialize endpoints correctly" name="CorpsDetat API Service Constructor should initialize endpoints correctly" time="0">
+    </testcase>
+    <testcase classname="CorpsDetat API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="CorpsDetat API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    </testcase>
+    <testcase classname="CorpsDetat API Service Non-CRUD Methods getCorpsDetats should get corps d&apos;etat list" name="CorpsDetat API Service Non-CRUD Methods getCorpsDetats should get corps d&apos;etat list" time="0.001">
+    </testcase>
+    <testcase classname="CorpsDetat API Service Non-CRUD Methods create should create corps d&apos;etat with datas wrapper" name="CorpsDetat API Service Non-CRUD Methods create should create corps d&apos;etat with datas wrapper" time="0">
+    </testcase>
+    <testcase classname="CorpsDetat API Service Non-CRUD Methods updateCorpsDetat should update corps d&apos;etat with datas wrapper" name="CorpsDetat API Service Non-CRUD Methods updateCorpsDetat should update corps d&apos;etat with datas wrapper" time="0.001">
+    </testcase>
+    <testcase classname="CorpsDetat API Service Non-CRUD Methods deleteCorpsDetat should delete corps d&apos;etat" name="CorpsDetat API Service Non-CRUD Methods deleteCorpsDetat should delete corps d&apos;etat" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContratEcheancier API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.061" tests="6">
+    <testcase classname="ContratEcheancier API Service Constructor should initialize endpoints correctly" name="ContratEcheancier API Service Constructor should initialize endpoints correctly" time="0.001">
+    </testcase>
+    <testcase classname="ContratEcheancier API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="ContratEcheancier API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    </testcase>
+    <testcase classname="ContratEcheancier API Service Non-CRUD Methods getContratEcheances should get echeances for a specific contract" name="ContratEcheancier API Service Non-CRUD Methods getContratEcheances should get echeances for a specific contract" time="0.001">
+    </testcase>
+    <testcase classname="ContratEcheancier API Service Non-CRUD Methods create should create contract echeances with userId parameter" name="ContratEcheancier API Service Non-CRUD Methods create should create contract echeances with userId parameter" time="0.001">
+    </testcase>
+    <testcase classname="ContratEcheancier API Service Non-CRUD Methods updateContratEcheance should update contract echeance with userId parameter" name="ContratEcheancier API Service Non-CRUD Methods updateContratEcheance should update contract echeance with userId parameter" time="0">
+    </testcase>
+    <testcase classname="ContratEcheancier API Service Non-CRUD Methods deleteContratEcheance should delete contract echeance with userId parameter" name="ContratEcheancier API Service Non-CRUD Methods deleteContratEcheance should delete contract echeance with userId parameter" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Checkpoints API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.062" tests="9">
+    <testcase classname="Checkpoints API Service Constructor should initialize endpoints correctly" name="Checkpoints API Service Constructor should initialize endpoints correctly" time="0.001">
+    </testcase>
+    <testcase classname="Checkpoints API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Checkpoints API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    </testcase>
+    <testcase classname="Checkpoints API Service CRUD Operations getAll (checkpointsMixins_getCheckpoint equivalent) should get all checkpoints with metadatas" name="Checkpoints API Service CRUD Operations getAll (checkpointsMixins_getCheckpoint equivalent) should get all checkpoints with metadatas" time="0">
+    </testcase>
+    <testcase classname="Checkpoints API Service CRUD Operations create (checkpointsMixins_createCheckpoints equivalent) should create multiple checkpoints" name="Checkpoints API Service CRUD Operations create (checkpointsMixins_createCheckpoints equivalent) should create multiple checkpoints" time="0">
+    </testcase>
+    <testcase classname="Checkpoints API Service CRUD Operations update (checkpointsMixins_updateCheckpoint equivalent) should update a checkpoint" name="Checkpoints API Service CRUD Operations update (checkpointsMixins_updateCheckpoint equivalent) should update a checkpoint" time="0.001">
+    </testcase>
+    <testcase classname="Checkpoints API Service CRUD Operations remove (checkpointsMixins_deleteCheckpoint equivalent) should delete a checkpoint" name="Checkpoints API Service CRUD Operations remove (checkpointsMixins_deleteCheckpoint equivalent) should delete a checkpoint" time="0">
+    </testcase>
+    <testcase classname="Checkpoints API Service CRUD Operations getById should get a checkpoint by id" name="Checkpoints API Service CRUD Operations getById should get a checkpoint by id" time="0.001">
+    </testcase>
+    <testcase classname="Checkpoints API Service Integration with CheckpointMixins patterns should handle the same data flow as checkpointsMixins_getCheckpoint" name="Checkpoints API Service Integration with CheckpointMixins patterns should handle the same data flow as checkpointsMixins_getCheckpoint" time="0">
+    </testcase>
+    <testcase classname="Checkpoints API Service Integration with CheckpointMixins patterns should handle the same data flow as checkpointsMixins_createCheckpoints" name="Checkpoints API Service Integration with CheckpointMixins patterns should handle the same data flow as checkpointsMixins_createCheckpoints" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Account API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.067" tests="8">
+    <testcase classname="Account API Service Constructor should initialize endpoints correctly" name="Account API Service Constructor should initialize endpoints correctly" time="0.002">
+    </testcase>
+    <testcase classname="Account API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Account API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    </testcase>
+    <testcase classname="Account API Service updateAccount should update account information" name="Account API Service updateAccount should update account information" time="0.001">
+    </testcase>
+    <testcase classname="Account API Service fetchAccount should fetch account information" name="Account API Service fetchAccount should fetch account information" time="0.001">
+    </testcase>
+    <testcase classname="Account API Service createAccount should create a new account" name="Account API Service createAccount should create a new account" time="0.002">
+    </testcase>
+    <testcase classname="Account API Service CRUD Operations should get all accounts" name="Account API Service CRUD Operations should get all accounts" time="0">
+    </testcase>
+    <testcase classname="Account API Service CRUD Operations should get account by id" name="Account API Service CRUD Operations should get account by id" time="0.001">
+    </testcase>
+    <testcase classname="Account API Service CRUD Operations should remove an account" name="Account API Service CRUD Operations should remove an account" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="BonsDeCommandeEntites API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.058" tests="7">
+    <testcase classname="BonsDeCommandeEntites API Service Constructor should initialize endpoints correctly" name="BonsDeCommandeEntites API Service Constructor should initialize endpoints correctly" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommandeEntites API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="BonsDeCommandeEntites API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should get all bons de commande entites with getEntites method" name="BonsDeCommandeEntites API Service CRUD Operations should get all bons de commande entites with getEntites method" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should get all bons de commande entites through getAll method" name="BonsDeCommandeEntites API Service CRUD Operations should get all bons de commande entites through getAll method" time="0">
+    </testcase>
+    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should create bons de commande entites array" name="BonsDeCommandeEntites API Service CRUD Operations should create bons de commande entites array" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should update a bon de commande entite" name="BonsDeCommandeEntites API Service CRUD Operations should update a bon de commande entite" time="0.001">
+    </testcase>
+    <testcase classname="BonsDeCommandeEntites API Service CRUD Operations should remove a bon de commande entite" name="BonsDeCommandeEntites API Service CRUD Operations should remove a bon de commande entite" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="GroupeValidateursUsers API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.049" tests="2">
+    <testcase classname="GroupeValidateursUsers API Service Constructor should initialize endpoints correctly" name="GroupeValidateursUsers API Service Constructor should initialize endpoints correctly" time="0">
+    </testcase>
+    <testcase classname="GroupeValidateursUsers API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="GroupeValidateursUsers API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="Contact API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.048" tests="2">
     <testcase classname="Contact API Service Constructor should initialize endpoints correctly" name="Contact API Service Constructor should initialize endpoints correctly" time="0.001">
     </testcase>
     <testcase classname="Contact API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Contact API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="Sample Test" errors="0" failures="0" skipped="0" timestamp="2025-07-09T08:29:40" time="0.034" tests="1">
+  <testsuite name="Calendar API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.056" tests="5">
+    <testcase classname="Calendar API Service Constructor should initialize endpoints correctly" name="Calendar API Service Constructor should initialize endpoints correctly" time="0">
+    </testcase>
+    <testcase classname="Calendar API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Calendar API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0">
+    </testcase>
+    <testcase classname="Calendar API Service getEvents should get calendar events with filters" name="Calendar API Service getEvents should get calendar events with filters" time="0.002">
+    </testcase>
+    <testcase classname="Calendar API Service formatEvents should format events correctly" name="Calendar API Service formatEvents should format events correctly" time="0">
+    </testcase>
+    <testcase classname="Calendar API Service formatEvents should handle empty events object" name="Calendar API Service formatEvents should handle empty events object" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="Sample Test" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.044" tests="1">
     <testcase classname="Sample Test should return true for a basic assertion" name="Sample Test should return true for a basic assertion" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="Messaging" errors="0" failures="0" skipped="0" timestamp="2025-07-09T09:28:33" time="0.046" tests="5">
+    <testcase classname="Messaging should subscribe to a topic" name="Messaging should subscribe to a topic" time="0.001">
+    </testcase>
+    <testcase classname="Messaging should unsubscribe from a topic" name="Messaging should unsubscribe from a topic" time="0">
+    </testcase>
+    <testcase classname="Messaging should unsubscribe from all topics" name="Messaging should unsubscribe from all topics" time="0.001">
+    </testcase>
+    <testcase classname="Messaging should send a message to a topic" name="Messaging should send a message to a topic" time="0">
+    </testcase>
+    <testcase classname="Messaging should send a message to a device" name="Messaging should send a message to a device" time="0">
     </testcase>
   </testsuite>
 </testsuites>
