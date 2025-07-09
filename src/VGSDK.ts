@@ -1,3 +1,5 @@
+import { LibelServices } from "./apiRequests/LibelServices";
+
 import { LibelProblem } from "./apiRequests/LibelProblem";
 
 import { LibellesCategorie } from "./apiRequests/LibellesCategorie";
@@ -187,6 +189,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {LibelServices} libelservices - the libelservices request service
+   * @returns {LibelServices} - the libelservices request service
+   */
+  get libelservices(): LibelServices {
+    return this.getService('libelservices', LibelServices);
+  }
+
 
   /**
    * @property {LibelProblem} libelproblem - the libelproblem request service
