@@ -1,3 +1,5 @@
+import { Operation } from "./apiRequests/Operation";
+
 import { Lieux } from "./apiRequests/Lieux";
 
 import { LibelServices } from "./apiRequests/LibelServices";
@@ -191,6 +193,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Operation} operation - the operation request service
+   * @returns {Operation} - the operation request service
+   */
+  get operation(): Operation {
+    return this.getService('operation', Operation);
+  }
+
 
   /**
    * @property {Lieux} lieux - the lieux request service
