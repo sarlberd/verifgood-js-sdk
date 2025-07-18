@@ -8,7 +8,6 @@ export class Equipements extends ApiRequest {
   restrictionsite: string = '';
   async getEquipementVerifications(equipement_id: number, metadatas: Metadatas = new Metadatas('{"directives":[],"filters":[]}')): Promise<any> {
     const query = {
-      userId: this.appID,
       metadatas: metadatas.get()
     };
     const response = await this.apiRequest(`${this.endpointSingleton}/${equipement_id}/verifications`, 'GET', query);
@@ -39,7 +38,6 @@ export class Equipements extends ApiRequest {
 
   async getRapportAssets(metadatas: Metadatas): Promise<any> {
     const query = {
-      userId: this.appID,
       metadatas: metadatas.get(),
       sites: this.restrictionsite
     };
@@ -47,26 +45,37 @@ export class Equipements extends ApiRequest {
     return response.equipements;
   }
 
-  async getRapportAssetsExcelFile(metadatas: Metadatas, fileExtension: string = "xlsx"): Promise<void> {
+  /**
+   * Export rapport assets file (CSV or Excel)
+   * @param metadatas Metadatas for filtering
+   * @param fileExtension File extension (xlsx or csv)
+   * @returns Promise<Blob> Returns a Blob object for file download
+   */
+  async getRapportAssetsExcelFile(metadatas: Metadatas, fileExtension: string = "xlsx"): Promise<Blob> {
     metadatas.setDirectives([]);
     const query = {
       metadatas: metadatas.get()
     };
     const fileType = fileExtension !== "csv" ? "excel" : "csv";
     const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
-    const responseType = fileExtension !== "csv" ? "blob" : "text";
 
     const response = await this.apiRequest(`${this.endpoint}/valeurs-financieres/export/${fileType}`, 'GET', query);
-    const blob = fileExtension === "csv" ? new Blob(["\uFEFF" + response], { type: contentType }) : new Blob([response], { type: contentType });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `rapport_assets_${this.formatDate(new Date())}.${fileExtension}`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    
+    // Create blob with proper encoding
+    let blob: Blob;
+    if (fileExtension === "csv") {
+      // Add BOM for UTF-8 encoding
+      const BOM = "\uFEFF";
+      blob = new Blob([BOM + response], { type: contentType });
+    } else {
+      blob = new Blob([response], { type: contentType });
+    }
+    
+    return blob;
   }
   
+  /**
+   */
   async getAll(metadatas: Metadatas): Promise<any> {
     const query = {
       sites: this.restrictionsite
@@ -80,7 +89,6 @@ export class Equipements extends ApiRequest {
 
   async getEquipementsTachesActivesSites(site: string, metadatas: Metadatas): Promise<any> {
     const query = {
-      userId: this.appID,
       site: site,
       metadatas: metadatas.get()
     };
@@ -88,45 +96,53 @@ export class Equipements extends ApiRequest {
     return { datas: response.equipements, metadatas: response.meta };
   }
 
-  async getExcelFileModeleIntegration(filename: string = "VG_modèle_importation_equipements"): Promise<void> {
-    const query = {
-      userId: this.appID,
-      sites: this.restrictionsite || ''
-    };
-
-    const response = await this.apiRequest(`${this.endpoint}/integration/model`, 'GET', query);
-    const url = window.URL.createObjectURL(new Blob([response]));
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `${filename}_${this.formatDate(new Date())}.xlsx`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  /**
+   * Get Excel file model for integration
+   * @param filename Custom filename
+   * @returns Promise<Blob> Returns a Blob object for Excel file download
+   */
+  async getExcelFileModeleIntegration(filename: string = "VG_modèle_importation_equipements"): Promise<Blob> {
+    const contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    
+    // Get raw response data
+    const response = await this.get(`${this.endpoint}/integration/model`, new Metadatas(), {});
+    
+    // Create blob for Excel file
+    const blob = new Blob([response], { type: contentType });
+    
+    return blob;
   }
 
-  async getExcelFile(metadatas: Metadatas, filename: string | null = null, fileExtension: string = "xlsx"): Promise<void> {
-    metadatas.setDirectives([]);
-    const query = {
-      userId: this.appID,
-      sites: this.restrictionsite || '',
-      metadatas: metadatas.get(),
-      isUserTypeAsDemandeur: 0
-    };
+  /**
+   * Export equipements file (CSV or Excel)
+   * @param metadatas Metadatas for filtering
+   * @param filename Custom filename
+   * @param fileExtension File extension
+   * @returns Promise<Blob> Returns a Blob object for file download
+   */
+  async getExcelFile(metadatas: Metadatas, filename: string | null = null, fileExtension: string = "xlsx"): Promise<Blob> {
     const fileType = fileExtension !== "csv" ? "excel" : "csv";
     const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
-    const responseType = fileExtension !== "csv" ? "blob" : "text";
 
-    const response = await this.apiRequest(`${this.endpoint}/export/${fileType}`, 'GET', query);
-    const blob = fileExtension === "csv" ? new Blob(["\uFEFF" + response], { type: contentType }) : new Blob([response], { type: contentType });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `${filename}_${this.formatDate(new Date())}.${fileExtension}`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Get raw response data
+    const response = await this.get(`${this.endpoint}/export/${fileType}`, metadatas, {});
+    
+    // Create blob with proper encoding
+    let blob: Blob;
+    if (fileExtension === "csv") {
+      // Add BOM for UTF-8 encoding
+      const BOM = "\uFEFF";
+      blob = new Blob([BOM + response], { type: contentType });
+    } else {
+      blob = new Blob([response], { type: contentType });
+    }
+    
+    return blob;
   }
 
+  /**
+   * @deprecated Use create() from parent ApiRequest class instead
+   */
   async create(equipements: any[]): Promise<any> {
     equipements.forEach((equipement: any) => {
       if (!equipement.marker && equipement.marker == null) delete equipement.marker;
@@ -160,8 +176,10 @@ export class Equipements extends ApiRequest {
     return response;
   }
 
+  /**
+   */
   async update(equipement: any, _options: { skipVueXStorage?: boolean } = { skipVueXStorage: false }): Promise<any> {
-    const response = await this.apiRequest(`${this.endpointSingleton}/${equipement.id}?userId=${this.appID}`, 'PUT', equipement);
+    const response = await this.apiRequest(`${this.endpointSingleton}/${equipement.id}`, 'PUT', equipement);
     return response;
   }
 
@@ -172,13 +190,15 @@ export class Equipements extends ApiRequest {
     return response;
   }
 
+  /**
+   */
   async remove(equipementId: number): Promise<any> {
     const response = await this.delete(`${this.endpointSingleton}/${equipementId}`);
     return response;
   }
 
   async createEquipementsGlobauxFamilleSite(famille: string, equipements: any[]): Promise<any> {
-    const response = await this.apiRequest(`/sites/${famille}/equipements/globaux?userId=${this.appID}`, 'POST', equipements);
+    const response = await this.apiRequest(`/sites/${famille}/equipements/globaux`, 'POST', equipements);
     return response;
   }
 

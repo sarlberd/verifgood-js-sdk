@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Messaging = void 0;
 const ApiRequest_1 = require("../core/ApiRequest");
@@ -24,12 +15,10 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param options Additional options to include in the payload
      * @returns Promise with the subscription result
      */
-    subscribeToTopic(topic_1, deviceToken_1) {
-        return __awaiter(this, arguments, void 0, function* (topic, deviceToken, options = {}) {
-            const url = `${this.endpoint}/subscribe/${topic}`;
-            let payload = Object.assign(Object.assign({}, options), { token: deviceToken });
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async subscribeToTopic(topic, deviceToken, options = {}) {
+        const url = `${this.endpoint}/subscribe/${topic}`;
+        let payload = { ...options, token: deviceToken };
+        return await this.apiRequest(url, 'POST', payload);
     }
     /**
      * Unsubscribe from a topic
@@ -38,24 +27,20 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param options Additional options to include in the payload
      * @returns Promise with the unsubscription result
      */
-    unsubscribeFromTopic(topic_1, deviceToken_1) {
-        return __awaiter(this, arguments, void 0, function* (topic, deviceToken, options = {}) {
-            const url = `${this.endpoint}/unsubscribe/${topic}`;
-            const payload = Object.assign(Object.assign({}, options), { token: deviceToken });
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async unsubscribeFromTopic(topic, deviceToken, options = {}) {
+        const url = `${this.endpoint}/unsubscribe/${topic}`;
+        const payload = { ...options, token: deviceToken };
+        return await this.apiRequest(url, 'POST', payload);
     }
     /**
      * Unsubscribe from all topics for a device
      * @param deviceToken The device token to unsubscribe from all topics
      * @returns Promise with the unsubscription result
      */
-    unsubscribeFromAllTopics(deviceToken) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const url = `${this.endpoint}/unsubscribe/all`;
-            const payload = { token: deviceToken };
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async unsubscribeFromAllTopics(deviceToken) {
+        const url = `${this.endpoint}/unsubscribe/all`;
+        const payload = { token: deviceToken };
+        return await this.apiRequest(url, 'POST', payload);
     }
     /**
      * Send a message to a topic
@@ -63,11 +48,9 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param payload The message payload
      * @returns Promise with the send result
      */
-    sendMessageToTopic(topic, payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const url = `${this.endpoint}/send/topic/${topic}`;
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async sendMessageToTopic(topic, payload) {
+        const url = `${this.endpoint}/send/topic/${topic}`;
+        return await this.apiRequest(url, 'POST', payload);
     }
     /**
      * Send a message to a specific device
@@ -75,11 +58,10 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @param payload The message payload
      * @returns Promise with the send result
      */
-    sendMessageToDevice(deviceToken, payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const url = `${this.endpoint}/send/to/${deviceToken}`;
-            return yield this.apiRequest(url, 'POST', payload);
-        });
+    async sendMessageToDevice(deviceToken, payload) {
+        const url = `${this.endpoint}/send/to/${deviceToken}`;
+        return await this.apiRequest(url, 'POST', payload);
     }
 }
 exports.Messaging = Messaging;
+//# sourceMappingURL=Messaging.js.map

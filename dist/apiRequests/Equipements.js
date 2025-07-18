@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Equipements = void 0;
 const Metadatas_1 = require("../core/Metadatas");
@@ -20,199 +11,175 @@ class Equipements extends ApiRequest_1.ApiRequest {
         this.appID = '';
         this.restrictionsite = '';
     }
-    getEquipementVerifications(equipement_id_1) {
-        return __awaiter(this, arguments, void 0, function* (equipement_id, metadatas = new Metadatas_1.Metadatas('{"directives":[],"filters":[]}')) {
-            const query = {
-                userId: this.appID,
-                metadatas: metadatas.get()
-            };
-            const response = yield this.apiRequest(`${this.endpointSingleton}/${equipement_id}/verifications`, 'GET', query);
-            return { datas: response };
-        });
+    async getEquipementVerifications(equipement_id, metadatas = new Metadatas_1.Metadatas('{"directives":[],"filters":[]}')) {
+        const query = {
+            userId: this.appID,
+            metadatas: metadatas.get()
+        };
+        const response = await this.apiRequest(`${this.endpointSingleton}/${equipement_id}/verifications`, 'GET', query);
+        return { datas: response };
     }
     /**
      *
      * @example
        vgsdk.equipements.getById(1).then().catch();
      */
-    getById(idEquipement) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let query = null;
-            const response = yield this.apiRequest(`${this.endpointSingleton}/${idEquipement}`, 'GET', query);
-            response[0] = this.calculDepreciation(response[0]);
-            return response[0];
-        });
+    async getById(idEquipement) {
+        let query = null;
+        const response = await this.apiRequest(`${this.endpointSingleton}/${idEquipement}`, 'GET', query);
+        response[0] = this.calculDepreciation(response[0]);
+        return response[0];
     }
     /**
      *
      * @example
        vgsdk.equipements.getByCode("VLGE1234").then().catch();
      */
-    getByCode(code) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let query = null;
-            const response = yield this.apiRequest(`${this.endpointSingleton}/code/${code}`, 'GET', query);
-            response[0] = this.calculDepreciation(response[0]);
-            return response[0];
-        });
+    async getByCode(code) {
+        let query = null;
+        const response = await this.apiRequest(`${this.endpointSingleton}/code/${code}`, 'GET', query);
+        response[0] = this.calculDepreciation(response[0]);
+        return response[0];
     }
-    getRapportAssets(metadatas) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const query = {
-                userId: this.appID,
-                metadatas: metadatas.get(),
-                sites: this.restrictionsite
-            };
-            const response = yield this.apiRequest(`${this.endpoint}/valeurs-financieres`, 'GET', query);
-            return response.equipements;
-        });
+    async getRapportAssets(metadatas) {
+        const query = {
+            userId: this.appID,
+            metadatas: metadatas.get(),
+            sites: this.restrictionsite
+        };
+        const response = await this.apiRequest(`${this.endpoint}/valeurs-financieres`, 'GET', query);
+        return response.equipements;
     }
-    getRapportAssetsExcelFile(metadatas_1) {
-        return __awaiter(this, arguments, void 0, function* (metadatas, fileExtension = "xlsx") {
-            metadatas.setDirectives([]);
-            const query = {
-                metadatas: metadatas.get()
-            };
-            const fileType = fileExtension !== "csv" ? "excel" : "csv";
-            const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
-            const responseType = fileExtension !== "csv" ? "blob" : "text";
-            const response = yield this.apiRequest(`${this.endpoint}/valeurs-financieres/export/${fileType}`, 'GET', query);
-            const blob = fileExtension === "csv" ? new Blob(["\uFEFF" + response], { type: contentType }) : new Blob([response], { type: contentType });
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `rapport_assets_${this.formatDate(new Date())}.${fileExtension}`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
+    /**
+     * Export rapport assets file (CSV or Excel)
+     * @param metadatas Metadatas for filtering
+     * @param fileExtension File extension (xlsx or csv)
+     * @returns Promise<Blob> Returns a Blob object for file download
+     */
+    async getRapportAssetsExcelFile(metadatas, fileExtension = "xlsx") {
+        metadatas.setDirectives([]);
+        const query = {
+            metadatas: metadatas.get()
+        };
+        const fileType = fileExtension !== "csv" ? "excel" : "csv";
+        const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
+        const response = await this.apiRequest(`${this.endpoint}/valeurs-financieres/export/${fileType}`, 'GET', query);
+        // Create blob with proper encoding
+        let blob;
+        if (fileExtension === "csv") {
+            // Add BOM for UTF-8 encoding
+            const BOM = "\uFEFF";
+            blob = new Blob([BOM + response], { type: contentType });
+        }
+        else {
+            blob = new Blob([response], { type: contentType });
+        }
+        return blob;
     }
-    getAll(metadatas) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const query = {
-                sites: this.restrictionsite
-            };
-            const response = yield this.get(this.endpoint, metadatas, query);
-            response.datas.forEach((equipement, i) => {
-                response.datas[i] = this.calculDepreciation(equipement);
-            });
-            return response;
+    async getAll(metadatas) {
+        const query = {
+            sites: this.restrictionsite
+        };
+        const response = await this.get(this.endpoint, metadatas, query);
+        response.datas.forEach((equipement, i) => {
+            response.datas[i] = this.calculDepreciation(equipement);
         });
+        return response;
     }
-    getEquipementsTachesActivesSites(site, metadatas) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const query = {
-                userId: this.appID,
-                site: site,
-                metadatas: metadatas.get()
-            };
-            const response = yield this.apiRequest(`${this.endpoint}/taches/active/site`, 'GET', query);
-            return { datas: response.equipements, metadatas: response.meta };
-        });
+    async getEquipementsTachesActivesSites(site, metadatas) {
+        const query = {
+            userId: this.appID,
+            site: site,
+            metadatas: metadatas.get()
+        };
+        const response = await this.apiRequest(`${this.endpoint}/taches/active/site`, 'GET', query);
+        return { datas: response.equipements, metadatas: response.meta };
     }
-    getExcelFileModeleIntegration() {
-        return __awaiter(this, arguments, void 0, function* (filename = "VG_modèle_importation_equipements") {
-            const query = {
-                userId: this.appID,
-                sites: this.restrictionsite || ''
-            };
-            const response = yield this.apiRequest(`${this.endpoint}/integration/model`, 'GET', query);
-            const url = window.URL.createObjectURL(new Blob([response]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `${filename}_${this.formatDate(new Date())}.xlsx`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
+    /**
+     * Get Excel file model for integration
+     * @param filename Custom filename
+     * @returns Promise<Blob> Returns a Blob object for Excel file download
+     */
+    async getExcelFileModeleIntegration(filename = "VG_modèle_importation_equipements") {
+        const contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        // Get raw response data
+        const response = await this.get(`${this.endpoint}/integration/model`, new Metadatas_1.Metadatas(), {});
+        // Create blob for Excel file
+        const blob = new Blob([response], { type: contentType });
+        return blob;
     }
-    getExcelFile(metadatas_1) {
-        return __awaiter(this, arguments, void 0, function* (metadatas, filename = null, fileExtension = "xlsx") {
-            metadatas.setDirectives([]);
-            const query = {
-                userId: this.appID,
-                sites: this.restrictionsite || '',
-                metadatas: metadatas.get(),
-                isUserTypeAsDemandeur: 0
-            };
-            const fileType = fileExtension !== "csv" ? "excel" : "csv";
-            const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
-            const responseType = fileExtension !== "csv" ? "blob" : "text";
-            const response = yield this.apiRequest(`${this.endpoint}/export/${fileType}`, 'GET', query);
-            const blob = fileExtension === "csv" ? new Blob(["\uFEFF" + response], { type: contentType }) : new Blob([response], { type: contentType });
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `${filename}_${this.formatDate(new Date())}.${fileExtension}`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
+    /**
+     * Export equipements file (CSV or Excel)
+     * @param metadatas Metadatas for filtering
+     * @param filename Custom filename
+     * @param fileExtension File extension
+     * @returns Promise<Blob> Returns a Blob object for file download
+     */
+    async getExcelFile(metadatas, filename = null, fileExtension = "xlsx") {
+        const fileType = fileExtension !== "csv" ? "excel" : "csv";
+        const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
+        // Get raw response data
+        const response = await this.get(`${this.endpoint}/export/${fileType}`, metadatas, {});
+        // Create blob with proper encoding
+        let blob;
+        if (fileExtension === "csv") {
+            // Add BOM for UTF-8 encoding
+            const BOM = "\uFEFF";
+            blob = new Blob([BOM + response], { type: contentType });
+        }
+        else {
+            blob = new Blob([response], { type: contentType });
+        }
+        return blob;
     }
-    create(equipements) {
-        return __awaiter(this, void 0, void 0, function* () {
-            equipements.forEach((equipement) => {
-                if (!equipement.marker && equipement.marker == null)
-                    delete equipement.marker;
-                if (navigator.geolocation) {
-                    try {
-                        navigator.geolocation.getCurrentPosition((position) => {
-                            equipement.posY = position.coords.latitude;
-                            equipement.posX = position.coords.longitude;
-                        });
-                    }
-                    catch (err) {
-                        console.warn("Cannot get position xy");
-                    }
+    async create(equipements) {
+        equipements.forEach((equipement) => {
+            if (!equipement.marker && equipement.marker == null)
+                delete equipement.marker;
+            if (navigator.geolocation) {
+                try {
+                    navigator.geolocation.getCurrentPosition((position) => {
+                        equipement.posY = position.coords.latitude;
+                        equipement.posX = position.coords.longitude;
+                    });
                 }
-            });
-            const response = yield this.apiRequest(this.endpointSingleton, 'POST', equipements);
-            return response;
+                catch (err) {
+                    console.warn("Cannot get position xy");
+                }
+            }
         });
+        const response = await this.apiRequest(this.endpointSingleton, 'POST', equipements);
+        return response;
     }
-    importModelEquipementsExcel(equipements) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.apiRequest(`${this.endpoint}/integration/model`, 'POST', equipements);
-            return response;
-        });
+    async importModelEquipementsExcel(equipements) {
+        const response = await this.apiRequest(`${this.endpoint}/integration/model`, 'POST', equipements);
+        return response;
     }
-    sortirEquipement(equipement, callback) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.apiRequest(`${this.endpointSingleton}/sortie`, 'POST', equipement);
-            callback && callback();
-        });
+    async sortirEquipement(equipement, callback) {
+        await this.apiRequest(`${this.endpointSingleton}/sortie`, 'POST', equipement);
+        callback && callback();
     }
-    remplacerEquipement(sortie, maintenance) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.apiRequest(`/maintenance/${maintenance.id}/equipement/remplacement`, 'POST', sortie);
-            return response;
-        });
+    async remplacerEquipement(sortie, maintenance) {
+        const response = await this.apiRequest(`/maintenance/${maintenance.id}/equipement/remplacement`, 'POST', sortie);
+        return response;
     }
-    update(equipement_1) {
-        return __awaiter(this, arguments, void 0, function* (equipement, _options = { skipVueXStorage: false }) {
-            const response = yield this.apiRequest(`${this.endpointSingleton}/${equipement.id}?userId=${this.appID}`, 'PUT', equipement);
-            return response;
-        });
+    async update(equipement, _options = { skipVueXStorage: false }) {
+        const response = await this.apiRequest(`${this.endpointSingleton}/${equipement.id}?userId=${this.appID}`, 'PUT', equipement);
+        return response;
     }
-    updateEquipements(equipements) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.apiRequest(this.endpoint, 'PUT', equipements);
-            response.forEach((equipement) => {
-            });
-            return response;
+    async updateEquipements(equipements) {
+        const response = await this.apiRequest(this.endpoint, 'PUT', equipements);
+        response.forEach((equipement) => {
         });
+        return response;
     }
-    remove(equipementId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.delete(`${this.endpointSingleton}/${equipementId}`);
-            return response;
-        });
+    async remove(equipementId) {
+        const response = await this.delete(`${this.endpointSingleton}/${equipementId}`);
+        return response;
     }
-    createEquipementsGlobauxFamilleSite(famille, equipements) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.apiRequest(`/sites/${famille}/equipements/globaux?userId=${this.appID}`, 'POST', equipements);
-            return response;
-        });
+    async createEquipementsGlobauxFamilleSite(famille, equipements) {
+        const response = await this.apiRequest(`/sites/${famille}/equipements/globaux?userId=${this.appID}`, 'POST', equipements);
+        return response;
     }
     calculDepreciation(equipement) {
         equipement.depreciationAnnuelle = 0;
@@ -265,3 +232,4 @@ class Equipements extends ApiRequest_1.ApiRequest {
 }
 exports.Equipements = Equipements;
 //export default Equipements;
+//# sourceMappingURL=Equipements.js.map

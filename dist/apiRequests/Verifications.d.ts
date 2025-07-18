@@ -116,7 +116,7 @@ export declare class Verifications extends ApiRequest {
      * @param metadatas Metadata for filtering
      * @param fileExtension File extension (xlsx or csv)
      * @param site Optional site filter
-     * @returns Promise with export data
+     * @returns Promise<Blob> Returns a Blob object for file download
      */
-    exportHistoriqueTacheRecurrentes(metadatas: Metadatas, fileExtension?: string, site?: string | null): Promise<any>;
+    exportHistoriqueTacheRecurrentes(metadatas: Metadatas, fileExtension?: string, site?: string | null): Promise<Blob>;
 }

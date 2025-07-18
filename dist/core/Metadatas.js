@@ -226,3 +226,4 @@ class Metadatas {
     }
 }
 exports.Metadatas = Metadatas;
+//# sourceMappingURL=Metadatas.js.map

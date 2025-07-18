@@ -189,14 +189,69 @@ export class Verifications extends ApiRequest {
     }
 
     /**
+     * Add document verification
+     * @param verificationId ID of the verification
+     * @param file File to upload for verification
+     * @returns Promise with the response
+     */
+    async addDocumentVerification(verificationId: number, file: File): Promise<any> {
+        const formData = new FormData();
+        formData.append('datas', file);
+        
+        return this.apiRequestFormData(`${this.endpointSingleton}/${verificationId}/document/new`, 'POST', formData);
+    }
+
+    /**
+     * API request with form data support
+     * @param endpoint API endpoint
+     * @param method HTTP method
+     * @param formData Form data to send
+     * @returns Promise with response data
+     */
+    private async apiRequestFormData(endpoint: string, method: string, formData: FormData): Promise<any> {
+        try {
+            const apiKey = await this.auth.getApiKey();
+            
+            const headers: HeadersInit = {
+                'Authorization': `Bearer ${apiKey}`,
+                // Don't set Content-Type for FormData - browser will set it automatically with boundary
+            };
+
+            const options: RequestInit = {
+                method,
+                headers,
+                body: formData
+            };
+
+            const response = await fetch(`${this.apiBaseUrl}${endpoint}`, options);
+
+            const responseText = await response.text();
+            if (!response.ok) {
+                const error = {
+                    status: response.status,
+                    statusText: response.statusText,
+                    message: responseText
+                };
+                throw error;
+            }
+
+            const responseData = responseText ? JSON.parse(responseText) : {};
+            return responseData;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
      * Export recurring task history
      * @param metadatas Metadata for filtering
      * @param fileExtension File extension (xlsx or csv)
      * @param site Optional site filter
-     * @returns Promise with export data
+     * @returns Promise<Blob> Returns a Blob object for file download
      */
-    async exportHistoriqueTacheRecurrentes(metadatas: Metadatas, fileExtension: string = "xlsx", site: string | null = null): Promise<any> {
+    async exportHistoriqueTacheRecurrentes(metadatas: Metadatas, fileExtension: string = "xlsx", site: string | null = null): Promise<Blob> {
         const fileType = fileExtension !== "csv" ? "excel" : "csv";
+        const contentType = fileExtension !== "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "text/csv";
         
         // Create query parameters
         const query = {
@@ -204,8 +259,19 @@ export class Verifications extends ApiRequest {
             fileType: fileType
         };
         
-        // Since we can't directly set response type options in the current implementation,
-        // we'll just make the request and let the client handle the blob conversion
-        return this.get(`${this.endpoint}/export/historique-taches-recurrente/${fileType}`, metadatas, query);
+        // Get raw response data
+        const response = await this.get(`${this.endpoint}/export/historique-taches-recurrente/${fileType}`, metadatas, query);
+        
+        // Create blob with proper encoding
+        let blob: Blob;
+        if (fileExtension === "csv") {
+            // Add BOM for UTF-8 encoding
+            const BOM = "\uFEFF";
+            blob = new Blob([BOM + response], { type: contentType });
+        } else {
+            blob = new Blob([response], { type: contentType });
+        }
+        
+        return blob;
     }
 }

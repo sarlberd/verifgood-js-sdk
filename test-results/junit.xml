@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="10" failures="0" errors="0" time="0.569">
+  <testsuite name="Operation API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-11T07:38:59" time="0.339" tests="10">
+    <testcase classname="Operation API Service Constructor should initialize endpoints correctly" name="Operation API Service Constructor should initialize endpoints correctly" time="0.002">
+    </testcase>
+    <testcase classname="Operation API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Operation API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    </testcase>
+    <testcase classname="Operation API Service Factory Functions createDefaultOperation should create operation with default values" name="Operation API Service Factory Functions createDefaultOperation should create operation with default values" time="0.001">
+    </testcase>
+    <testcase classname="Operation API Service Factory Functions createDefaultOperation should create operation with provided user values" name="Operation API Service Factory Functions createDefaultOperation should create operation with provided user values" time="0.001">
+    </testcase>
+    <testcase classname="Operation API Service Factory Functions createNew should create new operation using service method" name="Operation API Service Factory Functions createNew should create new operation using service method" time="0.001">
+    </testcase>
+    <testcase classname="Operation API Service Non-CRUD Methods createBIOperation should create BI operation with correct payload" name="Operation API Service Non-CRUD Methods createBIOperation should create BI operation with correct payload" time="0.002">
+    </testcase>
+    <testcase classname="Operation API Service Non-CRUD Methods createPhotoOperation should create photo operation with correct payload" name="Operation API Service Non-CRUD Methods createPhotoOperation should create photo operation with correct payload" time="0.001">
+    </testcase>
+    <testcase classname="Operation API Service Non-CRUD Methods updateOperation should update operation using V2.0 endpoint" name="Operation API Service Non-CRUD Methods updateOperation should update operation using V2.0 endpoint" time="0.001">
+    </testcase>
+    <testcase classname="Operation API Service Non-CRUD Methods getFile should export operations to CSV file" name="Operation API Service Non-CRUD Methods getFile should export operations to CSV file" time="0.001">
+    </testcase>
+    <testcase classname="Operation API Service Non-CRUD Methods getFile should export operations to Excel file" name="Operation API Service Non-CRUD Methods getFile should export operations to Excel file" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
