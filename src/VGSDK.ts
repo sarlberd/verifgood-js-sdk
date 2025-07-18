@@ -1,58 +1,29 @@
 import { Operation } from "./apiRequests/Operation";
-
-import { Lieux } from "./apiRequests/Lieux";
-
 import { LibelServices } from "./apiRequests/LibelServices";
-
 import { LibelProblem } from "./apiRequests/LibelProblem";
-
 import { LibellesCategorie } from "./apiRequests/LibellesCategorie";
-
 import { Inventaire } from "./apiRequests/Inventaire";
-
 import { Interventions } from "./apiRequests/Interventions";
-
 import { IntegrationsDonnees } from "./apiRequests/IntegrationsDonnees";
-
 import { GroupeValidateursUsers } from "./apiRequests/GroupeValidateursUsers";
-
 import { GroupeValidateurs } from "./apiRequests/GroupeValidateurs";
-
 import { FicheDemandeConsommables } from "./apiRequests/FicheDemandeConsommables";
-
-import { Equipements } from "./apiRequests/Equipements";
-
 import { Documents } from "./apiRequests/Documents";
-
 import { DeplacementsEquipements } from "./apiRequests/DeplacementsEquipements";
-
 import { Dashboard } from "./apiRequests/Dashboard";
-
 import { CorpsDetat } from "./apiRequests/CorpsDetat";
-
 import { Contrat } from "./apiRequests/Contrat";
-
 import { ContratEcheancier } from "./apiRequests/ContratEcheancier";
-
 import { Contact } from "./apiRequests/Contact";
-
 import { Consommable } from "./apiRequests/Consommable";
-
 import { Composant } from "./apiRequests/Composant";
-
 import { Calendar } from "./apiRequests/Calendar";
 import { BonsDeSortie } from "./apiRequests/BonsDeSortie";
-
 import { BonsDentree } from "./apiRequests/BonsDentree";
-
 import { BonsDeCommandeEntites } from "./apiRequests/BonsDeCommandeEntites";
-
 import { BonDeCommandeItems } from "./apiRequests/BonDeCommandeItems";
-
 import { Affectations } from "./apiRequests/Affectations";
-
 import { BonsDeCommande } from "./apiRequests/BonsDeCommande";
-
 import { Account } from "./apiRequests/Account";
 import {SharedLinks} from './apiRequests/SharedLinks';
 import {Auth} from './core/Auth';
@@ -90,18 +61,6 @@ export class VGSDK {
   get sharedLinks(): SharedLinks {
     return this.getService('sharedLinks', SharedLinks);
   }
-
-  get lieux(): Lieux {
-    return this.getService('lieux', Lieux);
-  }
-/**
- * @property {Equipements} equipements - the equipements request
- * @returns {Equipements} - the equipements request
- */
-  get equipements(): Equipements {
-    return this.getService('equipements', Equipements);
-  }
-
   get categories(): Categories {
     return this.getService('categories', Categories);
   }
