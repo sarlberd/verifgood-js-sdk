@@ -1,3 +1,5 @@
+import { Roles } from "./apiRequests/Roles";
+
 import { Reponses } from "./apiRequests/Reponses";
 
 import { Maintenance } from "./apiRequests/Maintenance";
@@ -161,6 +163,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Roles} roles - the roles request service
+   * @returns {Roles} - the roles request service
+   */
+  get roles(): Roles {
+    return this.getService('roles', Roles);
+  }
+
 
   /**
    * @property {Reponses} reponses - the reponses request service
