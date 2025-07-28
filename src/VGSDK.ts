@@ -1,3 +1,5 @@
+import { Statistiques } from "./apiRequests/Statistiques";
+
 import { SortieEquipement } from "./apiRequests/SortieEquipement";
 
 import { SearchDatas } from "./apiRequests/SearchDatas";
@@ -167,6 +169,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Statistiques} statistiques - the statistiques request service
+   * @returns {Statistiques} - the statistiques request service
+   */
+  get statistiques(): Statistiques {
+    return this.getService('statistiques', Statistiques);
+  }
+
 
   /**
    * @property {SortieEquipement} sortieequipement - the sortieequipement request service
