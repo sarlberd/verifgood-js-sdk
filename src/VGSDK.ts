@@ -1,3 +1,5 @@
+import { Reponses } from "./apiRequests/Reponses";
+
 import { Maintenance } from "./apiRequests/Maintenance";
 import { MouvementsEquipements } from "./apiRequests/MouvementsEquipements";
 import { Parametres } from "./apiRequests/Parametres";
@@ -159,6 +161,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Reponses} reponses - the reponses request service
+   * @returns {Reponses} - the reponses request service
+   */
+  get reponses(): Reponses {
+    return this.getService('reponses', Reponses);
+  }
+
 
   /**
    * @property {Maintenance} maintenance - the maintenance request service
