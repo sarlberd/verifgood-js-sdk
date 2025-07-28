@@ -1,4 +1,5 @@
 import { Maintenance } from "./apiRequests/Maintenance";
+import { MouvementsEquipements } from "./apiRequests/MouvementsEquipements";
 
 import { Operation } from "./apiRequests/Operation";
 import { LibelServices } from "./apiRequests/LibelServices";
@@ -163,6 +164,13 @@ export class VGSDK {
     return this.getService('maintenance', Maintenance);
   }
 
+  /**
+   * @property {MouvementsEquipements} mouvementsEquipements - the equipment movements request service
+   * @returns {MouvementsEquipements} - the equipment movements request service
+   */
+  get mouvementsEquipements(): MouvementsEquipements {
+    return this.getService('mouvementsEquipements', MouvementsEquipements);
+  }
 
   /**
    * @property {Operation} operation - the operation request service
