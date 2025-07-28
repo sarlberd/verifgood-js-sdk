@@ -1,3 +1,5 @@
+import { Stocks } from "./apiRequests/Stocks";
+
 import { Statistiques } from "./apiRequests/Statistiques";
 
 import { SortieEquipement } from "./apiRequests/SortieEquipement";
@@ -169,6 +171,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Stocks} stocks - the stocks request service
+   * @returns {Stocks} - the stocks request service
+   */
+  get stocks(): Stocks {
+    return this.getService('stocks', Stocks);
+  }
+
 
   /**
    * @property {Statistiques} statistiques - the statistiques request service
