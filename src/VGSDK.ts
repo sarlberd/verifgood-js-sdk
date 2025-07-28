@@ -1,3 +1,5 @@
+import { SearchDatas } from "./apiRequests/SearchDatas";
+
 import { Roles } from "./apiRequests/Roles";
 
 import { Reponses } from "./apiRequests/Reponses";
@@ -163,6 +165,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {SearchDatas} searchdatas - the searchdatas request service
+   * @returns {SearchDatas} - the searchdatas request service
+   */
+  get searchdatas(): SearchDatas {
+    return this.getService('searchdatas', SearchDatas);
+  }
+
 
   /**
    * @property {Roles} roles - the roles request service
