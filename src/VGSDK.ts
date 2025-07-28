@@ -1,5 +1,7 @@
 import { Maintenance } from "./apiRequests/Maintenance";
 import { MouvementsEquipements } from "./apiRequests/MouvementsEquipements";
+import { Parametres } from "./apiRequests/Parametres";
+import { PersonalParameters } from "./apiRequests/PersonalParameters";
 
 import { Operation } from "./apiRequests/Operation";
 import { LibelServices } from "./apiRequests/LibelServices";
@@ -170,6 +172,22 @@ export class VGSDK {
    */
   get mouvementsEquipements(): MouvementsEquipements {
     return this.getService('mouvementsEquipements', MouvementsEquipements);
+  }
+
+  /**
+   * @property {Parametres} parametres - the application parameters request service
+   * @returns {Parametres} - the application parameters request service
+   */
+  get parametres(): Parametres {
+    return this.getService('parametres', Parametres);
+  }
+
+  /**
+   * @property {PersonalParameters} personalParameters - the personal parameters request service
+   * @returns {PersonalParameters} - the personal parameters request service
+   */
+  get personalParameters(): PersonalParameters {
+    return this.getService('personalParameters', PersonalParameters);
   }
 
   /**
