@@ -1,3 +1,5 @@
+import { Maintenance } from "./apiRequests/Maintenance";
+
 import { Operation } from "./apiRequests/Operation";
 import { LibelServices } from "./apiRequests/LibelServices";
 import { LibelProblem } from "./apiRequests/LibelProblem";
@@ -152,6 +154,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Maintenance} maintenance - the maintenance request service
+   * @returns {Maintenance} - the maintenance request service
+   */
+  get maintenance(): Maintenance {
+    return this.getService('maintenance', Maintenance);
+  }
+
 
   /**
    * @property {Operation} operation - the operation request service
