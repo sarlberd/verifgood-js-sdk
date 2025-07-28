@@ -1,3 +1,5 @@
+import { SortieEquipement } from "./apiRequests/SortieEquipement";
+
 import { SearchDatas } from "./apiRequests/SearchDatas";
 
 import { Roles } from "./apiRequests/Roles";
@@ -165,6 +167,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {SortieEquipement} sortieequipement - the sortieequipement request service
+   * @returns {SortieEquipement} - the sortieequipement request service
+   */
+  get sortieequipement(): SortieEquipement {
+    return this.getService('sortieequipement', SortieEquipement);
+  }
+
 
   /**
    * @property {SearchDatas} searchdatas - the searchdatas request service
