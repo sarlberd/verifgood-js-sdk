@@ -2,6 +2,7 @@ import { Maintenance } from "./apiRequests/Maintenance";
 import { MouvementsEquipements } from "./apiRequests/MouvementsEquipements";
 import { Parametres } from "./apiRequests/Parametres";
 import { PersonalParameters } from "./apiRequests/PersonalParameters";
+import { PlanInteractif } from "./apiRequests/PlanInteractif";
 
 import { Operation } from "./apiRequests/Operation";
 import { LibelServices } from "./apiRequests/LibelServices";
@@ -188,6 +189,14 @@ export class VGSDK {
    */
   get personalParameters(): PersonalParameters {
     return this.getService('personalParameters', PersonalParameters);
+  }
+
+  /**
+   * @property {PlanInteractif} planInteractif - the interactive plan request service
+   * @returns {PlanInteractif} - the interactive plan request service
+   */
+  get planInteractif(): PlanInteractif {
+    return this.getService('planInteractif', PlanInteractif);
   }
 
   /**
