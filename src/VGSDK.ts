@@ -1,3 +1,5 @@
+import { Tags } from "./apiRequests/Tags";
+
 import { Stripe } from "./apiRequests/Stripe";
 
 import { SyntheseMaintenance } from "./apiRequests/SyntheseMaintenance";
@@ -175,6 +177,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Tags} tags - the tags request service
+   * @returns {Tags} - the tags request service
+   */
+  get tags(): Tags {
+    return this.getService('tags', Tags);
+  }
+
 
   /**
    * @property {Stripe} stripe - the stripe request service
