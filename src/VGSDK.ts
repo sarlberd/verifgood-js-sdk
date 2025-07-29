@@ -1,3 +1,5 @@
+import { Tiers } from "./apiRequests/Tiers";
+
 import { Tags } from "./apiRequests/Tags";
 
 import { Stripe } from "./apiRequests/Stripe";
@@ -177,6 +179,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Tiers} tiers - the tiers request service
+   * @returns {Tiers} - the tiers request service
+   */
+  get tiers(): Tiers {
+    return this.getService('tiers', Tiers);
+  }
+
 
   /**
    * @property {Tags} tags - the tags request service
