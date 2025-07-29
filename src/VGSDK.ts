@@ -1,5 +1,7 @@
 import { Stripe } from "./apiRequests/Stripe";
 
+import { SyntheseMaintenance } from "./apiRequests/SyntheseMaintenance";
+
 import { Stocks } from "./apiRequests/Stocks";
 
 import { Statistiques } from "./apiRequests/Statistiques";
@@ -180,6 +182,15 @@ export class VGSDK {
    */
   get stripe(): Stripe {
     return this.getService('stripe', Stripe);
+  }
+
+
+  /**
+   * @property {SyntheseMaintenance} synthesemaintenance - the synthesemaintenance request service
+   * @returns {SyntheseMaintenance} - the synthesemaintenance request service
+   */
+  get synthesemaintenance(): SyntheseMaintenance {
+    return this.getService('synthesemaintenance', SyntheseMaintenance);
   }
 
 
