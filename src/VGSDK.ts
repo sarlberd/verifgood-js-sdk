@@ -1,3 +1,5 @@
+import { Stripe } from "./apiRequests/Stripe";
+
 import { Stocks } from "./apiRequests/Stocks";
 
 import { Statistiques } from "./apiRequests/Statistiques";
@@ -171,6 +173,15 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Stripe} stripe - the stripe request service
+   * @returns {Stripe} - the stripe request service
+   */
+  get stripe(): Stripe {
+    return this.getService('stripe', Stripe);
+  }
+
 
   /**
    * @property {Stocks} stocks - the stocks request service
