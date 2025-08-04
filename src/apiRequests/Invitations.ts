@@ -5,6 +5,7 @@ export interface InvitationRequest {
     email: string;
     role: string;
     origin:string;
+    sites?: number[];
 }
 
 export interface InvitationCard{
@@ -44,9 +45,17 @@ export class Invitations extends ApiRequest {
      *     .catch(error => console.error(error));
      */
     async generateInvitationLink(invitationRequest: InvitationRequest): Promise<InvitationCard> {
-  
+        
         // Change to properly use GET with query parameters
-        const url = `${this.endpoint}/generate-invitation-link?email=${encodeURIComponent(invitationRequest.email)}&role=${encodeURIComponent(invitationRequest.role)}&origin=${encodeURIComponent(invitationRequest.origin)}`;
+        let url = `${this.endpoint}/generate-invitation-link?email=${encodeURIComponent(invitationRequest.email)}&role=${encodeURIComponent(invitationRequest.role)}&origin=${encodeURIComponent(invitationRequest.origin)}`;
+        
+        // Add sites parameter if provided
+        if (invitationRequest.sites && invitationRequest.sites.length > 0) {
+            // Send as JSON string to match backend expectations
+            const sitesParam = JSON.stringify(invitationRequest.sites);
+            url += `&sites=${encodeURIComponent(sitesParam)}`;
+        }
+        
         const response = await this.apiRequest(url, 'GET', null);
         let token = response.invitation_link.split("/").pop();
         return {
