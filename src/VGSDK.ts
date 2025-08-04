@@ -1,3 +1,30 @@
+import { Tiers } from "./apiRequests/Tiers";
+
+import { Tags } from "./apiRequests/Tags";
+
+import { Stripe } from "./apiRequests/Stripe";
+
+import { SyntheseMaintenance } from "./apiRequests/SyntheseMaintenance";
+
+import { Stocks } from "./apiRequests/Stocks";
+
+import { Statistiques } from "./apiRequests/Statistiques";
+
+import { SortieEquipement } from "./apiRequests/SortieEquipement";
+
+import { SearchDatas } from "./apiRequests/SearchDatas";
+
+import { Roles } from "./apiRequests/Roles";
+
+import { Reponses } from "./apiRequests/Reponses";
+
+import { Maintenance } from "./apiRequests/Maintenance";
+import { MouvementsEquipements } from "./apiRequests/MouvementsEquipements";
+import { Parametres } from "./apiRequests/Parametres";
+import { PersonalParameters } from "./apiRequests/PersonalParameters";
+import { PlanInteractif } from "./apiRequests/PlanInteractif";
+import { PlanMaintenance } from "./apiRequests/PlanMaintenance";
+
 import { Operation } from "./apiRequests/Operation";
 import { LibelServices } from "./apiRequests/LibelServices";
 import { LibelProblem } from "./apiRequests/LibelProblem";
@@ -152,6 +179,144 @@ export class VGSDK {
   }
 
   // INJECTED automatically by template generation
+
+  /**
+   * @property {Tiers} tiers - the tiers request service
+   * @returns {Tiers} - the tiers request service
+   */
+  get tiers(): Tiers {
+    return this.getService('tiers', Tiers);
+  }
+
+
+  /**
+   * @property {Tags} tags - the tags request service
+   * @returns {Tags} - the tags request service
+   */
+  get tags(): Tags {
+    return this.getService('tags', Tags);
+  }
+
+
+  /**
+   * @property {Stripe} stripe - the stripe request service
+   * @returns {Stripe} - the stripe request service
+   */
+  get stripe(): Stripe {
+    return this.getService('stripe', Stripe);
+  }
+
+
+  /**
+   * @property {SyntheseMaintenance} synthesemaintenance - the synthesemaintenance request service
+   * @returns {SyntheseMaintenance} - the synthesemaintenance request service
+   */
+  get synthesemaintenance(): SyntheseMaintenance {
+    return this.getService('synthesemaintenance', SyntheseMaintenance);
+  }
+
+
+  /**
+   * @property {Stocks} stocks - the stocks request service
+   * @returns {Stocks} - the stocks request service
+   */
+  get stocks(): Stocks {
+    return this.getService('stocks', Stocks);
+  }
+
+
+  /**
+   * @property {Statistiques} statistiques - the statistiques request service
+   * @returns {Statistiques} - the statistiques request service
+   */
+  get statistiques(): Statistiques {
+    return this.getService('statistiques', Statistiques);
+  }
+
+
+  /**
+   * @property {SortieEquipement} sortieequipement - the sortieequipement request service
+   * @returns {SortieEquipement} - the sortieequipement request service
+   */
+  get sortieequipement(): SortieEquipement {
+    return this.getService('sortieequipement', SortieEquipement);
+  }
+
+
+  /**
+   * @property {SearchDatas} searchdatas - the searchdatas request service
+   * @returns {SearchDatas} - the searchdatas request service
+   */
+  get searchdatas(): SearchDatas {
+    return this.getService('searchdatas', SearchDatas);
+  }
+
+
+  /**
+   * @property {Roles} roles - the roles request service
+   * @returns {Roles} - the roles request service
+   */
+  get roles(): Roles {
+    return this.getService('roles', Roles);
+  }
+
+
+  /**
+   * @property {Reponses} reponses - the reponses request service
+   * @returns {Reponses} - the reponses request service
+   */
+  get reponses(): Reponses {
+    return this.getService('reponses', Reponses);
+  }
+
+
+  /**
+   * @property {Maintenance} maintenance - the maintenance request service
+   * @returns {Maintenance} - the maintenance request service
+   */
+  get maintenance(): Maintenance {
+    return this.getService('maintenance', Maintenance);
+  }
+
+  /**
+   * @property {MouvementsEquipements} mouvementsEquipements - the equipment movements request service
+   * @returns {MouvementsEquipements} - the equipment movements request service
+   */
+  get mouvementsEquipements(): MouvementsEquipements {
+    return this.getService('mouvementsEquipements', MouvementsEquipements);
+  }
+
+  /**
+   * @property {Parametres} parametres - the application parameters request service
+   * @returns {Parametres} - the application parameters request service
+   */
+  get parametres(): Parametres {
+    return this.getService('parametres', Parametres);
+  }
+
+  /**
+   * @property {PersonalParameters} personalParameters - the personal parameters request service
+   * @returns {PersonalParameters} - the personal parameters request service
+   */
+  get personalParameters(): PersonalParameters {
+    return this.getService('personalParameters', PersonalParameters);
+  }
+
+  /**
+   * @property {PlanInteractif} planInteractif - the interactive plan request service
+   * @returns {PlanInteractif} - the interactive plan request service
+   */
+  get planInteractif(): PlanInteractif {
+    return this.getService('planInteractif', PlanInteractif);
+  }
+
+  /**
+   * @property {PlanMaintenance} planMaintenance - the maintenance plan request service
+   * @returns {PlanMaintenance} - the maintenance plan request service
+   */
+  get planMaintenance(): PlanMaintenance {
+    return this.getService('planMaintenance', PlanMaintenance);
+  }
 
   /**
    * @property {Operation} operation - the operation request service

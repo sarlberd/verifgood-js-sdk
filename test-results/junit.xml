@@ -1,25 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="10" failures="0" errors="0" time="0.569">
-  <testsuite name="Operation API Service" errors="0" failures="0" skipped="0" timestamp="2025-07-11T07:38:59" time="0.339" tests="10">
-    <testcase classname="Operation API Service Constructor should initialize endpoints correctly" name="Operation API Service Constructor should initialize endpoints correctly" time="0.002">
+<testsuites name="jest tests" tests="7" failures="5" errors="0" time="0.69">
+  <testsuite name="Tiers API Service" errors="0" failures="5" skipped="0" timestamp="2025-07-29T10:33:25" time="0.453" tests="7">
+    <testcase classname="Tiers API Service Constructor should initialize endpoints correctly" name="Tiers API Service Constructor should initialize endpoints correctly" time="0.003">
     </testcase>
-    <testcase classname="Operation API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Operation API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
+    <testcase classname="Tiers API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Tiers API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.001">
     </testcase>
-    <testcase classname="Operation API Service Factory Functions createDefaultOperation should create operation with default values" name="Operation API Service Factory Functions createDefaultOperation should create operation with default values" time="0.001">
+    <testcase classname="Tiers API Service Non-CRUD methods should execute getTiersCustom without error" name="Tiers API Service Non-CRUD methods should execute getTiersCustom without error" time="0.111">
+      <failure>Error: expect(received).resolves.toBeDefined()
+
+Received promise rejected instead of resolved
+Rejected to value: [TypeError: fetch failed]
+    at expect (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\expect\build\index.js:113:15)
+    at Object.&lt;anonymous&gt; (C:\xampp\htdocs\verifgood\VerifgoodSDK\tests\Tiers.test.ts:31:13)
+    at Promise.then.completed (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:444:34)</failure>
     </testcase>
-    <testcase classname="Operation API Service Factory Functions createDefaultOperation should create operation with provided user values" name="Operation API Service Factory Functions createDefaultOperation should create operation with provided user values" time="0.001">
+    <testcase classname="Tiers API Service Non-CRUD methods should execute getTiersById without error" name="Tiers API Service Non-CRUD methods should execute getTiersById without error" time="0.009">
+      <failure>Error: expect(received).resolves.toBeDefined()
+
+Received promise rejected instead of resolved
+Rejected to value: [TypeError: fetch failed]
+    at expect (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\expect\build\index.js:113:15)
+    at Object.&lt;anonymous&gt; (C:\xampp\htdocs\verifgood\VerifgoodSDK\tests\Tiers.test.ts:35:13)
+    at Promise.then.completed (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:444:34)</failure>
     </testcase>
-    <testcase classname="Operation API Service Factory Functions createNew should create new operation using service method" name="Operation API Service Factory Functions createNew should create new operation using service method" time="0.001">
+    <testcase classname="Tiers API Service Non-CRUD methods should execute update without error" name="Tiers API Service Non-CRUD methods should execute update without error" time="0.007">
+      <failure>Error: expect(received).resolves.toBeDefined()
+
+Received promise rejected instead of resolved
+Rejected to value: [TypeError: fetch failed]
+    at expect (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\expect\build\index.js:113:15)
+    at Object.&lt;anonymous&gt; (C:\xampp\htdocs\verifgood\VerifgoodSDK\tests\Tiers.test.ts:40:13)
+    at Promise.then.completed (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:444:34)</failure>
     </testcase>
-    <testcase classname="Operation API Service Non-CRUD Methods createBIOperation should create BI operation with correct payload" name="Operation API Service Non-CRUD Methods createBIOperation should create BI operation with correct payload" time="0.002">
+    <testcase classname="Tiers API Service Non-CRUD methods should execute create without error" name="Tiers API Service Non-CRUD methods should execute create without error" time="0.007">
+      <failure>Error: expect(received).resolves.toBeDefined()
+
+Received promise rejected instead of resolved
+Rejected to value: [TypeError: fetch failed]
+    at expect (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\expect\build\index.js:113:15)
+    at Object.&lt;anonymous&gt; (C:\xampp\htdocs\verifgood\VerifgoodSDK\tests\Tiers.test.ts:45:13)
+    at Promise.then.completed (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:444:34)</failure>
     </testcase>
-    <testcase classname="Operation API Service Non-CRUD Methods createPhotoOperation should create photo operation with correct payload" name="Operation API Service Non-CRUD Methods createPhotoOperation should create photo operation with correct payload" time="0.001">
-    </testcase>
-    <testcase classname="Operation API Service Non-CRUD Methods updateOperation should update operation using V2.0 endpoint" name="Operation API Service Non-CRUD Methods updateOperation should update operation using V2.0 endpoint" time="0.001">
-    </testcase>
-    <testcase classname="Operation API Service Non-CRUD Methods getFile should export operations to CSV file" name="Operation API Service Non-CRUD Methods getFile should export operations to CSV file" time="0.001">
-    </testcase>
-    <testcase classname="Operation API Service Non-CRUD Methods getFile should export operations to Excel file" name="Operation API Service Non-CRUD Methods getFile should export operations to Excel file" time="0.001">
+    <testcase classname="Tiers API Service Non-CRUD methods should execute remove without error" name="Tiers API Service Non-CRUD methods should execute remove without error" time="0.006">
+      <failure>Error: expect(received).resolves.toBeDefined()
+
+Received promise rejected instead of resolved
+Rejected to value: [TypeError: fetch failed]
+    at expect (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\expect\build\index.js:113:15)
+    at Object.&lt;anonymous&gt; (C:\xampp\htdocs\verifgood\VerifgoodSDK\tests\Tiers.test.ts:49:13)
+    at Promise.then.completed (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\xampp\htdocs\verifgood\VerifgoodSDK\node_modules\jest-runner\build\runTest.js:444:34)</failure>
     </testcase>
   </testsuite>
 </testsuites>
