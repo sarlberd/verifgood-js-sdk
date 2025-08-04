@@ -34,12 +34,25 @@ export class Invitations extends ApiRequest {
     
     /**
      * Generate an invitation link for a specific email and role
-     * @param invitationRequest Object containing email and role for the invitee
+     * @param invitationRequest Object containing email, role, origin, and optionally sites for the invitee
      * @returns Promise with the invitation data including the URL and token
      * @example
+     *   // Basic invitation without specific sites
      *   vgsdk.invitations.generateInvitationLink({
      *     email: 'verifgood@gmail.com',
-     *     role: 'ROLE_ADMIN'
+     *     role: 'ROLE_ADMIN',
+     *     origin: 'http://localhost:8080'
+     *   })
+     *     .then(invitation => console.log(invitation))
+     *     .catch(error => console.error(error));
+     * 
+     * @example
+     *   // Invitation with specific sites
+     *   vgsdk.invitations.generateInvitationLink({
+     *     email: 'verifgood@gmail.com',
+     *     role: 'ROLE_ADMIN',
+     *     origin: 'http://localhost:8080',
+     *     sites: [1, 5, 10]
      *   })
      *     .then(invitation => console.log(invitation))
      *     .catch(error => console.error(error));
