@@ -112,6 +112,21 @@ export declare class Verifications extends ApiRequest {
      */
     getPdfFile(idVerification: number): Promise<any>;
     /**
+     * Add document verification
+     * @param verificationId ID of the verification
+     * @param file File to upload for verification
+     * @returns Promise with the response
+     */
+    addDocumentVerification(verificationId: number, file: File): Promise<any>;
+    /**
+     * API request with form data support
+     * @param endpoint API endpoint
+     * @param method HTTP method
+     * @param formData Form data to send
+     * @returns Promise with response data
+     */
+    private apiRequestFormData;
+    /**
      * Export recurring task history
      * @param metadatas Metadata for filtering
      * @param fileExtension File extension (xlsx or csv)

@@ -137,6 +137,53 @@ class Verifications extends ApiRequest_1.ApiRequest {
         return this.apiRequest(`${this.endpointSingleton}/export/${idVerification}/S`, 'GET', null);
     }
     /**
+     * Add document verification
+     * @param verificationId ID of the verification
+     * @param file File to upload for verification
+     * @returns Promise with the response
+     */
+    async addDocumentVerification(verificationId, file) {
+        const formData = new FormData();
+        formData.append('datas', file);
+        return this.apiRequestFormData(`${this.endpointSingleton}/${verificationId}/document/new`, 'POST', formData);
+    }
+    /**
+     * API request with form data support
+     * @param endpoint API endpoint
+     * @param method HTTP method
+     * @param formData Form data to send
+     * @returns Promise with response data
+     */
+    async apiRequestFormData(endpoint, method, formData) {
+        try {
+            const apiKey = await this.auth.getApiKey();
+            const headers = {
+                'Authorization': `Bearer ${apiKey}`,
+                // Don't set Content-Type for FormData - browser will set it automatically with boundary
+            };
+            const options = {
+                method,
+                headers,
+                body: formData
+            };
+            const response = await fetch(`${this.apiBaseUrl}${endpoint}`, options);
+            const responseText = await response.text();
+            if (!response.ok) {
+                const error = {
+                    status: response.status,
+                    statusText: response.statusText,
+                    message: responseText
+                };
+                throw error;
+            }
+            const responseData = responseText ? JSON.parse(responseText) : {};
+            return responseData;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    /**
      * Export recurring task history
      * @param metadatas Metadata for filtering
      * @param fileExtension File extension (xlsx or csv)
