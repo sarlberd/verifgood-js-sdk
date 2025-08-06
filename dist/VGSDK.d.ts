@@ -1,3 +1,29 @@
+import { Tiers } from "./apiRequests/Tiers";
+import { Tags } from "./apiRequests/Tags";
+import { Stripe } from "./apiRequests/Stripe";
+import { SyntheseMaintenance } from "./apiRequests/SyntheseMaintenance";
+import { Stocks } from "./apiRequests/Stocks";
+import { Statistiques } from "./apiRequests/Statistiques";
+import { SortieEquipement } from "./apiRequests/SortieEquipement";
+import { SearchDatas } from "./apiRequests/SearchDatas";
+import { Roles } from "./apiRequests/Roles";
+import { Reponses } from "./apiRequests/Reponses";
+import { Maintenance } from "./apiRequests/Maintenance";
+import { MouvementsEquipements } from "./apiRequests/MouvementsEquipements";
+import { Parametres } from "./apiRequests/Parametres";
+import { PersonalParameters } from "./apiRequests/PersonalParameters";
+import { PlanInteractif } from "./apiRequests/PlanInteractif";
+import { PlanMaintenance } from "./apiRequests/PlanMaintenance";
+import { Operation } from "./apiRequests/Operation";
+import { LibelServices } from "./apiRequests/LibelServices";
+import { LibelProblem } from "./apiRequests/LibelProblem";
+import { LibellesCategorie } from "./apiRequests/LibellesCategorie";
+import { Inventaire } from "./apiRequests/Inventaire";
+import { Interventions } from "./apiRequests/Interventions";
+import { IntegrationsDonnees } from "./apiRequests/IntegrationsDonnees";
+import { GroupeValidateursUsers } from "./apiRequests/GroupeValidateursUsers";
+import { GroupeValidateurs } from "./apiRequests/GroupeValidateurs";
+import { FicheDemandeConsommables } from "./apiRequests/FicheDemandeConsommables";
 import { Documents } from "./apiRequests/Documents";
 import { DeplacementsEquipements } from "./apiRequests/DeplacementsEquipements";
 import { Dashboard } from "./apiRequests/Dashboard";
@@ -36,12 +62,6 @@ export declare class VGSDK {
     constructor(configOptions: SdkConfiguration);
     private getService;
     get sharedLinks(): SharedLinks;
-    get lieux(): Lieux;
-    /**
-     * @property {Equipements} equipements - the equipements request
-     * @returns {Equipements} - the equipements request
-     */
-    get equipements(): Equipements;
     get categories(): Categories;
     get taches(): Taches;
     get checkpoints(): Checkpoints;
@@ -92,6 +112,146 @@ export declare class VGSDK {
      * @returns {Account} - the account request service
      */
     get account(): Account;
+    /**
+     * @property {Tiers} tiers - the tiers request service
+     * @returns {Tiers} - the tiers request service
+     */
+    get tiers(): Tiers;
+    /**
+     * @property {Tags} tags - the tags request service
+     * @returns {Tags} - the tags request service
+     */
+    get tags(): Tags;
+    /**
+     * @property {Stripe} stripe - the stripe request service
+     * @returns {Stripe} - the stripe request service
+     */
+    get stripe(): Stripe;
+    /**
+     * @property {SyntheseMaintenance} synthesemaintenance - the synthesemaintenance request service
+     * @returns {SyntheseMaintenance} - the synthesemaintenance request service
+     */
+    get synthesemaintenance(): SyntheseMaintenance;
+    /**
+     * @property {Stocks} stocks - the stocks request service
+     * @returns {Stocks} - the stocks request service
+     */
+    get stocks(): Stocks;
+    /**
+     * @property {Statistiques} statistiques - the statistiques request service
+     * @returns {Statistiques} - the statistiques request service
+     */
+    get statistiques(): Statistiques;
+    /**
+     * @property {SortieEquipement} sortieequipement - the sortieequipement request service
+     * @returns {SortieEquipement} - the sortieequipement request service
+     */
+    get sortieequipement(): SortieEquipement;
+    /**
+     * @property {SearchDatas} searchdatas - the searchdatas request service
+     * @returns {SearchDatas} - the searchdatas request service
+     */
+    get searchdatas(): SearchDatas;
+    /**
+     * @property {Roles} roles - the roles request service
+     * @returns {Roles} - the roles request service
+     */
+    get roles(): Roles;
+    /**
+     * @property {Reponses} reponses - the reponses request service
+     * @returns {Reponses} - the reponses request service
+     */
+    get reponses(): Reponses;
+    /**
+     * @property {Maintenance} maintenance - the maintenance request service
+     * @returns {Maintenance} - the maintenance request service
+     */
+    get maintenance(): Maintenance;
+    /**
+     * @property {MouvementsEquipements} mouvementsEquipements - the equipment movements request service
+     * @returns {MouvementsEquipements} - the equipment movements request service
+     */
+    get mouvementsEquipements(): MouvementsEquipements;
+    /**
+     * @property {Parametres} parametres - the application parameters request service
+     * @returns {Parametres} - the application parameters request service
+     */
+    get parametres(): Parametres;
+    /**
+     * @property {PersonalParameters} personalParameters - the personal parameters request service
+     * @returns {PersonalParameters} - the personal parameters request service
+     */
+    get personalParameters(): PersonalParameters;
+    /**
+     * @property {PlanInteractif} planInteractif - the interactive plan request service
+     * @returns {PlanInteractif} - the interactive plan request service
+     */
+    get planInteractif(): PlanInteractif;
+    /**
+     * @property {PlanMaintenance} planMaintenance - the maintenance plan request service
+     * @returns {PlanMaintenance} - the maintenance plan request service
+     */
+    get planMaintenance(): PlanMaintenance;
+    /**
+     * @property {Operation} operation - the operation request service
+     * @returns {Operation} - the operation request service
+     */
+    get operation(): Operation;
+    /**
+     * @property {Lieux} lieux - the lieux request service
+     * @returns {Lieux} - the lieux request service
+     */
+    get lieux(): Lieux;
+    /**
+     * @property {LibelServices} libelservices - the libelservices request service
+     * @returns {LibelServices} - the libelservices request service
+     */
+    get libelservices(): LibelServices;
+    /**
+     * @property {LibelProblem} libelproblem - the libelproblem request service
+     * @returns {LibelProblem} - the libelproblem request service
+     */
+    get libelproblem(): LibelProblem;
+    /**
+     * @property {LibellesCategorie} libellescategorie - the libellescategorie request service
+     * @returns {LibellesCategorie} - the libellescategorie request service
+     */
+    get libellescategorie(): LibellesCategorie;
+    /**
+     * @property {Inventaire} inventaire - the inventaire request service
+     * @returns {Inventaire} - the inventaire request service
+     */
+    get inventaire(): Inventaire;
+    /**
+     * @property {Interventions} interventions - the interventions request service
+     * @returns {Interventions} - the interventions request service
+     */
+    get interventions(): Interventions;
+    /**
+     * @property {IntegrationsDonnees} integrationsdonnees - the integrationsdonnees request service
+     * @returns {IntegrationsDonnees} - the integrationsdonnees request service
+     */
+    get integrationsdonnees(): IntegrationsDonnees;
+    /**
+     * @property {GroupeValidateursUsers} groupevalidateursusers - the groupevalidateursusers request service
+     * @returns {GroupeValidateursUsers} - the groupevalidateursusers request service
+     */
+    get groupevalidateursusers(): GroupeValidateursUsers;
+    /**
+     * @property {GroupeValidateurs} groupevalidateurs - the groupevalidateurs request service
+     * @returns {GroupeValidateurs} - the groupevalidateurs request service
+     */
+    get groupevalidateurs(): GroupeValidateurs;
+    /**
+     * @property {FicheDemandeConsommables} fichedemandeconsommables - the fichedemandeconsommables request service
+     * @returns {FicheDemandeConsommables} - the fichedemandeconsommables request service
+     */
+    get fichedemandeconsommables(): FicheDemandeConsommables;
+    /**
+     * @property {Equipements} equipements - the equipements request service
+     * @returns {Equipements} - the equipements request service
+     */
+    get equipements(): Equipements;
     /**
      * @property {Documents} documents - the documents request service
      * @returns {Documents} - the documents request service

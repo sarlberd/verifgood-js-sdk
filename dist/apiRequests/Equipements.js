@@ -13,7 +13,6 @@ class Equipements extends ApiRequest_1.ApiRequest {
     }
     async getEquipementVerifications(equipement_id, metadatas = new Metadatas_1.Metadatas('{"directives":[],"filters":[]}')) {
         const query = {
-            userId: this.appID,
             metadatas: metadatas.get()
         };
         const response = await this.apiRequest(`${this.endpointSingleton}/${equipement_id}/verifications`, 'GET', query);
@@ -43,7 +42,6 @@ class Equipements extends ApiRequest_1.ApiRequest {
     }
     async getRapportAssets(metadatas) {
         const query = {
-            userId: this.appID,
             metadatas: metadatas.get(),
             sites: this.restrictionsite
         };
@@ -76,6 +74,8 @@ class Equipements extends ApiRequest_1.ApiRequest {
         }
         return blob;
     }
+    /**
+     */
     async getAll(metadatas) {
         const query = {
             sites: this.restrictionsite
@@ -88,7 +88,6 @@ class Equipements extends ApiRequest_1.ApiRequest {
     }
     async getEquipementsTachesActivesSites(site, metadatas) {
         const query = {
-            userId: this.appID,
             site: site,
             metadatas: metadatas.get()
         };
@@ -132,6 +131,9 @@ class Equipements extends ApiRequest_1.ApiRequest {
         }
         return blob;
     }
+    /**
+     * @deprecated Use create() from parent ApiRequest class instead
+     */
     async create(equipements) {
         equipements.forEach((equipement) => {
             if (!equipement.marker && equipement.marker == null)
@@ -163,8 +165,10 @@ class Equipements extends ApiRequest_1.ApiRequest {
         const response = await this.apiRequest(`/maintenance/${maintenance.id}/equipement/remplacement`, 'POST', sortie);
         return response;
     }
+    /**
+     */
     async update(equipement, _options = { skipVueXStorage: false }) {
-        const response = await this.apiRequest(`${this.endpointSingleton}/${equipement.id}?userId=${this.appID}`, 'PUT', equipement);
+        const response = await this.apiRequest(`${this.endpointSingleton}/${equipement.id}`, 'PUT', equipement);
         return response;
     }
     async updateEquipements(equipements) {
@@ -173,12 +177,14 @@ class Equipements extends ApiRequest_1.ApiRequest {
         });
         return response;
     }
+    /**
+     */
     async remove(equipementId) {
         const response = await this.delete(`${this.endpointSingleton}/${equipementId}`);
         return response;
     }
     async createEquipementsGlobauxFamilleSite(famille, equipements) {
-        const response = await this.apiRequest(`/sites/${famille}/equipements/globaux?userId=${this.appID}`, 'POST', equipements);
+        const response = await this.apiRequest(`/sites/${famille}/equipements/globaux`, 'POST', equipements);
         return response;
     }
     calculDepreciation(equipement) {

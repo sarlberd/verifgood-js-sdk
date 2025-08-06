@@ -1,6 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VGSDK = void 0;
+const Tiers_1 = require("./apiRequests/Tiers");
+const Tags_1 = require("./apiRequests/Tags");
+const Stripe_1 = require("./apiRequests/Stripe");
+const SyntheseMaintenance_1 = require("./apiRequests/SyntheseMaintenance");
+const Stocks_1 = require("./apiRequests/Stocks");
+const Statistiques_1 = require("./apiRequests/Statistiques");
+const SortieEquipement_1 = require("./apiRequests/SortieEquipement");
+const SearchDatas_1 = require("./apiRequests/SearchDatas");
+const Roles_1 = require("./apiRequests/Roles");
+const Reponses_1 = require("./apiRequests/Reponses");
+const Maintenance_1 = require("./apiRequests/Maintenance");
+const MouvementsEquipements_1 = require("./apiRequests/MouvementsEquipements");
+const Parametres_1 = require("./apiRequests/Parametres");
+const PersonalParameters_1 = require("./apiRequests/PersonalParameters");
+const PlanInteractif_1 = require("./apiRequests/PlanInteractif");
+const PlanMaintenance_1 = require("./apiRequests/PlanMaintenance");
+const Operation_1 = require("./apiRequests/Operation");
+const LibelServices_1 = require("./apiRequests/LibelServices");
+const LibelProblem_1 = require("./apiRequests/LibelProblem");
+const LibellesCategorie_1 = require("./apiRequests/LibellesCategorie");
+const Inventaire_1 = require("./apiRequests/Inventaire");
+const Interventions_1 = require("./apiRequests/Interventions");
+const IntegrationsDonnees_1 = require("./apiRequests/IntegrationsDonnees");
+const GroupeValidateursUsers_1 = require("./apiRequests/GroupeValidateursUsers");
+const GroupeValidateurs_1 = require("./apiRequests/GroupeValidateurs");
+const FicheDemandeConsommables_1 = require("./apiRequests/FicheDemandeConsommables");
 const Documents_1 = require("./apiRequests/Documents");
 const DeplacementsEquipements_1 = require("./apiRequests/DeplacementsEquipements");
 const Dashboard_1 = require("./apiRequests/Dashboard");
@@ -46,16 +72,6 @@ class VGSDK {
     }
     get sharedLinks() {
         return this.getService('sharedLinks', SharedLinks_1.SharedLinks);
-    }
-    get lieux() {
-        return this.getService('lieux', Lieux_1.Lieux);
-    }
-    /**
-     * @property {Equipements} equipements - the equipements request
-     * @returns {Equipements} - the equipements request
-     */
-    get equipements() {
-        return this.getService('equipements', Equipements_1.Equipements);
     }
     get categories() {
         return this.getService('categories', Categories_1.Categories);
@@ -136,6 +152,202 @@ class VGSDK {
         return this.getService('account', Account_1.Account);
     }
     // INJECTED automatically by template generation
+    /**
+     * @property {Tiers} tiers - the tiers request service
+     * @returns {Tiers} - the tiers request service
+     */
+    get tiers() {
+        return this.getService('tiers', Tiers_1.Tiers);
+    }
+    /**
+     * @property {Tags} tags - the tags request service
+     * @returns {Tags} - the tags request service
+     */
+    get tags() {
+        return this.getService('tags', Tags_1.Tags);
+    }
+    /**
+     * @property {Stripe} stripe - the stripe request service
+     * @returns {Stripe} - the stripe request service
+     */
+    get stripe() {
+        return this.getService('stripe', Stripe_1.Stripe);
+    }
+    /**
+     * @property {SyntheseMaintenance} synthesemaintenance - the synthesemaintenance request service
+     * @returns {SyntheseMaintenance} - the synthesemaintenance request service
+     */
+    get synthesemaintenance() {
+        return this.getService('synthesemaintenance', SyntheseMaintenance_1.SyntheseMaintenance);
+    }
+    /**
+     * @property {Stocks} stocks - the stocks request service
+     * @returns {Stocks} - the stocks request service
+     */
+    get stocks() {
+        return this.getService('stocks', Stocks_1.Stocks);
+    }
+    /**
+     * @property {Statistiques} statistiques - the statistiques request service
+     * @returns {Statistiques} - the statistiques request service
+     */
+    get statistiques() {
+        return this.getService('statistiques', Statistiques_1.Statistiques);
+    }
+    /**
+     * @property {SortieEquipement} sortieequipement - the sortieequipement request service
+     * @returns {SortieEquipement} - the sortieequipement request service
+     */
+    get sortieequipement() {
+        return this.getService('sortieequipement', SortieEquipement_1.SortieEquipement);
+    }
+    /**
+     * @property {SearchDatas} searchdatas - the searchdatas request service
+     * @returns {SearchDatas} - the searchdatas request service
+     */
+    get searchdatas() {
+        return this.getService('searchdatas', SearchDatas_1.SearchDatas);
+    }
+    /**
+     * @property {Roles} roles - the roles request service
+     * @returns {Roles} - the roles request service
+     */
+    get roles() {
+        return this.getService('roles', Roles_1.Roles);
+    }
+    /**
+     * @property {Reponses} reponses - the reponses request service
+     * @returns {Reponses} - the reponses request service
+     */
+    get reponses() {
+        return this.getService('reponses', Reponses_1.Reponses);
+    }
+    /**
+     * @property {Maintenance} maintenance - the maintenance request service
+     * @returns {Maintenance} - the maintenance request service
+     */
+    get maintenance() {
+        return this.getService('maintenance', Maintenance_1.Maintenance);
+    }
+    /**
+     * @property {MouvementsEquipements} mouvementsEquipements - the equipment movements request service
+     * @returns {MouvementsEquipements} - the equipment movements request service
+     */
+    get mouvementsEquipements() {
+        return this.getService('mouvementsEquipements', MouvementsEquipements_1.MouvementsEquipements);
+    }
+    /**
+     * @property {Parametres} parametres - the application parameters request service
+     * @returns {Parametres} - the application parameters request service
+     */
+    get parametres() {
+        return this.getService('parametres', Parametres_1.Parametres);
+    }
+    /**
+     * @property {PersonalParameters} personalParameters - the personal parameters request service
+     * @returns {PersonalParameters} - the personal parameters request service
+     */
+    get personalParameters() {
+        return this.getService('personalParameters', PersonalParameters_1.PersonalParameters);
+    }
+    /**
+     * @property {PlanInteractif} planInteractif - the interactive plan request service
+     * @returns {PlanInteractif} - the interactive plan request service
+     */
+    get planInteractif() {
+        return this.getService('planInteractif', PlanInteractif_1.PlanInteractif);
+    }
+    /**
+     * @property {PlanMaintenance} planMaintenance - the maintenance plan request service
+     * @returns {PlanMaintenance} - the maintenance plan request service
+     */
+    get planMaintenance() {
+        return this.getService('planMaintenance', PlanMaintenance_1.PlanMaintenance);
+    }
+    /**
+     * @property {Operation} operation - the operation request service
+     * @returns {Operation} - the operation request service
+     */
+    get operation() {
+        return this.getService('operation', Operation_1.Operation);
+    }
+    /**
+     * @property {Lieux} lieux - the lieux request service
+     * @returns {Lieux} - the lieux request service
+     */
+    get lieux() {
+        return this.getService('lieux', Lieux_1.Lieux);
+    }
+    /**
+     * @property {LibelServices} libelservices - the libelservices request service
+     * @returns {LibelServices} - the libelservices request service
+     */
+    get libelservices() {
+        return this.getService('libelservices', LibelServices_1.LibelServices);
+    }
+    /**
+     * @property {LibelProblem} libelproblem - the libelproblem request service
+     * @returns {LibelProblem} - the libelproblem request service
+     */
+    get libelproblem() {
+        return this.getService('libelproblem', LibelProblem_1.LibelProblem);
+    }
+    /**
+     * @property {LibellesCategorie} libellescategorie - the libellescategorie request service
+     * @returns {LibellesCategorie} - the libellescategorie request service
+     */
+    get libellescategorie() {
+        return this.getService('libellescategorie', LibellesCategorie_1.LibellesCategorie);
+    }
+    /**
+     * @property {Inventaire} inventaire - the inventaire request service
+     * @returns {Inventaire} - the inventaire request service
+     */
+    get inventaire() {
+        return this.getService('inventaire', Inventaire_1.Inventaire);
+    }
+    /**
+     * @property {Interventions} interventions - the interventions request service
+     * @returns {Interventions} - the interventions request service
+     */
+    get interventions() {
+        return this.getService('interventions', Interventions_1.Interventions);
+    }
+    /**
+     * @property {IntegrationsDonnees} integrationsdonnees - the integrationsdonnees request service
+     * @returns {IntegrationsDonnees} - the integrationsdonnees request service
+     */
+    get integrationsdonnees() {
+        return this.getService('integrationsdonnees', IntegrationsDonnees_1.IntegrationsDonnees);
+    }
+    /**
+     * @property {GroupeValidateursUsers} groupevalidateursusers - the groupevalidateursusers request service
+     * @returns {GroupeValidateursUsers} - the groupevalidateursusers request service
+     */
+    get groupevalidateursusers() {
+        return this.getService('groupevalidateursusers', GroupeValidateursUsers_1.GroupeValidateursUsers);
+    }
+    /**
+     * @property {GroupeValidateurs} groupevalidateurs - the groupevalidateurs request service
+     * @returns {GroupeValidateurs} - the groupevalidateurs request service
+     */
+    get groupevalidateurs() {
+        return this.getService('groupevalidateurs', GroupeValidateurs_1.GroupeValidateurs);
+    }
+    /**
+     * @property {FicheDemandeConsommables} fichedemandeconsommables - the fichedemandeconsommables request service
+     * @returns {FicheDemandeConsommables} - the fichedemandeconsommables request service
+     */
+    get fichedemandeconsommables() {
+        return this.getService('fichedemandeconsommables', FicheDemandeConsommables_1.FicheDemandeConsommables);
+    }
+    /**
+     * @property {Equipements} equipements - the equipements request service
+     * @returns {Equipements} - the equipements request service
+     */
+    get equipements() {
+        return this.getService('equipements', Equipements_1.Equipements);
+    }
     /**
      * @property {Documents} documents - the documents request service
      * @returns {Documents} - the documents request service

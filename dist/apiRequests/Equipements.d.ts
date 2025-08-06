@@ -26,6 +26,8 @@ export declare class Equipements extends ApiRequest {
      * @returns Promise<Blob> Returns a Blob object for file download
      */
     getRapportAssetsExcelFile(metadatas: Metadatas, fileExtension?: string): Promise<Blob>;
+    /**
+     */
     getAll(metadatas: Metadatas): Promise<any>;
     getEquipementsTachesActivesSites(site: string, metadatas: Metadatas): Promise<any>;
     /**
@@ -42,14 +44,21 @@ export declare class Equipements extends ApiRequest {
      * @returns Promise<Blob> Returns a Blob object for file download
      */
     getExcelFile(metadatas: Metadatas, filename?: string | null, fileExtension?: string): Promise<Blob>;
+    /**
+     * @deprecated Use create() from parent ApiRequest class instead
+     */
     create(equipements: any[]): Promise<any>;
     importModelEquipementsExcel(equipements: any[]): Promise<any>;
     sortirEquipement(equipement: any, callback: Function): Promise<void>;
     remplacerEquipement(sortie: any, maintenance: any): Promise<any>;
+    /**
+     */
     update(equipement: any, _options?: {
         skipVueXStorage?: boolean;
     }): Promise<any>;
     updateEquipements(equipements: any[]): Promise<any>;
+    /**
+     */
     remove(equipementId: number): Promise<any>;
     createEquipementsGlobauxFamilleSite(famille: string, equipements: any[]): Promise<any>;
     calculDepreciation(equipement: any): any;
