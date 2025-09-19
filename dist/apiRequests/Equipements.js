@@ -11,6 +11,22 @@ class Equipements extends ApiRequest_1.ApiRequest {
         this.appID = '';
         this.restrictionsite = '';
     }
+    /**
+     *
+     * @param equipement_id
+     * @returns
+     */
+    async getEquipementTimeline(equipement_id) {
+        const query = {};
+        const response = await this.apiRequest(`${this.endpointSingleton}/${equipement_id}/timeline`, 'GET', query);
+        return { datas: response };
+    }
+    /**
+     *
+     * @param equipement_id
+     * @param metadatas
+     * @returns
+     */
     async getEquipementVerifications(equipement_id, metadatas = new Metadatas_1.Metadatas('{"directives":[],"filters":[]}')) {
         const query = {
             metadatas: metadatas.get()

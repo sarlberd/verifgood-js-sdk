@@ -6,6 +6,23 @@ export class Equipements extends ApiRequest {
   endpointSingleton: string = '/api/equipement';
   appID: string = '';
   restrictionsite: string = '';
+  /**
+   * 
+   * @param equipement_id 
+   * @returns 
+   */
+  async getEquipementTimeline(equipement_id: number): Promise<any> {
+    const query = {};
+    const response = await this.apiRequest(`${this.endpointSingleton}/${equipement_id}/timeline`, 'GET', query);
+    return { datas: response };
+  }
+  
+  /**
+   * 
+   * @param equipement_id 
+   * @param metadatas 
+   * @returns 
+   */
   async getEquipementVerifications(equipement_id: number, metadatas: Metadatas = new Metadatas('{"directives":[],"filters":[]}')): Promise<any> {
     const query = {
       metadatas: metadatas.get()
