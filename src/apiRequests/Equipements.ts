@@ -12,7 +12,7 @@ export class Equipements extends ApiRequest {
    * @returns 
    */
   async getEquipementTimeline(equipement_id: number): Promise<any> {
-    const query = {};
+    const query = null;
     const response = await this.apiRequest(`${this.endpointSingleton}/${equipement_id}/timeline`, 'GET', query);
     return { datas: response };
   }
