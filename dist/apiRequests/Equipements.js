@@ -17,7 +17,7 @@ class Equipements extends ApiRequest_1.ApiRequest {
      * @returns
      */
     async getEquipementTimeline(equipement_id) {
-        const query = {};
+        const query = null;
         const response = await this.apiRequest(`${this.endpointSingleton}/${equipement_id}/timeline`, 'GET', query);
         return { datas: response };
     }
