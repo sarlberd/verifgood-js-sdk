@@ -5,6 +5,18 @@ export declare class Equipements extends ApiRequest {
     endpointSingleton: string;
     appID: string;
     restrictionsite: string;
+    /**
+     *
+     * @param equipement_id
+     * @returns
+     */
+    getEquipementTimeline(equipement_id: number): Promise<any>;
+    /**
+     *
+     * @param equipement_id
+     * @param metadatas
+     * @returns
+     */
     getEquipementVerifications(equipement_id: number, metadatas?: Metadatas): Promise<any>;
     /**
      *
