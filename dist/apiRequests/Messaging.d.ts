@@ -5,6 +5,7 @@ export interface FcmMessagePayload {
 export declare class Messaging extends ApiRequest {
     endpoint: string;
     endpointSingleton: string;
+    topics: string[];
     /**
      * Subscribe to a topic
      * @param topic The topic to subscribe to
@@ -41,4 +42,6 @@ export declare class Messaging extends ApiRequest {
      * @returns Promise with the send result
      */
     sendMessageToDevice(deviceToken: string, payload: FcmMessagePayload): Promise<any>;
+    getSubscribedTopics(deviceToken: string): Promise<any>;
+    getAvailableTopics(): string[];
 }
