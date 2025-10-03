@@ -74,7 +74,7 @@ export class Messaging extends ApiRequest {
       return;
     }
     const url = `${this.endpoint}/subscribe/topics?token=${deviceToken}`;
-    return await this.apiRequest(url, 'GET', []);
+    return await this.apiRequest(url, 'GET', null);
   }
   getAvailableTopics(): string[]{
     return this.topics;

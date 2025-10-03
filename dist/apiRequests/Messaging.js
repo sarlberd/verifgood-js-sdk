@@ -73,7 +73,7 @@ class Messaging extends ApiRequest_1.ApiRequest {
             return;
         }
         const url = `${this.endpoint}/subscribe/topics?token=${deviceToken}`;
-        return await this.apiRequest(url, 'GET', []);
+        return await this.apiRequest(url, 'GET', null);
     }
     getAvailableTopics() {
         return this.topics;
