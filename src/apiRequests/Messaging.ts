@@ -7,7 +7,7 @@ export interface FcmMessagePayload {
 export class Messaging extends ApiRequest {
   endpoint: string = '/api/fcm';
   endpointSingleton: string = '/api/fcm';
-
+  topics: string[] = ["maintenance", "verification", "debug"];
   /**
    * Subscribe to a topic
    * @param topic The topic to subscribe to
@@ -67,5 +67,16 @@ export class Messaging extends ApiRequest {
   async sendMessageToDevice(deviceToken: string, payload: FcmMessagePayload): Promise<any> {
     const url = `${this.endpoint}/send/to/${deviceToken}`;
     return await this.apiRequest(url, 'POST', payload);
+  }
+  async getSubscribedTopics(deviceToken: string): Promise<any> {
+    if(!deviceToken) {
+      console.warn('Device token is required to get subscribed topics');
+      return;
+    }
+    const url = `${this.endpoint}/subscribe/topics?token=${deviceToken}`;
+    return await this.apiRequest(url, 'GET', []);
+  }
+  getAvailableTopics(): string[]{
+    return this.topics;
   }
 }
