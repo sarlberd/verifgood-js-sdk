@@ -7,6 +7,7 @@ class Messaging extends ApiRequest_1.ApiRequest {
         super(...arguments);
         this.endpoint = '/api/fcm';
         this.endpointSingleton = '/api/fcm';
+        this.topics = ["maintenance", "verification", "debug"];
     }
     /**
      * Subscribe to a topic
@@ -65,6 +66,17 @@ class Messaging extends ApiRequest_1.ApiRequest {
     async sendMessageToDevice(deviceToken, payload) {
         const url = `${this.endpoint}/send/to/${deviceToken}`;
         return await this.apiRequest(url, 'POST', payload);
+    }
+    async getSubscribedTopics(deviceToken) {
+        if (!deviceToken) {
+            console.warn('Device token is required to get subscribed topics');
+            return;
+        }
+        const url = `${this.endpoint}/subscribe/topics?token=${deviceToken}`;
+        return await this.apiRequest(url, 'GET', []);
+    }
+    getAvailableTopics() {
+        return this.topics;
     }
 }
 exports.Messaging = Messaging;
