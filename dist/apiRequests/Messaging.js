@@ -38,6 +38,10 @@ class Messaging extends ApiRequest_1.ApiRequest {
      * @returns Promise with the unsubscription result
      */
     async unsubscribeFromAllTopics(deviceToken) {
+        if (!deviceToken) {
+            console.warn('Device token is required to unsubscribe from all topics');
+            return;
+        }
         const url = `${this.endpoint}/unsubscribe/all`;
         const payload = { token: deviceToken };
         return await this.apiRequest(url, 'POST', payload);
