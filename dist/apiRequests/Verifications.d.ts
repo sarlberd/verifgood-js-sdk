@@ -1,5 +1,6 @@
 import { Metadatas } from "../core/Metadatas";
 import { ApiRequest } from "../core/ApiRequest";
+import { VerificationTimelineResponse } from "../types/VerificationTimeline";
 /**
  * Interface for verification data
  */
@@ -40,6 +41,7 @@ export interface ProgressionData {
 export declare class Verifications extends ApiRequest {
     endpoint: string;
     endpointSingleton: string;
+    getTimeline(verificationId: number): Promise<VerificationTimelineResponse>;
     /**
      * Create new verifications
      * @param verifications Array of verification data to create
