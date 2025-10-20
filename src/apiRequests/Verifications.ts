@@ -1,5 +1,6 @@
 import { Metadatas } from "../core/Metadatas";
 import { ApiRequest } from "../core/ApiRequest";
+import { VerificationTimelineResponse } from "../types/VerificationTimeline";
 
 /**
  * Interface for verification data
@@ -47,7 +48,11 @@ export interface ProgressionData {
 export class Verifications extends ApiRequest {
     endpoint: string = '/api/verifications';
     endpointSingleton: string = '/api/verification';
-
+    async getTimeline(verificationId: number): Promise<VerificationTimelineResponse> {
+        const metadatas = new Metadatas();
+        const response = await this.get(`${this.endpointSingleton}/${verificationId}/timeline`, metadatas, {});
+        return response as VerificationTimelineResponse;
+    }
     /**
      * Create new verifications
      * @param verifications Array of verification data to create
