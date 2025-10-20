@@ -13,6 +13,11 @@ class Verifications extends ApiRequest_1.ApiRequest {
         this.endpoint = '/api/verifications';
         this.endpointSingleton = '/api/verification';
     }
+    async getTimeline(verificationId) {
+        const metadatas = new Metadatas_1.Metadatas();
+        const response = await this.get(`${this.endpointSingleton}/${verificationId}/timeline`, metadatas, {});
+        return response;
+    }
     /**
      * Create new verifications
      * @param verifications Array of verification data to create
