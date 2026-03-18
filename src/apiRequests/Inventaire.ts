@@ -49,7 +49,7 @@ export class Inventaire extends ApiRequest {
   async remove(id: number): Promise<any> {
     //@TODO: need review - uses custom endpoint with userId
     const userId = null; // this.$app.appID equivalent
-    return this.delete(`/api/${userId}/inventaire/${id}`);
+    return this.delete(`/api/${userId}/inventaire/${id}`, {useTrash: false});
   }
 
   /**
@@ -142,7 +142,7 @@ export class Inventaire extends ApiRequest {
   async removeOperationInventaire(operation: any): Promise<any> {
     //@TODO: need review - complex logic with store updates simplified
     const userId = null; // this.$app.appID equivalent
-    const result = await this.delete(`/api/${userId}/inventaire/${operation.inventaire_id}/operation/${operation.id}`);
+    const result = await this.delete(`/api/${userId}/inventaire/${operation.inventaire_id}/operation/${operation.id}`, {useTrash: false});
     
     // Refresh operations after deletion
     await this.fetchOperationsByInventaireIdOnLieu(operation.inventaire_id, operation.lieuInventorier_id);

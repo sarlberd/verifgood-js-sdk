@@ -17,7 +17,9 @@ CRITICAL: HttpClient method signatures must be respected:
 - post(endpoint, data) - takes 2 parameters
 - put(endpoint, data) - takes 2 parameters
 - delete(endpoint) - takes 1 parameter
-The HttpClient automatically parses metadatas into query string. Cannot pass raw query objects directly to GET methods.
+- Methods with different names that do the same as parent CRUD methods → @deprecated (like getFiches(), getFiche())
+- Methods with the same names as parent CRUD methods → Override (like getAll(), getById(), create(), update(), remove())
+- The HttpClient automatically parses metadatas into query string. Cannot pass raw query objects directly to GET methods.
 
 ___
 

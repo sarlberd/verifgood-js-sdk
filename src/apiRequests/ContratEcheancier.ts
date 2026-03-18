@@ -47,6 +47,6 @@ export class ContratEcheancier extends ApiRequest {
    * @returns Promise<any>
    */
   async deleteContratEcheance(id: string): Promise<any> {
-    return super.delete(`${this.endpointSingleton}/${id}`);
+    return super.delete(`${this.endpointSingleton}/${id}`, {useTrash: false});
   }
 }
