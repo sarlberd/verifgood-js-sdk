@@ -43,7 +43,7 @@ export class BonDeCommandeItems extends ApiRequest {
    * @returns Promise<any>
    */
   async remove(bonDeCommandeItem: any): Promise<any> {
-    return this.delete(`${this.endpointSingleton}/${bonDeCommandeItem.id}/bon-de-commande`);
+    return this.delete(`${this.endpointSingleton}/${bonDeCommandeItem.id}/bon-de-commande`, {useTrash: false});
   }
 
   /**

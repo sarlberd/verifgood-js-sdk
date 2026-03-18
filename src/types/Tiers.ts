@@ -4,6 +4,7 @@
 export interface Tier {
     id?: number;
     name: string;
+    isArchived?: string;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -13,6 +14,7 @@ export interface Tier {
  */
 export interface TierCreateRequest {
     name: string;
+    isArchived?: string;
 }
 
 /**
@@ -20,4 +22,5 @@ export interface TierCreateRequest {
  */
 export interface TierUpdateRequest {
     name?: string;
+    isArchived?: string;
 }

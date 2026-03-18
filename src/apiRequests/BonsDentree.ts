@@ -1,6 +1,6 @@
 import { ApiRequest } from "../core/ApiRequest";
 import { Metadatas } from "../core/Metadatas";
-import { BonsDentre, BonsDentreCreateRequest, BonsDentreUpdateRequest } from "../types/BonsDentree";
+import { BonsDentre, BonsDentreCreateRequest, BonsDentreUpdateRequest, BonDentreeDetailResponse } from "../types/BonsDentree";
 
 /**
  * BonsDentree API request class
@@ -31,18 +31,18 @@ export class BonsDentree extends ApiRequest {
   /**
    * Get bon d'entrée by ID (override base method to match mixin behavior)
    * @param idBonDentree - The bon d'entrée ID
-   * @returns Promise<any>
+   * @returns Promise<BonDentreeDetailResponse>
    */
-  async getBonDentree(idBonDentree: string): Promise<any> {
+  async getBonDentree(idBonDentree: string): Promise<BonDentreeDetailResponse> {
     return this.get(`${this.endpointSingleton}/${idBonDentree}`, new Metadatas(), {});
   }
 
   /**
    * Override the default getById to use getBonDentree method
    * @param id - The bon d'entrée ID
-   * @returns Promise<any>
+   * @returns Promise<BonDentreeDetailResponse>
    */
-  async getById(id: number): Promise<any> {
+  async getById(id: number): Promise<BonDentreeDetailResponse> {
     return this.getBonDentree(id.toString());
   }
 

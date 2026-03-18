@@ -1,5 +1,6 @@
 import { ApiRequest } from "../core/ApiRequest";
 import { Metadatas } from "../core/Metadatas";
+import { BonDentreeDetailResponse } from "../types/BonsDentree";
 /**
  * BonsDentree API request class
  * Service for managing goods receipt/inbound orders (bons d&#39;entrée)
@@ -22,15 +23,15 @@ export declare class BonsDentree extends ApiRequest {
     /**
      * Get bon d'entrée by ID (override base method to match mixin behavior)
      * @param idBonDentree - The bon d'entrée ID
-     * @returns Promise<any>
+     * @returns Promise<BonDentreeDetailResponse>
      */
-    getBonDentree(idBonDentree: string): Promise<any>;
+    getBonDentree(idBonDentree: string): Promise<BonDentreeDetailResponse>;
     /**
      * Override the default getById to use getBonDentree method
      * @param id - The bon d'entrée ID
-     * @returns Promise<any>
+     * @returns Promise<BonDentreeDetailResponse>
      */
-    getById(id: number): Promise<any>;
+    getById(id: number): Promise<BonDentreeDetailResponse>;
     /**
      * Override the default create to match the mixin behavior
      * @param bonsDentree - Array of bons d'entrée or single bon d'entrée

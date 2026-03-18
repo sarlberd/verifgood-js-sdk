@@ -68,7 +68,7 @@ export class Composant extends ApiRequest {
    */
   async deleteLibelProblem(idLibelProblem: number): Promise<any> {
     //@TODO: This method needs review - unclear endpoint structure
-    return this.delete(`/api/libelProblem/${idLibelProblem}`);
+    return this.delete(`/api/libelProblem/${idLibelProblem}`, {useTrash: false});
   }
 
   /**

@@ -32,7 +32,7 @@ class BonsDentree extends ApiRequest_1.ApiRequest {
     /**
      * Get bon d'entrée by ID (override base method to match mixin behavior)
      * @param idBonDentree - The bon d'entrée ID
-     * @returns Promise<any>
+     * @returns Promise<BonDentreeDetailResponse>
      */
     async getBonDentree(idBonDentree) {
         return this.get(`${this.endpointSingleton}/${idBonDentree}`, new Metadatas_1.Metadatas(), {});
@@ -40,7 +40,7 @@ class BonsDentree extends ApiRequest_1.ApiRequest {
     /**
      * Override the default getById to use getBonDentree method
      * @param id - The bon d'entrée ID
-     * @returns Promise<any>
+     * @returns Promise<BonDentreeDetailResponse>
      */
     async getById(id) {
         return this.getBonDentree(id.toString());

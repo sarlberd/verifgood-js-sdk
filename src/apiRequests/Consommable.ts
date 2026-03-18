@@ -177,7 +177,7 @@ export class Consommable extends ApiRequest {
    * @returns Promise
    */
   async removeConsommableFournisseurs(consommableId: number, fournisseur: { id: number }): Promise<any> {
-    return this.delete(`${this.endpointSingleton}/${consommableId}/fournisseur/${fournisseur.id}`);
+    return this.delete(`${this.endpointSingleton}/${consommableId}/fournisseur/${fournisseur.id}`, {useTrash: false});
   }
 
   /**
@@ -209,7 +209,7 @@ export class Consommable extends ApiRequest {
    * @returns Promise
    */
   async removeConsommablesEquipements(consommableId: number, equipementId: number): Promise<any> {
-    return this.delete(`${this.endpointSingleton}/${consommableId}/equipement/${equipementId}`);
+    return this.delete(`${this.endpointSingleton}/${consommableId}/equipement/${equipementId}`, {useTrash: false});
   }
 
   /**
@@ -247,7 +247,7 @@ export class Consommable extends ApiRequest {
    * @returns Promise
    */
   async deleteConsommableMouvement(idConsommableMouvement: number): Promise<any> {
-    return this.delete(`/api/consommable/mouvement/${idConsommableMouvement}`);
+    return this.delete(`/api/consommable/mouvement/${idConsommableMouvement}`, {useTrash: false});
   }
 
   /**
