@@ -9,7 +9,9 @@ export declare class HttpClient {
     }): Promise<any>;
     post(endpoint: string, data: any): Promise<any>;
     put(endpoint: string, data: any): Promise<any>;
-    delete(endpoint: string): Promise<any>;
+    delete(endpoint: string, options?: {
+        useTrash?: boolean;
+    }): Promise<any>;
     /**
      *
      * @param Metadatas metadatas

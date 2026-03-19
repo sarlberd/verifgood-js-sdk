@@ -42,7 +42,7 @@ class BonDeCommandeItems extends ApiRequest_1.ApiRequest {
      * @returns Promise<any>
      */
     async remove(bonDeCommandeItem) {
-        return this.delete(`${this.endpointSingleton}/${bonDeCommandeItem.id}/bon-de-commande`);
+        return this.delete(`${this.endpointSingleton}/${bonDeCommandeItem.id}/bon-de-commande`, { useTrash: false });
     }
     /**
      * Get bon de commande items and create clones for new usage

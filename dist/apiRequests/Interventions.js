@@ -221,7 +221,7 @@ class Interventions extends ApiRequest_1.ApiRequest {
         const query = {
             userId: null // this.$app.appID equivalent
         };
-        return this.delete(`/api/interventionsequipements/${interventionEquipement.id}?userId=${query.userId}`);
+        return this.delete(`/api/interventionsequipements/${interventionEquipement.id}?userId=${query.userId}`, { useTrash: false });
     }
     /**
      * Delete interventions equipements
@@ -232,7 +232,7 @@ class Interventions extends ApiRequest_1.ApiRequest {
         const query = {
             userId: null // this.$app.appID equivalent
         };
-        return this.delete(`/api/interventionsequipements?userId=${query.userId}`);
+        return this.delete(`/api/interventionsequipements?userId=${query.userId}`, { useTrash: false });
     }
 }
 exports.Interventions = Interventions;

@@ -187,7 +187,7 @@ class Lieux extends ApiRequest_1.ApiRequest {
         if (!lieu.id) {
             throw new Error('Lieu ID is required for deletion');
         }
-        return this.delete(`/api/${null}/lieux/${lieu.id}`);
+        return this.delete(`/api/${null}/lieux/${lieu.id}`, { useTrash: false });
     }
     /**
      * Get excel file export

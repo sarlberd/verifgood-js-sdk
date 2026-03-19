@@ -163,7 +163,7 @@ class Consommable extends ApiRequest_1.ApiRequest {
      * @returns Promise
      */
     async removeConsommableFournisseurs(consommableId, fournisseur) {
-        return this.delete(`${this.endpointSingleton}/${consommableId}/fournisseur/${fournisseur.id}`);
+        return this.delete(`${this.endpointSingleton}/${consommableId}/fournisseur/${fournisseur.id}`, { useTrash: false });
     }
     /**
      * Create consommations for maintenance
@@ -192,7 +192,7 @@ class Consommable extends ApiRequest_1.ApiRequest {
      * @returns Promise
      */
     async removeConsommablesEquipements(consommableId, equipementId) {
-        return this.delete(`${this.endpointSingleton}/${consommableId}/equipement/${equipementId}`);
+        return this.delete(`${this.endpointSingleton}/${consommableId}/equipement/${equipementId}`, { useTrash: false });
     }
     /**
      * Get consommations (consommable movements)
@@ -226,7 +226,7 @@ class Consommable extends ApiRequest_1.ApiRequest {
      * @returns Promise
      */
     async deleteConsommableMouvement(idConsommableMouvement) {
-        return this.delete(`/api/consommable/mouvement/${idConsommableMouvement}`);
+        return this.delete(`/api/consommable/mouvement/${idConsommableMouvement}`, { useTrash: false });
     }
     /**
      * Get consommable mouvement demandeurs

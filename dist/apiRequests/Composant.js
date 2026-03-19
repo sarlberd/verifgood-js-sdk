@@ -58,7 +58,7 @@ class Composant extends ApiRequest_1.ApiRequest {
      */
     async deleteLibelProblem(idLibelProblem) {
         //@TODO: This method needs review - unclear endpoint structure
-        return this.delete(`/api/libelProblem/${idLibelProblem}`);
+        return this.delete(`/api/libelProblem/${idLibelProblem}`, { useTrash: false });
     }
     /**
      * Get available icons for composants

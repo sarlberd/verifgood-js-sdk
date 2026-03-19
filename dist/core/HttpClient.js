@@ -38,8 +38,10 @@ class HttpClient {
     async put(endpoint, data) {
         return this.apiRequest(endpoint, "PUT", data);
     }
-    async delete(endpoint) {
-        return this.apiRequest(endpoint, "DELETE", null);
+    async delete(endpoint, options = {}) {
+        const useTrash = options.useTrash !== undefined ? options.useTrash : true;
+        const url = useTrash ? endpoint.replace('/api/', '/api/trash/') : endpoint;
+        return this.apiRequest(url, "DELETE", null);
     }
     /**
      *
