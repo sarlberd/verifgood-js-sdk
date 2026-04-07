@@ -58,9 +58,27 @@ export interface RawEventData {
 }
 
 /**
- * Calendar events response
+ * Taches data returned by /calendars/events/new
+ */
+export interface CalendarTachesData {
+    datas: any[];
+    affectationsExceptions: any[];
+    progressions: any[];
+}
+
+/**
+ * Calendar events response (legacy /calendars/events endpoint)
  */
 export interface CalendarEventsResponse {
     events: CalendarEvent[];
+    metadatas: any;
+}
+
+/**
+ * Calendar events response from /calendars/events/new endpoint
+ */
+export interface CalendarEventsNewResponse {
+    events: { [key: string]: any };
+    taches: CalendarTachesData | null;
     metadatas: any;
 }

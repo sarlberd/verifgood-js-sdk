@@ -1,6 +1,6 @@
 import { ApiRequest } from "../core/ApiRequest";
 import { Metadatas } from "../core/Metadatas";
-import { Calenda, CalendaCreateRequest, CalendaUpdateRequest, CalendarEvent, CalendarEventsResponse, RawEventData } from "../types/Calendar";
+import { CalendarEventsResponse, CalendarEventsNewResponse } from "../types/Calendar";
 
 /**
  * Calendar API request class
@@ -11,62 +11,44 @@ export class Calendar extends ApiRequest {
   endpointSingleton: string = '/api/calendars';
 
   /**
-   * Get calendar events with filtering options
-   * @param start Start date
-   * @param end End date  
-   * @param sites Sites filter
+   * Get calendar events with filtering options.
+   * Uses the /calendars/events/new endpoint which returns taches raw data
+   * for client-side session generation, fiches curatives, and interventions.
+   *
+   * @param start Start date (YYYY-MM-DD)
+   * @param end End date (YYYY-MM-DD)
+   * @param sites Sites filter (pipe-separated paths, e.g. "Site-A|Site-B")
    * @param idTiers Tiers ID filter
-   * @param affectes Affectes filter
+   * @param affectes Affectes filter (array of user IDs)
    * @param metadatas Metadatas for the request
-   * @returns Promise with formatted events and metadatas
+   * @param restrictedEventsTypes Filter by event types (e.g. ["maintenance-affectation","intervention-programmee","taches"])
+   * @returns Promise with calendar events and taches data
    */
   async getEvents(
-    start?: string, 
-    end?: string, 
-    sites?: string, 
-    idTiers?: string, 
-    affectes?: string[], 
-    metadatas?: Metadatas
-  ): Promise<CalendarEventsResponse> {
+    start?: string,
+    end?: string,
+    sites?: string,
+    idTiers?: string,
+    affectes?: string[],
+    metadatas?: Metadatas,
+    restrictedEventsTypes?: string[]
+  ): Promise<CalendarEventsNewResponse> {
     const requestMetadatas = metadatas || new Metadatas();
-    
-    if (start) requestMetadatas.setFilter('start', start);
-    if (end) requestMetadatas.setFilter('end', end);
-    if (sites && sites !== "") requestMetadatas.setFilter('sites', sites);
-    if (idTiers && idTiers !== "") requestMetadatas.setFilter('idTiers', idTiers);
-    if (affectes && affectes.length > 0) requestMetadatas.setFilter('affectes', affectes.join(','));
 
-    const response = await this.get('/api/calendars/events', requestMetadatas, {});
-    
+    const query: { [key: string]: any } = {};
+    if (start) query.start = start;
+    if (end) query.end = end;
+    if (sites && sites !== "") query.sites = sites;
+    if (idTiers && idTiers !== "") query.idTiers = idTiers;
+    if (affectes && affectes.length > 0) query.affectes = affectes;
+    if (restrictedEventsTypes && restrictedEventsTypes.length > 0) query.restrictedEventsTypes = restrictedEventsTypes;
+
+    const response = await this.get('/api/calendars/events/new', requestMetadatas, query);
+
     return {
-      events: this.formatEvents(response),
+      events: response.datas || {},
+      taches: response.datas?.taches || null,
       metadatas: response.metadatas
     };
-  }
-
-  /**
-   * Format events data for calendar display
-   * @param events Raw events data from API
-   * @returns Formatted events array
-   */
-  formatEvents(events: any): CalendarEvent[] {
-    let formatedEvents: CalendarEvent[] = [];
-    let typesEvents = Object.keys(events);
-    
-    typesEvents.forEach((type) => {
-      events[type].forEach((event: RawEventData) => {
-        formatedEvents.push({
-          calendarId: event.type,
-          category: "time",
-          start: event.start,
-          end: event.end,
-          id: event.data.id,
-          isAllDay: false,
-          raw: event.data
-        });
-      });
-    });
-    
-    return formatedEvents;
   }
 }
