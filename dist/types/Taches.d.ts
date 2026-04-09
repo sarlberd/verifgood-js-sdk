@@ -1,44 +1,91 @@
 /**
  * Taches Types
- * Generated API types for Taches (Tasks)
+ * API types for Taches (preventive maintenance tasks)
  */
 /**
- * Tache entity interface
+ * Checkpoint associated with a tache
+ */
+export interface Checkpoint {
+    id?: number;
+    question: string;
+    typeReponse: string;
+    orderOfAppearance?: number;
+    consigne?: string;
+    section?: string;
+    photos?: any[];
+}
+/**
+ * Tache site association
+ */
+export interface TacheSite {
+    id?: number;
+    site_id: number;
+    libel_lieu?: string;
+    path?: string;
+}
+/**
+ * Affectation (scheduling) for a tache
+ */
+export interface TacheAffectation {
+    id?: number;
+    start?: string;
+    end?: string;
+    recurrence?: number;
+    dayOfWeek?: number;
+    durationMinutes?: number;
+    excludeDates?: string;
+    excludeSaturday?: boolean;
+    excludeSunday?: boolean;
+    affectes?: any[];
+}
+/**
+ * Tache entity interface matching backend response
  */
 export interface TacheEntity {
     id?: number;
-    title?: string;
-    description?: string;
-    status?: string;
-    priority?: string;
-    assigned_to?: number;
-    site_id?: number;
-    created_at?: string;
-    updated_at?: string;
-    checkpoints?: any[];
-    tacheSites?: any[];
+    libelTache?: string;
+    typeTache?: string;
+    periodicite?: number;
+    dateprochaineVerif?: string;
+    tagTache?: string;
+    isActive?: number;
+    idCategorie_id?: number;
+    checkpoints?: Checkpoint[];
+    tacheSites?: TacheSite[];
+    tacheEquipements?: number[];
+    affectation?: TacheAffectation;
+    sites?: any[];
 }
 /**
  * Request interface for creating Taches
  */
 export interface TacheCreateRequest {
-    title: string;
-    description?: string;
-    status?: string;
-    priority?: string;
-    assigned_to?: number;
-    site_id?: number;
+    libelTache: string;
+    typeTache: string;
+    periodicite: number;
+    dateprochaineVerif: string;
+    tagTache?: string;
+    idCategorie_id?: number;
+    checkpoints?: Checkpoint[];
+    tacheSites?: TacheSite[];
+    tacheEquipements?: number[];
 }
 /**
  * Request interface for updating Taches
  */
 export interface TacheUpdateRequest {
-    title?: string;
-    description?: string;
-    status?: string;
-    priority?: string;
-    assigned_to?: number;
-    site_id?: number;
+    id: number;
+    libelTache?: string;
+    typeTache?: string;
+    periodicite?: number;
+    dateprochaineVerif?: string;
+    tagTache?: string;
+    isActive?: number;
+    idCategorie_id?: number;
+    checkpoints?: Checkpoint[];
+    tacheSites?: TacheSite[];
+    tacheEquipements?: number[];
+    affectation?: TacheAffectation;
 }
 /**
  * Options for getTaches method
@@ -52,5 +99,4 @@ export interface GetTachesOptions {
 export interface ExportFileOptions {
     filename?: string | null;
     fileExtension?: 'xlsx' | 'csv';
-    userId?: number | null;
 }

@@ -1,7 +1,7 @@
 "use strict";
 /**
  * Taches Types
- * Generated API types for Taches (Tasks)
+ * API types for Taches (preventive maintenance tasks)
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 //# sourceMappingURL=Taches.js.map
