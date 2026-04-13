@@ -1,0 +1,10 @@
+{
+  "name": "vg-sdk-docs-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MCP server exposing VerifgoodSDK documentation as tools",
+  "main": "index.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}
