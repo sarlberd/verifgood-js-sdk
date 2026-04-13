@@ -48,6 +48,39 @@ export interface ProgressionData {
 export class Verifications extends ApiRequest {
     endpoint: string = '/api/verifications';
     endpointSingleton: string = '/api/verification';
+    /**
+     * Get a single verification by ID with responses, account context, and logs
+     * @param id Verification ID
+     * @returns Promise with verification details, reponses, account, and logs
+     */
+    async getVerification(id: number): Promise<any> {
+        return this.apiRequest(`${this.endpointSingleton}/${id}`, 'GET', null);
+    }
+
+    /**
+     * Update a verification record
+     * @param id Verification ID
+     * @param data Verification update payload (dateVerif, commentaire, nbNonConformites, spentTime, username, documents, reponses)
+     * @returns Promise with updated verification
+     */
+    async updateVerification(id: number, data: any): Promise<any> {
+        return this.put(`${this.endpointSingleton}/${id}`, { datas: data });
+    }
+
+    /**
+     * Get equipments that must be verified with their tasks and latest verifications
+     * @param metadatas Metadatas for filtering
+     * @param options Optional filters: sites, typeTache, qrCode
+     * @returns Promise with equipements, taches, verifications, and counters
+     */
+    async getCheckDatas(metadatas: Metadatas, options: { sites?: string; typeTache?: string; qrCode?: string } = {}): Promise<any> {
+        const query: any = {};
+        if (options.sites) query.sites = options.sites;
+        if (options.typeTache) query.typeTache = options.typeTache;
+        if (options.qrCode) query.qrCode = options.qrCode;
+        return this.get('/api/check-datas', metadatas, query);
+    }
+
     async getTimeline(verificationId: number): Promise<VerificationTimelineResponse> {
         const metadatas = new Metadatas();
         const response = await this.get(`${this.endpointSingleton}/${verificationId}/timeline`, metadatas, {});
@@ -109,6 +142,18 @@ export class Verifications extends ApiRequest {
      */
     async getVerificationsReponsesById(idVerification: number): Promise<any> {
         return this.apiRequest(`${this.endpointSingleton}/${idVerification}/reponses`, 'GET', null);
+    }
+
+    /**
+     * Get progressions of taches (task completion tracking)
+     * @param metadatas Metadatas for filtering
+     * @param sites Optional sites filter
+     * @returns Promise with progressions data and metadatas
+     */
+    async getProgressionsTaches(metadatas: Metadatas, sites: string | null = null): Promise<any> {
+        const query: any = {};
+        if (sites) query.sites = sites;
+        return this.get('/api/progressionstaches', metadatas, query);
     }
 
     /**

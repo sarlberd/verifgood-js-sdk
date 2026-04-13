@@ -153,6 +153,39 @@ function getService(name) {
     }
   }
 
+  // Enrichments (domain knowledge)
+  if (svc.enrichment) {
+    if (svc.enrichment.notes) {
+      lines.push("");
+      lines.push("## Notes");
+      for (const note of svc.enrichment.notes) {
+        lines.push(`- ${note}`);
+      }
+    }
+
+    if (svc.enrichment.enums) {
+      for (const en of svc.enrichment.enums) {
+        lines.push("");
+        lines.push(`## Enum: ${en.name} (field: \`${en.field}\`)`);
+        lines.push(en.description);
+        lines.push("");
+        for (const v of en.values) {
+          lines.push(`### \`${v.value}\` — ${v.label}`);
+          lines.push(`  ${v.description}`);
+          if (v.requiredFields && v.requiredFields.length > 0) {
+            lines.push(`  Required fields: ${v.requiredFields.join(", ")}`);
+          }
+          if (v.statusChange) {
+            lines.push(`  Status change: ${v.statusChange}`);
+          }
+          if (v.sideEffects && v.sideEffects.length > 0) {
+            lines.push(`  Side effects: ${v.sideEffects.join("; ")}`);
+          }
+        }
+      }
+    }
+  }
+
   return lines.join("\n");
 }
 

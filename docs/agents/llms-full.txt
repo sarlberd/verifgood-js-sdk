@@ -1159,6 +1159,14 @@ Retrieves the current Stripe customer state
   Update a record by ID
 - `remove(id: number): Promise<any>` (inherited)
   Delete a record by ID
+- `getVerification(id: number): Promise<any>`
+  Get a single verification by ID with responses, account context, and logs
+  GET {singleton}/{param}
+- `updateVerification(id: number, data: any): Promise<any>`
+  Update a verification record
+  PUT {singleton}/{param}
+- `getCheckDatas(metadatas: Metadatas, options?: { sites?: string; typeTache?: string; qrCode?: string; } = {}): Promise<any>`
+  Get equipments that must be verified with their tasks and latest verifications
 - `getTimeline(verificationId: number): Promise<VerificationTimelineResponse>`
   GET {singleton}/{param}/timeline
 - `createVerifications(verifications: any[]): Promise<any>`
@@ -1174,6 +1182,8 @@ Retrieves the current Stripe customer state
 - `getVerificationsReponsesById(idVerification: number): Promise<any>`
   Get verification responses by verification ID
   GET {singleton}/{param}/reponses
+- `getProgressionsTaches(metadatas: Metadatas, sites?: string | null = null): Promise<any>`
+  Get progressions of taches (task completion tracking)
 - `getProgression(site: string | null, metadatas: Metadatas): Promise<any>`
   Get verification progression data
   GET {endpoint}/taches/overview
@@ -1971,6 +1981,48 @@ Retrieves the current Stripe customer state
 | __uploadedFile | any | yes |
 | __action | string | yes |
 
+**Notes:**
+- Operations are the audit trail / event log of a maintenance (ficheSAV). Each operation has a `flag` that determines its type, required payload, status effects, and side effects.
+- Always required fields: dateOperation (timestamp), ficheSav_id (maintenance ID), idUser (user performing action).
+
+**Enum: OperationFlags** (field: `flag`)
+The `flag` field determines the operation type. Each flag may require additional payload fields, change the maintenance status, or trigger side effects (emails, document links).
+
+| Value | Label | Description | Required Fields | Status Change | Side Effects |
+|-------|-------|-------------|-----------------|---------------|--------------|
+| fermeture | Closure | Close/resolve a maintenance ticket | - | → RESOLUE (or → ATTENTE_VALIDATION_SUPERVISEUR if supervisor validation required) | Sets dateFermetureSAV; May generate CLOTURE_FILE operations if files attached; May generate AFFECTES_WORKING_TIME_UPDATE |
+| reouverture | Reopening | Reopen a previously closed maintenance | date | → EN_COURS | Clears dateFermetureSAV (set to null) |
+| prise_en_compte | Acknowledged | Acknowledge/take ownership of a maintenance request | - | → PRISE_EN_COMPTE | - |
+| en_attente | On Hold | Put maintenance on hold (waiting for parts, customer feedback, etc.) | - | → EN_ATTENTE | - |
+| a-valider | Pending Validation | Closure pending supervisor approval. Auto-generated when non-supervisor closes a maintenance that requires validation. | - | → ATTENTE_VALIDATION_SUPERVISEUR | - |
+| validation | Supervisor Validation | Supervisor approves/validates completed maintenance | - | → RESOLUE | - |
+| manuelle | Manual Comment | Add a manual comment/note to maintenance timeline | operation (comment text) | - | EMAIL: notifies team members with emailing_commentaire_fm preference enabled |
+| relance | Follow-up | Follow up / escalate a pending maintenance | - | - | Sets isRelance flag on maintenance |
+| relance/iot | IoT Follow-up | Automated follow-up triggered by IoT device | - | - | Sets isRelance flag on maintenance |
+| urgence | Emergency | Mark maintenance as urgent priority | - | - | - |
+| differe | Deferred | Defer/postpone maintenance to a later date | - | - | - |
+| affectation/interne | Internal Assignment | Assign maintenance to internal team member(s) | affectation_id, affectes (array of user IDs) | - | - |
+| affectation/externe | External Assignment | Assign maintenance to external third party (vendor/contractor) | tiers_id, affectation_id | - | - |
+| affectation/externe/email | External Assignment + Email | Assign to external party AND send notification email | tiers_id, affectation_id | - | EMAIL: sends assignment notification to external party |
+| affectation-tiers-accept | Third Party Accepts | Third party confirms acceptance of maintenance assignment | affectation_id | - | - |
+| affectation-tiers-reject | Third Party Rejects | Third party declines the maintenance assignment | affectation_id | - | - |
+| affectes-working-time-update | Working Time Update | Record/update time worked by assigned technicians. Auto-generated at closure. | affectation_id, affectes (array with time allocations) | - | - |
+| photo | Attach Photo | Attach a photo/image to maintenance timeline | attachedFile_id | - | - |
+| img | Image from DI | Photo taken from dispatch instruction system | attachedFile_id | - | - |
+| cloture-file | Closure File | Attach supporting document at closure. Auto-generated during fermeture when files provided. | attachedFile_id, operation (file name) | - | - |
+| levee-reserve-file | Reserve Lift File | Attach document to lift/clear reserve status. Auto-generated when lifting reserves with files. | attachedFile_id | - | - |
+| email | Email Notification | Send email notification about maintenance | - | - | EMAIL: triggers notification to configured recipients |
+| email-demande-devis | Quote Request Email | Send quote request email to vendor | tiers_id | - | EMAIL: sends quote request to vendor |
+| bi | Work Order (Bon d'Intervention) | Generate/attach a work order document | - | - | - |
+| consommation | Consumable Usage | Record consumption of spare parts/materials during maintenance | consommableMouvement_id | - | - |
+| changement_equipement | Equipment Replacement | Record equipment replacement/swap | sortieEquipement_id | - | Creates SortieEquipement record; May trigger automatic closure |
+| a_prevoir | To Be Planned | Mark maintenance as pending planning/scheduling | operation (description) | - | - |
+| tache | Task | Add a task/work item to maintenance | operation (task description) | - | - |
+| intervention-reserve | Reserved Intervention | Mark intervention as reserved with external party | intervention_id | - | - |
+| tiersinterventionponctuelle | One-Time Vendor Intervention | One-time intervention by external vendor (not under contract) | tiersintervention_id | - | - |
+| retourAFaire | Rework Needed | Work requires correction before closure can proceed | retourClient (reason) | - | - |
+| retourFait | Rework Completed | Correction/rework has been completed, closure can proceed | - | - | - |
+
 ---
 
 ### [notifications]
@@ -2386,6 +2438,12 @@ GET /taches/export/{format}
   Update a record by ID
 - `remove(id: number): Promise<any>` (inherited)
   Delete a record by ID
+- `deleteTacheUsers(tacheId: number): Promise<any>`
+  Delete all user assignments from a tache
+  DELETE /api/tache/{param}/users
+- `deleteTacheUser(tacheId: number, userId: number): Promise<any>`
+  Delete a specific user assignment from a tache
+  DELETE /api/tache/{param}/user/{param}
 
 **Types:**
 

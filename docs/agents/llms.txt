@@ -162,7 +162,7 @@ Types: Reponse, ReponseCreateRequest, ReponseUpdateRequest
 #### sdk.verifications — /api/verifications
 > Periodic compliance checks on equipment
 CRUD: getAll, getById, create, update, remove
-Custom: [GET] getTimeline(verificationId), [POST] createVerifications(verifications), [GET] startVerification(equipementId, tacheId?, uniquementMesTachesAffectes?), [GET] getVerifications(metadatas), [GET] getVerificationsReponsesNonConformes(metadatas), [GET] getVerificationsReponsesById(idVerification), [GET] getProgression(site, metadatas), [GET] getVerificationsEquipementsTaches(metadatas), [GET] getTacheState(tacheId, site?, metadatas?), [GET] getPdfFile(idVerification), [POST] addDocumentVerification(verificationId, file), [GET] exportHistoriqueTacheRecurrentes(metadatas, fileExtension?, site?)
+Custom: [GET] getVerification(id), [PUT] updateVerification(id, data), [GET] getCheckDatas(metadatas, options?), [GET] getTimeline(verificationId), [POST] createVerifications(verifications), [GET] startVerification(equipementId, tacheId?, uniquementMesTachesAffectes?), [GET] getVerifications(metadatas), [GET] getVerificationsReponsesNonConformes(metadatas), [GET] getVerificationsReponsesById(idVerification), [GET] getProgressionsTaches(metadatas, sites?), [GET] getProgression(site, metadatas), [GET] getVerificationsEquipementsTaches(metadatas), [GET] getTacheState(tacheId, site?, metadatas?), [GET] getPdfFile(idVerification), [POST] addDocumentVerification(verificationId, file), [GET] exportHistoriqueTacheRecurrentes(metadatas, fileExtension?, site?)
 Types: VerificationTimelineResponse
 
 ### [contracts]
@@ -234,6 +234,7 @@ Types: Maintenance, MaintenanceCreateRequest, MaintenanceUpdateRequest
 CRUD: getAll, getById, create, update, remove
 Custom: [POST] createBIOperation(data, idUser?, userId?), [POST] createPhotoOperation(idFM, file, idUser?, userId?), [PUT] updateOperation(data), [GET] getFile(metadatas, fileExtension?, userId?, sites?)
 Types: Operation, OperationCreateRequest, OperationUpdateRequest
+Enum [flag]: 32 values — see llms-full.txt for details
 
 ### [notifications]
 
@@ -298,6 +299,7 @@ Types: TacheCreateRequest, TacheUpdateRequest, GetTachesOptions
 #### sdk.tacheusers — /api/tache
 > User assignments for preventive tasks
 CRUD: getAll, getById, create, update, remove
+Custom: [DELETE] deleteTacheUsers(tacheId), [DELETE] deleteTacheUser(tacheId, userId)
 Types: TacheUserEntity, TacheUserCreateRequest, TacheUserUpdateRequest, BulkTacheUserCreateRequest, TacheUserAssignmentResponse
 
 ### [purchasing]

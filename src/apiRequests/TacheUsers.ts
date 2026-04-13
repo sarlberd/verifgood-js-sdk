@@ -44,6 +44,25 @@ export class TacheUsers extends ApiRequest {
   }
 
   /**
+   * Delete all user assignments from a tache
+   * @param tacheId number - The tache ID
+   * @returns Promise<any>
+   */
+  public deleteTacheUsers(tacheId: number): Promise<any> {
+    return this.delete(`/api/tache/${tacheId}/users`);
+  }
+
+  /**
+   * Delete a specific user assignment from a tache
+   * @param tacheId number - The tache ID
+   * @param userId number - The user ID to remove
+   * @returns Promise<any>
+   */
+  public deleteTacheUser(tacheId: number, userId: number): Promise<any> {
+    return this.delete(`/api/tache/${tacheId}/user/${userId}`);
+  }
+
+  /**
    * Custom post method to handle query parameters for tache user creation
    * @param endpoint string - The API endpoint
    * @param data any - The data to send
@@ -56,7 +75,7 @@ export class TacheUsers extends ApiRequest {
       const queryString = new URLSearchParams(query).toString();
       endpoint = `${endpoint}?${queryString}`;
     }
-    
+
     return this.post(endpoint, { datas: data });
   }
 }

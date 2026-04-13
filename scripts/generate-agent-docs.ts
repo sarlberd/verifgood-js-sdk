@@ -71,6 +71,219 @@ const DOMAIN_MAP: Record<string, { domain: string; description: string }> = {
   "TacheUsers": { domain: "preventive", description: "User assignments for preventive tasks" },
 };
 
+// ─── Service enrichments (domain knowledge from backend) ────────────────────
+
+const SERVICE_ENRICHMENTS: Record<string, ServiceEnrichment> = {
+  "Operation": {
+    notes: [
+      "Operations are the audit trail / event log of a maintenance (ficheSAV). Each operation has a `flag` that determines its type, required payload, status effects, and side effects.",
+      "Always required fields: dateOperation (timestamp), ficheSav_id (maintenance ID), idUser (user performing action).",
+    ],
+    enums: [{
+      name: "OperationFlags",
+      description: "The `flag` field determines the operation type. Each flag may require additional payload fields, change the maintenance status, or trigger side effects (emails, document links).",
+      field: "flag",
+      values: [
+        {
+          value: "fermeture",
+          label: "Closure",
+          description: "Close/resolve a maintenance ticket",
+          statusChange: "→ RESOLUE (or → ATTENTE_VALIDATION_SUPERVISEUR if supervisor validation required)",
+          sideEffects: ["Sets dateFermetureSAV", "May generate CLOTURE_FILE operations if files attached", "May generate AFFECTES_WORKING_TIME_UPDATE"],
+        },
+        {
+          value: "reouverture",
+          label: "Reopening",
+          description: "Reopen a previously closed maintenance",
+          requiredFields: ["date"],
+          statusChange: "→ EN_COURS",
+          sideEffects: ["Clears dateFermetureSAV (set to null)"],
+        },
+        {
+          value: "prise_en_compte",
+          label: "Acknowledged",
+          description: "Acknowledge/take ownership of a maintenance request",
+          statusChange: "→ PRISE_EN_COMPTE",
+        },
+        {
+          value: "en_attente",
+          label: "On Hold",
+          description: "Put maintenance on hold (waiting for parts, customer feedback, etc.)",
+          statusChange: "→ EN_ATTENTE",
+        },
+        {
+          value: "a-valider",
+          label: "Pending Validation",
+          description: "Closure pending supervisor approval. Auto-generated when non-supervisor closes a maintenance that requires validation.",
+          statusChange: "→ ATTENTE_VALIDATION_SUPERVISEUR",
+        },
+        {
+          value: "validation",
+          label: "Supervisor Validation",
+          description: "Supervisor approves/validates completed maintenance",
+          statusChange: "→ RESOLUE",
+        },
+        {
+          value: "manuelle",
+          label: "Manual Comment",
+          description: "Add a manual comment/note to maintenance timeline",
+          requiredFields: ["operation (comment text)"],
+          sideEffects: ["EMAIL: notifies team members with emailing_commentaire_fm preference enabled"],
+        },
+        {
+          value: "relance",
+          label: "Follow-up",
+          description: "Follow up / escalate a pending maintenance",
+          sideEffects: ["Sets isRelance flag on maintenance"],
+        },
+        {
+          value: "relance/iot",
+          label: "IoT Follow-up",
+          description: "Automated follow-up triggered by IoT device",
+          sideEffects: ["Sets isRelance flag on maintenance"],
+        },
+        {
+          value: "urgence",
+          label: "Emergency",
+          description: "Mark maintenance as urgent priority",
+        },
+        {
+          value: "differe",
+          label: "Deferred",
+          description: "Defer/postpone maintenance to a later date",
+        },
+        {
+          value: "affectation/interne",
+          label: "Internal Assignment",
+          description: "Assign maintenance to internal team member(s)",
+          requiredFields: ["affectation_id", "affectes (array of user IDs)"],
+        },
+        {
+          value: "affectation/externe",
+          label: "External Assignment",
+          description: "Assign maintenance to external third party (vendor/contractor)",
+          requiredFields: ["tiers_id", "affectation_id"],
+        },
+        {
+          value: "affectation/externe/email",
+          label: "External Assignment + Email",
+          description: "Assign to external party AND send notification email",
+          requiredFields: ["tiers_id", "affectation_id"],
+          sideEffects: ["EMAIL: sends assignment notification to external party"],
+        },
+        {
+          value: "affectation-tiers-accept",
+          label: "Third Party Accepts",
+          description: "Third party confirms acceptance of maintenance assignment",
+          requiredFields: ["affectation_id"],
+        },
+        {
+          value: "affectation-tiers-reject",
+          label: "Third Party Rejects",
+          description: "Third party declines the maintenance assignment",
+          requiredFields: ["affectation_id"],
+        },
+        {
+          value: "affectes-working-time-update",
+          label: "Working Time Update",
+          description: "Record/update time worked by assigned technicians. Auto-generated at closure.",
+          requiredFields: ["affectation_id", "affectes (array with time allocations)"],
+        },
+        {
+          value: "photo",
+          label: "Attach Photo",
+          description: "Attach a photo/image to maintenance timeline",
+          requiredFields: ["attachedFile_id"],
+        },
+        {
+          value: "img",
+          label: "Image from DI",
+          description: "Photo taken from dispatch instruction system",
+          requiredFields: ["attachedFile_id"],
+        },
+        {
+          value: "cloture-file",
+          label: "Closure File",
+          description: "Attach supporting document at closure. Auto-generated during fermeture when files provided.",
+          requiredFields: ["attachedFile_id", "operation (file name)"],
+        },
+        {
+          value: "levee-reserve-file",
+          label: "Reserve Lift File",
+          description: "Attach document to lift/clear reserve status. Auto-generated when lifting reserves with files.",
+          requiredFields: ["attachedFile_id"],
+        },
+        {
+          value: "email",
+          label: "Email Notification",
+          description: "Send email notification about maintenance",
+          sideEffects: ["EMAIL: triggers notification to configured recipients"],
+        },
+        {
+          value: "email-demande-devis",
+          label: "Quote Request Email",
+          description: "Send quote request email to vendor",
+          requiredFields: ["tiers_id"],
+          sideEffects: ["EMAIL: sends quote request to vendor"],
+        },
+        {
+          value: "bi",
+          label: "Work Order (Bon d'Intervention)",
+          description: "Generate/attach a work order document",
+        },
+        {
+          value: "consommation",
+          label: "Consumable Usage",
+          description: "Record consumption of spare parts/materials during maintenance",
+          requiredFields: ["consommableMouvement_id"],
+        },
+        {
+          value: "changement_equipement",
+          label: "Equipment Replacement",
+          description: "Record equipment replacement/swap",
+          requiredFields: ["sortieEquipement_id"],
+          sideEffects: ["Creates SortieEquipement record", "May trigger automatic closure"],
+        },
+        {
+          value: "a_prevoir",
+          label: "To Be Planned",
+          description: "Mark maintenance as pending planning/scheduling",
+          requiredFields: ["operation (description)"],
+        },
+        {
+          value: "tache",
+          label: "Task",
+          description: "Add a task/work item to maintenance",
+          requiredFields: ["operation (task description)"],
+        },
+        {
+          value: "intervention-reserve",
+          label: "Reserved Intervention",
+          description: "Mark intervention as reserved with external party",
+          requiredFields: ["intervention_id"],
+        },
+        {
+          value: "tiersinterventionponctuelle",
+          label: "One-Time Vendor Intervention",
+          description: "One-time intervention by external vendor (not under contract)",
+          requiredFields: ["tiersintervention_id"],
+        },
+        {
+          value: "retourAFaire",
+          label: "Rework Needed",
+          description: "Work requires correction before closure can proceed",
+          requiredFields: ["retourClient (reason)"],
+        },
+        {
+          value: "retourFait",
+          label: "Rework Completed",
+          description: "Correction/rework has been completed, closure can proceed",
+        },
+      ],
+    }],
+  },
+};
+
 // ─── Interfaces ─────────────────────────────────────────────────────────────
 
 interface ParamInfo {
@@ -105,6 +318,20 @@ interface TypeInfo {
   description: string;
 }
 
+interface EnumValue {
+  value: string;
+  label: string;
+  description: string;
+  requiredFields?: string[];
+  statusChange?: string;
+  sideEffects?: string[];
+}
+
+interface ServiceEnrichment {
+  enums?: { name: string; description: string; field: string; values: EnumValue[] }[];
+  notes?: string[];
+}
+
 interface ServiceInfo {
   name: string;
   className: string;
@@ -115,6 +342,7 @@ interface ServiceInfo {
   description: string;
   methods: MethodInfo[];
   types: TypeInfo[];
+  enrichment?: ServiceEnrichment;
 }
 
 interface MetadatasInfo {
@@ -461,6 +689,14 @@ function generateLlmsTxt(ref: SdkReference): string {
       if (typeNames.length > 0) {
         lines.push("Types: " + typeNames.join(", "));
       }
+
+      // Enrichments (compact: just enum names + value count)
+      if (svc.enrichment?.enums) {
+        for (const en of svc.enrichment.enums) {
+          lines.push(`Enum [${en.field}]: ${en.values.length} values — see llms-full.txt for details`);
+        }
+      }
+
       lines.push("");
     }
   }
@@ -570,6 +806,34 @@ function generateLlmsFullTxt(ref: SdkReference): string {
           }
         }
         lines.push("");
+      }
+
+      // Enrichments (full detail)
+      if (svc.enrichment) {
+        if (svc.enrichment.notes) {
+          lines.push("**Notes:**");
+          for (const note of svc.enrichment.notes) {
+            lines.push(`- ${note}`);
+          }
+          lines.push("");
+        }
+
+        if (svc.enrichment.enums) {
+          for (const en of svc.enrichment.enums) {
+            lines.push(`**Enum: ${en.name}** (field: \`${en.field}\`)`);
+            lines.push(en.description);
+            lines.push("");
+            lines.push("| Value | Label | Description | Required Fields | Status Change | Side Effects |");
+            lines.push("|-------|-------|-------------|-----------------|---------------|--------------|");
+            for (const v of en.values) {
+              const req = v.requiredFields ? v.requiredFields.join(", ") : "-";
+              const status = v.statusChange || "-";
+              const effects = v.sideEffects ? v.sideEffects.join("; ") : "-";
+              lines.push(`| ${v.value} | ${v.label} | ${v.description} | ${req} | ${status} | ${effects} |`);
+            }
+            lines.push("");
+          }
+        }
       }
 
       lines.push("---");
@@ -698,6 +962,8 @@ function main() {
       methods.push(m);
     }
 
+    const enrichment = SERVICE_ENRICHMENTS[parsed.className];
+
     services.push({
       name: parsed.className,
       className: parsed.className,
@@ -708,6 +974,7 @@ function main() {
       description: domainInfo.description,
       methods,
       types: associatedTypes,
+      ...(enrichment ? { enrichment } : {}),
     });
   }
 
