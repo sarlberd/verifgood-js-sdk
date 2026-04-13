@@ -136,6 +136,13 @@ function getService(name) {
     // Annotate ambiguous param names
     const paramNotes = m.params.map(p => fieldNote(p.name)).filter(Boolean);
     for (const n of paramNotes) lines.push(`  ${n}`);
+
+    // Method enrichment (input/output notes)
+    const me = svc.enrichment?.methods?.[m.name];
+    if (me) {
+      if (me.inputNotes) lines.push(`  Input: ${me.inputNotes}`);
+      if (me.outputNotes) lines.push(`  Output: ${me.outputNotes}`);
+    }
   }
 
   if (svc.types.length > 0) {

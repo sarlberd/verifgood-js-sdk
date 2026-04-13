@@ -44,6 +44,23 @@ class TacheUsers extends ApiRequest_1.ApiRequest {
         */
     }
     /**
+     * Delete all user assignments from a tache
+     * @param tacheId number - The tache ID
+     * @returns Promise<any>
+     */
+    deleteTacheUsers(tacheId) {
+        return this.delete(`/api/tache/${tacheId}/users`);
+    }
+    /**
+     * Delete a specific user assignment from a tache
+     * @param tacheId number - The tache ID
+     * @param userId number - The user ID to remove
+     * @returns Promise<any>
+     */
+    deleteTacheUser(tacheId, userId) {
+        return this.delete(`/api/tache/${tacheId}/user/${userId}`);
+    }
+    /**
      * Custom post method to handle query parameters for tache user creation
      * @param endpoint string - The API endpoint
      * @param data any - The data to send

@@ -79,6 +79,7 @@ Types: PersonalParameter, DisplayableParameters, LandingPageConfig, ScannerPrefe
 #### sdk.roles — /api/roles
 > Role-based access control
 CRUD: getAll, getById, create, update, remove
+Types: Role, RoleCreateRequest, RoleUpdateRequest
 
 ### [analytics]
 
@@ -294,7 +295,7 @@ Types: MaintenanceTask, MaintenanceContract, MaintenanceMetadata, PreventiveMain
 > Preventive maintenance tasks with checkpoints
 CRUD: getAll, getById, create, update, remove
 Custom: [GET] getTaches(metadatas, options?), [GET] getTachesOverview(metadatas, options?), [GET] getTache(id), [POST] createTaches(taches, restrictionSites?), [PUT] updateTache(tache, updatedTacheSites?), [DELETE] deleteTache(tache), [GET] getExcelFile(metadatas, filename?, fileExtension?)
-Types: TacheCreateRequest, TacheUpdateRequest, GetTachesOptions
+Types: TacheCreateRequest, TacheUpdateRequest, GetTachesOptions, CheckpointComposant, CheckpointConsommable, Checkpoint, TacheSiteLieu, TacheSiteProgression, TacheSite, TacheAffectation, TacheCategorie, ProgressionGlobale, TacheEntity, TacheOverview, ProgressionTache, ExportFileOptions
 
 #### sdk.tacheusers — /api/tache
 > User assignments for preventive tasks
@@ -327,7 +328,7 @@ Types: BonsDeCommandeEntite, BonsDeCommandeEntiteCreateRequest, BonsDeCommandeEn
 > Goods receipt notes
 CRUD (overridden): getAll(metadatas), getById(id), [POST] create(bonsDentree), [PUT] update(bonDentree), [DELETE] remove(bonDentree)
 Custom: [GET] getBonsDentree(metadatas), [GET] getBonDentree(idBonDentree)
-Types: BonsDentre, BonsDentreCreateRequest, BonsDentreUpdateRequest, BonDentreeDetailResponse
+Types: BonsDentre, BonsDentreCreateRequest, BonsDentreUpdateRequest, BonDentreeDetailResponse, BonDentreeDocument, BonDentreeConsommable
 
 #### sdk.bonsdesortie — /api/bons-de-sortie
 > Goods dispatch notes
@@ -347,7 +348,7 @@ Types: Affectation, AffectationCreateRequest, AffectationUpdateRequest
 > Calendar events and scheduling views
 CRUD: getAll, getById, create, update, remove
 Custom: [GET] getEvents(start?, end?, sites?, idTiers?, affectes?, metadatas?, restrictedEventsTypes?)
-Types: CalendarEventsResponse, CalendarEventsNewResponse
+Types: CalendarEventsResponse, CalendarEventsNewResponse, Calenda, CalendaCreateRequest, CalendaUpdateRequest, CalendarEvent, RawEventData, CalendarTachesData
 
 ### [search]
 
@@ -355,7 +356,7 @@ Types: CalendarEventsResponse, CalendarEventsNewResponse
 > Global search across entities
 CRUD: getAll, getById, create, update, remove
 Custom: [GET] search(searchValue, entities?, userId?, sites?), [GET] searchEquipements(searchValue, metadatas, userId?, sites?)
-Types: SearchData, SearchDataCreateRequest, SearchDataUpdateRequest, SearchDataRequest, SearchDataResponse, SearchEntities, SearchDataItem
+Types: SearchData, SearchDataCreateRequest, SearchDataUpdateRequest, SearchDataRequest, SearchDataResponse, SearchEntities, SearchDataItem, SearchCounters
 
 ### [sharing]
 

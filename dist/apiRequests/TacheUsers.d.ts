@@ -15,6 +15,19 @@ export declare class TacheUsers extends ApiRequest {
      */
     createTacheUsers(tacheUsers: any[], tacheId: number, userId?: number | null): Promise<any>;
     /**
+     * Delete all user assignments from a tache
+     * @param tacheId number - The tache ID
+     * @returns Promise<any>
+     */
+    deleteTacheUsers(tacheId: number): Promise<any>;
+    /**
+     * Delete a specific user assignment from a tache
+     * @param tacheId number - The tache ID
+     * @param userId number - The user ID to remove
+     * @returns Promise<any>
+     */
+    deleteTacheUser(tacheId: number, userId: number): Promise<any>;
+    /**
      * Custom post method to handle query parameters for tache user creation
      * @param endpoint string - The API endpoint
      * @param data any - The data to send

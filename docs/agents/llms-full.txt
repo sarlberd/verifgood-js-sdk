@@ -141,15 +141,15 @@ Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
 > Validator groups for approval workflows
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: GroupeValidateur[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<GroupeValidateur>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: GroupeValidateurCreateRequest): Promise<GroupeValidateur>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: GroupeValidateurUpdateRequest): Promise<GroupeValidateur>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `[DEPRECATED] getGroupeValidateurs(metadatas: Metadatas): Promise<any>`
   Get all groupe validateurs
@@ -181,15 +181,15 @@ Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
 > Users within validator groups
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: GroupeValidateursUser[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<GroupeValidateursUser>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: GroupeValidateursUserCreateRequest): Promise<GroupeValidateursUser>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: GroupeValidateursUserUpdateRequest): Promise<GroupeValidateursUser>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `[DEPRECATED] deleteAssociation(groupeValidateurUser: GroupeValidateursUser): Promise<any>`
   Delete a specific groupe validateur user association
@@ -222,15 +222,15 @@ Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
 > Data integration/import management
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: IntegrationsDonnee[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<IntegrationsDonnee>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: IntegrationsDonneeCreateRequest): Promise<IntegrationsDonnee>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: IntegrationsDonneeUpdateRequest): Promise<IntegrationsDonnee>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `categoriesLieux(composants: any): Promise<any>`
   Integration method for categories lieux from CSV data
@@ -281,15 +281,15 @@ Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
 > Application parameters and settings
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: DemoAccountEntities[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<DemoAccountEntities>` (inherited)
   Get a single record by ID
 - `create(datas: any): Promise<any>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: ParameterUpdateRequest): Promise<DemoAccountEntities>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getParameters(): Promise<any>`
   Get all application parameters
@@ -357,15 +357,15 @@ Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
 > User-specific preferences
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: PersonalParameter[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<PersonalParameter>` (inherited)
   Get a single record by ID
 - `create(datas: any): Promise<any>` (inherited)
   Create a new record
 - `update(id: number, datas: any): Promise<any>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 
 **Types:**
@@ -429,16 +429,36 @@ Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
 > Role-based access control
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Role[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Role>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: RoleCreateRequest): Promise<Role>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: RoleUpdateRequest): Promise<Role>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
+
+**Types:**
+
+`Role` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`RoleCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`RoleUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
 
 ---
 
@@ -448,15 +468,15 @@ Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
 > Dashboard widgets and statistics
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Dashboar[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Dashboar>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: DashboarCreateRequest): Promise<Dashboar>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: DashboarUpdateRequest): Promise<Dashboar>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 
 **Types:**
@@ -488,15 +508,15 @@ Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
 > Statistical reports and data
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Statistique[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Statistique>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: StatistiqueCreateRequest): Promise<Statistique>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: StatistiqueUpdateRequest): Promise<Statistique>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `fetchStatistiquesMaintenanceEtat(year: string, week?: string | null = null, metadatas?: Metadatas = new Metadatas()): Promise<any>`
   Statistiques Maintenance état
@@ -543,15 +563,15 @@ temps passé pour chaque technicien sur une année ou sur une semaine
 > Maintenance synthesis reports
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: SyntheseMaintenanceEntity[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<SyntheseMaintenanceEntity>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: SyntheseMaintenanceCreateRequest): Promise<SyntheseMaintenanceEntity>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: SyntheseMaintenanceUpdateRequest): Promise<SyntheseMaintenanceEntity>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getSummary(startDate: string, endDate: string, metadatas: Metadatas): Promise<any>`
   Get preventive maintenance summary data
@@ -598,15 +618,15 @@ temps passé pour chaque technicien sur une année ou sur une semaine
 > Equipment classification categories with composants
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Category[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Category>` (inherited)
   Get a single record by ID
 - `create(datas: any): Promise<any>` (inherited)
   Create a new record
 - `update(id: number, datas: any): Promise<any>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `associateComposant(categorie_id: number, composant: any): Promise<any>`
   POST {singleton}/{param}/composants
@@ -656,15 +676,15 @@ temps passé pour chaque technicien sur une année ou sur une semaine
 > Component templates associated with categories
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: LibelProblem[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<LibelProblem>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: ComposanCreateRequest): Promise<LibelProblem>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: ComposanUpdateRequest): Promise<LibelProblem>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `postComposants(composants: any[]): Promise<any>`
   Alternative method to create composants (duplicate of create)
@@ -741,15 +761,15 @@ temps passé pour chaque technicien sur une année ou sur une semaine
 > Equipment movement history
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: DeplacementsEquipement[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<DeplacementsEquipement>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: DeplacementsEquipementCreateRequest): Promise<DeplacementsEquipement>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: DeplacementsEquipementUpdateRequest): Promise<DeplacementsEquipement>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `createDeplacementsEquipements(deplacements: any[]): Promise<any>`
   Create multiple deplacements for equipements
@@ -865,7 +885,7 @@ temps passé pour chaque technicien sur une année ou sur une semaine
 > Equipment inventory management
 
 **Methods:**
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: InventairUpdateRequest): Promise<Inventair>` (inherited)
   Update a record by ID
 - `getAll(metadatas?: Metadatas): Promise<any>` (override)
   Override getAll method to get all inventaires
@@ -927,15 +947,15 @@ temps passé pour chaque technicien sur une année ou sur une semaine
 > Equipment movement records
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: MouvementEquipement[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<MouvementEquipement>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: MouvementEquipementCreateRequest): Promise<MouvementEquipement>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: MouvementEquipementUpdateRequest): Promise<MouvementEquipement>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getMovements(metadatas: Metadatas): Promise<any>`
   Get all mouvements equipements with optional metadatas filtering
@@ -1025,15 +1045,15 @@ temps passé pour chaque technicien sur une année ou sur une semaine
 > Equipment decommissioning/exit
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: SortieEquipemen[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<SortieEquipemen>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: SortieEquipemenCreateRequest): Promise<SortieEquipemen>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: SortieEquipemenUpdateRequest): Promise<SortieEquipemen>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getTypes(metadatas: Metadatas): Promise<{ datas: any[]; metadatas: any; }>`
   Get equipment output/exit types
@@ -1067,15 +1087,15 @@ temps passé pour chaque technicien sur une année ou sur une semaine
 > Stripe payment integration
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Strip[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Strip>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: StripCreateRequest): Promise<Strip>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: StripUpdateRequest): Promise<Strip>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `openCustomerPortal(): Promise<any>`
   Open customer portal
@@ -1112,15 +1132,15 @@ Retrieves the current Stripe customer state
 > Verification responses and answers
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Reponse[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Reponse>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: ReponseCreateRequest): Promise<Reponse>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: ReponseUpdateRequest): Promise<Reponse>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 
 **Types:**
@@ -1162,11 +1182,15 @@ Retrieves the current Stripe customer state
 - `getVerification(id: number): Promise<any>`
   Get a single verification by ID with responses, account context, and logs
   GET {singleton}/{param}
+  Output: { verification: Verification, reponses: Reponse[], account: Account, logs: VerificationLog[] }. Full verification detail with responses, account context, and change history.
 - `updateVerification(id: number, data: any): Promise<any>`
   Update a verification record
   PUT {singleton}/{param}
+  Input: { datas: { dateVerif?, commentaire?, nbNonConformites?, spentTime?, username?, documents?, reponses[] } }.
+  Output: Updated verification object.
 - `getCheckDatas(metadatas: Metadatas, options?: { sites?: string; typeTache?: string; qrCode?: string; } = {}): Promise<any>`
   Get equipments that must be verified with their tasks and latest verifications
+  Output: { equipements: Equipement[], taches: TacheEntity[], verifications: Verification[], counters: {} }. Returns equipment that must be verified with their tasks and latest verification status.
 - `getTimeline(verificationId: number): Promise<VerificationTimelineResponse>`
   GET {singleton}/{param}/timeline
 - `createVerifications(verifications: any[]): Promise<any>`
@@ -1174,6 +1198,8 @@ Retrieves the current Stripe customer state
 - `startVerification(equipementId: number, tacheId?: number, uniquementMesTachesAffectes?: boolean = false): Promise<any>`
   Start a verification process for an equipment
   GET /api/verifier/equipement/{param}/{param}
+  Input: equipementId (required), tacheId (optional), uniquementMesTachesAffectes (boolean, default false).
+  Output: Array of taches for the equipment, with checkpoints and affectation data.
 - `getVerifications(metadatas: Metadatas): Promise<any>`
   Get verifications with metadata filtering
 - `getVerificationsReponsesNonConformes(metadatas: Metadatas): Promise<any>`
@@ -1184,6 +1210,7 @@ Retrieves the current Stripe customer state
   GET {singleton}/{param}/reponses
 - `getProgressionsTaches(metadatas: Metadatas, sites?: string | null = null): Promise<any>`
   Get progressions of taches (task completion tracking)
+  Output: { datas: ProgressionTache[], metadatas: ... }. Each progression has nested site (id, libel_lieu, path) and tache (id, libel, type, categorie) objects.
 - `getProgression(site: string | null, metadatas: Metadatas): Promise<any>`
   Get verification progression data
   GET {endpoint}/taches/overview
@@ -1218,15 +1245,15 @@ Retrieves the current Stripe customer state
 > Contacts associated with third parties
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Contac[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Contac>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: ContacCreateRequest): Promise<Contac>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: ContacUpdateRequest): Promise<Contac>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 
 **Types:**
@@ -1262,13 +1289,13 @@ Retrieves the current Stripe customer state
 > Service contracts with third-party providers
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Contra[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Contra>` (inherited)
   Get a single record by ID
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: ContraUpdateRequest): Promise<Contra>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getContrats(metadatas: Metadatas): Promise<any>`
   Get contracts with site restrictions
@@ -1330,13 +1357,13 @@ Retrieves the current Stripe customer state
 > Contract payment schedules
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: ContratEcheancie[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<ContratEcheancie>` (inherited)
   Get a single record by ID
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: ContratEcheancieUpdateRequest): Promise<ContratEcheancie>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getContratEcheances(contratId: string): Promise<any>`
   Get echeances for a specific contract
@@ -1384,15 +1411,15 @@ Retrieves the current Stripe customer state
 > Third-party service providers/contractors
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Tier[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Tier>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: TierCreateRequest): Promise<Tier>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: TierUpdateRequest): Promise<Tier>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getTiers(metadatas: Metadatas, options?: { sites?: any; userId?: string; } = {}): Promise<any>`
   Get tiers with optional filtering
@@ -1445,7 +1472,7 @@ Retrieves the current Stripe customer state
 > File attachments and documents
 
 **Methods:**
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Document>` (inherited)
   Get a single record by ID
 - `getAll(metadatas: Metadatas): Promise<any>` (override)
   Get documents with metadata filters
@@ -1489,13 +1516,13 @@ Retrieves the current Stripe customer state
 > Hierarchical location tree (Organisation > Site > Batiment > Etage > Piece)
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Lieu[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Lieu>` (inherited)
   Get a single record by ID
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: LieuUpdateRequest): Promise<Lieu>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getOrganisations(metadatas?: any = { directives: [], filters: [] }): Promise<any>`
   Get organisations (lieux with type_lieu=Organisation)
@@ -1576,15 +1603,15 @@ Retrieves the current Stripe customer state
 > Interactive floor plans for locations
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: FeatureProperties[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<FeatureProperties>` (inherited)
   Get a single record by ID
 - `create(datas: any): Promise<any>` (inherited)
   Create a new record
 - `update(id: number, datas: any): Promise<any>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 
 **Types:**
@@ -1802,15 +1829,15 @@ Retrieves the current Stripe customer state
 > Work orders (fiches SAV) for equipment repair
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Maintenance[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Maintenance>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: MaintenanceCreateRequest): Promise<Maintenance>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: MaintenanceUpdateRequest): Promise<Maintenance>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getMaintenances(metadatas: Metadatas, options?: { _stored?: boolean; idUserAffecte?: string | null; idTiersAffecte?: string | null; onlyEncours?: boolean; onlyNonAffectes?: boolean; } = { _stored: true, idUserAffecte: null, idTiersAffecte: null, onlyEncours: true, onlyNonAffectes: false }): Promise<{ datas: MaintenanceType[]; metadatas: any; }>`
   GET maintenances liste with custom options
@@ -1918,15 +1945,15 @@ Retrieves the current Stripe customer state
 > Maintenance operations
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Operation[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Operation>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: OperationCreateRequest): Promise<Operation>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: OperationUpdateRequest): Promise<Operation>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `createBIOperation(data: any, idUser?: string, userId?: string): Promise<any>`
   Create BI Operation
@@ -2067,13 +2094,13 @@ The `flag` field determines the operation type. Each flag may require additional
 > Trade/craft type definitions
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: CorpsDetat[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<CorpsDetat>` (inherited)
   Get a single record by ID
 - `update(id: number, datas: any): Promise<any>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getCorpsDetats(metadatas: Metadatas): Promise<any>`
   Get corps d'etat list
@@ -2099,7 +2126,7 @@ The `flag` field determines the operation type. Each flag may require additional
 > Category label definitions
 
 **Methods:**
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<libellesCategorie>` (inherited)
   Get a single record by ID
 - `update(id: number, datas: any): Promise<any>` (inherited)
   Update a record by ID
@@ -2124,9 +2151,9 @@ The `flag` field determines the operation type. Each flag may require additional
 > Problem label definitions
 
 **Methods:**
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<LibelProble>` (inherited)
   Get a single record by ID
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: LibelProbleUpdateRequest): Promise<LibelProble>` (inherited)
   Update a record by ID
 - `getAll(metadatas: Metadatas): Promise<any>` (override)
   Override getAll method for libelles probleme
@@ -2178,11 +2205,11 @@ The `flag` field determines the operation type. Each flag may require additional
 > Service label definitions
 
 **Methods:**
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<LibelService>` (inherited)
   Get a single record by ID
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: LibelServiceUpdateRequest): Promise<LibelService>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getAll(metadatas: Metadatas, options?: { _stored?: boolean; _restrictionSite?: boolean; _all?: boolean; } = {}): Promise<any>` (override)
   Get all libel services with custom options
@@ -2221,15 +2248,15 @@ Custom method to handle libel service deletion with object parameter
 > Tag management for entities
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Tag[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Tag>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: TagCreateRequest): Promise<Tag>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: TagUpdateRequest): Promise<Tag>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `listComposantType(): Promise<any>`
   List composant type
@@ -2265,12 +2292,17 @@ Custom method to handle libel service deletion with object parameter
 **Methods:**
 - `getAll(metadatas: Metadatas): Promise<any>` (inherited)
   Get all records with filtering/pagination
+  Output: { datas: Checkpoint[], metadatas: { counters: { All: number } } }. Each checkpoint includes nested composant and consommable objects when linked.
 - `getById(id: number): Promise<any>` (inherited)
   Get a single record by ID
 - `create(datas: any): Promise<any>` (inherited)
   Create a new record
+  Input: { datas: Checkpoint[] }. Required fields per checkpoint: question, typeReponse, orderOfAppearance, idTache_id.
+  Output: Array of created checkpoints with generated IDs.
 - `update(id: number, datas: any): Promise<any>` (inherited)
   Update a record by ID
+  Input: { datas: Checkpoint }. Partial update — only include fields to change.
+  Output: { datas: Checkpoint } — updated checkpoint.
 - `remove(id: number): Promise<any>` (inherited)
   Delete a record by ID
 
@@ -2280,15 +2312,15 @@ Custom method to handle libel service deletion with object parameter
 > Maintenance planning
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: MaintenanceTask[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<MaintenanceTask>` (inherited)
   Get a single record by ID
 - `create(datas: any): Promise<any>` (inherited)
   Create a new record
 - `update(id: number, datas: any): Promise<any>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getPrevventiveMaintenance(focusedDate: string, metadatas: any, userId: string, sites: string): Promise<any>`
   Get preventive maintenance plan data
@@ -2349,42 +2381,52 @@ Custom method to handle libel service deletion with object parameter
 > Preventive maintenance tasks with checkpoints
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: TacheEntity[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<TacheEntity>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: TacheCreateRequest): Promise<TacheEntity>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: TacheUpdateRequest): Promise<TacheEntity>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getTaches(metadatas: Metadatas, options?: GetTachesOptions = {}): Promise<any>`
   Get all taches with optional site restrictions.
 GET /taches
+  Output: { datas: TacheEntity[], metadatas: { counters: { All: number } } }
 - `getTachesOverview(metadatas: Metadatas, options?: GetTachesOptions = {}): Promise<any>`
   Get taches overview statistics.
 GET /taches/overview
   GET {endpoint}/overview
+  Output: { total: number, completed: number, pending: number }
 - `getTache(id: number): Promise<any>`
   Get a single tache by ID with checkpoints, affectations, sites and linked equipements.
 GET /tache/{id}
   GET {singleton}/{param}
+  Output: Single TacheEntity with checkpoints[], affectation, tacheSites[], tacheEquipements[], and categorie fully populated.
 - `createTaches(taches: TacheCreateRequest[], restrictionSites?: string | null = null): Promise<any>`
   Create multiple taches with checkpoints.
 POST /taches
+  Input: { datas: TacheCreateRequest[], restrictionSites?: number[] }. Each tache must include checkpoints[] with question, typeReponse, orderOfAppearance. Schema A: set idCategorie_id. Schema B: set tacheEquipements[].
+  Output: { datas: TacheEntity[] } — created taches with generated IDs and checkpoint IDs.
 - `updateTache(tache: TacheUpdateRequest, updatedTacheSites?: any = null): Promise<any>`
   Update a tache with its related entities.
 PUT /tache/{id}
   PUT {singleton}/{param}
+  Input: { datas: TacheUpdateRequest, restrictionSites?: number[] }. Include checkpoint.id to update existing, omit id to create new. Same for tacheSites and affectation.
+  Output: { datas: TacheEntity } — updated tache.
 - `deleteTache(tache: { id: number; }): Promise<any>`
   Delete a tache and all its associations.
 DELETE /tache/{id}
   DELETE {singleton}/{param}
+  Input: Tache object with { id: number }.
+  Output: Deletion confirmation.
 - `getExcelFile(metadatas: Metadatas, filename?: string | null = null, fileExtension?: string = 'xlsx'): Promise<any>`
   Export taches to Excel/CSV file.
 GET /taches/export/{format}
   GET {endpoint}/export/{param}
+  Output: Blob — binary file (CSV or Excel) for download.
 
 **Types:**
 
@@ -2422,28 +2464,222 @@ GET /taches/export/{format}
 |-------|------|----------|
 | restrictionSites | string | null | yes |
 
+`CheckpointComposant` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| userId | string | yes |
+| libelComposant | string | yes |
+| typeComposant | string | yes |
+| icon | string | yes |
+| uidComposant | string | yes |
+
+`CheckpointConsommable` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | yes |
+| refExterne | string | yes |
+| marque | string | yes |
+| numSerie | string | yes |
+| commentaire | string | yes |
+| coutUnitaire | string | number | yes |
+| fournisseurDefault_id | number | null | yes |
+| statut | string | yes |
+| unite | string | yes |
+| tva_id | number | null | yes |
+| code | string | yes |
+| nature | string | yes |
+| category | string | yes |
+| services | string | any[] | yes |
+
+`Checkpoint` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| question | string | no |
+| typeReponse | string | no |
+| type_reponse | string | yes |
+| orderOfAppearance | number | yes |
+| consigne | string | yes |
+| section | string | yes |
+| rubrique | string | yes |
+| maxVal | string | number | null | yes |
+| minVal | string | number | null | yes |
+| messageOnVerifError | string | yes |
+| idTache_id | number | yes |
+| composant_id | number | null | yes |
+| consommable_id | number | null | yes |
+| seuils | string | any[] | null | yes |
+| isUpdatable | boolean | yes |
+| unite | string | null | yes |
+| defaultValue | string | null | yes |
+| stepValue | string | null | yes |
+| userId | string | yes |
+| photos | any[] | yes |
+| composant | any[] | CheckpointComposant | yes |
+| consommable | CheckpointConsommable | yes |
+
+`TacheSiteLieu` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libel_lieu | string | yes |
+| path | string | yes |
+
+`TacheSiteProgression` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| dateDebut | string | yes |
+| dateFin | string | yes |
+| total | number | yes |
+| verified | number | yes |
+
+`TacheSite` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| site_id | number | no |
+| libel_lieu | string | yes |
+| path | string | yes |
+| site | TacheSiteLieu | yes |
+| progressionTache | TacheSiteProgression | yes |
+
+`TacheAffectation` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| start | string | yes |
+| end | string | yes |
+| recurrence | number | yes |
+| dayOfWeek | number | yes |
+| durationMinutes | number | yes |
+| excludeDates | string | yes |
+| excludeSaturday | boolean | yes |
+| excludeSunday | boolean | yes |
+| dateDebut | string | yes |
+| dateFin | string | yes |
+| affectes | any[] | yes |
+
+`TacheCategorie` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libelleCatgorie | string | yes |
+| uid | string | yes |
+| icon | string | yes |
+| tags | string | any[] | yes |
+| isGe | string | boolean | yes |
+| codeCouleur | string | yes |
+| typeCategorie | string | yes |
+| isInventoriable | string | boolean | yes |
+| openMaintenanceOnError | string | boolean | yes |
+
+`ProgressionGlobale` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| dateDebut | string | yes |
+| dateFin | string | yes |
+| total | number | yes |
+| verified | number | yes |
+
+`TacheEntity` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libel_tache | string | yes |
+| type_tache | string | yes |
+| commentaire_tache | string | yes |
+| consigne | string | yes |
+| intex | string | yes |
+| periodicite | string | number | yes |
+| isEquipementsDisplayed | string | boolean | yes |
+| dateprochaineVerif | string | yes |
+| norme | string | yes |
+| userId | string | yes |
+| tags | string | any[] | yes |
+| prisePhotoAfterVerification | string | boolean | yes |
+| uploadDocumentAfterVerification | string | boolean | yes |
+| isDocumentRequired | boolean | yes |
+| affectationMaintenancesAfterVerification | string | boolean | yes |
+| notifOnOubli | string | boolean | yes |
+| isActive | string | number | yes |
+| created_at | string | yes |
+| updated_at | string | yes |
+| isScanRequired | string | boolean | yes |
+| idCategorie_id | number | null | yes |
+| averageTime | string | number | yes |
+| expectUserToReportOnVerification | boolean | yes |
+| canBeValidatedWithoutZooming | boolean | yes |
+| nbCheckpoints | number | null | yes |
+| uid | string | yes |
+| orderOfApparition | string | number | yes |
+| assignation | number[] | yes |
+| tacheSites | TacheSite[] | yes |
+| tacheEquipements | number[] | yes |
+| affectation | TacheAffectation | yes |
+| categorie | TacheCategorie | yes |
+| progressionGlobale | ProgressionGlobale | yes |
+| checkpoints | Checkpoint[] | yes |
+
+`TacheOverview` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| total | number | no |
+| completed | number | no |
+| pending | number | no |
+
+`ProgressionTache` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| dateDebut | string | yes |
+| dateFin | string | yes |
+| total | number | yes |
+| verified | number | yes |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+| userId | string | yes |
+| uid | string | yes |
+| site | { id?: number; libel_lieu?: string; path?: string; } | yes |
+| tache | { id?: number; libel?: string; type?: string; categorie?: { id?: number; libelleCatgorie?: string; isGe?: boolean | string; icon?: string; }; } | yes |
+
+`ExportFileOptions` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| filename | string | null | yes |
+| fileExtension | "xlsx" | "csv" | yes |
+
+**Notes:**
+- Taches are preventive maintenance tasks with checkpoints. Each tache is linked to a category or specific equipments, assigned to sites, and scheduled via affectations.
+- Two creation schemas: Schema A (category-based, requires idCategorie_id) applies to all equipment of that category. Schema B (equipment-restricted, requires tacheEquipements[]) applies to specific equipment only.
+
 ---
 
 #### sdk.tacheusers — /api/tache | /api/tache
 > User assignments for preventive tasks
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: TacheUserEntity[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<TacheUserEntity>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: TacheUserCreateRequest): Promise<TacheUserEntity>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: TacheUserUpdateRequest): Promise<TacheUserEntity>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `deleteTacheUsers(tacheId: number): Promise<any>`
   Delete all user assignments from a tache
   DELETE /api/tache/{param}/users
+  Input: tacheId: number. Deletes ALL user assignments from this tache.
+  Output: Deletion confirmation.
 - `deleteTacheUser(tacheId: number, userId: number): Promise<any>`
   Delete a specific user assignment from a tache
   DELETE /api/tache/{param}/user/{param}
+  Input: tacheId: number, userId: number. Deletes a single user assignment.
+  Output: Deletion confirmation.
 
 **Types:**
 
@@ -2493,7 +2729,7 @@ GET /taches/export/{format}
 > Line items within purchase orders
 
 **Methods:**
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<BonDeCommandeItem>` (inherited)
   Get a single record by ID
 - `getAll(metadatas: Metadatas): Promise<any>` (override)
   Override the default getAll to match the mixin behavior
@@ -2536,15 +2772,15 @@ GET /taches/export/{format}
 > Purchase orders
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: BonsDeCommand[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<BonsDeCommand>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: BonsDeCommandCreateRequest): Promise<BonsDeCommand>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: BonsDeCommandUpdateRequest): Promise<BonsDeCommand>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `cancel(bonDeCommande: BonsDeCommand): Promise<any>`
   Cancel a bon de commande
@@ -2621,7 +2857,7 @@ GET /taches/export/{format}
 > Entities associated with purchase orders
 
 **Methods:**
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<BonsDeCommandeEntite>` (inherited)
   Get a single record by ID
 - `getEntites(metadatas: Metadatas): Promise<any>`
   Get all bons de commande entites (override base method to match mixin behavior)
@@ -2733,6 +2969,35 @@ GET /taches/export/{format}
 |-------|------|----------|
 | data | BonsDentre | no |
 
+`BonDentreeDocument` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | no |
+| uploadedTo | string | no |
+| name | string | no |
+| size | string | no |
+| extension | string | no |
+
+`BonDentreeConsommable` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| consommable_mouvement_id | number | no |
+| quantite | number | no |
+| consommable_id | number | no |
+| consommable_name | string | no |
+| consommable_refExterne | string | null | no |
+| consommable_marque | string | null | no |
+| consommable_numSerie | string | null | no |
+| consommable_commentaire | string | null | no |
+| consommable_coutUnitaire | string | no |
+| consommable_unite | string | no |
+| consommable_statut | string | null | no |
+| consommable_uid | string | no |
+| consommable_created_at | string | no |
+| consommable_updated_at | string | no |
+| consommable_conditionnementColisage | string | null | no |
+| consommable_quantiteColisage | string | null | no |
+
 ---
 
 #### sdk.bonsdesortie — /api/bons-de-sortie | /api/bon-de-sortie
@@ -2792,15 +3057,15 @@ GET /taches/export/{format}
 > Task assignments and scheduling
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Affectation[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Affectation>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: AffectationCreateRequest): Promise<Affectation>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: AffectationUpdateRequest): Promise<Affectation>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `copieAffectationTache(affectation: any, start: string, end: string, affectes?: any[] = []): Promise<any>`
   Copy affectation tache
@@ -2866,15 +3131,15 @@ GET /taches/export/{format}
 > Calendar events and scheduling views
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: CalendarEvent[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<CalendarEvent>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: CalendaCreateRequest): Promise<CalendarEvent>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: CalendaUpdateRequest): Promise<CalendarEvent>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getEvents(start?: string, end?: string, sites?: string, idTiers?: string, affectes?: string[], metadatas?: Metadatas, restrictedEventsTypes?: string[]): Promise<CalendarEventsNewResponse>`
   Get calendar events with filtering options.
@@ -2896,6 +3161,59 @@ for client-side session generation, fiches curatives, and interventions.
 | taches | CalendarTachesData | null | no |
 | metadatas | any | no |
 
+`Calenda` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| start | string | yes |
+| end | string | yes |
+| sites | string | yes |
+| idTiers | string | yes |
+| affectes | string[] | yes |
+
+`CalendaCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| start | string | yes |
+| end | string | yes |
+| sites | string | yes |
+| idTiers | string | yes |
+| affectes | string[] | yes |
+
+`CalendaUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| start | string | yes |
+| end | string | yes |
+| sites | string | yes |
+| idTiers | string | yes |
+| affectes | string[] | yes |
+
+`CalendarEvent` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| calendarId | string | no |
+| category | string | no |
+| start | string | no |
+| end | string | no |
+| id | number | no |
+| isAllDay | boolean | no |
+| raw | any | no |
+
+`RawEventData` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| type | string | no |
+| start | string | no |
+| end | string | no |
+| data | { [key: string]: any; id: number; } | no |
+
+`CalendarTachesData` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| datas | any[] | no |
+| affectationsExceptions | any[] | no |
+| progressions | any[] | no |
+
 ---
 
 ### [search]
@@ -2904,15 +3222,15 @@ for client-side session generation, fiches curatives, and interventions.
 > Global search across entities
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: SearchData[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<SearchData>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: SearchDataCreateRequest): Promise<SearchData>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: SearchDataUpdateRequest): Promise<SearchData>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `search(searchValue: string, entities?: SearchEntities, userId?: string | null, sites?: string | null): Promise<SearchDataItem[]>`
   Perform a global search across multiple entities
@@ -2967,6 +3285,8 @@ for client-side session generation, fiches curatives, and interventions.
 | description | string | yes |
 | url | string | yes |
 
+`SearchCounters` (entity)
+
 ---
 
 ### [sharing]
@@ -2994,15 +3314,15 @@ for client-side session generation, fiches curatives, and interventions.
 > Consumable items tracked in stock
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: Consommabl[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Consommabl>` (inherited)
   Get a single record by ID
-- `create(datas: any): Promise<any>` (inherited)
+- `create(datas: ConsommablCreateRequest): Promise<Consommabl>` (inherited)
   Create a new record
-- `update(id: number, datas: any): Promise<any>` (inherited)
+- `update(id: number, datas: ConsommablUpdateRequest): Promise<Consommabl>` (inherited)
   Update a record by ID
-- `remove(id: number): Promise<any>` (inherited)
+- `remove(id: number): Promise<void>` (inherited)
   Delete a record by ID
 - `getConsommables(metadatas: Metadatas, options?: { _stored?: boolean; } = { _stored: true }): Promise<any>`
   Get consommables with storage options
@@ -3127,9 +3447,9 @@ Enhanced version of getAll with storage control
 > Consumable request forms
 
 **Methods:**
-- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+- `getAll(metadatas: Metadatas): Promise<{ datas: FicheDemandeConsommable[], metadatas: any }>` (inherited)
   Get all records with filtering/pagination
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<FicheDemandeConsommable>` (inherited)
   Get a single record by ID
 - `[DEPRECATED] getFiches(metadatas: Metadatas): Promise<any>`
   Get all fiches demande consommables
@@ -3187,7 +3507,7 @@ Enhanced version of getAll with storage control
 > Stock levels and movements
 
 **Methods:**
-- `getById(id: number): Promise<any>` (inherited)
+- `getById(id: number): Promise<Stock>` (inherited)
   Get a single record by ID
 - `getDepots(metadatas?: Metadatas = new Metadatas()): Promise<any>`
   Get Depots.

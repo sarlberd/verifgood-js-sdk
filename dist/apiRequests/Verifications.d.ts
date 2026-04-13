@@ -41,6 +41,30 @@ export interface ProgressionData {
 export declare class Verifications extends ApiRequest {
     endpoint: string;
     endpointSingleton: string;
+    /**
+     * Get a single verification by ID with responses, account context, and logs
+     * @param id Verification ID
+     * @returns Promise with verification details, reponses, account, and logs
+     */
+    getVerification(id: number): Promise<any>;
+    /**
+     * Update a verification record
+     * @param id Verification ID
+     * @param data Verification update payload (dateVerif, commentaire, nbNonConformites, spentTime, username, documents, reponses)
+     * @returns Promise with updated verification
+     */
+    updateVerification(id: number, data: any): Promise<any>;
+    /**
+     * Get equipments that must be verified with their tasks and latest verifications
+     * @param metadatas Metadatas for filtering
+     * @param options Optional filters: sites, typeTache, qrCode
+     * @returns Promise with equipements, taches, verifications, and counters
+     */
+    getCheckDatas(metadatas: Metadatas, options?: {
+        sites?: string;
+        typeTache?: string;
+        qrCode?: string;
+    }): Promise<any>;
     getTimeline(verificationId: number): Promise<VerificationTimelineResponse>;
     /**
      * Create new verifications
@@ -74,6 +98,13 @@ export declare class Verifications extends ApiRequest {
      * @returns Promise with verification responses
      */
     getVerificationsReponsesById(idVerification: number): Promise<any>;
+    /**
+     * Get progressions of taches (task completion tracking)
+     * @param metadatas Metadatas for filtering
+     * @param sites Optional sites filter
+     * @returns Promise with progressions data and metadatas
+     */
+    getProgressionsTaches(metadatas: Metadatas, sites?: string | null): Promise<any>;
     /**
      * Get verification progression data
      * @param site Optional site filter

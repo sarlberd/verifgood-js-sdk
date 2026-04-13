@@ -599,7 +599,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: GroupeValidateur[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -616,7 +616,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<GroupeValidateur>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -629,11 +629,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "GroupeValidateurCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<GroupeValidateur>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -651,11 +651,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "GroupeValidateurUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<GroupeValidateur>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -672,7 +672,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -775,7 +775,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: GroupeValidateursUser[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -792,7 +792,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<GroupeValidateursUser>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -805,11 +805,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "GroupeValidateursUserCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<GroupeValidateursUser>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -827,11 +827,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "GroupeValidateursUserUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<GroupeValidateursUser>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -848,7 +848,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -951,7 +951,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: IntegrationsDonnee[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -968,7 +968,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<IntegrationsDonnee>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -981,11 +981,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "IntegrationsDonneeCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<IntegrationsDonnee>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -1003,11 +1003,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "IntegrationsDonneeUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<IntegrationsDonnee>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1024,7 +1024,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1265,7 +1265,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: DemoAccountEntities[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -1282,7 +1282,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<DemoAccountEntities>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1317,11 +1317,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "ParameterUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<DemoAccountEntities>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1338,7 +1338,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1598,7 +1598,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: PersonalParameter[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -1615,7 +1615,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<PersonalParameter>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1671,7 +1671,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1871,7 +1871,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Role[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -1888,7 +1888,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Role>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1901,11 +1901,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "RoleCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Role>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -1923,11 +1923,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "RoleUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Role>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1944,7 +1944,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -1953,7 +1953,59 @@
           "customEndpoint": ""
         }
       ],
-      "types": []
+      "types": [
+        {
+          "name": "Role",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "createdAt",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "updatedAt",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "description": "Service for managing user roles and permissions - Type definitions\r\n//@TODO : need review - types should be defined based on actual API responses"
+        },
+        {
+          "name": "RoleCreateRequest",
+          "kind": "createRequest",
+          "fields": [
+            {
+              "name": "name",
+              "type": "string",
+              "optional": false
+            }
+          ],
+          "description": "Request interface for creating Role\r\n//@TODO : need review - types should be defined based on actual API requirements"
+        },
+        {
+          "name": "RoleUpdateRequest",
+          "kind": "updateRequest",
+          "fields": [
+            {
+              "name": "name",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "description": "Request interface for updating Role\r\n//@TODO : need review - types should be defined based on actual API requirements"
+        }
+      ]
     },
     {
       "name": "Dashboard",
@@ -1973,7 +2025,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Dashboar[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -1990,7 +2042,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Dashboar>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2003,11 +2055,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "DashboarCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Dashboar>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -2025,11 +2077,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "DashboarUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Dashboar>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2046,7 +2098,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2142,7 +2194,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Statistique[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -2159,7 +2211,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Statistique>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2172,11 +2224,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "StatistiqueCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Statistique>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -2194,11 +2246,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "StatistiqueUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Statistique>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2215,7 +2267,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2419,7 +2471,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: SyntheseMaintenanceEntity[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -2436,7 +2488,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SyntheseMaintenanceEntity>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2449,11 +2501,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "SyntheseMaintenanceCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SyntheseMaintenanceEntity>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -2471,11 +2523,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "SyntheseMaintenanceUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SyntheseMaintenanceEntity>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2492,7 +2544,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2657,7 +2709,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Category[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -2674,7 +2726,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Category>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -2730,7 +2782,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -3029,7 +3081,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: LibelProblem[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -3046,7 +3098,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<LibelProblem>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -3059,11 +3111,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "ComposanCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<LibelProblem>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -3081,11 +3133,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "ComposanUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<LibelProblem>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -3102,7 +3154,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -3441,7 +3493,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: DeplacementsEquipement[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -3458,7 +3510,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<DeplacementsEquipement>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -3471,11 +3523,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "DeplacementsEquipementCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<DeplacementsEquipement>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -3493,11 +3545,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "DeplacementsEquipementUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<DeplacementsEquipement>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -3514,7 +3566,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -4144,11 +4196,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "InventairUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Inventair>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -4454,7 +4506,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: MouvementEquipement[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -4471,7 +4523,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<MouvementEquipement>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -4484,11 +4536,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "MouvementEquipementCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<MouvementEquipement>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -4506,11 +4558,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "MouvementEquipementUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<MouvementEquipement>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -4527,7 +4579,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -4929,7 +4981,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: SortieEquipemen[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -4946,7 +4998,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SortieEquipemen>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -4959,11 +5011,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "SortieEquipemenCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SortieEquipemen>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -4981,11 +5033,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "SortieEquipemenUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SortieEquipemen>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5002,7 +5054,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5100,7 +5152,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Strip[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -5117,7 +5169,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Strip>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5130,11 +5182,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "StripCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Strip>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -5152,11 +5204,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "StripUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Strip>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5173,7 +5225,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5276,7 +5328,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Reponse[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -5293,7 +5345,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Reponse>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5306,11 +5358,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "ReponseCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Reponse>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -5328,11 +5380,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "ReponseUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Reponse>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5349,7 +5401,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5859,7 +5911,28 @@
           ],
           "description": ""
         }
-      ]
+      ],
+      "enrichment": {
+        "methods": {
+          "getProgressionsTaches": {
+            "outputNotes": "{ datas: ProgressionTache[], metadatas: ... }. Each progression has nested site (id, libel_lieu, path) and tache (id, libel, type, categorie) objects."
+          },
+          "getCheckDatas": {
+            "outputNotes": "{ equipements: Equipement[], taches: TacheEntity[], verifications: Verification[], counters: {} }. Returns equipment that must be verified with their tasks and latest verification status."
+          },
+          "getVerification": {
+            "outputNotes": "{ verification: Verification, reponses: Reponse[], account: Account, logs: VerificationLog[] }. Full verification detail with responses, account context, and change history."
+          },
+          "updateVerification": {
+            "inputNotes": "{ datas: { dateVerif?, commentaire?, nbNonConformites?, spentTime?, username?, documents?, reponses[] } }.",
+            "outputNotes": "Updated verification object."
+          },
+          "startVerification": {
+            "inputNotes": "equipementId (required), tacheId (optional), uniquementMesTachesAffectes (boolean, default false).",
+            "outputNotes": "Array of taches for the equipment, with checkpoints and affectation data."
+          }
+        }
+      }
     },
     {
       "name": "Contact",
@@ -5879,7 +5952,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Contac[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -5896,7 +5969,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Contac>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5909,11 +5982,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "ContacCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Contac>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -5931,11 +6004,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "ContacUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Contac>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -5952,7 +6025,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6068,7 +6141,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Contra[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -6085,7 +6158,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Contra>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6103,11 +6176,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "ContraUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Contra>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6124,7 +6197,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6423,7 +6496,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: ContratEcheancie[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -6440,7 +6513,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<ContratEcheancie>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6458,11 +6531,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "ContratEcheancieUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<ContratEcheancie>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6479,7 +6552,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6666,7 +6739,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Tier[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -6683,7 +6756,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Tier>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6696,11 +6769,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "TierCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Tier>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -6718,11 +6791,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "TierUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Tier>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6739,7 +6812,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -6965,7 +7038,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Document>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -7136,7 +7209,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Lieu[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -7153,7 +7226,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Lieu>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -7171,11 +7244,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "LieuUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Lieu>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -7192,7 +7265,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -7600,7 +7673,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: FeatureProperties[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -7617,7 +7690,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<FeatureProperties>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -7673,7 +7746,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -8488,7 +8561,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Maintenance[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -8505,7 +8578,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Maintenance>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -8518,11 +8591,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "MaintenanceCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Maintenance>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -8540,11 +8613,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "MaintenanceUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Maintenance>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -8561,7 +8634,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -9169,7 +9242,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Operation[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -9186,7 +9259,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Operation>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -9199,11 +9272,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "OperationCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Operation>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -9221,11 +9294,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "OperationUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Operation>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -9242,7 +9315,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10059,7 +10132,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: CorpsDetat[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -10076,7 +10149,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<CorpsDetat>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10115,7 +10188,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10223,7 +10296,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<libellesCategorie>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10344,7 +10417,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<LibelProble>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10362,11 +10435,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "LibelProbleUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<LibelProble>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10596,7 +10669,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<LibelService>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10614,11 +10687,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "LibelServiceUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<LibelService>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10635,7 +10708,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10773,7 +10846,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Tag[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -10790,7 +10863,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Tag>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10803,11 +10876,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "TagCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Tag>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -10825,11 +10898,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "TagUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Tag>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -10846,7 +10919,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11020,7 +11093,22 @@
           "customEndpoint": ""
         }
       ],
-      "types": []
+      "types": [],
+      "enrichment": {
+        "methods": {
+          "getAll": {
+            "outputNotes": "{ datas: Checkpoint[], metadatas: { counters: { All: number } } }. Each checkpoint includes nested composant and consommable objects when linked."
+          },
+          "create": {
+            "inputNotes": "{ datas: Checkpoint[] }. Required fields per checkpoint: question, typeReponse, orderOfAppearance, idTache_id.",
+            "outputNotes": "Array of created checkpoints with generated IDs."
+          },
+          "update": {
+            "inputNotes": "{ datas: Checkpoint }. Partial update — only include fields to change.",
+            "outputNotes": "{ datas: Checkpoint } — updated checkpoint."
+          }
+        }
+      }
     },
     {
       "name": "PlanMaintenance",
@@ -11040,7 +11128,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: MaintenanceTask[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -11057,7 +11145,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<MaintenanceTask>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11113,7 +11201,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11346,7 +11434,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: TacheEntity[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -11363,7 +11451,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<TacheEntity>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11376,11 +11464,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "TacheCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<TacheEntity>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -11398,11 +11486,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "TacheUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<TacheEntity>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11419,7 +11507,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11634,7 +11722,7 @@
               "optional": true
             }
           ],
-          "description": "Request interface for creating Taches"
+          "description": "Request interface for creating Taches (POST /taches)\n\nTwo creation schemas:\n- Schema A (category-based): requires idCategorie_id, applies to all equipment of that category\n- Schema B (equipment-restricted): requires tacheEquipements array, no category"
         },
         {
           "name": "TacheUpdateRequest",
@@ -11701,7 +11789,7 @@
               "optional": true
             }
           ],
-          "description": "Request interface for updating Taches"
+          "description": "Request interface for updating Taches (PUT /tache/{id})\nAll fields optional (partial update)"
         },
         {
           "name": "GetTachesOptions",
@@ -11714,8 +11802,801 @@
             }
           ],
           "description": "Options for getTaches method"
+        },
+        {
+          "name": "CheckpointComposant",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "userId",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "libelComposant",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "typeComposant",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "icon",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "uidComposant",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "description": "Taches Types\nAPI types for Taches (preventive maintenance tasks)\nSource: TachesNormalizer.php, CheckpointNormalizer.php, ProgressionTacheNormalizer.php"
+        },
+        {
+          "name": "CheckpointConsommable",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "refExterne",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "marque",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "numSerie",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "commentaire",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "coutUnitaire",
+              "type": "string | number",
+              "optional": true
+            },
+            {
+              "name": "fournisseurDefault_id",
+              "type": "number | null",
+              "optional": true
+            },
+            {
+              "name": "statut",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "unite",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "tva_id",
+              "type": "number | null",
+              "optional": true
+            },
+            {
+              "name": "code",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "nature",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "category",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "services",
+              "type": "string | any[]",
+              "optional": true
+            }
+          ],
+          "description": "Consommable associated with a checkpoint"
+        },
+        {
+          "name": "Checkpoint",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "question",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "typeReponse",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "type_reponse",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "orderOfAppearance",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "consigne",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "section",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "rubrique",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "maxVal",
+              "type": "string | number | null",
+              "optional": true
+            },
+            {
+              "name": "minVal",
+              "type": "string | number | null",
+              "optional": true
+            },
+            {
+              "name": "messageOnVerifError",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "idTache_id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "composant_id",
+              "type": "number | null",
+              "optional": true
+            },
+            {
+              "name": "consommable_id",
+              "type": "number | null",
+              "optional": true
+            },
+            {
+              "name": "seuils",
+              "type": "string | any[] | null",
+              "optional": true
+            },
+            {
+              "name": "isUpdatable",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "unite",
+              "type": "string | null",
+              "optional": true
+            },
+            {
+              "name": "defaultValue",
+              "type": "string | null",
+              "optional": true
+            },
+            {
+              "name": "stepValue",
+              "type": "string | null",
+              "optional": true
+            },
+            {
+              "name": "userId",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "photos",
+              "type": "any[]",
+              "optional": true
+            },
+            {
+              "name": "composant",
+              "type": "any[] | CheckpointComposant",
+              "optional": true
+            },
+            {
+              "name": "consommable",
+              "type": "CheckpointConsommable",
+              "optional": true
+            }
+          ],
+          "description": "Checkpoint associated with a tache\nInput: question, typeReponse, orderOfAppearance are required for creation\nOutput: all fields populated by backend"
+        },
+        {
+          "name": "TacheSiteLieu",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "libel_lieu",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "path",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "description": "Site location info nested in TacheSite"
+        },
+        {
+          "name": "TacheSiteProgression",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "dateDebut",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "dateFin",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "total",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "verified",
+              "type": "number",
+              "optional": true
+            }
+          ],
+          "description": "Progression data for a tache on a specific site"
+        },
+        {
+          "name": "TacheSite",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "site_id",
+              "type": "number",
+              "optional": false
+            },
+            {
+              "name": "libel_lieu",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "path",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "site",
+              "type": "TacheSiteLieu",
+              "optional": true
+            },
+            {
+              "name": "progressionTache",
+              "type": "TacheSiteProgression",
+              "optional": true
+            }
+          ],
+          "description": "Tache site association\nInput: site_id required for creation\nOutput: includes nested site and progressionTache objects"
+        },
+        {
+          "name": "TacheAffectation",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "start",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "end",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "recurrence",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "dayOfWeek",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "durationMinutes",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "excludeDates",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "excludeSaturday",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "excludeSunday",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "dateDebut",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "dateFin",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "affectes",
+              "type": "any[]",
+              "optional": true
+            }
+          ],
+          "description": "Affectation (scheduling) for a tache"
+        },
+        {
+          "name": "TacheCategorie",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "libelleCatgorie",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "uid",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "icon",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "tags",
+              "type": "string | any[]",
+              "optional": true
+            },
+            {
+              "name": "isGe",
+              "type": "string | boolean",
+              "optional": true
+            },
+            {
+              "name": "codeCouleur",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "typeCategorie",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "isInventoriable",
+              "type": "string | boolean",
+              "optional": true
+            },
+            {
+              "name": "openMaintenanceOnError",
+              "type": "string | boolean",
+              "optional": true
+            }
+          ],
+          "description": "Categorie nested in tache response"
+        },
+        {
+          "name": "ProgressionGlobale",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "dateDebut",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "dateFin",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "total",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "verified",
+              "type": "number",
+              "optional": true
+            }
+          ],
+          "description": "Global progression across all sites for a tache"
+        },
+        {
+          "name": "TacheEntity",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "libel_tache",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "type_tache",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "commentaire_tache",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "consigne",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "intex",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "periodicite",
+              "type": "string | number",
+              "optional": true
+            },
+            {
+              "name": "isEquipementsDisplayed",
+              "type": "string | boolean",
+              "optional": true
+            },
+            {
+              "name": "dateprochaineVerif",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "norme",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "userId",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "tags",
+              "type": "string | any[]",
+              "optional": true
+            },
+            {
+              "name": "prisePhotoAfterVerification",
+              "type": "string | boolean",
+              "optional": true
+            },
+            {
+              "name": "uploadDocumentAfterVerification",
+              "type": "string | boolean",
+              "optional": true
+            },
+            {
+              "name": "isDocumentRequired",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "affectationMaintenancesAfterVerification",
+              "type": "string | boolean",
+              "optional": true
+            },
+            {
+              "name": "notifOnOubli",
+              "type": "string | boolean",
+              "optional": true
+            },
+            {
+              "name": "isActive",
+              "type": "string | number",
+              "optional": true
+            },
+            {
+              "name": "created_at",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "updated_at",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "isScanRequired",
+              "type": "string | boolean",
+              "optional": true
+            },
+            {
+              "name": "idCategorie_id",
+              "type": "number | null",
+              "optional": true
+            },
+            {
+              "name": "averageTime",
+              "type": "string | number",
+              "optional": true
+            },
+            {
+              "name": "expectUserToReportOnVerification",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "canBeValidatedWithoutZooming",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "nbCheckpoints",
+              "type": "number | null",
+              "optional": true
+            },
+            {
+              "name": "uid",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "orderOfApparition",
+              "type": "string | number",
+              "optional": true
+            },
+            {
+              "name": "assignation",
+              "type": "number[]",
+              "optional": true
+            },
+            {
+              "name": "tacheSites",
+              "type": "TacheSite[]",
+              "optional": true
+            },
+            {
+              "name": "tacheEquipements",
+              "type": "number[]",
+              "optional": true
+            },
+            {
+              "name": "affectation",
+              "type": "TacheAffectation",
+              "optional": true
+            },
+            {
+              "name": "categorie",
+              "type": "TacheCategorie",
+              "optional": true
+            },
+            {
+              "name": "progressionGlobale",
+              "type": "ProgressionGlobale",
+              "optional": true
+            },
+            {
+              "name": "checkpoints",
+              "type": "Checkpoint[]",
+              "optional": true
+            }
+          ],
+          "description": "Tache entity — full response from GET /taches and GET /tache/{id}"
+        },
+        {
+          "name": "TacheOverview",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "total",
+              "type": "number",
+              "optional": false
+            },
+            {
+              "name": "completed",
+              "type": "number",
+              "optional": false
+            },
+            {
+              "name": "pending",
+              "type": "number",
+              "optional": false
+            }
+          ],
+          "description": "Response from GET /taches/overview"
+        },
+        {
+          "name": "ProgressionTache",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "dateDebut",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "dateFin",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "total",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "verified",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "createdAt",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "updatedAt",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "userId",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "uid",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "site",
+              "type": "{ id?: number; libel_lieu?: string; path?: string; }",
+              "optional": true
+            },
+            {
+              "name": "tache",
+              "type": "{ id?: number; libel?: string; type?: string; categorie?: { id?: number; libelleCatgorie?: string; isGe?: boolean | string; icon?: string; }; }",
+              "optional": true
+            }
+          ],
+          "description": "ProgressionTache — response from GET /progressionstaches"
+        },
+        {
+          "name": "ExportFileOptions",
+          "kind": "other",
+          "fields": [
+            {
+              "name": "filename",
+              "type": "string | null",
+              "optional": true
+            },
+            {
+              "name": "fileExtension",
+              "type": "\"xlsx\" | \"csv\"",
+              "optional": true
+            }
+          ],
+          "description": "Export file options"
         }
-      ]
+      ],
+      "enrichment": {
+        "notes": [
+          "Taches are preventive maintenance tasks with checkpoints. Each tache is linked to a category or specific equipments, assigned to sites, and scheduled via affectations.",
+          "Two creation schemas: Schema A (category-based, requires idCategorie_id) applies to all equipment of that category. Schema B (equipment-restricted, requires tacheEquipements[]) applies to specific equipment only."
+        ],
+        "methods": {
+          "getTaches": {
+            "outputNotes": "{ datas: TacheEntity[], metadatas: { counters: { All: number } } }"
+          },
+          "getTache": {
+            "outputNotes": "Single TacheEntity with checkpoints[], affectation, tacheSites[], tacheEquipements[], and categorie fully populated."
+          },
+          "getTachesOverview": {
+            "outputNotes": "{ total: number, completed: number, pending: number }"
+          },
+          "createTaches": {
+            "inputNotes": "{ datas: TacheCreateRequest[], restrictionSites?: number[] }. Each tache must include checkpoints[] with question, typeReponse, orderOfAppearance. Schema A: set idCategorie_id. Schema B: set tacheEquipements[].",
+            "outputNotes": "{ datas: TacheEntity[] } — created taches with generated IDs and checkpoint IDs."
+          },
+          "updateTache": {
+            "inputNotes": "{ datas: TacheUpdateRequest, restrictionSites?: number[] }. Include checkpoint.id to update existing, omit id to create new. Same for tacheSites and affectation.",
+            "outputNotes": "{ datas: TacheEntity } — updated tache."
+          },
+          "deleteTache": {
+            "inputNotes": "Tache object with { id: number }.",
+            "outputNotes": "Deletion confirmation."
+          },
+          "getExcelFile": {
+            "outputNotes": "Blob — binary file (CSV or Excel) for download."
+          }
+        }
+      }
     },
     {
       "name": "TacheUsers",
@@ -11735,7 +12616,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: TacheUserEntity[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -11752,7 +12633,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<TacheUserEntity>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11765,11 +12646,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "TacheUserCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<TacheUserEntity>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -11787,11 +12668,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "TacheUserUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<TacheUserEntity>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11808,7 +12689,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -11982,7 +12863,23 @@
           ],
           "description": "Assignment response interface"
         }
-      ]
+      ],
+      "enrichment": {
+        "methods": {
+          "createTacheUsers": {
+            "inputNotes": "Array of user assignment objects + tacheId. Creates associations between users and the tache.",
+            "outputNotes": "Created assignment records."
+          },
+          "deleteTacheUsers": {
+            "inputNotes": "tacheId: number. Deletes ALL user assignments from this tache.",
+            "outputNotes": "Deletion confirmation."
+          },
+          "deleteTacheUser": {
+            "inputNotes": "tacheId: number, userId: number. Deletes a single user assignment.",
+            "outputNotes": "Deletion confirmation."
+          }
+        }
+      }
     },
     {
       "name": "BonDeCommandeItems",
@@ -12002,7 +12899,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<BonDeCommandeItem>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -12171,7 +13068,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: BonsDeCommand[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -12188,7 +13085,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<BonsDeCommand>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -12201,11 +13098,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "BonsDeCommandCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<BonsDeCommand>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -12223,11 +13120,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "BonsDeCommandUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<BonsDeCommand>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -12244,7 +13141,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -12657,7 +13554,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<BonsDeCommandeEntite>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -13137,6 +14034,125 @@
             }
           ],
           "description": "Response interface for getting a single BonDentree by ID"
+        },
+        {
+          "name": "BonDentreeDocument",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "id",
+              "type": "number",
+              "optional": false
+            },
+            {
+              "name": "uploadedTo",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "size",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "extension",
+              "type": "string",
+              "optional": false
+            }
+          ],
+          "description": "Document attached to a bon d'entrée"
+        },
+        {
+          "name": "BonDentreeConsommable",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "consommable_mouvement_id",
+              "type": "number",
+              "optional": false
+            },
+            {
+              "name": "quantite",
+              "type": "number",
+              "optional": false
+            },
+            {
+              "name": "consommable_id",
+              "type": "number",
+              "optional": false
+            },
+            {
+              "name": "consommable_name",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "consommable_refExterne",
+              "type": "string | null",
+              "optional": false
+            },
+            {
+              "name": "consommable_marque",
+              "type": "string | null",
+              "optional": false
+            },
+            {
+              "name": "consommable_numSerie",
+              "type": "string | null",
+              "optional": false
+            },
+            {
+              "name": "consommable_commentaire",
+              "type": "string | null",
+              "optional": false
+            },
+            {
+              "name": "consommable_coutUnitaire",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "consommable_unite",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "consommable_statut",
+              "type": "string | null",
+              "optional": false
+            },
+            {
+              "name": "consommable_uid",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "consommable_created_at",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "consommable_updated_at",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "consommable_conditionnementColisage",
+              "type": "string | null",
+              "optional": false
+            },
+            {
+              "name": "consommable_quantiteColisage",
+              "type": "string | null",
+              "optional": false
+            }
+          ],
+          "description": "Consommable (consumable) item in a bon d'entrée"
         }
       ]
     },
@@ -13390,7 +14406,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Affectation[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -13407,7 +14423,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Affectation>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -13420,11 +14436,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "AffectationCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Affectation>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -13442,11 +14458,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "AffectationUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Affectation>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -13463,7 +14479,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -13805,7 +14821,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: CalendarEvent[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -13822,7 +14838,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<CalendarEvent>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -13835,11 +14851,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "CalendaCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<CalendarEvent>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -13857,11 +14873,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "CalendaUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<CalendarEvent>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -13878,7 +14894,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -13973,6 +14989,193 @@
             }
           ],
           "description": "Calendar events response from /calendars/events/new endpoint"
+        },
+        {
+          "name": "Calenda",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "start",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "end",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "sites",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "idTiers",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "affectes",
+              "type": "string[]",
+              "optional": true
+            }
+          ],
+          "description": "Service for managing calendar events - Type definitions"
+        },
+        {
+          "name": "CalendaCreateRequest",
+          "kind": "createRequest",
+          "fields": [
+            {
+              "name": "start",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "end",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "sites",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "idTiers",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "affectes",
+              "type": "string[]",
+              "optional": true
+            }
+          ],
+          "description": "Request interface for creating Calenda"
+        },
+        {
+          "name": "CalendaUpdateRequest",
+          "kind": "updateRequest",
+          "fields": [
+            {
+              "name": "start",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "end",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "sites",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "idTiers",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "affectes",
+              "type": "string[]",
+              "optional": true
+            }
+          ],
+          "description": "Request interface for updating Calenda"
+        },
+        {
+          "name": "CalendarEvent",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "calendarId",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "category",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "start",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "end",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "id",
+              "type": "number",
+              "optional": false
+            },
+            {
+              "name": "isAllDay",
+              "type": "boolean",
+              "optional": false
+            },
+            {
+              "name": "raw",
+              "type": "any",
+              "optional": false
+            }
+          ],
+          "description": "Calendar event interface"
+        },
+        {
+          "name": "RawEventData",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "type",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "start",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "end",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "data",
+              "type": "{ [key: string]: any; id: number; }",
+              "optional": false
+            }
+          ],
+          "description": "Raw event data from API"
+        },
+        {
+          "name": "CalendarTachesData",
+          "kind": "entity",
+          "fields": [
+            {
+              "name": "datas",
+              "type": "any[]",
+              "optional": false
+            },
+            {
+              "name": "affectationsExceptions",
+              "type": "any[]",
+              "optional": false
+            },
+            {
+              "name": "progressions",
+              "type": "any[]",
+              "optional": false
+            }
+          ],
+          "description": "Taches data returned by /calendars/events/new"
         }
       ]
     },
@@ -13994,7 +15197,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: SearchData[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -14011,7 +15214,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SearchData>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -14024,11 +15227,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "SearchDataCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SearchData>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -14046,11 +15249,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "SearchDataUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<SearchData>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -14067,7 +15270,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -14301,6 +15504,12 @@
             }
           ],
           "description": "Search result item"
+        },
+        {
+          "name": "SearchCounters",
+          "kind": "entity",
+          "fields": [],
+          "description": "Search counters"
         }
       ]
     },
@@ -14424,7 +15633,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: Consommabl[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -14441,7 +15650,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Consommabl>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -14454,11 +15663,11 @@
           "params": [
             {
               "name": "datas",
-              "type": "any",
+              "type": "ConsommablCreateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Consommabl>",
           "description": "Create a new record",
           "isInherited": true,
           "isOverride": false,
@@ -14476,11 +15685,11 @@
             },
             {
               "name": "datas",
-              "type": "any",
+              "type": "ConsommablUpdateRequest",
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Consommabl>",
           "description": "Update a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -14497,7 +15706,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<void>",
           "description": "Delete a record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -15267,7 +16476,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<{ datas: FicheDemandeConsommable[], metadatas: any }>",
           "description": "Get all records with filtering/pagination",
           "isInherited": true,
           "isOverride": false,
@@ -15284,7 +16493,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<FicheDemandeConsommable>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,
@@ -15552,7 +16761,7 @@
               "optional": false
             }
           ],
-          "returnType": "Promise<any>",
+          "returnType": "Promise<Stock>",
           "description": "Get a single record by ID",
           "isInherited": true,
           "isOverride": false,

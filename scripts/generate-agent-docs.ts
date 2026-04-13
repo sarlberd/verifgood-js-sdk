@@ -282,6 +282,90 @@ const SERVICE_ENRICHMENTS: Record<string, ServiceEnrichment> = {
       ],
     }],
   },
+  "Taches": {
+    notes: [
+      "Taches are preventive maintenance tasks with checkpoints. Each tache is linked to a category or specific equipments, assigned to sites, and scheduled via affectations.",
+      "Two creation schemas: Schema A (category-based, requires idCategorie_id) applies to all equipment of that category. Schema B (equipment-restricted, requires tacheEquipements[]) applies to specific equipment only.",
+    ],
+    methods: {
+      "getTaches": {
+        outputNotes: "{ datas: TacheEntity[], metadatas: { counters: { All: number } } }",
+      },
+      "getTache": {
+        outputNotes: "Single TacheEntity with checkpoints[], affectation, tacheSites[], tacheEquipements[], and categorie fully populated.",
+      },
+      "getTachesOverview": {
+        outputNotes: "{ total: number, completed: number, pending: number }",
+      },
+      "createTaches": {
+        inputNotes: "{ datas: TacheCreateRequest[], restrictionSites?: number[] }. Each tache must include checkpoints[] with question, typeReponse, orderOfAppearance. Schema A: set idCategorie_id. Schema B: set tacheEquipements[].",
+        outputNotes: "{ datas: TacheEntity[] } — created taches with generated IDs and checkpoint IDs.",
+      },
+      "updateTache": {
+        inputNotes: "{ datas: TacheUpdateRequest, restrictionSites?: number[] }. Include checkpoint.id to update existing, omit id to create new. Same for tacheSites and affectation.",
+        outputNotes: "{ datas: TacheEntity } — updated tache.",
+      },
+      "deleteTache": {
+        inputNotes: "Tache object with { id: number }.",
+        outputNotes: "Deletion confirmation.",
+      },
+      "getExcelFile": {
+        outputNotes: "Blob — binary file (CSV or Excel) for download.",
+      },
+    },
+  },
+  "Checkpoints": {
+    methods: {
+      "getAll": {
+        outputNotes: "{ datas: Checkpoint[], metadatas: { counters: { All: number } } }. Each checkpoint includes nested composant and consommable objects when linked.",
+      },
+      "create": {
+        inputNotes: "{ datas: Checkpoint[] }. Required fields per checkpoint: question, typeReponse, orderOfAppearance, idTache_id.",
+        outputNotes: "Array of created checkpoints with generated IDs.",
+      },
+      "update": {
+        inputNotes: "{ datas: Checkpoint }. Partial update — only include fields to change.",
+        outputNotes: "{ datas: Checkpoint } — updated checkpoint.",
+      },
+    },
+  },
+  "TacheUsers": {
+    methods: {
+      "createTacheUsers": {
+        inputNotes: "Array of user assignment objects + tacheId. Creates associations between users and the tache.",
+        outputNotes: "Created assignment records.",
+      },
+      "deleteTacheUsers": {
+        inputNotes: "tacheId: number. Deletes ALL user assignments from this tache.",
+        outputNotes: "Deletion confirmation.",
+      },
+      "deleteTacheUser": {
+        inputNotes: "tacheId: number, userId: number. Deletes a single user assignment.",
+        outputNotes: "Deletion confirmation.",
+      },
+    },
+  },
+  "Verifications": {
+    methods: {
+      "getProgressionsTaches": {
+        outputNotes: "{ datas: ProgressionTache[], metadatas: ... }. Each progression has nested site (id, libel_lieu, path) and tache (id, libel, type, categorie) objects.",
+      },
+      "getCheckDatas": {
+        outputNotes: "{ equipements: Equipement[], taches: TacheEntity[], verifications: Verification[], counters: {} }. Returns equipment that must be verified with their tasks and latest verification status.",
+      },
+      "getVerification": {
+        outputNotes: "{ verification: Verification, reponses: Reponse[], account: Account, logs: VerificationLog[] }. Full verification detail with responses, account context, and change history.",
+      },
+      "updateVerification": {
+        inputNotes: "{ datas: { dateVerif?, commentaire?, nbNonConformites?, spentTime?, username?, documents?, reponses[] } }.",
+        outputNotes: "Updated verification object.",
+      },
+      "startVerification": {
+        inputNotes: "equipementId (required), tacheId (optional), uniquementMesTachesAffectes (boolean, default false).",
+        outputNotes: "Array of taches for the equipment, with checkpoints and affectation data.",
+      },
+    },
+  },
 };
 
 // ─── Interfaces ─────────────────────────────────────────────────────────────
@@ -327,9 +411,17 @@ interface EnumValue {
   sideEffects?: string[];
 }
 
+interface MethodEnrichment {
+  inputNotes?: string;
+  outputNotes?: string;
+  inputType?: string;
+  outputType?: string;
+}
+
 interface ServiceEnrichment {
   enums?: { name: string; description: string; field: string; values: EnumValue[] }[];
   notes?: string[];
+  methods?: Record<string, MethodEnrichment>;
 }
 
 interface ServiceInfo {
@@ -788,6 +880,12 @@ function generateLlmsFullTxt(ref: SdkReference): string {
         lines.push(`- \`${prefix}${formatMethodSignature(m)}\`${tag}`);
         if (m.description) lines.push(`  ${m.description}`);
         if (m.httpVerb && m.customEndpoint) lines.push(`  ${m.httpVerb} ${m.customEndpoint}`);
+        // Method enrichment (input/output notes)
+        const methodEnrichment = svc.enrichment?.methods?.[m.name];
+        if (methodEnrichment) {
+          if (methodEnrichment.inputNotes) lines.push(`  Input: ${methodEnrichment.inputNotes}`);
+          if (methodEnrichment.outputNotes) lines.push(`  Output: ${methodEnrichment.outputNotes}`);
+        }
       }
       lines.push("");
 
@@ -926,22 +1024,31 @@ function main() {
     const accessor = classToAccessor.get(parsed.className) || parsed.className.toLowerCase();
     const domainInfo = DOMAIN_MAP[parsed.className] || { domain: "other", description: "" };
 
-    // Get associated types via import analysis, with filename fallback
+    // Get associated types via import analysis + filename matching
     const associatedTypes: TypeInfo[] = [];
-    if (parsed.importedTypes.length > 0) {
-      for (const typeName of parsed.importedTypes) {
-        const typeInfo = typesByName.get(typeName);
-        if (typeInfo) associatedTypes.push(typeInfo);
+    const addedTypeNames = new Set<string>();
+
+    // 1. Add explicitly imported types
+    for (const typeName of parsed.importedTypes) {
+      const typeInfo = typesByName.get(typeName);
+      if (typeInfo && !addedTypeNames.has(typeName)) {
+        associatedTypes.push(typeInfo);
+        addedTypeNames.add(typeName);
       }
-    } else {
-      // Fallback: try to match by filename (e.g., Equipements -> Equipements.ts or Equipement.ts in types/)
-      const candidates = [parsed.className, parsed.className.replace(/s$/, ""), parsed.className.replace(/es$/, "")];
-      for (const candidate of candidates) {
-        const types = allTypes.get(candidate);
-        if (types && types.length > 0) {
-          associatedTypes.push(...types);
-          break;
+    }
+
+    // 2. Also include all types from the matching filename (covers non-imported types like TacheEntity)
+    const candidates = [parsed.className, parsed.className.replace(/s$/, ""), parsed.className.replace(/es$/, "")];
+    for (const candidate of candidates) {
+      const types = allTypes.get(candidate);
+      if (types && types.length > 0) {
+        for (const t of types) {
+          if (!addedTypeNames.has(t.name)) {
+            associatedTypes.push(t);
+            addedTypeNames.add(t.name);
+          }
         }
+        break;
       }
     }
 
@@ -949,10 +1056,41 @@ function main() {
     const declaredMethodNames = new Set(parsed.methods.map(m => m.name));
     const methods: MethodInfo[] = [];
 
-    // Add inherited CRUD methods (not overridden)
+    // Find associated type names for CRUD auto-linking
+    // Find the main entity type — prefer exact match patterns: ClassName singular, ClassNameEntity, or the one with most fields
+    const entityTypes = associatedTypes.filter(t => t.kind === "entity");
+    const singular = parsed.className.replace(/s$/, "").replace(/es$/, "");
+    const entityType =
+      entityTypes.find(t => t.name === singular) ||                              // e.g., "Equipement" for Equipements
+      entityTypes.find(t => t.name === singular + "Entity") ||                   // e.g., "TacheEntity" for Taches
+      entityTypes.find(t => t.name === parsed.className.replace(/s$/, "")) ||    // e.g., "Categorie" for Categories
+      entityTypes.sort((a, b) => b.fields.length - a.fields.length)[0];          // fallback: most fields = likely main entity
+    const createType = associatedTypes.find(t => t.kind === "createRequest");
+    const updateType = associatedTypes.find(t => t.kind === "updateRequest");
+
+    // Add inherited CRUD methods (not overridden), with types substituted when available
     for (const crud of BASE_CRUD_METHODS) {
       if (!declaredMethodNames.has(crud.name)) {
-        methods.push({ ...crud });
+        const linked = { ...crud, params: crud.params.map(p => ({ ...p })) };
+        if (entityType) {
+          if (linked.name === "getAll") {
+            linked.returnType = `Promise<{ datas: ${entityType.name}[], metadatas: any }>`;
+          } else if (linked.name === "getById") {
+            linked.returnType = `Promise<${entityType.name}>`;
+          }
+        }
+        if (createType && linked.name === "create") {
+          linked.params[0] = { ...linked.params[0], type: createType.name };
+          if (entityType) linked.returnType = `Promise<${entityType.name}>`;
+        }
+        if (updateType && linked.name === "update") {
+          linked.params[1] = { ...linked.params[1], type: updateType.name };
+          if (entityType) linked.returnType = `Promise<${entityType.name}>`;
+        }
+        if (entityType && linked.name === "remove") {
+          linked.returnType = "Promise<void>";
+        }
+        methods.push(linked);
       }
     }
 
