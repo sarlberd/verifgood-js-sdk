@@ -9,6 +9,14 @@ export declare class Maintenance extends ApiRequest {
     endpoint: string;
     endpointSingleton: string;
     /**
+     * Build the userId / sites query pair the backend requires on most
+     * maintenance endpoints. The legacy app encodes "no site restriction"
+     * as the literal string "null", and the backend crashes if `sites` is
+     * absent — so we always emit a value.
+     */
+    private appContextQuery;
+    private appContext;
+    /**
      * GET maintenances liste with custom options
      * @param metadatas - Metadatas for filtering
      * @param options - Additional options for the request
@@ -36,7 +44,7 @@ export declare class Maintenance extends ApiRequest {
      * @param metadatas - Metadatas for filtering
      * @param options - Additional options
      */
-    getDemandeurs(metadatas: Metadatas, options?: {
+    getDemandeurs(metadatas: Metadatas, _options?: {
         _stored?: boolean;
     }): Promise<{
         datas: any[];
@@ -47,7 +55,7 @@ export declare class Maintenance extends ApiRequest {
      * @param maintenances - Array of maintenance objects to create
      * @param options - Additional options
      */
-    createMaintenances(maintenances: MaintenanceCreateRequest[], options?: {
+    createMaintenances(maintenances: MaintenanceCreateRequest[], _options?: {
         _stored?: boolean;
     }): Promise<MaintenanceType[]>;
     /**
@@ -155,16 +163,16 @@ export declare class Maintenance extends ApiRequest {
      * @param filename - Optional filename
      * @param fileExtension - File extension (csv or xlsx)
      */
-    getFile(metadatas: Metadatas, filename?: string | null, fileExtension?: string): Promise<void>;
+    getFile(metadatas: Metadatas, _filename?: string | null, fileExtension?: string): Promise<void>;
     /**
      * Download PDF file
      * @param idMaintenance - ID of the maintenance
      * @param filename - Optional filename
      * @param fileExtension - File extension
      */
-    getPdfFile(idMaintenance: string, filename?: string | null, fileExtension?: string): Promise<any>;
+    getPdfFile(idMaintenance: string, _filename?: string | null, _fileExtension?: string): Promise<any>;
     /**
-     * Calculate internal cost
+     * Calculate internal cost (uses tauxHoraire from app context).
      * @param workingTime - Working time in minutes
      */
     coutInterne(workingTime: string): number;
@@ -172,21 +180,25 @@ export declare class Maintenance extends ApiRequest {
      * Calculate duration mise en attente
      * @param maintenance - Maintenance object
      */
-    dureeMiseEnAttente(maintenance: MaintenanceType): number;
+    dureeMiseEnAttente(_maintenance: MaintenanceType): number;
     /**
      * Calculate duration fermeture temporaire hors weekend
      * @param maintenance - Maintenance object
      */
-    dureeFermetureTemporaireHorsWeekend(maintenance: MaintenanceType): number;
+    dureeFermetureTemporaireHorsWeekend(_maintenance: MaintenanceType): number;
     /**
      * Calculate duration nette traitement
      * @param maintenance - Maintenance object
      */
-    dureeNetteTraitement(maintenance: MaintenanceType): number;
+    dureeNetteTraitement(_maintenance: MaintenanceType): number;
     /**
      * Update multiple typologies
      * @param maintenanceIds - Array of maintenance IDs
      * @param typologyName - Typology name
      */
     updateMultipleTypologies(maintenanceIds: string[], typologyName: string): Promise<any>;
+    /** Append `?userId=<appID>` (or `&userId=…`) to a URL when known. */
+    private appendUserId;
+    /** POST with the userId query param appended (legacy createMaintenances shape). */
+    private postWithUserId;
 }

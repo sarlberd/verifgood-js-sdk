@@ -13,32 +13,57 @@ class Maintenance extends ApiRequest_1.ApiRequest {
         this.endpointSingleton = '/api/maintenance';
     }
     /**
+     * Build the userId / sites query pair the backend requires on most
+     * maintenance endpoints. The legacy app encodes "no site restriction"
+     * as the literal string "null", and the backend crashes if `sites` is
+     * absent — so we always emit a value.
+     */
+    appContextQuery() {
+        var _a;
+        const ctx = this.auth.getAppContext();
+        const query = {
+            sites: (_a = ctx.restrictionsite) !== null && _a !== void 0 ? _a : "null",
+        };
+        if (ctx.appID)
+            query.userId = ctx.appID;
+        return query;
+    }
+    appContext() {
+        return this.auth.getAppContext();
+    }
+    /**
      * GET maintenances liste with custom options
      * @param metadatas - Metadatas for filtering
      * @param options - Additional options for the request
      */
     getMaintenances(metadatas, options = { _stored: true, idUserAffecte: null, idTiersAffecte: null, onlyEncours: true, onlyNonAffectes: false }) {
-        // TODO: Implement app context access - needs manual review
-        // Original implementation requires: this.$app.appID, this.$app.restrictionsite, this.$app.role, this.$app.tiers_id
         const query = {
-            // userId: this.$app.appID,
-            // sites: this.$app.restrictionsite,
-            onlyEncours: options.onlyEncours
+            ...this.appContextQuery(),
+            onlyEncours: options.onlyEncours,
         };
-        // TODO: Implement option handling - needs manual review
         if (options.idUserAffecte)
             query.user = options.idUserAffecte;
         if (options.idTiersAffecte)
             query.tiers_id = options.idTiersAffecte;
         if (options.onlyNonAffectes)
             query.onlyNonAffectes = options.onlyNonAffectes;
-        // TODO: Implement metadata filter handling - needs manual review
-        // Original: if(metadatas.filterExist("tiers_id")) { query["tiers_id"] = metadatas.getFilterValue("tiers_id"); metadatas.deleteFilter("tiers_id"); }
-        // Original: if(metadatas.filterExist("mesAffectations")) { let mesAffectations = metadatas.getFilterValue("mesAffectations"); if(mesAffectations) { query["user"] = mesAffectations; metadatas.deleteFilter("mesAffectations"); }}
-        // TODO: Implement role-based filtering - needs manual review
-        // Original: if(this.$app.role=="ROLE_SOUS_TRAITANT") { query["tiers_id"] = this.$app.tiers_id; }
-        // TODO: Implement store dispatch - needs manual review
-        // Original: if(_options._stored) { this.$store.dispatch("MaintenancesStore/setMaintenances", datas); for (const [key, value] of Object.entries(meta.counters)) { meta.counters[key] = value * 1; } this.$store.dispatch("MaintenancesStore/addMaintenanceCounters", meta.counters); }
+        // Metadata-driven query overrides — these used to live in the mixin.
+        if (metadatas.filterExist("tiers_id")) {
+            query.tiers_id = metadatas.getFilterValue("tiers_id");
+            metadatas.deleteFilter("tiers_id");
+        }
+        if (metadatas.filterExist("mesAffectations")) {
+            const mesAffectations = metadatas.getFilterValue("mesAffectations");
+            if (mesAffectations) {
+                query.user = mesAffectations;
+                metadatas.deleteFilter("mesAffectations");
+            }
+        }
+        // Sous-traitants are scoped to their tiers_id regardless of caller.
+        const ctx = this.appContext();
+        if (ctx.role === "ROLE_SOUS_TRAITANT" && ctx.tiers_id != null) {
+            query.tiers_id = ctx.tiers_id;
+        }
         return this.get(this.endpoint, metadatas, query);
     }
     /**
@@ -46,19 +71,22 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param metadatas - Metadatas for filtering
      */
     getMesMaintenancesPlanifiees(metadatas) {
-        // TODO: Implement app context access - needs manual review
-        // Original implementation requires: this.$app.appID, this.$app.restrictionsite, this.$app.role, this.$app.tiers_id
-        const query = {
-        // userId: this.$app.appID,
-        // sites: this.$app.restrictionsite
-        };
-        // TODO: Implement metadata filter handling - needs manual review
-        // Original: if(metadatas.filterExist("tiers_id")) { query["tiers_id"] = metadatas.getFilterValue("tiers_id"); metadatas.deleteFilter("tiers_id"); }
-        // Original: if(metadatas.filterExist("mesAffectations")) { let mesAffectations = metadatas.getFilterValue("mesAffectations"); if(mesAffectations) { query["user"] = mesAffectations; metadatas.deleteFilter("mesAffectations"); }}
-        // TODO: Implement role-based filtering - needs manual review
-        // Original: if(this.$app.role=="ROLE_SOUS_TRAITANT") { query["tiers_id"] = this.$app.tiers_id; }
-        // TODO: Implement store dispatch - needs manual review
-        // Original: this.$store.dispatch("MaintenancesStore/setMaintenances", datas); for (const [key, value] of Object.entries(meta.counters)) { meta.counters[key] = value * 1; } this.$store.dispatch("MaintenancesStore/setMaintenanceCounters", {mesAffectationsPlanifiees: meta.counters.mesAffectationsPlanifiees});
+        const query = { ...this.appContextQuery() };
+        if (metadatas.filterExist("tiers_id")) {
+            query.tiers_id = metadatas.getFilterValue("tiers_id");
+            metadatas.deleteFilter("tiers_id");
+        }
+        if (metadatas.filterExist("mesAffectations")) {
+            const mesAffectations = metadatas.getFilterValue("mesAffectations");
+            if (mesAffectations) {
+                query.user = mesAffectations;
+                metadatas.deleteFilter("mesAffectations");
+            }
+        }
+        const ctx = this.appContext();
+        if (ctx.role === "ROLE_SOUS_TRAITANT" && ctx.tiers_id != null) {
+            query.tiers_id = ctx.tiers_id;
+        }
         return this.get(`${this.endpoint}/mes-planifiees`, metadatas, query);
     }
     /**
@@ -66,17 +94,12 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param metadatas - Metadatas for filtering
      * @param options - Additional options
      */
-    getDemandeurs(metadatas, options = { _stored: true }) {
-        // TODO: Implement app context access - needs manual review
-        // Original implementation requires: this.$app.appID, this.$app.restrictionsite, this.$app.role, this.$app.tiers_id
-        const query = {
-        // userId: this.$app.appID,
-        // sites: this.$app.restrictionsite
-        };
-        // TODO: Implement role-based filtering - needs manual review
-        // Original: if(this.$app.role=="ROLE_SOUS_TRAITANT") query["tiers_id"] = this.$app.tiers_id;
-        // TODO: Implement store dispatch - needs manual review
-        // Original: if(_options._stored) this.$store.dispatch("MaintenancesStore/setDemandeurs", datas);
+    getDemandeurs(metadatas, _options = { _stored: true }) {
+        const query = { ...this.appContextQuery() };
+        const ctx = this.appContext();
+        if (ctx.role === "ROLE_SOUS_TRAITANT" && ctx.tiers_id != null) {
+            query.tiers_id = ctx.tiers_id;
+        }
         return this.get(`${this.endpoint}/demandeurs`, metadatas, query);
     }
     /**
@@ -84,13 +107,8 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param maintenances - Array of maintenance objects to create
      * @param options - Additional options
      */
-    createMaintenances(maintenances, options = { _stored: true }) {
-        // TODO: Implement app context access - needs manual review
-        // Original implementation requires: this.$app.appID
-        // Original URL: "/api/maintenances?userId="+this.$app.appID
-        // TODO: Implement store dispatch - needs manual review
-        // Original: if(_options._stored) { this.$store.dispatch("MaintenancesStore/addMaintenances", datas); }
-        return this.post(this.endpoint, maintenances);
+    createMaintenances(maintenances, _options = { _stored: true }) {
+        return this.postWithUserId(this.endpoint, maintenances);
     }
     /**
      * Demande de devis on maintenance id
@@ -105,9 +123,6 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param maintenances - Array of maintenance objects to delete
      */
     deleteMultiple(maintenances) {
-        // TODO: Implement store dispatch for each deleted maintenance - needs manual review
-        // Original: maintenances.forEach((maintenance)=>{ this.$store.dispatch("MaintenancesStore/deleteMaintenance", maintenance["id"]); });
-        // Note: Original used rc.deleteMultiple method, using apiRequest with DELETE instead
         return this.apiRequest(`${this.endpoint}/delete-multiple`, 'DELETE', maintenances);
     }
     /**
@@ -116,19 +131,16 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param commentaire - Optional comment
      */
     relancer(maintenance, commentaire) {
-        // TODO: Implement moment.js for date formatting and app context access - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.appID, this.$app.idUser
+        const ctx = this.appContext();
         const data = {
-            // userId: this.$app.appID,
             id: maintenance.id,
-            // dateRelance: moment().format("YYYY-MM-DD HH:mm:ss"),
-            // idUser: this.$app.idUser,
-            commentaire: commentaire
+            dateRelance: nowDateTime(),
+            commentaire,
         };
-        // TODO: Implement store dispatch - needs manual review
-        // Original: this.$store.dispatch("MaintenancesStore/updateMaintenance", datas); this.$store.dispatch("OperationsStore/set", datas.operations);
-        // TODO: Implement rule-based authorization - needs manual review
-        // Original: {rule: "ACTIVITE_MAINTENANCE.CREATE_MAINTENANCE_RELANCE"}
+        if (ctx.appID)
+            data.userId = ctx.appID;
+        if (ctx.idUser != null)
+            data.idUser = ctx.idUser;
         return this.put(`${this.endpointSingleton}/${maintenance.id}/relance`, data);
     }
     /**
@@ -151,16 +163,13 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param operation - Operation object to update
      */
     putOperation(operation) {
-        // TODO: Implement app context access and store dispatch - needs manual review
-        // Original implementation requires: this.$app.appID
+        const ctx = this.appContext();
         const data = {
             datas: {
                 ...operation,
-                // userId: this.$app.appID
-            }
+                ...(ctx.appID ? { userId: ctx.appID } : {}),
+            },
         };
-        // TODO: Implement store dispatch - needs manual review
-        // Original: this.$store.dispatch("MaintenancesStore/updateOperation", datas); this.$store.dispatch("OperationsStore/updateItem", datas);
         return this.put(`/api/operation/${operation.id}`, data);
     }
     /**
@@ -169,11 +178,8 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param operation - Operation object for uid
      */
     deleteOperation(idOperation, operation) {
-        // TODO: Implement app context access for userId parameter - needs manual review
-        // Original implementation requires: this.$app.appID
-        // Original URL: "/api/operation/"+idOperation+"?userId="+this.$app.appID
-        // Original query: { "datas": { "id":idOperation, "uid":operation.uid } }
-        return this.delete(`/api/operation/${idOperation}`);
+        const url = this.appendUserId(`/api/operation/${idOperation}`);
+        return this.apiRequest(url, "DELETE", { datas: { id: idOperation, uid: operation.uid } });
     }
     /**
      * Get calendar events (deprecated)
@@ -181,9 +187,7 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param metadatas - Metadatas for filtering
      */
     getCalendarEvents(metadatas) {
-        // TODO: Implement complete calendar events logic - needs manual review
-        // Original: this.MaintenanceMixins_getMaintenances(metadatas, {_stored: false}).then((maintenances)=>{ let calendarEvents = this.MaintenanceMixins_formatToCalendarEvents(maintenances.datas); resolve(calendarEvents); });
-        return Promise.resolve([]);
+        return this.getMaintenances(metadatas, { _stored: false }).then((response) => this.formatToCalendarEvents(response.datas));
     }
     /**
      * Format maintenances to calendar events (deprecated)
@@ -191,102 +195,74 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param maintenances - Array of maintenance objects
      */
     formatToCalendarEvents(maintenances) {
-        // TODO: Implement complete calendar formatting logic - needs manual review
-        /* Original implementation:
-        let calendarEvents = [];
-        maintenances.forEach((maintenance, index)=>{
-            calendarEvents.push({   // add evenement ouverture maintenance
+        const events = [];
+        maintenances.forEach((m, index) => {
+            events.push({
                 id: index,
                 calendarId: "ouverture",
-                start: maintenance.dateOuvertureSAV,
-                end: maintenance.dateOuvertureSAV,
+                start: m.dateOuvertureSAV,
+                end: m.dateOuvertureSAV,
                 isAllDay: false,
                 category: "time",
-                raw: maintenance
+                raw: m,
             });
-            if(maintenance.statut=="Resolue"){
-                calendarEvents.push({   // add evenement fermeture maintenance
+            if (m.statut === "Resolue") {
+                events.push({
                     id: index,
                     calendarId: "fermeture",
-                    start: maintenance.dateFermetureSAV,
-                    end: maintenance.dateFermetureSAV,
+                    start: m.dateFermetureSAV,
+                    end: m.dateFermetureSAV,
                     isAllDay: false,
                     category: "time",
-                    raw: maintenance
+                    raw: m,
                 });
             }
-            if(maintenance.affectation && maintenance.affectation.id){
-                if(maintenance.affectation.start && maintenance.affectation.end){   // ne tient pas compte des fms affectées sans plage horaire définie
-                    calendarEvents.push({   // add evenement affectation maintenance
-                        id: index,
-                        calendarId: "affectation",
-                        start: maintenance.affectation.start,
-                        end: maintenance.affectation.end,
-                        isAllDay: false,
-                        category: "time",
-                        raw: maintenance
-                    });
-                }
+            const aff = m.affectation;
+            if (aff && aff.id && aff.start && aff.end) {
+                events.push({
+                    id: index,
+                    calendarId: "affectation",
+                    start: aff.start,
+                    end: aff.end,
+                    isAllDay: false,
+                    category: "time",
+                    raw: m,
+                });
             }
         });
-        return calendarEvents; */
-        return [];
+        return events;
     }
     /**
      * Prendre en compte maintenances
      * @param maintenances - Array of maintenance objects
      */
     prendreEnCompteMaintenances(maintenances) {
-        // TODO: Implement moment.js for date formatting and app context access - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.appID
-        const data = {
-            datas: maintenances,
-            // dateOperation: moment().format("YYYY-MM-DD HH:mm:ss")
-        };
-        // Original URL: "/api/maintenances/prendre-en-compte?userId="+this.$app.appID
-        return this.put(`${this.endpoint}/prendre-en-compte`, data);
+        const data = { datas: maintenances, dateOperation: nowDateTime() };
+        return this.put(this.appendUserId(`${this.endpoint}/prendre-en-compte`), data);
     }
     /**
      * Prendre en compte maintenance
      * @param maintenance - Maintenance object
      */
     prendreEnCompteMaintenance(maintenance) {
-        // TODO: Implement moment.js for date formatting and app context access - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.appID
-        const data = {
-            datas: maintenance,
-            // dateOperation: moment().format("YYYY-MM-DD HH:mm:ss")
-        };
-        // Original URL: "/api/maintenance/"+maintenance.id+"/prendre-en-compte?userId="+this.$app.appID
-        return this.put(`${this.endpointSingleton}/${maintenance.id}/prendre-en-compte`, data);
+        const data = { datas: maintenance, dateOperation: nowDateTime() };
+        return this.put(this.appendUserId(`${this.endpointSingleton}/${maintenance.id}/prendre-en-compte`), data);
     }
     /**
      * Mettre en attente maintenances
      * @param maintenances - Array of maintenance objects
      */
     mettreEnAttenteMaintenances(maintenances) {
-        // TODO: Implement moment.js for date formatting and app context access - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.appID
-        const data = {
-            datas: maintenances,
-            // dateOperation: moment().format("YYYY-MM-DD HH:mm:ss")
-        };
-        // Original URL: "/api/maintenances/mettre-en-attente?userId="+this.$app.appID
-        return this.put(`${this.endpoint}/mettre-en-attente`, data);
+        const data = { datas: maintenances, dateOperation: nowDateTime() };
+        return this.put(this.appendUserId(`${this.endpoint}/mettre-en-attente`), data);
     }
     /**
      * Mettre en attente maintenance
      * @param maintenance - Maintenance object
      */
     mettreEnAttenteMaintenance(maintenance) {
-        // TODO: Implement moment.js for date formatting and app context access - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.appID
-        const data = {
-            datas: maintenance,
-            // dateOperation: moment().format("YYYY-MM-DD HH:mm:ss")
-        };
-        // Original URL: "/api/maintenance/"+maintenance.id+"/mettre-en-attente?userId="+this.$app.appID
-        return this.put(`${this.endpointSingleton}/${maintenance.id}/mettre-en-attente`, data);
+        const data = { datas: maintenance, dateOperation: nowDateTime() };
+        return this.put(this.appendUserId(`${this.endpointSingleton}/${maintenance.id}/mettre-en-attente`), data);
     }
     /**
      * Cloture maintenances
@@ -294,22 +270,15 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param rapportCloture - Optional rapport de cloture
      */
     resolveMaintenances(maintenances, rapportCloture) {
-        // TODO: Implement moment.js for date formatting and app context access - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.idUser, this.$app.appID
-        /* Original complex normalization logic:
-        let now = moment().format("YYYY-MM-DD HH:mm:ss");
-        let maintenancesNormalized = maintenances.map((maintenance)=>{
-            return {
-                "id":maintenance.id,
-                "dateFermetureSAV":now,
-                "rapportCloture":rapportCloture?rapportCloture:maintenance.operation,
-                "idUser": this.$app.idUser
-            }
-        });
-        var query = maintenancesNormalized;
-        Original URL: "/api/maintenances/resolve?userId="+this.$app.appID
-        */
-        return this.put(`${this.endpoint}/resolve`, maintenances);
+        const ctx = this.appContext();
+        const now = nowDateTime();
+        const normalized = maintenances.map((m) => ({
+            id: m.id,
+            dateFermetureSAV: now,
+            rapportCloture: rapportCloture !== null && rapportCloture !== void 0 ? rapportCloture : m.operation,
+            ...(ctx.idUser != null ? { idUser: ctx.idUser } : {}),
+        }));
+        return this.put(this.appendUserId(`${this.endpoint}/resolve`), normalized);
     }
     /**
      * Cloture maintenance
@@ -317,32 +286,27 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param files - Optional files array
      */
     resolveMaintenance(maintenance, files) {
-        // TODO: Implement moment.js for date formatting and app context access - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.underSupervisor, this.$app.appID, this.$app.idUser
-        /* Original complex normalization logic:
-        let normalizedMaintenance = Object.assign({}, maintenance, {
-            dateFermetureSAV: moment().format("YYYY-MM-DD HH:mm:ss"),
-            statut: this.$app.underSupervisor ? "Supervisor" : "Resolue",
-            userId: this.$app.appID,
-            idUser: this.$app.idUser
-        });
-        Original URL: "/api/maintenance/"+maintenance.id+"/resolve?userId="+this.$app.appID
-        */
-        return this.put(`${this.endpointSingleton}/${maintenance.id}/resolve`, { maintenance, files });
+        const ctx = this.appContext();
+        const underSupervisor = ctx.underSupervisor === true;
+        const normalized = {
+            ...maintenance,
+            dateFermetureSAV: nowDateTime(),
+            statut: underSupervisor ? "Supervisor" : "Resolue",
+            ...(ctx.appID ? { userId: ctx.appID } : {}),
+            ...(ctx.idUser != null ? { idUser: ctx.idUser } : {}),
+        };
+        return this.put(this.appendUserId(`${this.endpointSingleton}/${maintenance.id}/resolve`), { maintenance: normalized, files });
     }
     /**
      * Reopen maintenances
      * @param maintenanceId - ID of the maintenance
      */
     reopenMaintenances(maintenanceId) {
-        // TODO: Implement moment.js for date formatting and app context access - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.idUser, this.$app.appID
-        /* Original normalization logic:
-        let now = moment().format("YYYY-MM-DD HH:mm:ss");
-        let maintenancesNormalized = {"id":maintenanceId,"date":now,"idUser":this.$app.idUser};
-        Original URL: "/api/maintenance/"+maintenancesNormalized.id+"/reopen?userId="+this.$app.appID
-        */
-        return this.put(`${this.endpointSingleton}/${maintenanceId}/reopen`, {});
+        const ctx = this.appContext();
+        const body = { id: maintenanceId, date: nowDateTime() };
+        if (ctx.idUser != null)
+            body.idUser = ctx.idUser;
+        return this.put(this.appendUserId(`${this.endpointSingleton}/${maintenanceId}/reopen`), body);
     }
     /**
      * Set status maintenances
@@ -350,17 +314,14 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param status - New status
      */
     setStatusMaintenances(maintenances, status) {
-        // TODO: Implement moment.js for date formatting, app context access and store dispatch - needs manual review
-        // Original implementation requires: moment().format("YYYY-MM-DD HH:mm:ss"), this.$app.idUser, this.$app.appID
-        /* Original normalization logic:
-        let now = moment().format("YYYY-MM-DD HH:mm:ss");
-        let maintenancesNormalized = maintenances.map((maintenance)=>{
-            return {"id":maintenance.id,"date":now,"idUser":this.$app.idUser};
-        });
-        Original URL: "/api/maintenances/status/"+status+"?userId="+this.$app.appID
-        Original store dispatch: this.$store.dispatch("MaintenancesStore/updateMaintenance", Object.assign({}, maintenances[0], {statut: status}));
-        */
-        return this.put(`${this.endpoint}/status/${status}`, maintenances);
+        const ctx = this.appContext();
+        const now = nowDateTime();
+        const normalized = maintenances.map((m) => ({
+            id: m.id,
+            date: now,
+            ...(ctx.idUser != null ? { idUser: ctx.idUser } : {}),
+        }));
+        return this.put(this.appendUserId(`${this.endpoint}/status/${status}`), normalized);
     }
     /**
      * Download file (CSV or Excel)
@@ -368,45 +329,11 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param filename - Optional filename
      * @param fileExtension - File extension (csv or xlsx)
      */
-    getFile(metadatas, filename, fileExtension = "xlsx") {
-        // TODO: Implement complete file download logic with blob handling - needs manual review
-        /* Original complex implementation:
+    getFile(metadatas, _filename, fileExtension = "xlsx") {
         metadatas.setDirectives([]);
-        var query = {
-            userId: this.$app.appID,
-            sites: this.$app.restrictionsite || '',
-            metadatas: metadatas.get()
-        };
-        let fileType = fileExtension != "csv" ? "excel":"csv";
-        let contentType = fileExtension != "csv" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":"text/csv";
-        let responseType = fileExtension != "csv" ? "blob":"text";
-        this.$rc.setOptions({
-            'responseType': responseType,
-            'Content-Type': contentType
-        });
-        
-        this.$rc.get("/api/maintenances/export/"+fileType, query, (response, remoteMetadatas)=>{
-            let blob;
-            if (fileExtension === "csv") {
-                // Add BOM for UTF-8 encoding
-                const BOM = "\uFEFF";
-                blob = new Blob([BOM + response], { type: contentType });
-            } else {
-                blob = new Blob([response], { type: contentType });
-            }
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            metadatas.setLimit(0,25);
-            link.setAttribute('download', filename+'_'+moment().format("DD-MM-YYYY")+'.'+fileExtension);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            resolve();
-        });
-        */
         const fileType = fileExtension !== "csv" ? "excel" : "csv";
-        return this.get(`${this.endpoint}/export/${fileType}`, metadatas, {});
+        const query = { ...this.appContextQuery() };
+        return this.get(`${this.endpoint}/export/${fileType}`, metadatas, query);
     }
     /**
      * Download PDF file
@@ -414,116 +341,41 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param filename - Optional filename
      * @param fileExtension - File extension
      */
-    getPdfFile(idMaintenance, filename, fileExtension = "pdf") {
-        // TODO: Implement complete PDF handling with logo insertion - needs manual review
-        /* Original complex implementation with PDFDocument and logo handling:
-        var rc = this.$rc;
-        var query = {};
-        rc.setOptions({
-            'responseType': 'blob',
-            'Content-Type':'application/pdf'
-        });
-    
-        rc.get("/api/maintenance/"+idMaintenance+"/export/pdf/S", query, function(response,remoteMetadatas){
-            var reader = new FileReader();
-            reader.readAsDataURL(response);
-            reader.onloadend = function() {
-              var pdf64 = reader.result;
-              PDFDocument.load(pdf64).then((datas)=>{
-                let logo = window.sessionStorage.getItem('account_logo');
-                let pdf = datas;
-                let page = pdf.getPage(0);
-                const pageHeight = page.getHeight();
-    
-                // Complex logo insertion logic for JPEG and PNG
-                // Blob creation and download logic
-              });
-            }
-        });
-        */
+    getPdfFile(idMaintenance, _filename, _fileExtension = "pdf") {
         return this.apiRequest(`${this.endpointSingleton}/${idMaintenance}/export/pdf/S`, 'GET', null);
     }
     /**
-     * Calculate internal cost
+     * Calculate internal cost (uses tauxHoraire from app context).
      * @param workingTime - Working time in minutes
      */
     coutInterne(workingTime) {
-        // TODO: Implement app context access for tauxHoraire - needs manual review
-        // Original implementation requires: this.$app.tauxHoraire
-        /* Original implementation:
-        let workingTimeConvertIntoHours = parseInt(workingTime)/60;
-        let coutInterne = parseInt(this.$app.tauxHoraire) * workingTimeConvertIntoHours;
-        return Number.parseFloat(coutInterne).toFixed(2);
-        */
-        const workingTimeConvertIntoHours = parseInt(workingTime) / 60;
-        // Note: tauxHoraire should be passed as parameter or retrieved from configuration
-        const tauxHoraire = 0; // placeholder - TODO: implement app context access
-        const coutInterne = tauxHoraire * workingTimeConvertIntoHours;
-        return Number.parseFloat(coutInterne.toString()).toFixed(2);
+        const ctx = this.appContext();
+        const rate = typeof ctx.tauxHoraire === "number" ? ctx.tauxHoraire : 0;
+        const hours = parseInt(workingTime, 10) / 60;
+        return Number.parseFloat((rate * hours).toFixed(2));
     }
     /**
      * Calculate duration mise en attente
      * @param maintenance - Maintenance object
      */
-    dureeMiseEnAttente(maintenance) {
+    dureeMiseEnAttente(_maintenance) {
         // TODO: Implement DateUtilities and complex duration calculation logic - needs manual review
-        /* Original implementation:
-        if(maintenance.operations){
-            let operationsStatut = maintenance.operations.filter((op)=>op.flag in ["fermeture","en_attente", "prise_en_compte"]);
-            let dureeMiseEnAttente = 0;
-            let currentOperationEnAttente = null;
-            for(let index=0;index<operationsStatut.length;index++){
-                let operation = operationsStatut[index];
-                if(!currentOperationEnAttente){
-                    if(operation.flag=="en_attente") currentOperationEnAttente = Object.assign({},{}, operation);
-                    else if(operation.flag=="fermeture" || operation.flag=="prise_en_compte"){
-                        dureeMiseEnAttente += DateUtilities.getMinutesBetweenDatesExcludingWeekends(currentOperationEnAttente.dateOperation, operation.dateOperation)
-                        currentOperationEnAttente = null;
-                    }
-                }
-            }
-            return dureeMiseEnAttente;
-        }else return 0;
-        */
         return 0;
     }
     /**
      * Calculate duration fermeture temporaire hors weekend
      * @param maintenance - Maintenance object
      */
-    dureeFermetureTemporaireHorsWeekend(maintenance) {
+    dureeFermetureTemporaireHorsWeekend(_maintenance) {
         // TODO: Implement DateUtilities and complex duration calculation logic - needs manual review
-        /* Original implementation:
-        if(maintenance.operations){
-            let dureeFermetureTemporaireHorsWeekend = 0;
-            let operationsStatut = maintenance.operations.filter((op)=>op.flag in ["fermeture", "reouverture"]);
-            let dateReouverture = null;
-            for(let index=0;index<operationsStatut.length;index++){
-                let operation = operationsStatut[index];
-                if(operation.flag=="reouverture"){
-                    dateReouverture = operation.dateOperation;
-                }else if(dateReouverture && operation.flag=="fermeture"){
-                    dureeFermetureTemporaireHorsWeekend = DateUtilities.getMinutesBetweenDatesExcludingWeekends(dateReouverture, operation.dateOperation);
-                    dateReouverture = null;
-                }
-            }
-            return dureeFermetureTemporaireHorsWeekend;
-        }else return 0;
-        */
         return 0;
     }
     /**
      * Calculate duration nette traitement
      * @param maintenance - Maintenance object
      */
-    dureeNetteTraitement(maintenance) {
+    dureeNetteTraitement(_maintenance) {
         // TODO: Implement DateUtilities and complex duration calculation logic - needs manual review
-        /* Original implementation:
-        if(maintenance.statut=="Resolue" || maintenance.statut=="Supervisor"){
-            let dureeOuvertureHorsWeekend = DateUtilities.getMinutesBetweenDatesExcludingWeekends(maintenance.dateOuvertureSAV, maintenance.dateFermetureSAV);
-            return dureeOuvertureHorsWeekend - this.MaintenanceMixins_dureeMiseEnAttente(maintenance) - this.MaintenanceMixins_dureeFermetureTemporaireHorsWeekend(maintenance);
-        }else return null;
-        */
         return 0;
     }
     /**
@@ -532,25 +384,31 @@ class Maintenance extends ApiRequest_1.ApiRequest {
      * @param typologyName - Typology name
      */
     updateMultipleTypologies(maintenanceIds, typologyName) {
-        // TODO: Implement app context access and store dispatch - needs manual review
-        // Original implementation requires: this.$app.appID
-        /* Original implementation:
-        var query = {
-            userId: this.$app.appID,
-            ids: maintenanceIds,
-            typologie: typologyName
-        };
-        rc.put("/api/maintenances/update-typologies", query, (datas) => {
-            // Optional: Update store based on response if needed
-            // this.$store.dispatch("MaintenancesStore/updateMultipleMaintenancesTypology", { ids: maintenanceIds, typology: typologyName });
-            resolve(datas);
-        }, (error) => {
-            console.error("API Error in MaintenanceMixins_updateMultipleTypologies:", error);
-            reject(error);
-        });
-        */
-        return Promise.resolve({});
+        const ctx = this.appContext();
+        const data = { ids: maintenanceIds, typologie: typologyName };
+        if (ctx.appID)
+            data.userId = ctx.appID;
+        return this.put(`${this.endpoint}/update-typologies`, data);
+    }
+    // --- internal helpers -------------------------------------------------
+    /** Append `?userId=<appID>` (or `&userId=…`) to a URL when known. */
+    appendUserId(url) {
+        const ctx = this.appContext();
+        if (!ctx.appID)
+            return url;
+        const sep = url.includes("?") ? "&" : "?";
+        return `${url}${sep}userId=${encodeURIComponent(ctx.appID)}`;
+    }
+    /** POST with the userId query param appended (legacy createMaintenances shape). */
+    postWithUserId(endpoint, body) {
+        return this.post(this.appendUserId(endpoint), body);
     }
 }
 exports.Maintenance = Maintenance;
+/** YYYY-MM-DD HH:mm:ss in local time, mirroring the legacy `moment().format(…)`. */
+function nowDateTime() {
+    const d = new Date();
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
 //# sourceMappingURL=Maintenance.js.map

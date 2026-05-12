@@ -7,6 +7,7 @@ class Auth {
             apiKey: ''
         };
         this.apiKey = '';
+        this.appContext = {};
         this.config = config;
         this.apiKey = config.apiKey;
     }
@@ -15,6 +16,16 @@ class Auth {
     }
     getApiKey() {
         return this.apiKey;
+    }
+    /**
+     * Replace the current app context (tenant + user metadata). Service
+     * methods read fresh on every request via getAppContext().
+     */
+    setAppContext(context) {
+        this.appContext = { ...context };
+    }
+    getAppContext() {
+        return this.appContext;
     }
 }
 exports.Auth = Auth;

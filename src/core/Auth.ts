@@ -1,3 +1,4 @@
+import {AppContext} from "./AppContext";
 import {SdkConfiguration} from "./sdkConfiguration";
 
 export class Auth {
@@ -5,6 +6,7 @@ export class Auth {
     apiKey: ''
   };
   apiKey : string = '';
+  appContext: AppContext = {};
   constructor(config: SdkConfiguration) {
     this.config = config;
     this.apiKey = config.apiKey;
@@ -14,5 +16,15 @@ export class Auth {
   }
   getApiKey() {
     return this.apiKey;
+  }
+  /**
+   * Replace the current app context (tenant + user metadata). Service
+   * methods read fresh on every request via getAppContext().
+   */
+  setAppContext(context: AppContext) {
+    this.appContext = { ...context };
+  }
+  getAppContext(): AppContext {
+    return this.appContext;
   }
 }
