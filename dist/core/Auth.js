@@ -18,3 +18,4 @@ class Auth {
     }
 }
 exports.Auth = Auth;
+//# sourceMappingURL=Auth.js.map

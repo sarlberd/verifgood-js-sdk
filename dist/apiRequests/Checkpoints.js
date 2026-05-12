@@ -10,3 +10,4 @@ class Checkpoints extends ApiRequest_1.ApiRequest {
     }
 }
 exports.Checkpoints = Checkpoints;
+//# sourceMappingURL=Checkpoints.js.map

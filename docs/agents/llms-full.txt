@@ -1,0 +1,3548 @@
+# VerifgoodSDK v1.0.1 — Full Reference
+> GMAO (maintenance management) TypeScript SDK — 53 services
+> Generated: 2026-04-13
+
+## Initialization
+```typescript
+import { VGSDK, Metadatas } from "verifgood-js-sdk";
+
+const sdk = new VGSDK({
+  apiBaseUrl: "https://your-api-host.com/public/index.php",
+  apiKey: "your-auth0-token"
+});
+```
+
+## Metadatas (query builder)
+Query builder for filtering, pagination, and column selection. Pass to getAll() methods.
+
+### Filter Actions
+| Action | Description |
+|--------|-------------|
+| equals | Exact match |
+| not_equals | Not equal |
+| contains | Substring match |
+| start_with | Starts with value |
+| end_with | Ends with value |
+| between | Range (value = [start, end]) |
+| is_null | Field is null |
+| is_not_null | Field is not null |
+| greater_than | Greater than value |
+| less_than | Less than value |
+| in | Value in array |
+| not_in | Value not in array |
+
+### Methods
+- `setFilter(name: string, value: string | number, action?: string = "equals"): this`
+- `setFiltersFromArray(filters: { attr: string; colId: string; value: any; action: string; }[]): { [key: string]: { attr: string; colId: string; value: any; action: string; }; }`
+- `setLimit(offset: number, limit: number): void`
+- `isLimitSet(): boolean`
+  Return true if directive limit exists.
+- `filterExist(name: string): boolean`
+  Return true if a filter exists in filters object.
+- `getCounter(counter: string): number`
+  Get a counter by its name.
+- `deleteFilter(name: string): void`
+  Delete filter.
+- `clearAllFilters(): this`
+  Delete all current filters.
+- `getFilterValue(name: string): any`
+  Get value from filter.
+- `getFilterAction(name: string): string`
+  Get action from filter.
+- `isStorable(): boolean`
+  If this metadata has a name it can be stored.
+- `get(): { directives: { name: string; offset: number; limit: number; }[]; filters: { attr: string; colId: string; value: any; action: string; }[]; columns: { [key: string]: string | null; }; }`
+  Format Metadatas according to server expectation.
+- `setName(name: string): this`
+  Setter.
+- `hasStoredFilterEqualsTo(filters: { [key: string]: { attr: string; colId: string; value: any; action: string; }; }): boolean`
+  HasStoredFilterEqualsTo.
+Compare given filters with this.filters.
+- `getName(): string | null`
+  Getter.
+- `setColumns(columns: { [key: string]: string | null; }): this`
+  Setter.
+Columns will be used to format data output of query.
+- `setCounters(counters: { [key: string]: number; }): this`
+  Setter.
+- `getCounters(): { [key: string]: number; }`
+  Getter.
+- `setFilters(filters: { [key: string]: { attr: string; colId: string; value: any; action: string; }; }): this`
+  Setter.
+- `getFilters(): { [key: string]: { attr: string; colId: string; value: any; action: string; }; }`
+  Getter.
+- `getFilter(name: string): { attr: string; colId: string; value: any; action: string; }`
+  Getter.
+- `setDirectives(directives: { name: string; offset: number; limit: number; }[]): this`
+  Setter.
+
+### Examples
+```typescript
+const m = new Metadatas();
+m.setFilter("status", "active", "equals");
+m.setLimit(0, 25);
+const result = await sdk.equipements.getAll(m);
+```
+
+```typescript
+const m = new Metadatas();
+m.setFilter("created_at", ["2024-01-01", "2024-12-31"], "between");
+m.setFilter("type_lieu", "Site", "equals");
+const sites = await sdk.lieux.getAll(m);
+```
+
+Response format: `{ datas: T[], metadatas: { counters: { All: number } } }`
+
+## Services
+
+### [admin]
+
+#### sdk.account — /api/account | /api/account
+> User account management
+
+**Methods:**
+- `updateAccount(data: AccounUpdateRequest): Promise<Accoun>`
+  Updates account information
+- `fetchAccount(): Promise<Accoun>`
+  Fetches account data
+- `createAccount(account: AccounCreateRequest): Promise<Accoun>`
+  Creates a new account
+  POST /cfae5733-8860-48d6-8346-693a93816c6e/account/{param}
+- `getAll(metadatas: Metadatas): Promise<Accoun[]>` (override)
+- `getById(id: number): Promise<Accoun>` (override)
+- `create(data: any): Promise<Accoun>` (override)
+- `update(id: number, data: any): Promise<Accoun>` (override)
+- `remove(id: number): Promise<void>` (override)
+
+**Types:**
+
+`Accoun` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| address | string | yes |
+| immatriculation | string | yes |
+| id | string | yes |
+
+`AccounCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| address | string | yes |
+| immatriculation | string | yes |
+
+`AccounUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| address | string | yes |
+| immatriculation | string | yes |
+
+---
+
+#### sdk.groupevalidateurs — /api/groupe-validateurs | /api/groupe-validateur
+> Validator groups for approval workflows
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: GroupeValidateur[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<GroupeValidateur>` (inherited)
+  Get a single record by ID
+- `create(datas: GroupeValidateurCreateRequest): Promise<GroupeValidateur>` (inherited)
+  Create a new record
+- `update(id: number, datas: GroupeValidateurUpdateRequest): Promise<GroupeValidateur>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `[DEPRECATED] getGroupeValidateurs(metadatas: Metadatas): Promise<any>`
+  Get all groupe validateurs
+
+**Types:**
+
+`GroupeValidateur` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| name | string | yes |
+| description | string | yes |
+
+`GroupeValidateurCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| description | string | yes |
+
+`GroupeValidateurUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| description | string | yes |
+
+---
+
+#### sdk.groupevalidateursusers — /api/groupe-validateurs-users | /api/groupe-validateur-user
+> Users within validator groups
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: GroupeValidateursUser[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<GroupeValidateursUser>` (inherited)
+  Get a single record by ID
+- `create(datas: GroupeValidateursUserCreateRequest): Promise<GroupeValidateursUser>` (inherited)
+  Create a new record
+- `update(id: number, datas: GroupeValidateursUserUpdateRequest): Promise<GroupeValidateursUser>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `[DEPRECATED] deleteAssociation(groupeValidateurUser: GroupeValidateursUser): Promise<any>`
+  Delete a specific groupe validateur user association
+  DELETE {singleton}/{param}
+
+**Types:**
+
+`GroupeValidateursUser` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| validateur_id | string | yes |
+| groupeValidateur_id | string | yes |
+
+`GroupeValidateursUserCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| validateur_id | string | yes |
+| groupeValidateur_id | string | yes |
+
+`GroupeValidateursUserUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| validateur_id | string | yes |
+| groupeValidateur_id | string | yes |
+
+---
+
+#### sdk.integrationsdonnees — /api/integration/categories/lieux | /api/integration/categories/lieux
+> Data integration/import management
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: IntegrationsDonnee[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<IntegrationsDonnee>` (inherited)
+  Get a single record by ID
+- `create(datas: IntegrationsDonneeCreateRequest): Promise<IntegrationsDonnee>` (inherited)
+  Create a new record
+- `update(id: number, datas: IntegrationsDonneeUpdateRequest): Promise<IntegrationsDonnee>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `categoriesLieux(composants: any): Promise<any>`
+  Integration method for categories lieux from CSV data
+
+**Types:**
+
+`IntegrationsDonnee` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+
+`IntegrationsDonneeCreateRequest` (createRequest)
+
+`IntegrationsDonneeUpdateRequest` (updateRequest)
+
+---
+
+#### sdk.invitations — /api/invitations | /api/invitations
+> User invitation management
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<any>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<any>` (inherited)
+  Delete a record by ID
+- `generateInvitationLink(invitationRequest: InvitationRequest): Promise<InvitationCard>`
+  Generate an invitation link for a specific email and role
+  GET {endpoint}/generate-invitation-link?email={param}&role={param}&origin={param}
+- `checkInvitation(invitationCard: InvitationCard): Promise<InvitationCard>`
+  Check the validity of an invitation token
+  GET {endpoint}/check-invitation/{param}?origin={param}
+- `regenerateInvitationLink(id: number): Promise<{ invitation_link: string; receiver_email: string; }>`
+  Regenerate an invitation link for an existing invitation
+  GET {endpoint}/regenerate-invitation-link/{param}?origin={param}
+- `completeRegistration(registration: InvitationCompleteRegistration): Promise<any>`
+  Complete the registration process for a user with an invitation token
+  POST {endpoint}/complete-registration
+
+---
+
+#### sdk.parametres — /api/parameters | /api/parameter
+> Application parameters and settings
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: DemoAccountEntities[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<DemoAccountEntities>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: ParameterUpdateRequest): Promise<DemoAccountEntities>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getParameters(): Promise<any>`
+  Get all application parameters
+- `updateParameter(datas: any): Promise<any>`
+  Update application parameter
+- `deleteDemoAccount(entitiesToRemove?: any): Promise<any>`
+  Delete demo account data with specified entities
+  DELETE entitiesToRemove={param}
+
+**Types:**
+
+`Parameter` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | number | yes |
+| key | string | yes |
+| value | string | number | boolean | object | yes |
+| userId | string | number | yes |
+| type | string | yes |
+| description | string | yes |
+| created_at | string | yes |
+| updated_at | string | yes |
+
+`ParameterUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| key | string | yes |
+| value | string | number | boolean | object | yes |
+| userId | string | number | yes |
+| type | string | yes |
+| description | string | yes |
+
+`DemoAccountEntities` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| maintenances | boolean | yes |
+| equipements | boolean | yes |
+| lieux | boolean | yes |
+| contrats | boolean | yes |
+| tiers | boolean | yes |
+| contacts | boolean | yes |
+| taches | boolean | yes |
+| consommables | boolean | yes |
+| categories | boolean | yes |
+
+`DemoAccountDeletionRequest` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | null | yes |
+| userId | string | number | yes |
+| entitiesToRemove | DemoAccountEntities | yes |
+
+`SessionUser` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | number | yes |
+| name | string | yes |
+| email | string | yes |
+| role | string | yes |
+| parameters | Parameter[] | yes |
+
+---
+
+#### sdk.personalParameters —  | 
+> User-specific preferences
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: PersonalParameter[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<PersonalParameter>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+
+**Types:**
+
+`PersonalParameter` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| key | string | no |
+| value | any | no |
+| isDisplayable | boolean | yes |
+
+`DisplayableParameters` (entity)
+
+`LandingPageConfig` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| endpoint | string | no |
+| role | string | yes |
+| isDefault | boolean | yes |
+
+`ScannerPreferences` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| useIntegratedScannerInKeyboard | boolean | no |
+| scannerMode | string | yes |
+| autoSubmit | boolean | yes |
+
+`PersonalParametersConfig` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| landingPage | string | no |
+| displayableParameters | DisplayableParameters | no |
+| scannerPreferences | ScannerPreferences | no |
+| customSettings | { [key: string]: any; } | yes |
+
+`DefaultLandingPages` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| [UserRole.BASIC] | string | no |
+| [UserRole.ADMIN] | string | no |
+| [UserRole.USER] | string | no |
+| [UserRole.MANAGER] | string | no |
+
+`LocalStorageResult` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| success | boolean | no |
+| value | any | yes |
+| error | string | yes |
+
+`PersonalParametersInitOptions` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| defaultLandingPage | string | yes |
+| defaultScannerPreferences | Partial<ScannerPreferences> | yes |
+| customDefaults | { [key: string]: any; } | yes |
+
+---
+
+#### sdk.roles — /api/roles | /api/role
+> Role-based access control
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Role[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Role>` (inherited)
+  Get a single record by ID
+- `create(datas: RoleCreateRequest): Promise<Role>` (inherited)
+  Create a new record
+- `update(id: number, datas: RoleUpdateRequest): Promise<Role>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+
+**Types:**
+
+`Role` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`RoleCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`RoleUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---
+
+### [analytics]
+
+#### sdk.dashboard — /api/dashboard | /api/dashboard
+> Dashboard widgets and statistics
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Dashboar[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Dashboar>` (inherited)
+  Get a single record by ID
+- `create(datas: DashboarCreateRequest): Promise<Dashboar>` (inherited)
+  Create a new record
+- `update(id: number, datas: DashboarUpdateRequest): Promise<Dashboar>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+
+**Types:**
+
+`Dashboar` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| userId | string | yes |
+| sites | string | yes |
+| data | any | yes |
+
+`DashboarCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| userId | string | yes |
+| sites | string | yes |
+| data | any | yes |
+
+`DashboarUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| userId | string | yes |
+| sites | string | yes |
+| data | any | yes |
+
+---
+
+#### sdk.statistiques — /api/statistiques | /api/statistiques
+> Statistical reports and data
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Statistique[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Statistique>` (inherited)
+  Get a single record by ID
+- `create(datas: StatistiqueCreateRequest): Promise<Statistique>` (inherited)
+  Create a new record
+- `update(id: number, datas: StatistiqueUpdateRequest): Promise<Statistique>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `fetchStatistiquesMaintenanceEtat(year: string, week?: string | null = null, metadatas?: Metadatas = new Metadatas()): Promise<any>`
+  Statistiques Maintenance état
+état des maintenances ouvertures & fermetures sur une année ou sur une semaine
+  GET /api/statistiques/maintenance/etat/{param}/{param}
+- `fetchStatistiquesMaintenanceRepartition(metadatas?: Metadatas = new Metadatas()): Promise<any>`
+  Statistiques Maintenance répartition
+maintenances réparties par lieux & équipements & composants & services
+- `fetchStatistiquesVerificationEtat(year: string, week?: string | null = null, metadatas?: Metadatas = new Metadatas()): Promise<any>`
+  Statistiques Verification état
+état des vérifications conformes & non conformes sur une année ou sur une semaine
+  GET /api/statistiques/verification/etat/{param}/{param}
+- `fetchStatistiquesVerificationRepartition(metadatas?: Metadatas = new Metadatas()): Promise<any>`
+  Statistiques Verification répartition
+vérifications réparties par lieux & équipements
+- `fetchStatistiquesVerificationTemps(year: string, week?: string | null = null, metadatas?: Metadatas = new Metadatas()): Promise<any>`
+  Statistiques Verification temps passé par technicien
+temps passé pour chaque technicien sur une année ou sur une semaine
+  GET /api/statistiques/verification/temps/{param}/{param}
+
+**Types:**
+
+`Statistique` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`StatistiqueCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`StatistiqueUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---
+
+#### sdk.synthesemaintenance — /api/gamme/maintenance/preventive | /api/gamme/maintenance/preventive
+> Maintenance synthesis reports
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: SyntheseMaintenanceEntity[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<SyntheseMaintenanceEntity>` (inherited)
+  Get a single record by ID
+- `create(datas: SyntheseMaintenanceCreateRequest): Promise<SyntheseMaintenanceEntity>` (inherited)
+  Create a new record
+- `update(id: number, datas: SyntheseMaintenanceUpdateRequest): Promise<SyntheseMaintenanceEntity>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getSummary(startDate: string, endDate: string, metadatas: Metadatas): Promise<any>`
+  Get preventive maintenance summary data
+
+**Types:**
+
+`SyntheseMaintenanceEntity` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| period | string | yes |
+| preventive_count | number | yes |
+| completion_rate | number | yes |
+| created_at | string | yes |
+| updated_at | string | yes |
+
+`SyntheseMaintenanceCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| period | string | no |
+| preventive_count | number | yes |
+| completion_rate | number | yes |
+
+`SyntheseMaintenanceUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| period | string | yes |
+| preventive_count | number | yes |
+| completion_rate | number | yes |
+
+`SyntheseSummaryRequest` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| startDate | string | no |
+| endDate | string | no |
+| userId | number | null | yes |
+| sites | string | null | yes |
+
+---
+
+### [assets]
+
+#### sdk.categories — /api/categories | /api/categorie
+> Equipment classification categories with composants
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Category[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Category>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `associateComposant(categorie_id: number, composant: any): Promise<any>`
+  POST {singleton}/{param}/composants
+- `desassociateComposant(composant_categorie_id: number): Promise<any>`
+  DELETE /api/composant-categorie/{param}
+- `updateCollection(categories: any[]): Promise<any>`
+  Update multiple categories at once
+- `[DEPRECATED] postAssociatedComposants(idCategorie: number, composantsToAssociate: any[]): Promise<any>`
+  POST {singleton}/{param}/composants
+- `exportFile(metadatas: Metadatas, typeCategorie?: string = "lieux", filename?: string, fileExtension?: string = "xlsx"): Promise<Blob>`
+  Export categories file (CSV or Excel)
+  GET /api/categories/export/{param}/{param}
+- `[DEPRECATED] deleteAssociatedComposants(idCategorie: number, composantsToDesassociate: any[]): Promise<any>`
+  DELETE /api/categorie/{param}/composants
+- `[DEPRECATED] fetchCategoriesLieux(): Promise<any>`
+- `addCorpsDetat(categorieId: number, corpsDetatId: number): Promise<any>`
+  Add corps d'etat to category association
+
+**Types:**
+
+`Category` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| userId | string | yes |
+| isGe | boolean | no |
+| isGenerique | boolean | no |
+| icon | string | yes |
+| libelleCatgorie | string | no |
+| isInventoriable | number | yes |
+| codeCouleur | string | yes |
+| libellesCategorie | libellesCategorie[] | no |
+| tags | any | yes |
+| typologieMaintenance_id | number | yes |
+| typeSetStatutEquipement | string | yes |
+| marque | string | yes |
+| corpsDetats | CorpsDetat[] | yes |
+| tauxDepreciationAnnuelDefault | string | yes |
+| prixDefault | string | yes |
+| indiceCriticite | string | yes |
+| sourceFinancementDefault | string | yes |
+| refConstructeurDefault | string | yes |
+| description | string | yes |
+
+---
+
+#### sdk.composant — /api/composants | /api/composant
+> Component templates associated with categories
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: LibelProblem[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<LibelProblem>` (inherited)
+  Get a single record by ID
+- `create(datas: ComposanCreateRequest): Promise<LibelProblem>` (inherited)
+  Create a new record
+- `update(id: number, datas: ComposanUpdateRequest): Promise<LibelProblem>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `postComposants(composants: any[]): Promise<any>`
+  Alternative method to create composants (duplicate of create)
+- `putComposant(composant: any): Promise<any>`
+  Alternative method to update a composant (duplicate of update)
+  PUT {singleton}/{param}
+- `deleteComposant(idComposant: number): Promise<any>`
+  Alternative method to delete a composant (legacy endpoint)
+  DELETE /api/composant/{param}
+- `postLibelProblem(idComposant: number, libelProblem: LibelProblem): Promise<any>`
+  Add a libel problem to a composant
+  POST /api/libelProblem/composant/{param}
+- `deleteLibelProblem(idLibelProblem: number): Promise<any>`
+  Delete a libel problem
+  DELETE /api/libelProblem/{param}
+- `getIcons(): Promise<ComposantIcon[]>`
+  Get available icons for composants
+- `[DEPRECATED] associateComposants(composantsList: any[]): Promise<any>`
+- `[DEPRECATED] associateLibelleProblemes(idComposant: number, lpsList: string[]): Promise<any>`
+- `getComposants(metadatas?: any): Promise<any>`
+  Alternative method to get composants (similar to getAll)
+
+**Types:**
+
+`Composan` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| description | string | yes |
+| icon | string | yes |
+| categorie_id | number | yes |
+
+`ComposanCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| description | string | yes |
+| icon | string | yes |
+| categorie_id | number | yes |
+
+`ComposanUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| description | string | yes |
+| icon | string | yes |
+| categorie_id | number | yes |
+
+`ComposantIcon` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| label | string | no |
+| src | string | no |
+
+`LibelProblem` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libel_composant | string | yes |
+| description | string | yes |
+| composant | number | yes |
+| libelle | string | yes |
+
+`ComposantAssociation` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| composant | number | no |
+| libelle | string | no |
+| userId | number | yes |
+
+---
+
+#### sdk.deplacementsequipements — /api/deplacements/equipements | /api/deplacements/equipements
+> Equipment movement history
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: DeplacementsEquipement[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<DeplacementsEquipement>` (inherited)
+  Get a single record by ID
+- `create(datas: DeplacementsEquipementCreateRequest): Promise<DeplacementsEquipement>` (inherited)
+  Create a new record
+- `update(id: number, datas: DeplacementsEquipementUpdateRequest): Promise<DeplacementsEquipement>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `createDeplacementsEquipements(deplacements: any[]): Promise<any>`
+  Create multiple deplacements for equipements
+
+**Types:**
+
+`DeplacementsEquipement` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`DeplacementsEquipementCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`DeplacementsEquipementUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---
+
+#### sdk.equipements — /api/equipements | /api/equipement
+> Physical assets/equipment tracked in locations
+
+**Methods:**
+- `getEquipementTimeline(equipement_id: number): Promise<any>`
+  GET {singleton}/{param}/timeline
+- `getEquipementVerifications(equipement_id: number, metadatas?: Metadatas = new Metadatas('{"directives":[],"filters":[]}')): Promise<any>`
+  GET {singleton}/{param}/verifications
+- `getById(idEquipement: number): Promise<any>` (override)
+  GET {singleton}/{param}
+- `getByCode(code: string): Promise<any>`
+  GET {singleton}/code/{param}
+- `getRapportAssets(metadatas: Metadatas): Promise<any>`
+  GET {endpoint}/valeurs-financieres
+- `getRapportAssetsExcelFile(metadatas: Metadatas, fileExtension?: string = "xlsx"): Promise<Blob>`
+  Export rapport assets file (CSV or Excel)
+  GET {endpoint}/valeurs-financieres/export/{param}
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+- `getEquipementsTachesActivesSites(site: string, metadatas: Metadatas): Promise<any>`
+  GET {endpoint}/taches/active/site
+- `getExcelFileModeleIntegration(filename?: string = "VG_modèle_importation_equipements"): Promise<Blob>`
+  Get Excel file model for integration
+  GET {endpoint}/integration/model
+- `getExcelFile(metadatas: Metadatas, filename?: string | null = null, fileExtension?: string = "xlsx"): Promise<Blob>`
+  Export equipements file (CSV or Excel)
+  GET {endpoint}/export/{param}
+- `[DEPRECATED] create(equipements: any[]): Promise<any>` (override)
+- `importModelEquipementsExcel(equipements: any[]): Promise<any>`
+  POST {endpoint}/integration/model
+- `sortirEquipement(equipement: any, callback: Function): Promise<void>`
+  POST {singleton}/sortie
+- `remplacerEquipement(sortie: any, maintenance: any): Promise<any>`
+  POST /maintenance/{param}/equipement/remplacement
+- `update(equipement: any, _options?: { skipVueXStorage?: boolean; } = { skipVueXStorage: false }): Promise<any>` (override)
+  PUT {singleton}/{param}
+- `updateEquipements(equipements: any[]): Promise<any>`
+- `remove(equipementId: number): Promise<any>` (override)
+  DELETE {singleton}/{param}
+- `createEquipementsGlobauxFamilleSite(famille: string, equipements: any[]): Promise<any>`
+  POST /sites/{param}/equipements/globaux
+
+**Types:**
+
+`Equipement` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| libel_equipement | string | yes |
+| categorie | string | yes |
+| posX | number | yes |
+| posY | number | yes |
+| marker | any | yes |
+| miseEnService | string | yes |
+| tauxDepreciationAnnuel | number | yes |
+| valeurAchat | number | yes |
+| created_at | string | yes |
+
+`EquipementCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libel_equipement | string | yes |
+| categorie | string | yes |
+| posX | number | yes |
+| posY | number | yes |
+| marker | any | yes |
+| miseEnService | string | yes |
+| tauxDepreciationAnnuel | number | yes |
+| valeurAchat | number | yes |
+| created_at | string | yes |
+
+`EquipementUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libel_equipement | string | yes |
+| categorie | string | yes |
+| posX | number | yes |
+| posY | number | yes |
+| marker | any | yes |
+| miseEnService | string | yes |
+| tauxDepreciationAnnuel | number | yes |
+| valeurAchat | number | yes |
+| created_at | string | yes |
+
+---
+
+#### sdk.inventaire — /api/inventaires | /api/inventaire
+> Equipment inventory management
+
+**Methods:**
+- `update(id: number, datas: InventairUpdateRequest): Promise<Inventair>` (inherited)
+  Update a record by ID
+- `getAll(metadatas?: Metadatas): Promise<any>` (override)
+  Override getAll method to get all inventaires
+- `getById(id: number): Promise<any>` (override)
+  Override getById method with custom state processing
+  GET /api/{param}/inventaire/{param}
+- `create(inventaires: any[]): Promise<any>` (override)
+  Override create method
+- `remove(id: number): Promise<any>` (override)
+  Override remove method
+  DELETE /api/{param}/inventaire/{param}
+- `[DEPRECATED] fetch(metadatas: Metadatas): Promise<any>`
+  GET /api/{param}/inventaire
+- `fetchOperationsByInventaireId(id: number): Promise<any>`
+  Fetch operations by inventaire ID
+  GET /api/{param}/inventaire/{param}/operations
+- `fetchOperationsByInventaireIdOnLieu(inventaire_id: number, lieu_id: number): Promise<any>`
+  Fetch operations by inventaire ID on specific lieu
+  GET /api/{param}/inventaire/{param}/operations/lieu/{param}
+- `[DEPRECATED] finalizeInventaireOnLieu(inventaire_id: number, lieu_id: number): Promise<any>`
+  POST /api/{param}/inventaire/{param}/operations/lieu/{param}/finalize
+- `createOperation(operation: any, inventaire_id: number, lieu_id: number): Promise<any>`
+  Create operation for inventaire
+  POST /api/{param}/inventaire/{param}/operations/lieu/{param}
+- `removeOperationInventaire(operation: any): Promise<any>`
+  Remove operation from inventaire
+  DELETE /api/{param}/inventaire/{param}/operation/{param}
+
+**Types:**
+
+`Inventair` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| inventaire_id | string | yes |
+| lieu_id | string | yes |
+| equipements_id | string | yes |
+| path | string | yes |
+
+`InventairCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| inventaire_id | string | yes |
+| lieu_id | string | yes |
+| equipements_id | string | yes |
+| path | string | yes |
+
+`InventairUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| inventaire_id | string | yes |
+| lieu_id | string | yes |
+| equipements_id | string | yes |
+| path | string | yes |
+
+---
+
+#### sdk.mouvementsEquipements — /api/mouvements | /api/mouvements
+> Equipment movement records
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: MouvementEquipement[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<MouvementEquipement>` (inherited)
+  Get a single record by ID
+- `create(datas: MouvementEquipementCreateRequest): Promise<MouvementEquipement>` (inherited)
+  Create a new record
+- `update(id: number, datas: MouvementEquipementUpdateRequest): Promise<MouvementEquipement>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getMovements(metadatas: Metadatas): Promise<any>`
+  Get all mouvements equipements with optional metadatas filtering
+- `getMovementById(id: string | number): Promise<any>`
+  Get specific mouvement equipement by ID
+  GET /api/mouvements/{param}
+- `updateMovement(mouvementEquipement: any): Promise<any>`
+  Update an existing mouvement equipement
+  PUT /api/mouvements/{param}
+- `createMovement(mouvementEquipement: any, type: string): Promise<any>`
+  Create a new mouvement equipement
+  POST /api/mouvements/{param}
+- `deleteMovement(mouvementEquipement: any): Promise<any>`
+  Delete a mouvement equipement
+  DELETE /api/mouvements/{param}
+- `getMouvementsSignataires(metadatas: Metadatas, type?: string = 'receveurs'): Promise<any>`
+  Get mouvements signataires (receivers or givers)
+  GET /api/mouvements/{param}
+- `exportMovements(metadatas: Metadatas, filename?: string | null = null, fileExtension?: string = 'xlsx'): Promise<any>`
+  Export mouvements to Excel or CSV file
+  GET /api/mouvements/export/{param}
+
+**Types:**
+
+`MouvementEquipement` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | number | yes |
+| type | string | yes |
+| date | string | yes |
+| description | string | yes |
+| equipement_id | string | number | yes |
+| user_id | string | number | yes |
+| lieu_origine_id | string | number | yes |
+| lieu_destination_id | string | number | yes |
+| quantite | number | yes |
+| statut | string | yes |
+| observations | string | yes |
+| created_at | string | yes |
+| updated_at | string | yes |
+
+`MouvementEquipementCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| type | string | no |
+| description | string | yes |
+| equipement_id | string | number | no |
+| user_id | string | number | yes |
+| lieu_origine_id | string | number | yes |
+| lieu_destination_id | string | number | yes |
+| quantite | number | yes |
+| observations | string | yes |
+
+`MouvementEquipementUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | number | no |
+| type | string | yes |
+| description | string | yes |
+| equipement_id | string | number | yes |
+| user_id | string | number | yes |
+| lieu_origine_id | string | number | yes |
+| lieu_destination_id | string | number | yes |
+| quantite | number | yes |
+| statut | string | yes |
+| observations | string | yes |
+
+`Signataire` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | number | no |
+| nom | string | no |
+| prenom | string | no |
+| email | string | yes |
+| type | "receveur" | "donneur" | no |
+
+`MovementExportOptions` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| filename | string | yes |
+| fileExtension | "xlsx" | "csv" | yes |
+| sites | string | yes |
+
+---
+
+#### sdk.sortieequipement — /api/sortieequipement | /api/sortieequipement
+> Equipment decommissioning/exit
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: SortieEquipemen[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<SortieEquipemen>` (inherited)
+  Get a single record by ID
+- `create(datas: SortieEquipemenCreateRequest): Promise<SortieEquipemen>` (inherited)
+  Create a new record
+- `update(id: number, datas: SortieEquipemenUpdateRequest): Promise<SortieEquipemen>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getTypes(metadatas: Metadatas): Promise<{ datas: any[]; metadatas: any; }>`
+  Get equipment output/exit types
+  GET {endpoint}/types
+
+**Types:**
+
+`SortieEquipemen` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`SortieEquipemenCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`SortieEquipemenUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---
+
+### [billing]
+
+#### sdk.stripe — /api/stripe | /api/stripe
+> Stripe payment integration
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Strip[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Strip>` (inherited)
+  Get a single record by ID
+- `create(datas: StripCreateRequest): Promise<Strip>` (inherited)
+  Create a new record
+- `update(id: number, datas: StripUpdateRequest): Promise<Strip>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `openCustomerPortal(): Promise<any>`
+  Open customer portal
+Gets portal URL from API and opens it in a new tab (browser environment only)
+- `getCustomerState(): Promise<any>`
+  Get customer state
+Retrieves the current Stripe customer state
+
+**Types:**
+
+`Strip` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`StripCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`StripUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---
+
+### [compliance]
+
+#### sdk.reponses — /api/reponses | /api/reponse
+> Verification responses and answers
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Reponse[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Reponse>` (inherited)
+  Get a single record by ID
+- `create(datas: ReponseCreateRequest): Promise<Reponse>` (inherited)
+  Create a new record
+- `update(id: number, datas: ReponseUpdateRequest): Promise<Reponse>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+
+**Types:**
+
+`Reponse` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`ReponseCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`ReponseUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---
+
+#### sdk.verifications — /api/verifications | /api/verification
+> Periodic compliance checks on equipment
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<any>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<any>` (inherited)
+  Delete a record by ID
+- `getVerification(id: number): Promise<any>`
+  Get a single verification by ID with responses, account context, and logs
+  GET {singleton}/{param}
+  Output: { verification: Verification, reponses: Reponse[], account: Account, logs: VerificationLog[] }. Full verification detail with responses, account context, and change history.
+- `updateVerification(id: number, data: any): Promise<any>`
+  Update a verification record
+  PUT {singleton}/{param}
+  Input: { datas: { dateVerif?, commentaire?, nbNonConformites?, spentTime?, username?, documents?, reponses[] } }.
+  Output: Updated verification object.
+- `getCheckDatas(metadatas: Metadatas, options?: { sites?: string; typeTache?: string; qrCode?: string; } = {}): Promise<any>`
+  Get equipments that must be verified with their tasks and latest verifications
+  Output: { equipements: Equipement[], taches: TacheEntity[], verifications: Verification[], counters: {} }. Returns equipment that must be verified with their tasks and latest verification status.
+- `getTimeline(verificationId: number): Promise<VerificationTimelineResponse>`
+  GET {singleton}/{param}/timeline
+- `createVerifications(verifications: any[]): Promise<any>`
+  Create new verifications
+- `startVerification(equipementId: number, tacheId?: number, uniquementMesTachesAffectes?: boolean = false): Promise<any>`
+  Start a verification process for an equipment
+  GET /api/verifier/equipement/{param}/{param}
+  Input: equipementId (required), tacheId (optional), uniquementMesTachesAffectes (boolean, default false).
+  Output: Array of taches for the equipment, with checkpoints and affectation data.
+- `getVerifications(metadatas: Metadatas): Promise<any>`
+  Get verifications with metadata filtering
+- `getVerificationsReponsesNonConformes(metadatas: Metadatas): Promise<any>`
+  Get non-conforming verification responses
+  GET {endpoint}/reponses
+- `getVerificationsReponsesById(idVerification: number): Promise<any>`
+  Get verification responses by verification ID
+  GET {singleton}/{param}/reponses
+- `getProgressionsTaches(metadatas: Metadatas, sites?: string | null = null): Promise<any>`
+  Get progressions of taches (task completion tracking)
+  Output: { datas: ProgressionTache[], metadatas: ... }. Each progression has nested site (id, libel_lieu, path) and tache (id, libel, type, categorie) objects.
+- `getProgression(site: string | null, metadatas: Metadatas): Promise<any>`
+  Get verification progression data
+  GET {endpoint}/taches/overview
+- `getVerificationsEquipementsTaches(metadatas: Metadatas): Promise<any>`
+  Get verification equipment tasks
+  GET {endpoint}/equipements/taches/state
+- `getTacheState(tacheId: number, site?: string | null = null, metadatas?: Metadatas = new Metadatas()): Promise<any>`
+  Get task state for unchecked items
+  GET {endpoint}/tache/{param}/unchecked
+- `getPdfFile(idVerification: number): Promise<any>`
+  Get PDF file for a verification
+  GET {singleton}/export/{param}/S
+- `addDocumentVerification(verificationId: number, file: File): Promise<any>`
+  Add document verification
+  POST {singleton}/{param}/document/new
+- `exportHistoriqueTacheRecurrentes(metadatas: Metadatas, fileExtension?: string = "xlsx", site?: string | null = null): Promise<Blob>`
+  Export recurring task history
+  GET {endpoint}/export/historique-taches-recurrente/{param}
+
+**Types:**
+
+`VerificationTimelineResponse` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| timeline | VerificationTimelineEvent[] | no |
+
+---
+
+### [contracts]
+
+#### sdk.contact — /api/contacts | /api/contact
+> Contacts associated with third parties
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Contac[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Contac>` (inherited)
+  Get a single record by ID
+- `create(datas: ContacCreateRequest): Promise<Contac>` (inherited)
+  Create a new record
+- `update(id: number, datas: ContacUpdateRequest): Promise<Contac>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+
+**Types:**
+
+`Contac` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| nom | string | yes |
+| prenom | string | yes |
+| email | string | yes |
+| telephone | string | yes |
+
+`ContacCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| nom | string | yes |
+| prenom | string | yes |
+| email | string | yes |
+| telephone | string | yes |
+
+`ContacUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| nom | string | yes |
+| prenom | string | yes |
+| email | string | yes |
+| telephone | string | yes |
+
+---
+
+#### sdk.contrat — /api/contrats | /api/contrat
+> Service contracts with third-party providers
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Contra[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Contra>` (inherited)
+  Get a single record by ID
+- `update(id: number, datas: ContraUpdateRequest): Promise<Contra>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getContrats(metadatas: Metadatas): Promise<any>`
+  Get contracts with site restrictions
+- `[DEPRECATED] fetchContrats(metadatas?: any = {"directives":[],"filters":[]}): Promise<any>`
+  Fetch contracts (deprecated - use getContrats instead)
+- `[DEPRECATED] fetchContrat(idContrat: string, options?: any = {skipVueXStorage: false}): Promise<any>`
+  Fetch single contract by ID (deprecated - use get instead)
+  GET {singleton}/{param}
+- `create(data: ContraCreateRequest): Promise<any>` (override)
+  Create a contract
+- `updateContrat(contrat: any, options?: any = {skipVueXStorage: false}): Promise<any>`
+  Update a contract
+  PUT {singleton}/{param}
+- `archive(contrat: any, options?: any = {skipVueXStorage: false}): Promise<any>`
+  Archive a contract
+  PUT {singleton}/{param}
+- `[DEPRECATED] attachCategoriesToContrat(categoriesContrat: any[]): Promise<any>`
+  Attach categories to a contract (deprecated)
+
+**Types:**
+
+`Contra` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| startDate | string | yes |
+| endDate | string | yes |
+| noticePeriod | number | yes |
+| isArchived | string | yes |
+| tiers_name | string | yes |
+| tiers_uid | string | yes |
+| userId | string | yes |
+
+`ContraCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| startDate | string | yes |
+| endDate | string | yes |
+| noticePeriod | number | yes |
+| isArchived | string | yes |
+| tiers_name | string | yes |
+| tiers_uid | string | yes |
+| userId | string | yes |
+
+`ContraUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| startDate | string | yes |
+| endDate | string | yes |
+| noticePeriod | number | yes |
+| isArchived | string | yes |
+| tiers_name | string | yes |
+| tiers_uid | string | yes |
+| userId | string | yes |
+
+---
+
+#### sdk.contratecheancier — /api/contrats/echeances | /api/contrat/echeance
+> Contract payment schedules
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: ContratEcheancie[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<ContratEcheancie>` (inherited)
+  Get a single record by ID
+- `update(id: number, datas: ContratEcheancieUpdateRequest): Promise<ContratEcheancie>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getContratEcheances(contratId: string): Promise<any>`
+  Get echeances for a specific contract
+  GET /api/contrat/{param}/echeances
+- `create(data: ContratEcheancieCreateRequest): Promise<any>` (override)
+  Create contract echeances with userId
+  POST {endpoint}
+- `updateContratEcheance(id: string, data: ContratEcheancieUpdateRequest): Promise<any>`
+  Update contract echeance with userId
+  PUT {singleton}/{param}
+
+**Types:**
+
+`ContratEcheancie` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| contratId | string | yes |
+| dateEcheance | string | yes |
+| montant | number | yes |
+| statut | string | yes |
+| userId | string | yes |
+
+`ContratEcheancieCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| contratId | string | yes |
+| dateEcheance | string | yes |
+| montant | number | yes |
+| statut | string | yes |
+| userId | string | yes |
+
+`ContratEcheancieUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| contratId | string | yes |
+| dateEcheance | string | yes |
+| montant | number | yes |
+| statut | string | yes |
+| userId | string | yes |
+
+---
+
+#### sdk.tiers — /api/tiers | /api/tiers
+> Third-party service providers/contractors
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Tier[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Tier>` (inherited)
+  Get a single record by ID
+- `create(datas: TierCreateRequest): Promise<Tier>` (inherited)
+  Create a new record
+- `update(id: number, datas: TierUpdateRequest): Promise<Tier>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getTiers(metadatas: Metadatas, options?: { sites?: any; userId?: string; } = {}): Promise<any>`
+  Get tiers with optional filtering
+- `getTiersById(id: number): Promise<any>`
+  Get a single tier by ID
+  GET {endpoint}/{param}
+- `updateTier(tier: Tier & { id: number; }): Promise<any>`
+  Update a tier
+  PUT {endpoint}/{param}
+- `createTier(tier: TierCreateRequest): Promise<any>`
+  Create a new tier
+- `deleteTier(tier: { id: number; }, userId?: string): Promise<any>`
+  Delete a tier
+  DELETE {endpoint}/{param}?userId={param}
+- `archive(tier: { id: number; }): Promise<any>`
+  Archive a tier (set isArchived to "1")
+  PUT {endpoint}/{param}
+- `unarchive(tier: { id: number; }): Promise<any>`
+  Unarchive a tier (set isArchived to "0")
+  PUT {endpoint}/{param}
+
+**Types:**
+
+`Tier` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| isArchived | string | yes |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`TierCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+| isArchived | string | yes |
+
+`TierUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| isArchived | string | yes |
+
+---
+
+### [documents]
+
+#### sdk.documents — /api/documents | /api/document
+> File attachments and documents
+
+**Methods:**
+- `getById(id: number): Promise<Document>` (inherited)
+  Get a single record by ID
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+  Get documents with metadata filters
+- `getPlans(metadatas: Metadatas, sites?: string): Promise<any>`
+  Get document plans with site restrictions
+  GET {singleton}/plans
+- `create(documents: any[]): Promise<any>` (override)
+  Create documents
+- `update(document: any): Promise<any>` (override)
+  Update document with custom data structure
+  PUT {singleton}/{param}
+- `remove(document: any): Promise<any>` (override)
+  Delete document
+  DELETE {singleton}/{param}
+
+**Types:**
+
+`Document` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`DocumentCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`DocumentUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---
+
+### [locations]
+
+#### sdk.lieux — /api/lieux | /api/lieu
+> Hierarchical location tree (Organisation > Site > Batiment > Etage > Piece)
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Lieu[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Lieu>` (inherited)
+  Get a single record by ID
+- `update(id: number, datas: LieuUpdateRequest): Promise<Lieu>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getOrganisations(metadatas?: any = { directives: [], filters: [] }): Promise<any>`
+  Get organisations (lieux with type_lieu=Organisation)
+- `getSites(metadatas: Metadatas): Promise<any>`
+  Get sites (lieux with type_lieu=Site)
+- `getLieux(metadatas: Metadatas, options?: { _stored_counters?: boolean; _isOrderedBySiteAsc?: boolean; } = {}): Promise<any>`
+  Get all lieux with options
+- `getLieu(idLieu: number, options?: { skipVueXStorage?: boolean; } = {}): Promise<any>`
+  Get single lieu by ID
+  GET {singleton}/{param}
+- `create(lieux: LieuCreateRequest[], options?: { dernierNumeroPiece?: any; } = {}): Promise<any>` (override)
+  Create lieux
+  POST {endpoint}?userId={param}
+- `importPieces(lieux: string): Promise<any>`
+  Import pieces from CSV
+  POST csv={param}
+- `createPiecesGeneriques(siteId: number, lieux: any[]): Promise<any>`
+  Create generic pieces for a site
+  POST /api/site/{param}/pieces/generiques?userId={param}
+- `createPiecesGeneriquesFamilleSite(famille: string, lieux: any[]): Promise<any>`
+  Create generic pieces for sites in a family
+  POST /api/sites/{param}/pieces/generiques?userId={param}
+- `createPieceGenerique(siteId: number): Promise<any>`
+  Create a single generic piece for a site
+  POST /api/site/{param}/piece/generique?userId={param}
+- `updateLieu(lieu: LieuUpdateRequest & { id: number; }): Promise<any>`
+  Update a single lieu
+  PUT {singleton}/{param}?userId={param}
+- `updateLieux(lieux: (LieuUpdateRequest & { id: number; })[]): Promise<any>`
+  Update multiple lieux
+- `deleteLieu(lieu: Lieu): Promise<any>`
+  Delete a lieu
+  DELETE /api/lieux/{param}
+- `saveRestrictionSiteForUser(collection: any): Promise<any>`
+  Save restriction site for user (deprecated)
+
+**Types:**
+
+`Lieu` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libelle | string | yes |
+| libel_lieu | string | yes |
+| path | string | yes |
+| type_lieu | string | yes |
+| famille | string | yes |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`LieuCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelle | string | yes |
+| libel_lieu | string | yes |
+| path | string | yes |
+| type_lieu | string | yes |
+| famille | string | yes |
+
+`LieuUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelle | string | yes |
+| libel_lieu | string | yes |
+| path | string | yes |
+| type_lieu | string | yes |
+| famille | string | yes |
+
+`FamilleColor` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| label | string | no |
+| color | string | no |
+
+---
+
+#### sdk.planInteractif —  | 
+> Interactive floor plans for locations
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: FeatureProperties[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<FeatureProperties>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+
+**Types:**
+
+`LatLng` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| lat | number | no |
+| lng | number | no |
+
+`GeoJsonPoint` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| type | "Point" | no |
+| coordinates | [number, number] | no |
+
+`FeatureProperties` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | any | yes |
+| libel_lieu | string | yes |
+| coordX | number | yes |
+| coordY | number | yes |
+| categorie | CategoryInfo | yes |
+| codeUn | string | yes |
+| service | string | yes |
+| type_lieu | string | yes |
+| idLieuParent_id | any | yes |
+| userId | string | yes |
+| uid | string | yes |
+
+`CategoryInfo` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelleCatgorie | string | no |
+
+`GeoJsonFeature` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| type | "Feature" | no |
+| geometry | GeoJsonPoint | no |
+| properties | FeatureProperties | no |
+| id | any | no |
+
+`GeoJsonFeatureCollection` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| type | "FeatureCollection" | no |
+| features | GeoJsonFeature[] | no |
+
+`Etage` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | any | no |
+| path | string | no |
+
+`PieceACreer` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| libel_lieu | string | no |
+| type_lieu | "Piece" | no |
+| idLieuParent_id | any | no |
+| categorie | CategoryInfo | no |
+| codeUn | string | no |
+| userId | string | no |
+| service | string | no |
+
+`CollectionItem` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | any | no |
+| libel_lieu | string | yes |
+| codeUn | string | yes |
+
+`PositioningResult` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| positioned | CollectionItem[] | no |
+| nonPositioned | CollectionItem[] | no |
+
+`CsvImportData` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| coordX | number | no |
+| coordY | number | no |
+
+`ExcelExportRow` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| piece | string | no |
+| qrcode | string | no |
+| categorie | string | no |
+| service | string | no |
+| site | string | no |
+| batiment | string | no |
+| etage | string | no |
+
+`ExportOptions` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| fileName | string | yes |
+| includeHeaders | boolean | yes |
+| dateFormat | string | yes |
+
+`CsvImportOptions` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| delimiter | string | yes |
+| hasHeaders | boolean | yes |
+| sanitizeData | boolean | yes |
+
+`PlanInteractionContext` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| appID | string | no |
+| currentEtage | Etage | no |
+| geoJsonData | GeoJsonFeatureCollection | no |
+| selectedFeatures | GeoJsonFeature[] | yes |
+
+`CoordinateTransform` (entity)
+
+`FeatureOperations` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| create | (data: FeatureProperties, position: LatLng) => GeoJsonFeature | no |
+| update | (feature: GeoJsonFeature, newPosition: LatLng) => GeoJsonFeature | no |
+| delete | (featureId: any) => boolean | no |
+| move | (featureId: any, newPosition: LatLng) => GeoJsonFeature | null | no |
+
+`PlanExportConfig` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| format | "csv" | "excel" | "json" | no |
+| includeGeometry | boolean | no |
+| includeProperties | boolean | no |
+| customHeaders | string[] | yes |
+| filterFunction | ((feature: GeoJsonFeature) => boolean) | yes |
+
+`PlanImportConfig` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| format | "csv" | "json" | no |
+| coordinateMapping | { xField: string; yField: string; } | no |
+| propertyMapping | { [csvField: string]: string; } | yes |
+| validation | ((data: any) => boolean) | yes |
+
+---
+
+### [maintenance]
+
+#### sdk.interventions — /api/interventions | /api/intervention
+> Service interventions linked to maintenance and contracts
+
+**Methods:**
+- `getAll(metadatas: Metadatas, idEquipement?: string | null = null, siteEquipement?: string | null = null): Promise<any>` (override)
+  Override getAll method to include custom query parameters
+- `getById(id: number, options?: any = { skipVueXStorage: false }): Promise<any>` (override)
+  Override getById method with custom userId parameter
+  GET {singleton}/{param}
+- `update(id: number, intervention: any, options?: any = { skipVueXStorage: false }): Promise<any>` (override)
+  Override update method with custom data cleaning
+  PUT {singleton}/{param}?userId={param}
+- `create(interventions: any[]): Promise<any>` (override)
+  Override create method with custom userId parameter
+  POST {endpoint}?userId={param}
+- `remove(id: number): Promise<any>` (override)
+  Override remove method with custom userId parameter
+  DELETE {singleton}/{param}?userId={param}
+- `getPdfFile(idIntervention: string, filename?: string | null = null, fileExtension?: string = "pdf"): Promise<any>`
+  Get PDF file for intervention
+  GET /api/intervention/export/{param}/S
+- `createInterventionsEquipements(idIntervention: string, equipements: any[]): Promise<any>`
+  Create interventions equipements
+  POST /api/interventionsequipements/{param}?userId={param}
+- `deleteInterventionEquipement(interventionEquipement: any): Promise<any>`
+  Delete intervention equipement
+  DELETE /api/interventionsequipements/{param}?userId={param}
+- `deleteInterventionsEquipements(interventionsEquipements: any[]): Promise<any>`
+  Delete interventions equipements
+  DELETE /api/interventionsequipements?userId={param}
+
+**Types:**
+
+`Intervention` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| status | string | yes |
+| datePrevisionnelleDebut | string | yes |
+| datePrevisionnelleFin | string | yes |
+| dateEffectiveDebut | string | yes |
+| dateEffectiveFin | string | yes |
+
+`InterventionCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| status | string | yes |
+| datePrevisionnelleDebut | string | yes |
+| datePrevisionnelleFin | string | yes |
+| dateEffectiveDebut | string | yes |
+| dateEffectiveFin | string | yes |
+
+`InterventionUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| status | string | yes |
+| datePrevisionnelleDebut | string | yes |
+| datePrevisionnelleFin | string | yes |
+| dateEffectiveDebut | string | yes |
+| dateEffectiveFin | string | yes |
+
+---
+
+#### sdk.maintenance — /api/maintenances | /api/maintenance
+> Work orders (fiches SAV) for equipment repair
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Maintenance[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Maintenance>` (inherited)
+  Get a single record by ID
+- `create(datas: MaintenanceCreateRequest): Promise<Maintenance>` (inherited)
+  Create a new record
+- `update(id: number, datas: MaintenanceUpdateRequest): Promise<Maintenance>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getMaintenances(metadatas: Metadatas, options?: { _stored?: boolean; idUserAffecte?: string | null; idTiersAffecte?: string | null; onlyEncours?: boolean; onlyNonAffectes?: boolean; } = { _stored: true, idUserAffecte: null, idTiersAffecte: null, onlyEncours: true, onlyNonAffectes: false }): Promise<{ datas: MaintenanceType[]; metadatas: any; }>`
+  GET maintenances liste with custom options
+- `getMesMaintenancesPlanifiees(metadatas: Metadatas): Promise<{ datas: MaintenanceType[]; metadatas: any; }>`
+  GET maintenances qui me sont planifiées
+  GET {endpoint}/mes-planifiees
+- `getDemandeurs(metadatas: Metadatas, options?: { _stored?: boolean; } = { _stored: true }): Promise<{ datas: any[]; metadatas: any; }>`
+  GET demandeurs liste
+  GET {endpoint}/demandeurs
+- `createMaintenances(maintenances: MaintenanceCreateRequest[], options?: { _stored?: boolean; } = { _stored: true }): Promise<MaintenanceType[]>`
+  Create multiple maintenances
+- `demandeDevis(maintenanceId: string, payload: any): Promise<any>`
+  Demande de devis on maintenance id
+  POST {singleton}/{param}/demande-devis
+- `deleteMultiple(maintenances: MaintenanceType[]): Promise<any>`
+  Delete multiple maintenances
+  DELETE {endpoint}/delete-multiple
+- `relancer(maintenance: MaintenanceType, commentaire?: string | null): Promise<MaintenanceType>`
+  Relancer maintenance
+  PUT {singleton}/{param}/relance
+- `postMaintenanceOperations(idMaintenance: string, operations: any[]): Promise<any>`
+  Create operation on maintenance
+  POST {singleton}/{param}/operations
+- `postOperations(operations: any[]): Promise<any>`
+  Create operations
+- `putOperation(operation: { [key: string]: any; id: string; }): Promise<any>`
+  Update operation
+  PUT /api/operation/{param}
+- `deleteOperation(idOperation: string, operation: { uid: string; }): Promise<any>`
+  Delete operation
+  DELETE /api/operation/{param}
+- `prendreEnCompteMaintenances(maintenances: MaintenanceType[]): Promise<any>`
+  Prendre en compte maintenances
+  PUT {endpoint}/prendre-en-compte
+- `prendreEnCompteMaintenance(maintenance: MaintenanceType): Promise<any>`
+  Prendre en compte maintenance
+  PUT {singleton}/{param}/prendre-en-compte
+- `mettreEnAttenteMaintenances(maintenances: MaintenanceType[]): Promise<any>`
+  Mettre en attente maintenances
+  PUT {endpoint}/mettre-en-attente
+- `mettreEnAttenteMaintenance(maintenance: MaintenanceType): Promise<any>`
+  Mettre en attente maintenance
+  PUT {singleton}/{param}/mettre-en-attente
+- `resolveMaintenances(maintenances: MaintenanceType[], rapportCloture?: string | null): Promise<any>`
+  Cloture maintenances
+  PUT {endpoint}/resolve
+- `resolveMaintenance(maintenance: MaintenanceType, files?: any[] | null): Promise<any>`
+  Cloture maintenance
+  PUT {singleton}/{param}/resolve
+- `reopenMaintenances(maintenanceId: string): Promise<any>`
+  Reopen maintenances
+  PUT {singleton}/{param}/reopen
+- `setStatusMaintenances(maintenances: MaintenanceType[], status: string): Promise<any>`
+  Set status maintenances
+  PUT {endpoint}/status/{param}
+- `getFile(metadatas: Metadatas, filename?: string | null, fileExtension?: string = "xlsx"): Promise<void>`
+  Download file (CSV or Excel)
+  GET {endpoint}/export/{param}
+- `getPdfFile(idMaintenance: string, filename?: string | null, fileExtension?: string = "pdf"): Promise<any>`
+  Download PDF file
+  GET {singleton}/{param}/export/pdf/S
+
+**Types:**
+
+`Maintenance` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| dateOuvertureSAV | string | yes |
+| dateFermetureSAV | string | yes |
+| statut | string | yes |
+| operation | string | yes |
+| rapportCloture | string | yes |
+| affectation | object | yes |
+| operations | any[] | yes |
+| idUser | string | yes |
+
+`MaintenanceCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| dateOuvertureSAV | string | yes |
+| dateFermetureSAV | string | yes |
+| statut | string | yes |
+| operation | string | yes |
+| rapportCloture | string | yes |
+| affectation | object | yes |
+| operations | any[] | yes |
+| idUser | string | yes |
+
+`MaintenanceUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| dateOuvertureSAV | string | yes |
+| dateFermetureSAV | string | yes |
+| statut | string | yes |
+| operation | string | yes |
+| rapportCloture | string | yes |
+| affectation | object | yes |
+| operations | any[] | yes |
+| idUser | string | yes |
+
+---
+
+#### sdk.operation — /api/operations | /api/operation
+> Maintenance operations
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Operation[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Operation>` (inherited)
+  Get a single record by ID
+- `create(datas: OperationCreateRequest): Promise<Operation>` (inherited)
+  Create a new record
+- `update(id: number, datas: OperationUpdateRequest): Promise<Operation>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `createBIOperation(data: any, idUser?: string, userId?: string): Promise<any>`
+  Create BI Operation
+- `createPhotoOperation(idFM: string, file: any, idUser?: string, userId?: string): Promise<any>`
+  Create Photo Operation
+- `updateOperation(data: any): Promise<any>`
+  Update Operation using V2.0 endpoint
+- `getFile(metadatas: Metadatas, fileExtension?: string = "csv", userId?: string, sites?: string): Promise<any>`
+  Export operations to file (CSV or Excel)
+  GET /api/operations/export/{param}
+
+**Types:**
+
+`Operation` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| operation | string | yes |
+| retourClient | string | yes |
+| dateOperation | string | yes |
+| ficheSav | any | yes |
+| idUser | string | yes |
+| userId | string | yes |
+| tiers | any | yes |
+| __uploadedFile | any | yes |
+| __action | string | yes |
+
+`OperationCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| operation | string | yes |
+| retourClient | string | yes |
+| dateOperation | string | yes |
+| ficheSav | any | yes |
+| idUser | string | yes |
+| userId | string | yes |
+| tiers | any | yes |
+| __uploadedFile | any | yes |
+| __action | string | yes |
+
+`OperationUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| operation | string | yes |
+| retourClient | string | yes |
+| dateOperation | string | yes |
+| ficheSav | any | yes |
+| idUser | string | yes |
+| userId | string | yes |
+| tiers | any | yes |
+| __uploadedFile | any | yes |
+| __action | string | yes |
+
+**Notes:**
+- Operations are the audit trail / event log of a maintenance (ficheSAV). Each operation has a `flag` that determines its type, required payload, status effects, and side effects.
+- Always required fields: dateOperation (timestamp), ficheSav_id (maintenance ID), idUser (user performing action).
+
+**Enum: OperationFlags** (field: `flag`)
+The `flag` field determines the operation type. Each flag may require additional payload fields, change the maintenance status, or trigger side effects (emails, document links).
+
+| Value | Label | Description | Required Fields | Status Change | Side Effects |
+|-------|-------|-------------|-----------------|---------------|--------------|
+| fermeture | Closure | Close/resolve a maintenance ticket | - | → RESOLUE (or → ATTENTE_VALIDATION_SUPERVISEUR if supervisor validation required) | Sets dateFermetureSAV; May generate CLOTURE_FILE operations if files attached; May generate AFFECTES_WORKING_TIME_UPDATE |
+| reouverture | Reopening | Reopen a previously closed maintenance | date | → EN_COURS | Clears dateFermetureSAV (set to null) |
+| prise_en_compte | Acknowledged | Acknowledge/take ownership of a maintenance request | - | → PRISE_EN_COMPTE | - |
+| en_attente | On Hold | Put maintenance on hold (waiting for parts, customer feedback, etc.) | - | → EN_ATTENTE | - |
+| a-valider | Pending Validation | Closure pending supervisor approval. Auto-generated when non-supervisor closes a maintenance that requires validation. | - | → ATTENTE_VALIDATION_SUPERVISEUR | - |
+| validation | Supervisor Validation | Supervisor approves/validates completed maintenance | - | → RESOLUE | - |
+| manuelle | Manual Comment | Add a manual comment/note to maintenance timeline | operation (comment text) | - | EMAIL: notifies team members with emailing_commentaire_fm preference enabled |
+| relance | Follow-up | Follow up / escalate a pending maintenance | - | - | Sets isRelance flag on maintenance |
+| relance/iot | IoT Follow-up | Automated follow-up triggered by IoT device | - | - | Sets isRelance flag on maintenance |
+| urgence | Emergency | Mark maintenance as urgent priority | - | - | - |
+| differe | Deferred | Defer/postpone maintenance to a later date | - | - | - |
+| affectation/interne | Internal Assignment | Assign maintenance to internal team member(s) | affectation_id, affectes (array of user IDs) | - | - |
+| affectation/externe | External Assignment | Assign maintenance to external third party (vendor/contractor) | tiers_id, affectation_id | - | - |
+| affectation/externe/email | External Assignment + Email | Assign to external party AND send notification email | tiers_id, affectation_id | - | EMAIL: sends assignment notification to external party |
+| affectation-tiers-accept | Third Party Accepts | Third party confirms acceptance of maintenance assignment | affectation_id | - | - |
+| affectation-tiers-reject | Third Party Rejects | Third party declines the maintenance assignment | affectation_id | - | - |
+| affectes-working-time-update | Working Time Update | Record/update time worked by assigned technicians. Auto-generated at closure. | affectation_id, affectes (array with time allocations) | - | - |
+| photo | Attach Photo | Attach a photo/image to maintenance timeline | attachedFile_id | - | - |
+| img | Image from DI | Photo taken from dispatch instruction system | attachedFile_id | - | - |
+| cloture-file | Closure File | Attach supporting document at closure. Auto-generated during fermeture when files provided. | attachedFile_id, operation (file name) | - | - |
+| levee-reserve-file | Reserve Lift File | Attach document to lift/clear reserve status. Auto-generated when lifting reserves with files. | attachedFile_id | - | - |
+| email | Email Notification | Send email notification about maintenance | - | - | EMAIL: triggers notification to configured recipients |
+| email-demande-devis | Quote Request Email | Send quote request email to vendor | tiers_id | - | EMAIL: sends quote request to vendor |
+| bi | Work Order (Bon d'Intervention) | Generate/attach a work order document | - | - | - |
+| consommation | Consumable Usage | Record consumption of spare parts/materials during maintenance | consommableMouvement_id | - | - |
+| changement_equipement | Equipment Replacement | Record equipment replacement/swap | sortieEquipement_id | - | Creates SortieEquipement record; May trigger automatic closure |
+| a_prevoir | To Be Planned | Mark maintenance as pending planning/scheduling | operation (description) | - | - |
+| tache | Task | Add a task/work item to maintenance | operation (task description) | - | - |
+| intervention-reserve | Reserved Intervention | Mark intervention as reserved with external party | intervention_id | - | - |
+| tiersinterventionponctuelle | One-Time Vendor Intervention | One-time intervention by external vendor (not under contract) | tiersintervention_id | - | - |
+| retourAFaire | Rework Needed | Work requires correction before closure can proceed | retourClient (reason) | - | - |
+| retourFait | Rework Completed | Correction/rework has been completed, closure can proceed | - | - | - |
+
+---
+
+### [notifications]
+
+#### sdk.messaging — /api/fcm | /api/fcm
+> Firebase Cloud Messaging (FCM) integration
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<any>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<any>` (inherited)
+  Delete a record by ID
+- `subscribeToTopic(topic: string, deviceToken: string, options?: object = {}): Promise<any>`
+  Subscribe to a topic
+  POST {endpoint}/subscribe/{param}
+- `unsubscribeFromTopic(topic: string, deviceToken: string, options?: object = {}): Promise<any>`
+  Unsubscribe from a topic
+  POST {endpoint}/unsubscribe/{param}
+- `unsubscribeFromAllTopics(deviceToken: string): Promise<any>`
+  Unsubscribe from all topics for a device
+  POST {endpoint}/unsubscribe/all
+- `sendMessageToTopic(topic: string, payload: FcmMessagePayload): Promise<any>`
+  Send a message to a topic
+  POST {endpoint}/send/topic/{param}
+- `sendMessageToDevice(deviceToken: string, payload: FcmMessagePayload): Promise<any>`
+  Send a message to a specific device
+  POST {endpoint}/send/to/{param}
+- `getSubscribedTopics(deviceToken: string): Promise<any>`
+  GET {endpoint}/subscribe/topics?token={param}
+
+---
+
+### [organization]
+
+#### sdk.corpsdetat — /api/corps-detats | /api/corps-detat
+> Trade/craft type definitions
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: CorpsDetat[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<CorpsDetat>` (inherited)
+  Get a single record by ID
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getCorpsDetats(metadatas: Metadatas): Promise<any>`
+  Get corps d'etat list
+- `create(data: CorpsDetatType[]): Promise<any>` (override)
+  Create corps d'etat
+- `updateCorpsDetat(corpsdetat: any): Promise<any>`
+  Update corps d'etat
+  PUT {singleton}/{param}
+
+**Types:**
+
+`CorpsDetat` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| userId | string | yes |
+| uid | string | yes |
+
+---
+
+#### sdk.libellescategorie — /api/libelles-categorie | /api/libelle-categorie
+> Category label definitions
+
+**Methods:**
+- `getById(id: number): Promise<libellesCategorie>` (inherited)
+  Get a single record by ID
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+  Override getAll method to get libelles categories with userId
+- `create(libellesCategories: any[], options?: any = { _stored: true }): Promise<any>` (override)
+  Override create method for libelles categories
+- `remove(id: number): Promise<any>` (override)
+  Override remove method for libelles categories
+  DELETE {singleton}/{param}
+
+**Types:**
+
+`libellesCategorie` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelle | string | no |
+
+---
+
+#### sdk.libelproblem — /api/libelles-probleme | /api/libelle-probleme
+> Problem label definitions
+
+**Methods:**
+- `getById(id: number): Promise<LibelProble>` (inherited)
+  Get a single record by ID
+- `update(id: number, datas: LibelProbleUpdateRequest): Promise<LibelProble>` (inherited)
+  Update a record by ID
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+  Override getAll method for libelles probleme
+- `create(libellesProblem: any[]): Promise<any>` (override)
+  Override create method for libelles probleme
+- `remove(id: number): Promise<any>` (override)
+  Override remove method for libelles probleme
+  DELETE {singleton}/{param}
+- `createComposantProblems(idComposant: string, problems: any[]): Promise<any>`
+  Create problems for a specific component
+  POST /api/composant/{param}/libels-problems
+- `deleteComposantProblem(problem: any): Promise<any>`
+  Delete a specific component problem
+  DELETE {singleton}/{param}
+- `getComposantProblems(composantId: string): Promise<any>`
+  Get problems for a specific component
+  GET /api/composant/{param}/libelles-probleme
+- `getLibellesProblemByCategorie(metadatas: Metadatas, idCategorie: string): Promise<any>`
+  Get libelles problem by category (generic and category-specific)
+  GET /api/libelles-probleme/categorie/{param}/all
+
+**Types:**
+
+`LibelProble` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| libelle | string | yes |
+| composant_id | string | yes |
+| categorie_id | string | yes |
+
+`LibelProbleCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelle | string | yes |
+| composant_id | string | yes |
+| categorie_id | string | yes |
+
+`LibelProbleUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelle | string | yes |
+| composant_id | string | yes |
+| categorie_id | string | yes |
+
+---
+
+#### sdk.libelservices — /api/libel-services | /api/libel-service
+> Service label definitions
+
+**Methods:**
+- `getById(id: number): Promise<LibelService>` (inherited)
+  Get a single record by ID
+- `update(id: number, datas: LibelServiceUpdateRequest): Promise<LibelService>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getAll(metadatas: Metadatas, options?: { _stored?: boolean; _restrictionSite?: boolean; _all?: boolean; } = {}): Promise<any>` (override)
+  Get all libel services with custom options
+Overrides the base getAll method to handle metadatas and site restriction
+- `create(libelServices: LibelServiceCreateRequest[]): Promise<any>` (override)
+  Create libel services
+Overrides the base create method to handle the "datas" wrapper
+- `deleteLibelService(libelService: LibelService): Promise<any>`
+  Delete a libel service
+Custom method to handle libel service deletion with object parameter
+  DELETE {singleton}/{param}
+
+**Types:**
+
+`LibelService` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libelle | string | yes |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`LibelServiceCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelle | string | yes |
+
+`LibelServiceUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelle | string | yes |
+
+---
+
+#### sdk.tags — /api/tags | /api/tags
+> Tag management for entities
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Tag[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Tag>` (inherited)
+  Get a single record by ID
+- `create(datas: TagCreateRequest): Promise<Tag>` (inherited)
+  Create a new record
+- `update(id: number, datas: TagUpdateRequest): Promise<Tag>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `listComposantType(): Promise<any>`
+  List composant type
+  GET {endpoint}/composant-type
+
+**Types:**
+
+`Tag` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`TagCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`TagUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---
+
+### [preventive]
+
+#### sdk.checkpoints — /api/checkpoints | /api/checkpoints
+> Verification checkpoints within preventive tasks
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+  Get all records with filtering/pagination
+  Output: { datas: Checkpoint[], metadatas: { counters: { All: number } } }. Each checkpoint includes nested composant and consommable objects when linked.
+- `getById(id: number): Promise<any>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+  Input: { datas: Checkpoint[] }. Required fields per checkpoint: question, typeReponse, orderOfAppearance, idTache_id.
+  Output: Array of created checkpoints with generated IDs.
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+  Input: { datas: Checkpoint }. Partial update — only include fields to change.
+  Output: { datas: Checkpoint } — updated checkpoint.
+- `remove(id: number): Promise<any>` (inherited)
+  Delete a record by ID
+
+---
+
+#### sdk.planMaintenance —  | 
+> Maintenance planning
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: MaintenanceTask[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<MaintenanceTask>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getPrevventiveMaintenance(focusedDate: string, metadatas: any, userId: string, sites: string): Promise<any>`
+  Get preventive maintenance plan data
+
+**Types:**
+
+`MaintenanceTask` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| title | string | yes |
+| description | string | yes |
+| dueDate | string | yes |
+| status | string | yes |
+| priority | string | yes |
+| assignedTo | string | yes |
+| equipment | any | yes |
+
+`MaintenanceContract` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| contractNumber | string | yes |
+| provider | string | yes |
+| startDate | string | yes |
+| endDate | string | yes |
+| type | string | yes |
+| scope | string | yes |
+| status | string | yes |
+
+`MaintenanceMetadata` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| filters | any | yes |
+| pagination | any | yes |
+| sorting | any | yes |
+
+`PreventiveMaintenanceQuery` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| userId | string | no |
+| sites | string | no |
+| focusedDate | string | no |
+| metadatas | any | no |
+
+`PreventiveMaintenanceResponse` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| taches | MaintenanceTask[] | no |
+| contrats | MaintenanceContract[] | no |
+| metadatas | MaintenanceMetadata | no |
+
+`MetadataProvider` (entity)
+
+---
+
+#### sdk.taches — /api/taches | /api/tache
+> Preventive maintenance tasks with checkpoints
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: TacheEntity[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<TacheEntity>` (inherited)
+  Get a single record by ID
+- `create(datas: TacheCreateRequest): Promise<TacheEntity>` (inherited)
+  Create a new record
+- `update(id: number, datas: TacheUpdateRequest): Promise<TacheEntity>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getTaches(metadatas: Metadatas, options?: GetTachesOptions = {}): Promise<any>`
+  Get all taches with optional site restrictions.
+GET /taches
+  Output: { datas: TacheEntity[], metadatas: { counters: { All: number } } }
+- `getTachesOverview(metadatas: Metadatas, options?: GetTachesOptions = {}): Promise<any>`
+  Get taches overview statistics.
+GET /taches/overview
+  GET {endpoint}/overview
+  Output: { total: number, completed: number, pending: number }
+- `getTache(id: number): Promise<any>`
+  Get a single tache by ID with checkpoints, affectations, sites and linked equipements.
+GET /tache/{id}
+  GET {singleton}/{param}
+  Output: Single TacheEntity with checkpoints[], affectation, tacheSites[], tacheEquipements[], and categorie fully populated.
+- `createTaches(taches: TacheCreateRequest[], restrictionSites?: string | null = null): Promise<any>`
+  Create multiple taches with checkpoints.
+POST /taches
+  Input: { datas: TacheCreateRequest[], restrictionSites?: number[] }. Each tache must include checkpoints[] with question, typeReponse, orderOfAppearance. Schema A: set idCategorie_id. Schema B: set tacheEquipements[].
+  Output: { datas: TacheEntity[] } — created taches with generated IDs and checkpoint IDs.
+- `updateTache(tache: TacheUpdateRequest, updatedTacheSites?: any = null): Promise<any>`
+  Update a tache with its related entities.
+PUT /tache/{id}
+  PUT {singleton}/{param}
+  Input: { datas: TacheUpdateRequest, restrictionSites?: number[] }. Include checkpoint.id to update existing, omit id to create new. Same for tacheSites and affectation.
+  Output: { datas: TacheEntity } — updated tache.
+- `deleteTache(tache: { id: number; }): Promise<any>`
+  Delete a tache and all its associations.
+DELETE /tache/{id}
+  DELETE {singleton}/{param}
+  Input: Tache object with { id: number }.
+  Output: Deletion confirmation.
+- `getExcelFile(metadatas: Metadatas, filename?: string | null = null, fileExtension?: string = 'xlsx'): Promise<any>`
+  Export taches to Excel/CSV file.
+GET /taches/export/{format}
+  GET {endpoint}/export/{param}
+  Output: Blob — binary file (CSV or Excel) for download.
+
+**Types:**
+
+`TacheCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| libelTache | string | no |
+| typeTache | string | no |
+| periodicite | number | no |
+| dateprochaineVerif | string | no |
+| tagTache | string | yes |
+| idCategorie_id | number | yes |
+| checkpoints | Checkpoint[] | yes |
+| tacheSites | TacheSite[] | yes |
+| tacheEquipements | number[] | yes |
+
+`TacheUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | no |
+| libelTache | string | yes |
+| typeTache | string | yes |
+| periodicite | number | yes |
+| dateprochaineVerif | string | yes |
+| tagTache | string | yes |
+| isActive | number | yes |
+| idCategorie_id | number | yes |
+| checkpoints | Checkpoint[] | yes |
+| tacheSites | TacheSite[] | yes |
+| tacheEquipements | number[] | yes |
+| affectation | TacheAffectation | yes |
+
+`GetTachesOptions` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| restrictionSites | string | null | yes |
+
+`CheckpointComposant` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| userId | string | yes |
+| libelComposant | string | yes |
+| typeComposant | string | yes |
+| icon | string | yes |
+| uidComposant | string | yes |
+
+`CheckpointConsommable` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | yes |
+| refExterne | string | yes |
+| marque | string | yes |
+| numSerie | string | yes |
+| commentaire | string | yes |
+| coutUnitaire | string | number | yes |
+| fournisseurDefault_id | number | null | yes |
+| statut | string | yes |
+| unite | string | yes |
+| tva_id | number | null | yes |
+| code | string | yes |
+| nature | string | yes |
+| category | string | yes |
+| services | string | any[] | yes |
+
+`Checkpoint` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| question | string | no |
+| typeReponse | string | no |
+| type_reponse | string | yes |
+| orderOfAppearance | number | yes |
+| consigne | string | yes |
+| section | string | yes |
+| rubrique | string | yes |
+| maxVal | string | number | null | yes |
+| minVal | string | number | null | yes |
+| messageOnVerifError | string | yes |
+| idTache_id | number | yes |
+| composant_id | number | null | yes |
+| consommable_id | number | null | yes |
+| seuils | string | any[] | null | yes |
+| isUpdatable | boolean | yes |
+| unite | string | null | yes |
+| defaultValue | string | null | yes |
+| stepValue | string | null | yes |
+| userId | string | yes |
+| photos | any[] | yes |
+| composant | any[] | CheckpointComposant | yes |
+| consommable | CheckpointConsommable | yes |
+
+`TacheSiteLieu` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libel_lieu | string | yes |
+| path | string | yes |
+
+`TacheSiteProgression` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| dateDebut | string | yes |
+| dateFin | string | yes |
+| total | number | yes |
+| verified | number | yes |
+
+`TacheSite` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| site_id | number | no |
+| libel_lieu | string | yes |
+| path | string | yes |
+| site | TacheSiteLieu | yes |
+| progressionTache | TacheSiteProgression | yes |
+
+`TacheAffectation` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| start | string | yes |
+| end | string | yes |
+| recurrence | number | yes |
+| dayOfWeek | number | yes |
+| durationMinutes | number | yes |
+| excludeDates | string | yes |
+| excludeSaturday | boolean | yes |
+| excludeSunday | boolean | yes |
+| dateDebut | string | yes |
+| dateFin | string | yes |
+| affectes | any[] | yes |
+
+`TacheCategorie` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libelleCatgorie | string | yes |
+| uid | string | yes |
+| icon | string | yes |
+| tags | string | any[] | yes |
+| isGe | string | boolean | yes |
+| codeCouleur | string | yes |
+| typeCategorie | string | yes |
+| isInventoriable | string | boolean | yes |
+| openMaintenanceOnError | string | boolean | yes |
+
+`ProgressionGlobale` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| dateDebut | string | yes |
+| dateFin | string | yes |
+| total | number | yes |
+| verified | number | yes |
+
+`TacheEntity` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| libel_tache | string | yes |
+| type_tache | string | yes |
+| commentaire_tache | string | yes |
+| consigne | string | yes |
+| intex | string | yes |
+| periodicite | string | number | yes |
+| isEquipementsDisplayed | string | boolean | yes |
+| dateprochaineVerif | string | yes |
+| norme | string | yes |
+| userId | string | yes |
+| tags | string | any[] | yes |
+| prisePhotoAfterVerification | string | boolean | yes |
+| uploadDocumentAfterVerification | string | boolean | yes |
+| isDocumentRequired | boolean | yes |
+| affectationMaintenancesAfterVerification | string | boolean | yes |
+| notifOnOubli | string | boolean | yes |
+| isActive | string | number | yes |
+| created_at | string | yes |
+| updated_at | string | yes |
+| isScanRequired | string | boolean | yes |
+| idCategorie_id | number | null | yes |
+| averageTime | string | number | yes |
+| expectUserToReportOnVerification | boolean | yes |
+| canBeValidatedWithoutZooming | boolean | yes |
+| nbCheckpoints | number | null | yes |
+| uid | string | yes |
+| orderOfApparition | string | number | yes |
+| assignation | number[] | yes |
+| tacheSites | TacheSite[] | yes |
+| tacheEquipements | number[] | yes |
+| affectation | TacheAffectation | yes |
+| categorie | TacheCategorie | yes |
+| progressionGlobale | ProgressionGlobale | yes |
+| checkpoints | Checkpoint[] | yes |
+
+`TacheOverview` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| total | number | no |
+| completed | number | no |
+| pending | number | no |
+
+`ProgressionTache` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| dateDebut | string | yes |
+| dateFin | string | yes |
+| total | number | yes |
+| verified | number | yes |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+| userId | string | yes |
+| uid | string | yes |
+| site | { id?: number; libel_lieu?: string; path?: string; } | yes |
+| tache | { id?: number; libel?: string; type?: string; categorie?: { id?: number; libelleCatgorie?: string; isGe?: boolean | string; icon?: string; }; } | yes |
+
+`ExportFileOptions` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| filename | string | null | yes |
+| fileExtension | "xlsx" | "csv" | yes |
+
+**Notes:**
+- Taches are preventive maintenance tasks with checkpoints. Each tache is linked to a category or specific equipments, assigned to sites, and scheduled via affectations.
+- Two creation schemas: Schema A (category-based, requires idCategorie_id) applies to all equipment of that category. Schema B (equipment-restricted, requires tacheEquipements[]) applies to specific equipment only.
+
+---
+
+#### sdk.tacheusers — /api/tache | /api/tache
+> User assignments for preventive tasks
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: TacheUserEntity[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<TacheUserEntity>` (inherited)
+  Get a single record by ID
+- `create(datas: TacheUserCreateRequest): Promise<TacheUserEntity>` (inherited)
+  Create a new record
+- `update(id: number, datas: TacheUserUpdateRequest): Promise<TacheUserEntity>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `deleteTacheUsers(tacheId: number): Promise<any>`
+  Delete all user assignments from a tache
+  DELETE /api/tache/{param}/users
+  Input: tacheId: number. Deletes ALL user assignments from this tache.
+  Output: Deletion confirmation.
+- `deleteTacheUser(tacheId: number, userId: number): Promise<any>`
+  Delete a specific user assignment from a tache
+  DELETE /api/tache/{param}/user/{param}
+  Input: tacheId: number, userId: number. Deletes a single user assignment.
+  Output: Deletion confirmation.
+
+**Types:**
+
+`TacheUserEntity` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| tache_id | number | yes |
+| user_id | number | no |
+| role | string | yes |
+| priority | string | yes |
+| assigned_at | string | yes |
+| created_at | string | yes |
+| updated_at | string | yes |
+
+`TacheUserCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| user_id | number | no |
+| role | string | yes |
+| priority | string | yes |
+
+`TacheUserUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| role | string | yes |
+| priority | string | yes |
+
+`BulkTacheUserCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| tacheUsers | TacheUserCreateRequest[] | no |
+| tacheId | number | no |
+| userId | number | null | yes |
+
+`TacheUserAssignmentResponse` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| assignation | number[] | yes |
+| users | TacheUserEntity[] | yes |
+
+---
+
+### [purchasing]
+
+#### sdk.bondecommandeitems — /api/items/bons-de-commande | /api/item
+> Line items within purchase orders
+
+**Methods:**
+- `getById(id: number): Promise<BonDeCommandeItem>` (inherited)
+  Get a single record by ID
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+  Override the default getAll to match the mixin behavior
+- `create(bonDeCommandeItems: any[]): Promise<any>` (override)
+  Override the default create to match the mixin behavior
+- `update(bonDeCommandeItem: any): Promise<any>` (override)
+  Override the default update to match the mixin behavior
+  PUT {singleton}/{param}/bon-de-commande
+- `remove(bonDeCommandeItem: any): Promise<any>` (override)
+  Override the default remove to match the mixin behavior
+  DELETE {singleton}/{param}/bon-de-commande
+
+**Types:**
+
+`BonDeCommandeItem` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| bon_de_commande_id | string | yes |
+| quantiteLivree | number | yes |
+| uid | string | yes |
+
+`BonDeCommandeItemCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| bon_de_commande_id | string | yes |
+| quantiteLivree | number | yes |
+| uid | string | yes |
+
+`BonDeCommandeItemUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| bon_de_commande_id | string | yes |
+| quantiteLivree | number | yes |
+| uid | string | yes |
+
+---
+
+#### sdk.bonsdecommande — /api/bons-de-commande | /api/bon-de-commande
+> Purchase orders
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: BonsDeCommand[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<BonsDeCommand>` (inherited)
+  Get a single record by ID
+- `create(datas: BonsDeCommandCreateRequest): Promise<BonsDeCommand>` (inherited)
+  Create a new record
+- `update(id: number, datas: BonsDeCommandUpdateRequest): Promise<BonsDeCommand>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `cancel(bonDeCommande: BonsDeCommand): Promise<any>`
+  Cancel a bon de commande
+  PUT {singleton}/{param}/cancel
+- `skipSending(bonDeCommande: BonsDeCommand): Promise<any>`
+  Skip sending a bon de commande
+  PUT {singleton}/{param}/skip-sending
+- `demandeValidation(bonDeCommande: BonsDeCommand): Promise<any>`
+  Request validation for a bon de commande
+  PUT {singleton}/{param}/demande-validation
+- `envoiCommande(bonDeCommande: BonsDeCommand, destinataire: string, destinataireCC: string, pdfBlob: Blob): Promise<any>`
+  Send order via email with PDF
+  POST {singleton}/{param}/envoi-commande
+- `livraison(bonDeCommande: BonsDeCommand, itemsLivraison: any[], depot?: any = null): Promise<any>`
+  Deliver items for a bon de commande
+  PUT {singleton}/{param}/livraison
+- `livraisonTotale(bonDeCommande: BonsDeCommand, depot?: any = null): Promise<any>`
+  Complete delivery for a bon de commande
+  PUT {singleton}/{param}/livraison-totale
+- `nonLivre(bonDeCommande: BonsDeCommand): Promise<any>`
+  Mark bon de commande as not delivered
+  PUT {singleton}/{param}/non-livre
+- `getHistorique(bonDeCommande_id: string, metadatas: Metadatas): Promise<any>`
+  Get historical data for a bon de commande
+  GET {singleton}/{param}/historique
+- `getPDF(idBonDeCommande: string, options?: any = {}): Promise<{ fileURL: string; blob: Blob; }>`
+  Get PDF export of bon de commande
+  POST {singleton}/{param}/export/pdf/S
+- `getRepartitionMontantHt(metadatas: Metadatas, options?: any = { _stored: true }): Promise<any>`
+  Get amount distribution for dashboard
+- `export(metadatas: Metadatas, filename?: string | null = null, fileExtension?: string = "xlsx"): Promise<Blob>`
+  Export bons de commande to file
+  GET {endpoint}/export/{param}
+- `getCreateurs(metadatas: Metadatas): Promise<any>`
+  Get creators of bons de commande
+  GET {endpoint}/createurs
+- `getValidateurs(metadatas: Metadatas): Promise<any>`
+  Get validators of bons de commande
+  GET {endpoint}/validateurs
+
+**Types:**
+
+`BonsDeCommand` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| numero | string | yes |
+| statut | string | yes |
+| statutLivraison | string | yes |
+| statutPaiement | string | yes |
+| dateCreation | string | yes |
+
+`BonsDeCommandCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| numero | string | yes |
+| statut | string | yes |
+| statutLivraison | string | yes |
+| statutPaiement | string | yes |
+| dateCreation | string | yes |
+
+`BonsDeCommandUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| numero | string | yes |
+| statut | string | yes |
+| statutLivraison | string | yes |
+| statutPaiement | string | yes |
+| dateCreation | string | yes |
+
+---
+
+#### sdk.bonsdecommandeentites — /api/bons-de-commande-entites | /api/bons-de-commande-entite
+> Entities associated with purchase orders
+
+**Methods:**
+- `getById(id: number): Promise<BonsDeCommandeEntite>` (inherited)
+  Get a single record by ID
+- `getEntites(metadatas: Metadatas): Promise<any>`
+  Get all bons de commande entites (override base method to match mixin behavior)
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+  Override the default getAll to use getEntites method
+- `create(bonsDeCommandeEntites: any[]): Promise<any>` (override)
+  Override the default create to match the mixin behavior
+- `update(bonsDeCommandeEntite: any): Promise<any>` (override)
+  Override the default update to match the mixin behavior
+  PUT {singleton}/{param}
+- `remove(bonsDeCommandeEntite: any): Promise<any>` (override)
+  Override the default remove to match the mixin behavior
+  DELETE {singleton}/{param}
+
+**Types:**
+
+`BonsDeCommandeEntite` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| bon_de_commande_id | string | yes |
+| entite_id | string | yes |
+
+`BonsDeCommandeEntiteCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| bon_de_commande_id | string | yes |
+| entite_id | string | yes |
+
+`BonsDeCommandeEntiteUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| bon_de_commande_id | string | yes |
+| entite_id | string | yes |
+
+---
+
+#### sdk.bonsdentree — /api/bons-dentree | /api/bons-dentree
+> Goods receipt notes
+
+**Methods:**
+- `getBonsDentree(metadatas: Metadatas): Promise<any>`
+  Get all bons d'entrée (override base method to match mixin behavior)
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+  Override the default getAll to use getBonsDentree method
+- `getBonDentree(idBonDentree: string): Promise<BonDentreeDetailResponse>`
+  Get bon d'entrée by ID (override base method to match mixin behavior)
+  GET {singleton}/{param}
+- `getById(id: number): Promise<BonDentreeDetailResponse>` (override)
+  Override the default getById to use getBonDentree method
+- `create(bonsDentree: any): Promise<any>` (override)
+  Override the default create to match the mixin behavior
+- `update(bonDentree: any): Promise<any>` (override)
+  Override the default update to match the mixin behavior
+  PUT {singleton}/{param}
+- `remove(bonDentree: any): Promise<any>` (override)
+  Override the default remove to match the mixin behavior
+  DELETE {singleton}/{param}
+
+**Types:**
+
+`BonsDentre` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| numero | string | yes |
+| description | string | yes |
+| dateCreation | string | yes |
+| fournisseur_id | number | yes |
+| createur_id | number | yes |
+| uid | string | yes |
+| userId | string | yes |
+| created_at | string | yes |
+| updated_at | string | yes |
+| createur_nom | string | yes |
+| createur_prenom | string | yes |
+| createur_email | string | yes |
+| fournisseur_name | string | yes |
+| fournisseur_type | string | yes |
+| fournisseur_address | string | yes |
+| fournisseur_uid | string | yes |
+| documents | BonDentreeDocument[] | yes |
+| consommables | BonDentreeConsommable[] | yes |
+| statut | string | yes |
+| date_creation | string | yes |
+
+`BonsDentreCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| numero | string | yes |
+| description | string | yes |
+| dateCreation | string | yes |
+| fournisseur_id | number | yes |
+| statut | string | yes |
+| date_creation | string | yes |
+
+`BonsDentreUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| numero | string | yes |
+| description | string | yes |
+| dateCreation | string | yes |
+| fournisseur_id | number | yes |
+| statut | string | yes |
+| date_creation | string | yes |
+
+`BonDentreeDetailResponse` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| data | BonsDentre | no |
+
+`BonDentreeDocument` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | no |
+| uploadedTo | string | no |
+| name | string | no |
+| size | string | no |
+| extension | string | no |
+
+`BonDentreeConsommable` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| consommable_mouvement_id | number | no |
+| quantite | number | no |
+| consommable_id | number | no |
+| consommable_name | string | no |
+| consommable_refExterne | string | null | no |
+| consommable_marque | string | null | no |
+| consommable_numSerie | string | null | no |
+| consommable_commentaire | string | null | no |
+| consommable_coutUnitaire | string | no |
+| consommable_unite | string | no |
+| consommable_statut | string | null | no |
+| consommable_uid | string | no |
+| consommable_created_at | string | no |
+| consommable_updated_at | string | no |
+| consommable_conditionnementColisage | string | null | no |
+| consommable_quantiteColisage | string | null | no |
+
+---
+
+#### sdk.bonsdesortie — /api/bons-de-sortie | /api/bon-de-sortie
+> Goods dispatch notes
+
+**Methods:**
+- `getBonsDeSortie(metadatas: Metadatas): Promise<any>`
+  Get all bons de sortie (override base method to match mixin behavior)
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+  Override the default getAll to use getBonsDeSortie method
+- `getBonDeSortie(idBonDeSortie: string): Promise<any>`
+  Get bon de sortie by ID (override base method to match mixin behavior)
+  GET {endpoint}/{param}
+- `getById(id: number): Promise<any>` (override)
+  Override the default getById to use getBonDeSortie method
+- `create(bonsDeSortie: any, ficheDemandeConsommable?: any = null): Promise<any>` (override)
+  Override the default create to match the mixin behavior
+- `update(bonDeSortie: any): Promise<any>` (override)
+  Override the default update to match the mixin behavior
+  PUT {singleton}/{param}
+- `remove(bonDeSortie: any): Promise<any>` (override)
+  Override the default remove to match the mixin behavior
+  DELETE {endpoint}/{param}
+- `getSignataires(metadatas: Metadatas, type?: string = "receveurs"): Promise<any>`
+  Get signataires (signers) for bons de sortie
+  GET {endpoint}/{param}
+
+**Types:**
+
+`BonsDeSorti` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| numero | string | yes |
+| statut | string | yes |
+| date_creation | string | yes |
+
+`BonsDeSortiCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| numero | string | yes |
+| statut | string | yes |
+| date_creation | string | yes |
+
+`BonsDeSortiUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| numero | string | yes |
+| statut | string | yes |
+| date_creation | string | yes |
+
+---
+
+### [scheduling]
+
+#### sdk.affectations — /api/affectation | /api/affectation
+> Task assignments and scheduling
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Affectation[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Affectation>` (inherited)
+  Get a single record by ID
+- `create(datas: AffectationCreateRequest): Promise<Affectation>` (inherited)
+  Create a new record
+- `update(id: number, datas: AffectationUpdateRequest): Promise<Affectation>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `copieAffectationTache(affectation: any, start: string, end: string, affectes?: any[] = []): Promise<any>`
+  Copy affectation tache
+  POST /api/affectation/tache/{param}/copie
+- `createAffectationsUsersTaches(affectes: any[]): Promise<any>`
+  Create affectations users taches
+- `deleteAffectationsUsersTaches(affecte: any): Promise<any>`
+  Delete affectations users taches
+  DELETE /api/affectationsuserstaches/{param}
+- `deleteAffectation(idAffectation: string): Promise<any>`
+  Delete affectation
+  DELETE /api/affectation/{param}
+- `saveSchedule(schedule: any, maintenance: any, emailDatas?: any): Promise<any>`
+  Save schedule
+  POST /api/affectation/maintenance/{param}
+- `saveSchedules(schedule: any, maintenances: any[]): Promise<any>`
+  Save schedules for multiple maintenances
+- `updateSchedule(schedule: any): Promise<any>`
+  Update schedule
+- `fetchProgrammationContratIntervention(contratId: string): Promise<any>`
+  Fetch programmation contrat intervention
+  GET /api/affectation/contrat/{param}/programmation/interventions
+- `createProgrammationContratIntervention(programmation: any, contratId: string): Promise<any>`
+  Create programmation contrat intervention
+  POST /api/affectation/contrat/{param}/programmation/interventions
+- `updateProgrammationContratIntervention(programmation: any, contratId: string): Promise<any>`
+  Update programmation contrat intervention
+  PUT /api/affectation/contrat/{param}/programmation/interventions
+
+**Types:**
+
+`Affectation` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| affectation_id | string | yes |
+| user_id | string | yes |
+| tache_id | string | yes |
+| start | string | yes |
+| end | string | yes |
+
+`AffectationCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| affectation_id | string | yes |
+| user_id | string | yes |
+| tache_id | string | yes |
+| start | string | yes |
+| end | string | yes |
+
+`AffectationUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| affectation_id | string | yes |
+| user_id | string | yes |
+| tache_id | string | yes |
+| start | string | yes |
+| end | string | yes |
+
+---
+
+#### sdk.calendar — /api/calendars | /api/calendars
+> Calendar events and scheduling views
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: CalendarEvent[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<CalendarEvent>` (inherited)
+  Get a single record by ID
+- `create(datas: CalendaCreateRequest): Promise<CalendarEvent>` (inherited)
+  Create a new record
+- `update(id: number, datas: CalendaUpdateRequest): Promise<CalendarEvent>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getEvents(start?: string, end?: string, sites?: string, idTiers?: string, affectes?: string[], metadatas?: Metadatas, restrictedEventsTypes?: string[]): Promise<CalendarEventsNewResponse>`
+  Get calendar events with filtering options.
+Uses the /calendars/events/new endpoint which returns taches raw data
+for client-side session generation, fiches curatives, and interventions.
+
+**Types:**
+
+`CalendarEventsResponse` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| events | CalendarEvent[] | no |
+| metadatas | any | no |
+
+`CalendarEventsNewResponse` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| events | { [key: string]: any; } | no |
+| taches | CalendarTachesData | null | no |
+| metadatas | any | no |
+
+`Calenda` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| start | string | yes |
+| end | string | yes |
+| sites | string | yes |
+| idTiers | string | yes |
+| affectes | string[] | yes |
+
+`CalendaCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| start | string | yes |
+| end | string | yes |
+| sites | string | yes |
+| idTiers | string | yes |
+| affectes | string[] | yes |
+
+`CalendaUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| start | string | yes |
+| end | string | yes |
+| sites | string | yes |
+| idTiers | string | yes |
+| affectes | string[] | yes |
+
+`CalendarEvent` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| calendarId | string | no |
+| category | string | no |
+| start | string | no |
+| end | string | no |
+| id | number | no |
+| isAllDay | boolean | no |
+| raw | any | no |
+
+`RawEventData` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| type | string | no |
+| start | string | no |
+| end | string | no |
+| data | { [key: string]: any; id: number; } | no |
+
+`CalendarTachesData` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| datas | any[] | no |
+| affectationsExceptions | any[] | no |
+| progressions | any[] | no |
+
+---
+
+### [search]
+
+#### sdk.searchdatas — /api/search-datas | /api/search-datas
+> Global search across entities
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: SearchData[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<SearchData>` (inherited)
+  Get a single record by ID
+- `create(datas: SearchDataCreateRequest): Promise<SearchData>` (inherited)
+  Create a new record
+- `update(id: number, datas: SearchDataUpdateRequest): Promise<SearchData>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `search(searchValue: string, entities?: SearchEntities, userId?: string | null, sites?: string | null): Promise<SearchDataItem[]>`
+  Perform a global search across multiple entities
+- `searchEquipements(searchValue: string, metadatas: Metadatas, userId?: string | null, sites?: string | null): Promise<SearchDataItem[]>`
+  Search specifically for equipements and lieux
+  GET {endpoint}/equipements
+
+**Types:**
+
+`SearchData` (entity)
+
+`SearchDataCreateRequest` (createRequest)
+
+`SearchDataUpdateRequest` (updateRequest)
+
+`SearchDataRequest` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| userId | string | null | yes |
+| searchValue | string | no |
+| entities | SearchEntities | yes |
+| sites | string | null | yes |
+| metadatas | any | yes |
+
+`SearchDataResponse` (other)
+| Field | Type | Optional |
+|-------|------|----------|
+| data | SearchDataItem[] | no |
+| counters | SearchCounters | no |
+| entities | SearchEntities | no |
+| filters | any | no |
+
+`SearchEntities` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| equipements | boolean | yes |
+| lieux | boolean | yes |
+| maintenances | boolean | yes |
+| contrats | boolean | yes |
+| tiers | boolean | yes |
+| categories | boolean | yes |
+| interventions | boolean | yes |
+| contacts | boolean | yes |
+
+`SearchDataItem` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | no |
+| type | string | no |
+| title | string | no |
+| subtitle | string | yes |
+| description | string | yes |
+| url | string | yes |
+
+`SearchCounters` (entity)
+
+---
+
+### [sharing]
+
+#### sdk.sharedLinks — /api/shared-links | /api/shared-links
+> Shared link management
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<any>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<any>` (inherited)
+  Get a single record by ID
+- `create(datas: any): Promise<any>` (inherited)
+  Create a new record
+- `update(id: number, datas: any): Promise<any>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<any>` (inherited)
+  Delete a record by ID
+
+---
+
+### [stocks]
+
+#### sdk.consommable — /api/consommables | /api/consommable
+> Consumable items tracked in stock
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: Consommabl[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<Consommabl>` (inherited)
+  Get a single record by ID
+- `create(datas: ConsommablCreateRequest): Promise<Consommabl>` (inherited)
+  Create a new record
+- `update(id: number, datas: ConsommablUpdateRequest): Promise<Consommabl>` (inherited)
+  Update a record by ID
+- `remove(id: number): Promise<void>` (inherited)
+  Delete a record by ID
+- `getConsommables(metadatas: Metadatas, options?: { _stored?: boolean; } = { _stored: true }): Promise<any>`
+  Get consommables with storage options
+Enhanced version of getAll with storage control
+- `getConsommablesEtiquettes(metadatas: Metadatas): Promise<any>`
+  Get consommables étiquettes (labels)
+- `getConsommablesConditionnementsColisage(metadatas: Metadatas): Promise<any>`
+  Get consommables conditionnements colisage
+- `getConsommablesEnStock(metadatas: Metadatas): Promise<any>`
+  Get consommables en stock (in stock)
+- `getConsommablesNonDisponibles(metadatas: Metadatas): Promise<any>`
+  Get consommables non disponibles (not available)
+- `getConsommablesEnDemande(metadatas: Metadatas): Promise<any>`
+  Get consommables en demande (in demand)
+- `getConsommablesACommander(metadatas: Metadatas): Promise<any>`
+  Get consommables à commander (to order)
+- `getEquipements(consommable: { id: number; }, metadatas: Metadatas): Promise<any>`
+  Get equipements for a consommable
+  GET {singleton}/{param}/equipements
+- `updateConsommables(consommables: any[]): Promise<any>`
+  Update multiple consommables at once
+- `deleteMultiple(consommables: any[]): Promise<any>`
+  Delete multiple consommables
+- `updateStock(consommable: { id: number; }, stock: any): Promise<any>`
+  Update stock for a consommable
+  PUT {singleton}/{param}/stock/{param}
+- `getFile(metadatas: Metadatas, filename?: string, fileExtension?: string = "xlsx"): Promise<Blob>`
+  Export consommables file (CSV or Excel)
+  GET /api/consommables/export/{param}
+- `[DEPRECATED] getConsommablesForEquipement(idEquipement: number): Promise<any>`
+  Get consommables for a specific equipement (deprecated method)
+  GET /api/consommables/equipement/{param}
+- `getConsommablesForTiers(idTiers: number): Promise<any>`
+  Get consommables for a specific tiers
+  GET /api/consommables/equipement/tiers/{param}
+- `createConsommableFournisseurs(consommableId: number, fournisseurs: any[]): Promise<any>`
+  Create consommable fournisseurs association
+  POST {singleton}/{param}/fournisseurs
+- `removeConsommableFournisseurs(consommableId: number, fournisseur: { id: number; }): Promise<any>`
+  Remove consommable fournisseurs association
+  DELETE {singleton}/{param}/fournisseur/{param}
+- `createConsommations(consommations: any[], idMaintenance?: number): Promise<any>`
+  Create consommations for maintenance
+  POST /api/maintenance/{param}/consommations
+- `createConsommablesEquipements(consommablesEquipements: any[]): Promise<any>`
+  Create consommables equipements association
+- `removeConsommablesEquipements(consommableId: number, equipementId: number): Promise<any>`
+  Remove consommables equipements association
+  DELETE {singleton}/{param}/equipement/{param}
+- `getConsommations(metadatas: Metadatas): Promise<any>`
+  Get consommations (consommable movements)
+- `getRepartitionQuantites(metadatas: Metadatas): Promise<any>`
+  Get repartition quantites
+- `createConsommableMouvement(mouvement: any, idConsommable: number): Promise<any>`
+  Create consommable mouvement
+- `deleteConsommableMouvement(idConsommableMouvement: number): Promise<any>`
+  Delete consommable mouvement
+  DELETE /api/consommable/mouvement/{param}
+- `getConsommableMouvementsDemandeurs(metadatas: Metadatas): Promise<any>`
+  Get consommable mouvement demandeurs
+- `getEquipementConsommables(equipement: { id: number; }, metadatas: Metadatas): Promise<any>`
+  Get equipement consommables (different from getConsommablesForEquipement)
+  GET /api/equipement/{param}/consommables
+- `removeConsommable(consommable: { id: number; }): Promise<any>`
+  Remove/Delete a consommable (alternative delete method with different endpoint)
+  DELETE {singleton}/{param}
+- `createOperationsConsommations(consommations: any[], idMaintenance: number): Promise<any>`
+  Create operations consommations for maintenance
+  POST /api/maintenance/{param}/operations
+- `getExcelFileModeleIntegration(filename?: string = "VG_modèle_importation_consommables"): Promise<Blob>`
+  Get Excel file model for integration
+- `importModelConsommablesExcel(consommables: any[]): Promise<any>`
+  Import model consommables from Excel
+- `exportConsommables(metadatas: Metadatas, filename?: string, fileExtension?: string = "xlsx"): Promise<Blob>`
+  Export consommables to file
+  GET /api/consommable/mouvements/export/{param}
+
+**Types:**
+
+`Consommabl` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| nature | string | yes |
+| refExterne | string | yes |
+| marque | string | yes |
+| coutUnitaire | number | yes |
+| quantite | number | yes |
+| quantiteMin | number | yes |
+| numSerie | string | yes |
+| commentaire | string | yes |
+
+`ConsommablCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| nature | string | yes |
+| refExterne | string | yes |
+| marque | string | yes |
+| coutUnitaire | number | yes |
+| quantite | number | yes |
+| quantiteMin | number | yes |
+| numSerie | string | yes |
+| commentaire | string | yes |
+
+`ConsommablUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+| nature | string | yes |
+| refExterne | string | yes |
+| marque | string | yes |
+| coutUnitaire | number | yes |
+| quantite | number | yes |
+| quantiteMin | number | yes |
+| numSerie | string | yes |
+| commentaire | string | yes |
+
+---
+
+#### sdk.fichedemandeconsommables — /api/fiche-demande-consommables | /api/fiche-demande-consommables
+> Consumable request forms
+
+**Methods:**
+- `getAll(metadatas: Metadatas): Promise<{ datas: FicheDemandeConsommable[], metadatas: any }>` (inherited)
+  Get all records with filtering/pagination
+- `getById(id: number): Promise<FicheDemandeConsommable>` (inherited)
+  Get a single record by ID
+- `[DEPRECATED] getFiches(metadatas: Metadatas): Promise<any>`
+  Get all fiches demande consommables
+- `[DEPRECATED] getFiche(idFiche: string): Promise<any>`
+  Get fiche demande consommable by id
+  GET {endpoint}/{param}
+- `create(ficheDemandeConsommables: any[]): Promise<any>` (override)
+  Create fiche demande consommables
+- `update(fiche: any): Promise<any>` (override)
+  Update fiche demande consommable
+  PUT {endpoint}/{param}
+- `close(fiche: any): Promise<any>`
+  Close fiche demande consommable
+  PUT {endpoint}/{param}/close
+- `priseEnCompte(fiche: any): Promise<any>`
+  Mark fiche demande consommable as prise en compte
+  PUT {endpoint}/{param}/prise-en-compte
+- `enAttente(fiche: any): Promise<any>`
+  Mark fiche demande consommable as en attente
+  PUT {endpoint}/{param}/en-attente
+- `[DEPRECATED] remove(fiche: any): Promise<any>` (override)
+  Delete fiche demande consommable
+  DELETE {endpoint}/{param}
+- `getSignataires(metadatas: Metadatas): Promise<any>`
+  Get signataires for fiche demande consommables
+  GET {endpoint}/signataires
+- `export(metadatas: Metadatas, filename?: string | null = null, fileExtension?: string = "xlsx"): Promise<Blob>`
+  Export fiche demande consommables file (CSV or Excel)
+  GET {endpoint}/export/{param}
+
+**Types:**
+
+`FicheDemandeConsommable` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | string | yes |
+| dateCloture | string | yes |
+| status | string | yes |
+
+`FicheDemandeConsommableCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| dateCloture | string | yes |
+| status | string | yes |
+
+`FicheDemandeConsommableUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| dateCloture | string | yes |
+| status | string | yes |
+
+---
+
+#### sdk.stocks — /api/stocks | /api/fiche-demande-consommables
+> Stock levels and movements
+
+**Methods:**
+- `getById(id: number): Promise<Stock>` (inherited)
+  Get a single record by ID
+- `getDepots(metadatas?: Metadatas = new Metadatas()): Promise<any>`
+  Get Depots.
+- `getAll(metadatas: Metadatas): Promise<any>` (override)
+  Get Stocks (overrides parent getAll method)
+- `[DEPRECATED] getFiche(idFiche: string): Promise<any>`
+  Get Bon de sortie by id
+  GET /api/fiche-demande-consommables/{param}
+- `create(stocks: any): Promise<any>` (override)
+  Create fiche-demande-consommables (overrides parent create method)
+- `update(id: number, bonDeCommande: any): Promise<any>` (override)
+  Update fiche-demande-consommables (overrides parent update method)
+  PUT /api/fiche-demande-consommables/{param}
+- `remove(id: number): Promise<any>` (override)
+  Delete fiche-demande-consommables (overrides parent remove method)
+  DELETE /api/fiche-demande-consommables/{param}
+
+**Types:**
+
+`Stock` (entity)
+| Field | Type | Optional |
+|-------|------|----------|
+| id | number | yes |
+| name | string | no |
+| createdAt | string | yes |
+| updatedAt | string | yes |
+
+`StockCreateRequest` (createRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | no |
+
+`StockUpdateRequest` (updateRequest)
+| Field | Type | Optional |
+|-------|------|----------|
+| name | string | yes |
+
+---

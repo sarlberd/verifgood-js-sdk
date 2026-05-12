@@ -4,7 +4,7 @@ import {ApiRequest} from "../core/ApiRequest";
 export interface InvitationRequest {
     email: string;
     role: string;
-    origin?: string;
+    origin:string;
     sites?: number[];
     tiersId?: number;
 }
@@ -25,6 +25,8 @@ export interface InvitationCompleteRegistration {
     invitation_token: string;
     password: string;
     password_confirm: string;
+    name: string;
+    surname: string;
 }
 
 export class Invitations extends ApiRequest {
@@ -33,33 +35,49 @@ export class Invitations extends ApiRequest {
     
     /**
      * Generate an invitation link for a specific email and role
-     * @param invitationRequest Object containing email and role for the invitee
+     * @param invitationRequest Object containing email, role, origin, and optionally sites for the invitee
      * @returns Promise with the invitation data including the URL and token
      * @example
+     *   // Basic invitation without specific sites
      *   vgsdk.invitations.generateInvitationLink({
      *     email: 'verifgood@gmail.com',
-     *     role: 'ROLE_ADMIN'
+     *     role: 'ROLE_ADMIN',
+     *     origin: 'http://localhost:8080'
+     *   })
+     *     .then(invitation => console.log(invitation))
+     *     .catch(error => console.error(error));
+     * 
+     * @example
+     *   // Invitation with specific sites
+     *   vgsdk.invitations.generateInvitationLink({
+     *     email: 'verifgood@gmail.com',
+     *     role: 'ROLE_ADMIN',
+     *     origin: 'http://localhost:8080',
+     *     sites: [1, 5, 10]
      *   })
      *     .then(invitation => console.log(invitation))
      *     .catch(error => console.error(error));
      */
     async generateInvitationLink(invitationRequest: InvitationRequest): Promise<InvitationCard> {
-
+        
         // Change to properly use GET with query parameters
-        let url = `${this.endpoint}/generate-invitation-link?email=${encodeURIComponent(invitationRequest.email)}&role=${encodeURIComponent(invitationRequest.role)}`;
-        if (invitationRequest.origin) {
-            url += `&origin=${encodeURIComponent(invitationRequest.origin)}`;
-        }
+        let url = `${this.endpoint}/generate-invitation-link?email=${encodeURIComponent(invitationRequest.email)}&role=${encodeURIComponent(invitationRequest.role)}&origin=${encodeURIComponent(invitationRequest.origin)}`;
+        
+        // Add sites parameter if provided
         if (invitationRequest.sites && invitationRequest.sites.length > 0) {
-            url += `&sites=${encodeURIComponent(JSON.stringify(invitationRequest.sites))}`;
+            // Send as JSON string to match backend expectations
+            const sitesParam = JSON.stringify(invitationRequest.sites);
+            url += `&sites=${encodeURIComponent(sitesParam)}`;
         }
         if (invitationRequest.tiersId) {
             url += `&tiersId=${encodeURIComponent(String(invitationRequest.tiersId))}`;
         }
+        
         const response = await this.apiRequest(url, 'GET', null);
         let token = response.invitation_link.split("/").pop();
         return {
             email: response.email,
+            origin: response.origin,
             token: token
         };
     }
@@ -110,6 +128,26 @@ export class Invitations extends ApiRequest {
                 role: 'unknown'
             };
         }
+    }
+    
+    /**
+     * Regenerate an invitation link for an existing invitation
+     * @param id The ID of the invitation to regenerate
+     * @returns Promise with the regenerated invitation link and receiver email
+     * @example
+     *   vgsdk.invitations.regenerateInvitationLink('123')
+     *     .then(result => console.log(result))
+     *     .catch(error => console.error(error));
+     */
+    async regenerateInvitationLink(id: number): Promise<{invitation_link: string, receiver_email: string}> {
+        let origin = location && location.origin ? location.origin : 'http://localhost:8080';
+
+        const url = `${this.endpoint}/regenerate-invitation-link/${id}?origin=${origin}`;
+        const response = await this.apiRequest(url, 'GET', null);
+        return {
+            invitation_link: response.invitation_link,
+            receiver_email: response.receiver_email
+        };
     }
 
     /**

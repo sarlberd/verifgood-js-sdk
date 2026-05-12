@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-let apiBaseUrl : string = process.env.API_BASE_URL || "";
+let apiBaseUrl : string = process.env.API_BASE_URL_TEST || "";
 let apiKey : string = process.env.API_KEY || "";
 
 let sdkConfig : SdkConfiguration = {
@@ -11,7 +11,16 @@ let sdkConfig : SdkConfiguration = {
     apiKey: apiKey
 };
 let vgsdk : VGSDK = new VGSDK(sdkConfig);
+let metadatas = new Metadatas();
+metadatas.setLimit(0, 25);
 
+vgsdk.equipements.getByCode("SAPH-EQ-000070").then((equipements) => {
+    console.log(equipements);
+}
+).catch((error) => {
+    console.log("error_____________");
+    console.error(error.status);
+});
 /**
  * Get all categories
  */
@@ -48,9 +57,37 @@ vgsdk.taches.getAll(metadatas).then((taches) => {
 });
 */
 
-vgsdk.equipements.getByCode("fbhrj437737737345555").then((equipement) => {
+/*vgsdk.equipements.getByCode("fbhrj437737737345555").then((equipement) => {
     console.log(equipement);
     
 }).catch((error) => {
     console.error(error);
+});*/
+
+/*vgsdk.invitations.regenerateInvitationLink(20).then((invitation) => {
+    console.log(invitation);
+});*/
+/*const deviceToken = "coqnU0ZBZR1W4fTi1oD15A:APA91bH-MVu169pX20eQmM5iPChfOCGe79dCjqFAtTIl0FdTSeI1UxiBR05elo7d7Vj-aOlSJVKoqujaVzcYipL9_e73frqWnl6ip61230yND58BVGe6P40";
+vgsdk.messaging.subscribeToTopic("debug", deviceToken).then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.error(error);
 });
+
+vgsdk.messaging.sendMessageToTopic("debug", { message: "Hello World" }).then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.error(error);
+});
+
+/*vgsdk.messaging.unsubscribeFromTopic("debug", deviceToken).then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.error(error);
+});*/
+
+/*vgsdk.messaging.sendMessageToDevice(deviceToken, { message: "Hello World" }).then((response) => {
+    console.log(response);
+}).catch((error) => {
+    console.error(error);
+});*/

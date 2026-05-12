@@ -1,0 +1,390 @@
+# VerifgoodSDK v1.0.1
+> GMAO (maintenance management) TypeScript SDK — 53 services
+> Generated: 2026-04-13
+
+## Initialization
+```typescript
+import { VGSDK, Metadatas } from "verifgood-js-sdk";
+
+const sdk = new VGSDK({
+  apiBaseUrl: "https://your-api-host.com/public/index.php",
+  apiKey: "your-auth0-token"
+});
+```
+
+## Metadatas (query builder)
+Query builder for filtering, pagination, and column selection. Pass to getAll() methods.
+
+Filter actions: equals, not_equals, contains, start_with, end_with, between, is_null, is_not_null, greater_than, less_than, in, not_in
+
+Key methods:
+- setFilter(name, value, action?) — add a filter (default action: "equals")
+- setLimit(offset, limit) — pagination
+- setColumns(columns) — select specific fields
+- clearAllFilters() — reset filters
+- get() — serialize for API call (used internally)
+
+Response format: { datas: T[], metadatas: { counters: { All: number } } }
+
+Example:
+```typescript
+const m = new Metadatas();
+m.setFilter("status", "active", "equals");
+m.setLimit(0, 25);
+const result = await sdk.equipements.getAll(m);
+```
+
+## Services
+
+### [admin]
+
+#### sdk.account — /api/account
+> User account management
+CRUD (overridden): getAll(metadatas), getById(id), create(data), update(id, data), remove(id)
+Custom: [PUT] updateAccount(data), [GET] fetchAccount(), [POST] createAccount(account)
+Types: Accoun, AccounCreateRequest, AccounUpdateRequest
+
+#### sdk.groupevalidateurs — /api/groupe-validateurs
+> Validator groups for approval workflows
+CRUD: getAll, getById, create, update, remove
+Types: GroupeValidateur, GroupeValidateurCreateRequest, GroupeValidateurUpdateRequest
+
+#### sdk.groupevalidateursusers — /api/groupe-validateurs-users
+> Users within validator groups
+CRUD: getAll, getById, create, update, remove
+Types: GroupeValidateursUser, GroupeValidateursUserCreateRequest, GroupeValidateursUserUpdateRequest
+
+#### sdk.integrationsdonnees — /api/integration/categories/lieux
+> Data integration/import management
+CRUD: getAll, getById, create, update, remove
+Custom: [POST] categoriesLieux(composants)
+Types: IntegrationsDonnee, IntegrationsDonneeCreateRequest, IntegrationsDonneeUpdateRequest
+
+#### sdk.invitations — /api/invitations
+> User invitation management
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] generateInvitationLink(invitationRequest), [GET] checkInvitation(invitationCard), [GET] regenerateInvitationLink(id), [POST] completeRegistration(registration)
+
+#### sdk.parametres — /api/parameters
+> Application parameters and settings
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getParameters(), [PUT] updateParameter(datas), [DELETE] deleteDemoAccount(entitiesToRemove?)
+Types: Parameter, ParameterUpdateRequest, DemoAccountEntities, DemoAccountDeletionRequest, SessionUser
+
+#### sdk.personalParameters — 
+> User-specific preferences
+CRUD: getAll, getById, create, update, remove
+Types: PersonalParameter, DisplayableParameters, LandingPageConfig, ScannerPreferences, PersonalParametersConfig, DefaultLandingPages, LocalStorageResult, PersonalParametersInitOptions
+
+#### sdk.roles — /api/roles
+> Role-based access control
+CRUD: getAll, getById, create, update, remove
+Types: Role, RoleCreateRequest, RoleUpdateRequest
+
+### [analytics]
+
+#### sdk.dashboard — /api/dashboard
+> Dashboard widgets and statistics
+CRUD: getAll, getById, create, update, remove
+Types: Dashboar, DashboarCreateRequest, DashboarUpdateRequest
+
+#### sdk.statistiques — /api/statistiques
+> Statistical reports and data
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] fetchStatistiquesMaintenanceEtat(year, week?, metadatas?), [GET] fetchStatistiquesMaintenanceRepartition(metadatas?), [GET] fetchStatistiquesVerificationEtat(year, week?, metadatas?), [GET] fetchStatistiquesVerificationRepartition(metadatas?), [GET] fetchStatistiquesVerificationTemps(year, week?, metadatas?)
+Types: Statistique, StatistiqueCreateRequest, StatistiqueUpdateRequest
+
+#### sdk.synthesemaintenance — /api/gamme/maintenance/preventive
+> Maintenance synthesis reports
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getSummary(startDate, endDate, metadatas)
+Types: SyntheseMaintenanceEntity, SyntheseMaintenanceCreateRequest, SyntheseMaintenanceUpdateRequest, SyntheseSummaryRequest
+
+### [assets]
+
+#### sdk.categories — /api/categories
+> Equipment classification categories with composants
+CRUD: getAll, getById, create, update, remove
+Custom: [POST] associateComposant(categorie_id, composant), [DELETE] desassociateComposant(composant_categorie_id), [PUT] updateCollection(categories), [GET] exportFile(metadatas, typeCategorie?, filename?, fileExtension?), [POST] addCorpsDetat(categorieId, corpsDetatId)
+Types: Category
+
+#### sdk.composant — /api/composants
+> Component templates associated with categories
+CRUD: getAll, getById, create, update, remove
+Custom: [POST] postComposants(composants), [PUT] putComposant(composant), [DELETE] deleteComposant(idComposant), [POST] postLibelProblem(idComposant, libelProblem), [DELETE] deleteLibelProblem(idLibelProblem), [GET] getIcons(), [GET] getComposants(metadatas?)
+Types: Composan, ComposanCreateRequest, ComposanUpdateRequest, ComposantIcon, LibelProblem, ComposantAssociation
+
+#### sdk.deplacementsequipements — /api/deplacements/equipements
+> Equipment movement history
+CRUD: getAll, getById, create, update, remove
+Custom: [POST] createDeplacementsEquipements(deplacements)
+Types: DeplacementsEquipement, DeplacementsEquipementCreateRequest, DeplacementsEquipementUpdateRequest
+
+#### sdk.equipements — /api/equipements
+> Physical assets/equipment tracked in locations
+CRUD (overridden): [GET] getById(idEquipement), [GET] getAll(metadatas), [DEPRECATED] [POST] create(equipements), [PUT] update(equipement, _options?), [DELETE] remove(equipementId)
+Custom: [GET] getEquipementTimeline(equipement_id), [GET] getEquipementVerifications(equipement_id, metadatas?), [GET] getByCode(code), [GET] getRapportAssets(metadatas), [GET] getRapportAssetsExcelFile(metadatas, fileExtension?), [GET] getEquipementsTachesActivesSites(site, metadatas), [GET] getExcelFileModeleIntegration(filename?), [GET] getExcelFile(metadatas, filename?, fileExtension?), [POST] importModelEquipementsExcel(equipements), [POST] sortirEquipement(equipement, callback), [POST] remplacerEquipement(sortie, maintenance), [PUT] updateEquipements(equipements), [POST] createEquipementsGlobauxFamilleSite(famille, equipements)
+Types: Equipement, EquipementCreateRequest, EquipementUpdateRequest
+
+#### sdk.inventaire — /api/inventaires
+> Equipment inventory management
+CRUD: update
+CRUD (overridden): [GET] getAll(metadatas?), [GET] getById(id), [POST] create(inventaires), [DELETE] remove(id)
+Custom: [GET] fetchOperationsByInventaireId(id), [GET] fetchOperationsByInventaireIdOnLieu(inventaire_id, lieu_id), [POST] createOperation(operation, inventaire_id, lieu_id), [DELETE] removeOperationInventaire(operation)
+Types: Inventair, InventairCreateRequest, InventairUpdateRequest
+
+#### sdk.mouvementsEquipements — /api/mouvements
+> Equipment movement records
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getMovements(metadatas), [GET] getMovementById(id), [PUT] updateMovement(mouvementEquipement), [POST] createMovement(mouvementEquipement, type), [DELETE] deleteMovement(mouvementEquipement), [GET] getMouvementsSignataires(metadatas, type?), [GET] exportMovements(metadatas, filename?, fileExtension?)
+Types: MouvementEquipement, MouvementEquipementCreateRequest, MouvementEquipementUpdateRequest, Signataire, MovementExportOptions
+
+#### sdk.sortieequipement — /api/sortieequipement
+> Equipment decommissioning/exit
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getTypes(metadatas)
+Types: SortieEquipemen, SortieEquipemenCreateRequest, SortieEquipemenUpdateRequest
+
+### [billing]
+
+#### sdk.stripe — /api/stripe
+> Stripe payment integration
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] openCustomerPortal(), [GET] getCustomerState()
+Types: Strip, StripCreateRequest, StripUpdateRequest
+
+### [compliance]
+
+#### sdk.reponses — /api/reponses
+> Verification responses and answers
+CRUD: getAll, getById, create, update, remove
+Types: Reponse, ReponseCreateRequest, ReponseUpdateRequest
+
+#### sdk.verifications — /api/verifications
+> Periodic compliance checks on equipment
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getVerification(id), [PUT] updateVerification(id, data), [GET] getCheckDatas(metadatas, options?), [GET] getTimeline(verificationId), [POST] createVerifications(verifications), [GET] startVerification(equipementId, tacheId?, uniquementMesTachesAffectes?), [GET] getVerifications(metadatas), [GET] getVerificationsReponsesNonConformes(metadatas), [GET] getVerificationsReponsesById(idVerification), [GET] getProgressionsTaches(metadatas, sites?), [GET] getProgression(site, metadatas), [GET] getVerificationsEquipementsTaches(metadatas), [GET] getTacheState(tacheId, site?, metadatas?), [GET] getPdfFile(idVerification), [POST] addDocumentVerification(verificationId, file), [GET] exportHistoriqueTacheRecurrentes(metadatas, fileExtension?, site?)
+Types: VerificationTimelineResponse
+
+### [contracts]
+
+#### sdk.contact — /api/contacts
+> Contacts associated with third parties
+CRUD: getAll, getById, create, update, remove
+Types: Contac, ContacCreateRequest, ContacUpdateRequest
+
+#### sdk.contrat — /api/contrats
+> Service contracts with third-party providers
+CRUD: getAll, getById, update, remove
+CRUD (overridden): [POST] create(data)
+Custom: [GET] getContrats(metadatas), [PUT] updateContrat(contrat, options?), [PUT] archive(contrat, options?)
+Types: Contra, ContraCreateRequest, ContraUpdateRequest
+
+#### sdk.contratecheancier — /api/contrats/echeances
+> Contract payment schedules
+CRUD: getAll, getById, update, remove
+CRUD (overridden): [POST] create(data)
+Custom: [GET] getContratEcheances(contratId), [PUT] updateContratEcheance(id, data)
+Types: ContratEcheancie, ContratEcheancieCreateRequest, ContratEcheancieUpdateRequest
+
+#### sdk.tiers — /api/tiers
+> Third-party service providers/contractors
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getTiers(metadatas, options?), [GET] getTiersById(id), [PUT] updateTier(tier), [POST] createTier(tier), [DELETE] deleteTier(tier, userId?), [PUT] archive(tier), [PUT] unarchive(tier)
+Types: Tier, TierCreateRequest, TierUpdateRequest
+
+### [documents]
+
+#### sdk.documents — /api/documents
+> File attachments and documents
+CRUD: getById
+CRUD (overridden): [GET] getAll(metadatas), [POST] create(documents), [PUT] update(document), [DELETE] remove(document)
+Custom: [GET] getPlans(metadatas, sites?)
+Types: Document, DocumentCreateRequest, DocumentUpdateRequest
+
+### [locations]
+
+#### sdk.lieux — /api/lieux
+> Hierarchical location tree (Organisation > Site > Batiment > Etage > Piece)
+CRUD: getAll, getById, update, remove
+CRUD (overridden): [POST] create(lieux, options?)
+Custom: [GET] getOrganisations(metadatas?), [GET] getSites(metadatas), [GET] getLieux(metadatas, options?), [GET] getLieu(idLieu, options?), [POST] importPieces(lieux), [POST] createPiecesGeneriques(siteId, lieux), [POST] createPiecesGeneriquesFamilleSite(famille, lieux), [POST] createPieceGenerique(siteId), [PUT] updateLieu(lieu), [PUT] updateLieux(lieux), [DELETE] deleteLieu(lieu), [POST] saveRestrictionSiteForUser(collection)
+Types: Lieu, LieuCreateRequest, LieuUpdateRequest, FamilleColor
+
+#### sdk.planInteractif — 
+> Interactive floor plans for locations
+CRUD: getAll, getById, create, update, remove
+Types: LatLng, GeoJsonPoint, FeatureProperties, CategoryInfo, GeoJsonFeature, GeoJsonFeatureCollection, Etage, PieceACreer, CollectionItem, PositioningResult, CsvImportData, ExcelExportRow, ExportOptions, CsvImportOptions, PlanInteractionContext, CoordinateTransform, FeatureOperations, PlanExportConfig, PlanImportConfig
+
+### [maintenance]
+
+#### sdk.interventions — /api/interventions
+> Service interventions linked to maintenance and contracts
+CRUD (overridden): [GET] getAll(metadatas, idEquipement?, siteEquipement?), [GET] getById(id, options?), [PUT] update(id, intervention, options?), [POST] create(interventions), [DELETE] remove(id)
+Custom: [GET] getPdfFile(idIntervention, filename?, fileExtension?), [POST] createInterventionsEquipements(idIntervention, equipements), [DELETE] deleteInterventionEquipement(interventionEquipement), [DELETE] deleteInterventionsEquipements(interventionsEquipements)
+Types: Intervention, InterventionCreateRequest, InterventionUpdateRequest
+
+#### sdk.maintenance — /api/maintenances
+> Work orders (fiches SAV) for equipment repair
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getMaintenances(metadatas, options?), [GET] getMesMaintenancesPlanifiees(metadatas), [GET] getDemandeurs(metadatas, options?), [POST] createMaintenances(maintenances, options?), [POST] demandeDevis(maintenanceId, payload), [DELETE] deleteMultiple(maintenances), [PUT] relancer(maintenance, commentaire?), [POST] postMaintenanceOperations(idMaintenance, operations), [POST] postOperations(operations), [PUT] putOperation(operation), [DELETE] deleteOperation(idOperation, operation), [PUT] prendreEnCompteMaintenances(maintenances), [PUT] prendreEnCompteMaintenance(maintenance), [PUT] mettreEnAttenteMaintenances(maintenances), [PUT] mettreEnAttenteMaintenance(maintenance), [PUT] resolveMaintenances(maintenances, rapportCloture?), [PUT] resolveMaintenance(maintenance, files?), [PUT] reopenMaintenances(maintenanceId), [PUT] setStatusMaintenances(maintenances, status), [GET] getFile(metadatas, filename?, fileExtension?), [GET] getPdfFile(idMaintenance, filename?, fileExtension?)
+Types: Maintenance, MaintenanceCreateRequest, MaintenanceUpdateRequest
+
+#### sdk.operation — /api/operations
+> Maintenance operations
+CRUD: getAll, getById, create, update, remove
+Custom: [POST] createBIOperation(data, idUser?, userId?), [POST] createPhotoOperation(idFM, file, idUser?, userId?), [PUT] updateOperation(data), [GET] getFile(metadatas, fileExtension?, userId?, sites?)
+Types: Operation, OperationCreateRequest, OperationUpdateRequest
+Enum [flag]: 32 values — see llms-full.txt for details
+
+### [notifications]
+
+#### sdk.messaging — /api/fcm
+> Firebase Cloud Messaging (FCM) integration
+CRUD: getAll, getById, create, update, remove
+Custom: [POST] subscribeToTopic(topic, deviceToken, options?), [POST] unsubscribeFromTopic(topic, deviceToken, options?), [POST] unsubscribeFromAllTopics(deviceToken), [POST] sendMessageToTopic(topic, payload), [POST] sendMessageToDevice(deviceToken, payload), [GET] getSubscribedTopics(deviceToken)
+
+### [organization]
+
+#### sdk.corpsdetat — /api/corps-detats
+> Trade/craft type definitions
+CRUD: getAll, getById, update, remove
+CRUD (overridden): [POST] create(data)
+Custom: [GET] getCorpsDetats(metadatas), [PUT] updateCorpsDetat(corpsdetat)
+Types: CorpsDetat
+
+#### sdk.libellescategorie — /api/libelles-categorie
+> Category label definitions
+CRUD: getById, update
+CRUD (overridden): [GET] getAll(metadatas), [POST] create(libellesCategories, options?), [DELETE] remove(id)
+Types: libellesCategorie
+
+#### sdk.libelproblem — /api/libelles-probleme
+> Problem label definitions
+CRUD: getById, update
+CRUD (overridden): [GET] getAll(metadatas), [POST] create(libellesProblem), [DELETE] remove(id)
+Custom: [POST] createComposantProblems(idComposant, problems), [DELETE] deleteComposantProblem(problem), [GET] getComposantProblems(composantId), [GET] getLibellesProblemByCategorie(metadatas, idCategorie)
+Types: LibelProble, LibelProbleCreateRequest, LibelProbleUpdateRequest
+
+#### sdk.libelservices — /api/libel-services
+> Service label definitions
+CRUD: getById, update, remove
+CRUD (overridden): [GET] getAll(metadatas, options?), [POST] create(libelServices)
+Custom: [DELETE] deleteLibelService(libelService)
+Types: LibelService, LibelServiceCreateRequest, LibelServiceUpdateRequest
+
+#### sdk.tags — /api/tags
+> Tag management for entities
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] listComposantType()
+Types: Tag, TagCreateRequest, TagUpdateRequest
+
+### [preventive]
+
+#### sdk.checkpoints — /api/checkpoints
+> Verification checkpoints within preventive tasks
+CRUD: getAll, getById, create, update, remove
+
+#### sdk.planMaintenance — 
+> Maintenance planning
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getPrevventiveMaintenance(focusedDate, metadatas, userId, sites)
+Types: MaintenanceTask, MaintenanceContract, MaintenanceMetadata, PreventiveMaintenanceQuery, PreventiveMaintenanceResponse, MetadataProvider
+
+#### sdk.taches — /api/taches
+> Preventive maintenance tasks with checkpoints
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getTaches(metadatas, options?), [GET] getTachesOverview(metadatas, options?), [GET] getTache(id), [POST] createTaches(taches, restrictionSites?), [PUT] updateTache(tache, updatedTacheSites?), [DELETE] deleteTache(tache), [GET] getExcelFile(metadatas, filename?, fileExtension?)
+Types: TacheCreateRequest, TacheUpdateRequest, GetTachesOptions, CheckpointComposant, CheckpointConsommable, Checkpoint, TacheSiteLieu, TacheSiteProgression, TacheSite, TacheAffectation, TacheCategorie, ProgressionGlobale, TacheEntity, TacheOverview, ProgressionTache, ExportFileOptions
+
+#### sdk.tacheusers — /api/tache
+> User assignments for preventive tasks
+CRUD: getAll, getById, create, update, remove
+Custom: [DELETE] deleteTacheUsers(tacheId), [DELETE] deleteTacheUser(tacheId, userId)
+Types: TacheUserEntity, TacheUserCreateRequest, TacheUserUpdateRequest, BulkTacheUserCreateRequest, TacheUserAssignmentResponse
+
+### [purchasing]
+
+#### sdk.bondecommandeitems — /api/items/bons-de-commande
+> Line items within purchase orders
+CRUD: getById
+CRUD (overridden): [GET] getAll(metadatas), [POST] create(bonDeCommandeItems), [PUT] update(bonDeCommandeItem), [DELETE] remove(bonDeCommandeItem)
+Types: BonDeCommandeItem, BonDeCommandeItemCreateRequest, BonDeCommandeItemUpdateRequest
+
+#### sdk.bonsdecommande — /api/bons-de-commande
+> Purchase orders
+CRUD: getAll, getById, create, update, remove
+Custom: [PUT] cancel(bonDeCommande), [PUT] skipSending(bonDeCommande), [PUT] demandeValidation(bonDeCommande), [POST] envoiCommande(bonDeCommande, destinataire, destinataireCC, pdfBlob), [PUT] livraison(bonDeCommande, itemsLivraison, depot?), [PUT] livraisonTotale(bonDeCommande, depot?), [PUT] nonLivre(bonDeCommande), [GET] getHistorique(bonDeCommande_id, metadatas), [POST] getPDF(idBonDeCommande, options?), [GET] getRepartitionMontantHt(metadatas, options?), [GET] export(metadatas, filename?, fileExtension?), [GET] getCreateurs(metadatas), [GET] getValidateurs(metadatas)
+Types: BonsDeCommand, BonsDeCommandCreateRequest, BonsDeCommandUpdateRequest
+
+#### sdk.bonsdecommandeentites — /api/bons-de-commande-entites
+> Entities associated with purchase orders
+CRUD: getById
+CRUD (overridden): getAll(metadatas), [POST] create(bonsDeCommandeEntites), [PUT] update(bonsDeCommandeEntite), [DELETE] remove(bonsDeCommandeEntite)
+Custom: [GET] getEntites(metadatas)
+Types: BonsDeCommandeEntite, BonsDeCommandeEntiteCreateRequest, BonsDeCommandeEntiteUpdateRequest
+
+#### sdk.bonsdentree — /api/bons-dentree
+> Goods receipt notes
+CRUD (overridden): getAll(metadatas), getById(id), [POST] create(bonsDentree), [PUT] update(bonDentree), [DELETE] remove(bonDentree)
+Custom: [GET] getBonsDentree(metadatas), [GET] getBonDentree(idBonDentree)
+Types: BonsDentre, BonsDentreCreateRequest, BonsDentreUpdateRequest, BonDentreeDetailResponse, BonDentreeDocument, BonDentreeConsommable
+
+#### sdk.bonsdesortie — /api/bons-de-sortie
+> Goods dispatch notes
+CRUD (overridden): getAll(metadatas), getById(id), [POST] create(bonsDeSortie, ficheDemandeConsommable?), [PUT] update(bonDeSortie), [DELETE] remove(bonDeSortie)
+Custom: [GET] getBonsDeSortie(metadatas), [GET] getBonDeSortie(idBonDeSortie), [GET] getSignataires(metadatas, type?)
+Types: BonsDeSorti, BonsDeSortiCreateRequest, BonsDeSortiUpdateRequest
+
+### [scheduling]
+
+#### sdk.affectations — /api/affectation
+> Task assignments and scheduling
+CRUD: getAll, getById, create, update, remove
+Custom: [POST] copieAffectationTache(affectation, start, end, affectes?), [POST] createAffectationsUsersTaches(affectes), [DELETE] deleteAffectationsUsersTaches(affecte), [DELETE] deleteAffectation(idAffectation), [POST] saveSchedule(schedule, maintenance, emailDatas?), [POST] saveSchedules(schedule, maintenances), [POST] updateSchedule(schedule), [GET] fetchProgrammationContratIntervention(contratId), [POST] createProgrammationContratIntervention(programmation, contratId), [PUT] updateProgrammationContratIntervention(programmation, contratId)
+Types: Affectation, AffectationCreateRequest, AffectationUpdateRequest
+
+#### sdk.calendar — /api/calendars
+> Calendar events and scheduling views
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getEvents(start?, end?, sites?, idTiers?, affectes?, metadatas?, restrictedEventsTypes?)
+Types: CalendarEventsResponse, CalendarEventsNewResponse, Calenda, CalendaCreateRequest, CalendaUpdateRequest, CalendarEvent, RawEventData, CalendarTachesData
+
+### [search]
+
+#### sdk.searchdatas — /api/search-datas
+> Global search across entities
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] search(searchValue, entities?, userId?, sites?), [GET] searchEquipements(searchValue, metadatas, userId?, sites?)
+Types: SearchData, SearchDataCreateRequest, SearchDataUpdateRequest, SearchDataRequest, SearchDataResponse, SearchEntities, SearchDataItem, SearchCounters
+
+### [sharing]
+
+#### sdk.sharedLinks — /api/shared-links
+> Shared link management
+CRUD: getAll, getById, create, update, remove
+
+### [stocks]
+
+#### sdk.consommable — /api/consommables
+> Consumable items tracked in stock
+CRUD: getAll, getById, create, update, remove
+Custom: [GET] getConsommables(metadatas, options?), [GET] getConsommablesEtiquettes(metadatas), [GET] getConsommablesConditionnementsColisage(metadatas), [GET] getConsommablesEnStock(metadatas), [GET] getConsommablesNonDisponibles(metadatas), [GET] getConsommablesEnDemande(metadatas), [GET] getConsommablesACommander(metadatas), [GET] getEquipements(consommable, metadatas), [PUT] updateConsommables(consommables), [PUT] deleteMultiple(consommables), [PUT] updateStock(consommable, stock), [GET] getFile(metadatas, filename?, fileExtension?), [GET] getConsommablesForTiers(idTiers), [POST] createConsommableFournisseurs(consommableId, fournisseurs), [DELETE] removeConsommableFournisseurs(consommableId, fournisseur), [POST] createConsommations(consommations, idMaintenance?), [POST] createConsommablesEquipements(consommablesEquipements), [DELETE] removeConsommablesEquipements(consommableId, equipementId), [GET] getConsommations(metadatas), [GET] getRepartitionQuantites(metadatas), [POST] createConsommableMouvement(mouvement, idConsommable), [DELETE] deleteConsommableMouvement(idConsommableMouvement), [GET] getConsommableMouvementsDemandeurs(metadatas), [GET] getEquipementConsommables(equipement, metadatas), [DELETE] removeConsommable(consommable), [POST] createOperationsConsommations(consommations, idMaintenance), [GET] getExcelFileModeleIntegration(filename?), [POST] importModelConsommablesExcel(consommables), [GET] exportConsommables(metadatas, filename?, fileExtension?)
+Types: Consommabl, ConsommablCreateRequest, ConsommablUpdateRequest
+
+#### sdk.fichedemandeconsommables — /api/fiche-demande-consommables
+> Consumable request forms
+CRUD: getAll, getById
+CRUD (overridden): [POST] create(ficheDemandeConsommables), [PUT] update(fiche), [DEPRECATED] [DELETE] remove(fiche)
+Custom: [PUT] close(fiche), [PUT] priseEnCompte(fiche), [PUT] enAttente(fiche), [GET] getSignataires(metadatas), [GET] export(metadatas, filename?, fileExtension?)
+Types: FicheDemandeConsommable, FicheDemandeConsommableCreateRequest, FicheDemandeConsommableUpdateRequest
+
+#### sdk.stocks — /api/stocks
+> Stock levels and movements
+CRUD: getById
+CRUD (overridden): [GET] getAll(metadatas), [POST] create(stocks), [PUT] update(id, bonDeCommande), [DELETE] remove(id)
+Custom: [GET] getDepots(metadatas?)
+Types: Stock, StockCreateRequest, StockUpdateRequest
+
+---
+Full reference: llms-full.txt | Structured data: sdk-reference.json

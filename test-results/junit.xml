@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="11" failures="0" errors="0" time="7.116">
+  <testsuite name="Tiers API Service" errors="0" failures="0" skipped="0" timestamp="2025-11-18T06:30:06" time="4.026" tests="11">
+    <testcase classname="Tiers API Service Constructor should initialize endpoints correctly" name="Tiers API Service Constructor should initialize endpoints correctly" time="0.011">
+    </testcase>
+    <testcase classname="Tiers API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" name="Tiers API Service Constructor should inherit from ApiRequest with correct auth and apiBaseUrl" time="0.007">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods getTiers should get tiers with metadatas and options" name="Tiers API Service Non-CRUD Methods getTiers should get tiers with metadatas and options" time="0.008">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods getTiers should get tiers with default options" name="Tiers API Service Non-CRUD Methods getTiers should get tiers with default options" time="0.008">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods getTiersById should get single tier by ID" name="Tiers API Service Non-CRUD Methods getTiersById should get single tier by ID" time="0.008">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods updateTier should update tier with datas wrapper" name="Tiers API Service Non-CRUD Methods updateTier should update tier with datas wrapper" time="0.008">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods createTier should create tier with datas array wrapper" name="Tiers API Service Non-CRUD Methods createTier should create tier with datas array wrapper" time="0.01">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods deleteTier should delete tier without userId" name="Tiers API Service Non-CRUD Methods deleteTier should delete tier without userId" time="0.01">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods deleteTier should delete tier with userId" name="Tiers API Service Non-CRUD Methods deleteTier should delete tier with userId" time="0.012">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods archive should archive tier by setting isArchived to 1" name="Tiers API Service Non-CRUD Methods archive should archive tier by setting isArchived to 1" time="0.011">
+    </testcase>
+    <testcase classname="Tiers API Service Non-CRUD Methods unarchive should unarchive tier by setting isArchived to 0" name="Tiers API Service Non-CRUD Methods unarchive should unarchive tier by setting isArchived to 0" time="0.009">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -7,3 +7,4 @@ const Metadatas_1 = require("./core/Metadatas");
 Object.defineProperty(exports, "Metadatas", { enumerable: true, get: function () { return Metadatas_1.Metadatas; } });
 const HttpClient_1 = require("./core/HttpClient");
 Object.defineProperty(exports, "HttpClient", { enumerable: true, get: function () { return HttpClient_1.HttpClient; } });
+//# sourceMappingURL=index.js.map
