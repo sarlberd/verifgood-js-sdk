@@ -4,6 +4,7 @@ export interface InvitationRequest {
     role: string;
     origin: string;
     sites?: number[];
+    tiersId?: number;
 }
 export interface InvitationCard {
     id?: number;

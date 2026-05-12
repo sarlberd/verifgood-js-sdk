@@ -6,6 +6,7 @@ export interface InvitationRequest {
     role: string;
     origin:string;
     sites?: number[];
+    tiersId?: number;
 }
 
 export interface InvitationCard{
@@ -67,6 +68,9 @@ export class Invitations extends ApiRequest {
             // Send as JSON string to match backend expectations
             const sitesParam = JSON.stringify(invitationRequest.sites);
             url += `&sites=${encodeURIComponent(sitesParam)}`;
+        }
+        if (invitationRequest.tiersId) {
+            url += `&tiersId=${encodeURIComponent(String(invitationRequest.tiersId))}`;
         }
         
         const response = await this.apiRequest(url, 'GET', null);
